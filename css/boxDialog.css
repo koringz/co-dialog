@@ -1,0 +1,146 @@
+/* dialog*/
+.boxdialog-dialog-shadow{
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    *background-color: #aaa !important;
+    _background-color: #aaa;
+    background-color: #aaa;
+    background-color: rgba(0,0,0,.3);
+}
+.boxdialog-dialog-frame{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 558px;
+    /*height: 200px;*/
+    margin-left: -229px;
+    margin-top: -100px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.boxdialog-dialog-frame .boxdialog-dialog-box{
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    min-height: 70%;
+}
+.boxdialog-dialog-frame .boxdialog-dialog-box .boxdialog-dialog-fixedDialog{
+    height: inherit;
+}
+.boxdialog-dialog-frame .boxdialog-dialog-box .boxdialog-dialog-fixedDialog .fixedDialog-styles{
+    height: inherit;
+}
+.fixedDialog-styles .styles-head{
+    display: block;
+    padding: 19px 0 18px;
+    *background-color: #F3F3F3 !important;
+    background-color: #F3F3F3 ;
+    clear: both;
+}
+.fixedDialog-styles .styles-head .head-info{
+    display: table;
+    width: 100%;
+}
+.fixedDialog-styles .styles-head .head-title,
+.fixedDialog-styles .styles-head .head-close{
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+}
+.fixedDialog-styles .styles-head .head-title{
+    float: left;
+    text-align: left;
+}
+.fixedDialog-styles .styles-head .head-close{
+    float: right;
+    text-align: right;
+}
+
+.fixedDialog-styles .styles-head .head-title > span,
+.fixedDialog-styles .styles-head .head-close > span{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 16px;
+}
+.fixedDialog-styles .styles-head .head-title > span{
+    margin-left: 10px;
+}
+.fixedDialog-styles .styles-head .head-close > span{
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+.fixedDialog-styles .styles-content{
+    margin: 30px 0;
+}
+.fixedDialog-styles .styles-content .content-message{
+    text-align: center;
+}
+.fixedDialog-styles .styles-content .content-message .message-text{
+    font-size: 26px;
+}
+.fixedDialog-styles .styles-foot{
+    display: block;
+}
+.fixedDialog-styles .styles-foot .foot-button{
+    display: block;
+}
+.fixedDialog-styles .styles-foot .foot-button .button-group{
+    text-align: center;
+}
+.fixedDialog-styles .styles-foot .foot-button .button-group .group-btn{
+    display: inline-block;
+    margin: 0;
+    padding: 10px 18px 8px 22px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    *border-radius:  6px !important;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border-radius: 6px;
+}
+.fixedDialog-styles .styles-foot .foot-button .button-group .primary{
+    margin-left: 15px;
+    *background-color: #16AEEE !important;
+    background-color: #16AEEE ;
+    background-color: rgba(22,174,238,1);
+    color: #fff;
+}
+.fixedDialog-styles .styles-foot .foot-button .button-group .cancle{
+    margin-right: 15px;
+    *background-color: #ededed !important;
+    background-color: #ededed;
+    background-color: #ededed;
+}
+
+/*add*/
+.fixedDialog-styles .styles-head .head-title > span{
+    color: #666666;
+    font-weight: normal;
+}
+.fixedDialog-styles .styles-head .head-close > span{
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    border: 1px solid #949494;
+    color: #949494;
+    font-weight: normal;
+    cursor: pointer;
+}
