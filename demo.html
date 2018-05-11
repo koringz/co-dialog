@@ -66,6 +66,30 @@
         footerText: ['<b>123</b>','456','789'], // 这是一个数组的字符串数组对象
     });
 
+    boxdialog.app('.last-dialog');
+    boxdialog.dialog('.aria-dialog').hide();
+    boxdialog.use({
+        boxdialogWidth: 618,
+        title: '失败', // default : ''
+        message: '消息正在<b>努力</b>生产中...', // default : ''
+        headerMargin: { horizontal: '10px 10px', vertical: '19px 18px' }, // default : integer
+        bodyMargin: { horizontal: 20, vertical: 10 }, // { horizontal: 10, vertical: 10 },
+        footerMargin: { horizontal: 50, vertical: 0 }, // { horizontal: 10, vertical: 10 },
+        footer: false,
+        isClose: true, //是否可以关闭 default: true  寻找设置了close属性的都会添加 关闭的点击事件
+        // footerSelector: '.button', // 外部的节点使用当前的footer节点下面的点击事件和函数
+        footerButtonCount: 2, // 按钮的数量 最大2个 最小0 没有button
+        footerText: ['<b>123</b>','456','789'], // 这是一个数组的字符串数组对象
+        methods: function  (nodes) {
+            $(nodes).on('click',function (e) {
+                e.preventDefault();
+                boxdialog.dialog('.last-dialog').hide();
+                boxdialog.dialog('.aria-dialog').show();
+            })
+        }
+    });
+
+
 
 </script>
 </html>
