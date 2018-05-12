@@ -1,5 +1,12 @@
 # co-dialog来源
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./License.txt)
+[![issues](https://img.shields.io/github/issues/koringz/co-dialog.svg)](https://github.com/koringz/co-dialog/issues)
+[![releases](https://img.shields.io/badge/release-lastest-blue.svg)](https://github.com/koringz/co-dialog/releases/latest)
+[![GitHub stars](https://img.shields.io/github/stars/koringz/co-dialog.svg?style=social)](https://github.com/koringz/co-dialog/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/koringz/co-dialog.svg?style=social)](https://github.com/koringz/co-dialog/network)
+
 因为工作中用到dialog, 发现UI设计的弹出框的风格一直在变化，于是每次都要重新写一个弹出框，无意中增加了无用的工作量，所以果断就封装成一个弹出框组件，目前的锥形仅支持PC，然后又加入了CSS3动画效果，如果要引入动画效果就需要高版本的browser才能使用，期望你能一起加入参与改进！+1
+
 
 ## 演示效果
 
