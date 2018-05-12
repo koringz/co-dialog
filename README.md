@@ -187,8 +187,8 @@ options: boolean(true / false)
  - 通过一个属性为true 在browser窗口显示strict结构目录 反之隐藏
 
 
-## 版本改变 [参考](https://github.com/craftpip/jquery-confirm#version-changes)
-(v1.0)
+## 版本改变 
+(v1.0)[参考](https://github.com/koringz/co-dialog/releases)
 
 -  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
 -  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
