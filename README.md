@@ -18,6 +18,7 @@
 // 首先，实例codialog方法
 var codialog = new codialog();
 
+// 第一个弹出框
 codialog.app('div.selector')
 codialog.use({
 	... configure options
