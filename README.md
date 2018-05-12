@@ -17,6 +17,7 @@
 ```js
 // 首先，实例codialog方法
 var codialog = new codialog();
+
 codialog.app('div.selector')
 codialog.use({
 	... configure options
