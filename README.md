@@ -44,8 +44,8 @@ codialog.coani.render();
 > 标题的内容填充
 
 ```
-	default: ''
-	options: ''
+default: ''
+options: ''
 ```
 
 **message**
@@ -53,32 +53,32 @@ codialog.coani.render();
 > 容器的内容填充
 
 ```
-	default: ''
-	options: ''
+default: ''
+options: ''
 ```
 **dialogWidth**
 
 > 弹出框的整体宽度
 
 ```
-	default: 500
-	options: integer
+default: 500
+options: integer
 ```
 **dialogHeight**
 
 > 弹出框的整体高度
 
 ```
-	default: 300
-	options: integer
+default: 300
+options: integer
 ```
 **headerMargin**
 
 > 标题的外边距设置
 
 ```
-	default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-	options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
 ```
 
 **bodyMargin**
@@ -86,8 +86,8 @@ codialog.coani.render();
 > 容器的内容外边距(其实内部封装的时候设置为内边距)
 
 ```
-	default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-	options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
 ```
 
 **footerMargin**
@@ -95,8 +95,8 @@ codialog.coani.render();
 > 底部的内容外边距(同上)
 
 ```
-	default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-	options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
 ```
 
 
@@ -105,8 +105,8 @@ codialog.coani.render();
 > 底部按钮的个数(如果设置0，就会remove移除按钮块，最多有2个按钮)
 
 ```
-	default: 1
-	options: integer(0 / 1 / 2)
+default: 1
+options: integer(0 / 1 / 2)
 ```
 
 
@@ -115,8 +115,8 @@ codialog.coani.render();
 > 底部内容的填充(可以和按钮共存)
 
 ```
-	default: ['',...]
-	options: array ('','')
+default: ['',...]
+options: array ('','')
 ```
 
 
@@ -125,8 +125,8 @@ codialog.coani.render();
 > 设置头部的节点元素的attribute和style
 
 ```
-	default: callback
-	options: function
+default: callback
+options: function
 ```
 
 
@@ -136,8 +136,8 @@ codialog.coani.render();
 > 设置容器的节点元素的attribute和style
 
 ```
-	default: callback
-	options: function
+default: callback
+options: function
 ```
 
 
@@ -147,8 +147,8 @@ codialog.coani.render();
 > 设置底部的节点元素的attribute和style
 
 ```
-	default: callback
-	options: function
+default: callback
+options: function
 ```
 
 
@@ -158,8 +158,8 @@ codialog.coani.render();
 > 执行当前的弹出框的方法, 可以通过动态改变title,message的值(执行的顺序在onHeaderBefore/onBodyBefore/onFooterBefore的后面)
 
 ```
-	default: callback
-	options: function
+default: callback
+options: function
 ```
 
 
@@ -168,23 +168,23 @@ codialog.coani.render();
 > 关闭的按钮事件，默认位true，点击右侧关闭按钮就会隐藏弹出框，反之同理。
 
 ```
-	default: true
-	options: boolean(true / false)
+default: true
+options: boolean(true / false)
 ```
 
 
 ## 支持
 
-目前支持一个css3动画组件的功能, 当然在`co-dialog`也能调用`coani`, 和`.use()`或`.app()`方法一样调用, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+目前支持一个css3动画组件的功能，当然在`co-dialog`也能调用`coani`，调用方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
 
 
 
 ## 可优化
-**在节点下面插入新的节点如何实现**
-**是否显示遮罩层 true/false**
-**弹出框的高度 固定或者自适应**
-**动画效果(渐变 淡入 淡出 贝塞尔)**
-**通过一个属性为true 在browser窗口显示strict结构目录 反之隐藏**
+ - 在节点下面插入新的节点如何实现
+ - 是否显示遮罩层 true/false
+ - 弹出框的高度 固定或者自适应
+ - 动画效果(渐变 淡入 淡出 贝塞尔)
+ - 通过一个属性为true 在browser窗口显示strict结构目录 反之隐藏
 
 
 ## 版本改变 [参考](https://github.com/craftpip/jquery-confirm#version-changes)
@@ -192,13 +192,3 @@ codialog.coani.render();
 
 -  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
 -  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
-
-
-
-## 参考思路来源：
-https://github.com/aui/artDialog/blob/master/src/dialog.js
-https://github.com/sentsin/layer
-https://github.com/filamentgroup/dialog
-https://github.com/craftpip/jquery-confirm#version-changes
-http://craftpip.github.io/jquery-confirm/
-http://craftpip.github.io/jquery-confirm/animations.html
