@@ -45,7 +45,7 @@ codialog.coani.render();
 
 ```
 default: ''
-options: ''
+options: string
 ```
 
 **message**
@@ -54,7 +54,7 @@ options: ''
 
 ```
 default: ''
-options: ''
+options: string
 ```
 **dialogWidth**
 
@@ -78,7 +78,7 @@ options: integer
 
 ```
 default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
 ```
 
 **bodyMargin**
@@ -87,7 +87,7 @@ options: integer || { horizontal: integer, vertical: integer } || { horizontal: 
 
 ```
 default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
 ```
 
 **footerMargin**
@@ -96,7 +96,7 @@ options: integer || { horizontal: integer, vertical: integer } || { horizontal: 
 
 ```
 default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: String, vertical: String }
+options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
 ```
 
 
@@ -116,7 +116,7 @@ options: integer(0 / 1 / 2)
 
 ```
 default: ['',...]
-options: array ('','')
+options: array ([string, string])
 ```
 
 
