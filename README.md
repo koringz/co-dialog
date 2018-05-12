@@ -15,33 +15,32 @@
 ## 使用
 
 ```js
-
 // 首先，实例codialog方法
 var codialog = new codialog();
 
-codialog
-	.app('div.selector')
-	.use({
-		...	configure options
-	})
-	.hide()
-	// 下一个弹出框
-	.app('div.selector2')
-	.use({
-		...	configure options
-	})
-	.hide()
-	...
-	
+// 第一个弹出框
+codialog.app('div.selector')
+codialog.use({
+	... configure options
+})
+codialog.hide()
+// 下一个弹出框
+codialog.app('div.selector2')
+codialog.use({
+	... configure options
+})
+codialog.hide()
+...
+
 // 如何显示弹出框
-codialog.app('div.selector').show() or codialog.show('div.selector')
+codialog.app('div.selector').show() 
+or 
+codialog.show('div.selector')
 
 // 使用动画的方式也很简单
 codialog.coani('.selector').bounch().stop();
 codialog.coani.render();
-
 ```
-
 
 
 ## 配置选项
