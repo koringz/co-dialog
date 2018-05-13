@@ -251,4 +251,4 @@ options: boolean(true / false)
 
 (v1.1)[参考](https://github.com/koringz/co-dialog/releases)
 
- - 添加自弹出框适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
+ - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
