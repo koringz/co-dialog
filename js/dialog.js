@@ -1,4 +1,4 @@
-var  codialog = new codialog();
+var codialog = new codialog();
 
 // 开通成功
 codialog
@@ -7,7 +7,7 @@ codialog
     dialogWidth: 491.90,
     dialogHeight: 304,
     title: '开通成功',
-    message: '消息正在<b>努力</b>生产中...',
+    message: '协议已开通，赶快充值吧！',
     headerMargin: { horizontal: '21px 21px', vertical: '19px 18px' },
     bodyMargin: { horizontal: '10px 10px', vertical: '40px 30px'  },
     footerMargin: { horizontal: '0', vertical: '0px 36px' },
@@ -18,20 +18,18 @@ codialog
     },
     onBodyBefore: function (nodes) {
         $(nodes).css({'text-align':'center','color':'#333','font-size':16}).find('.dialog-message-text').css({'margin-top':29});
-        var addimg = $(nodes).find('.dialog-message-success').css({'height':46});
-        addimg.html('<img src="./img/sc.png" width="" alt="">');
+        $(nodes).find('.dialog-message-success').css({'height':46}).html('<img src="./img/sc.png" width="" alt="">');
     },
     onFooterBefore: function (nodes) {
         $(nodes).css({'text-align':'center','color':'#fc862e','font-size':14});
         $(nodes).find('button').css({'background-color':'#FB862E','color':'#fff','padding-left':'30px','padding-right':'30px'}).text('立即充值');
     },
     methods: function (nodes) {
-        this.message = '协议已开通，赶快充值吧！';
         $(nodes).css({'text-align':'center','color':'#fc862e','font-size':14});
 
         $(nodes).on('click',function (e) {
             e.preventDefault();
-            codialog.app('.open-success ').hide();
+            codialog.app('.open-success').hide();
             codialog.app('.send-validate-code').show();
 
             codialog.coani('.send-validate-code [dialog],.send-validate-code [shadow]').delay(10).flipOutY().stop();

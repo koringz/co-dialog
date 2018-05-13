@@ -9,8 +9,8 @@
 
 
 ## 演示效果
-
 ![co-dialog](http://images.cnblogs.com/cnblogs_com/hao5599/1211580/o_2018-05-12_11-53-10.gif)
+[效果](https://koringz.github.io/codialog/dialog.html)
 
 ## 使用
 
@@ -33,15 +33,14 @@ codialog.hide()
 ...
 
 // 如何显示弹出框
-codialog.app('div.selector').show() 
-or 
+codialog.app('div.selector').show()
+or
 codialog.show('div.selector')
 
 // 使用动画的方式也很简单
 codialog.coani('.selector').bounch().stop();
 codialog.coani.render();
 ```
-
 
 ## 配置选项
 
@@ -78,6 +77,25 @@ options: integer
 default: 300
 options: integer
 ```
+
+**adaptDialogHeight**
+
+> 弹出框的整体高度自适应，如果为true，那么dialogHeight将会失效。
+
+```
+default: false
+options: boolean(true / false)
+```
+
+**adaptDialogWidth**
+
+> 弹出框的整体宽度自适应，如果为true，那么dialogWidth将会失效。
+
+```
+default: false
+options: boolean(true / false)
+```
+
 **headerMargin**
 
 > 标题的外边距设置
@@ -181,7 +199,27 @@ options: boolean(true / false)
 
 ## 支持
 
-目前支持一个css3动画组件的功能，当然在`co-dialog`也能调用`coani`，调用方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+目前支持一个css3动画组件的功能`co-dialog`，使用时调用`.coani`方法，渲染时调用`.coani.render()`，调用动画方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+
+## 公共方法
+
+- app
+> 创建一个新的弹出框节点
+
+- use
+> 使用弹出框的属性和callback回调
+
+- hide
+> 隐藏弹出框的节点
+
+- show
+> 显示弹出框的节点
+
+- list
+> 列出弹出框的节点
+
+- coani
+> 调用动画库
 
 
 
@@ -191,10 +229,26 @@ options: boolean(true / false)
  - 弹出框的高度 固定或者自适应
  - 动画效果(渐变 淡入 淡出 贝塞尔)
  - 通过一个属性为true 在browser窗口显示strict结构目录 反之隐藏
+ - 显示多个弹出框
+ - 可拖动弹出框
+ - 自适应（解决）
+ - 内容滚动弹出框
+ - 抓手特效
+ - 渐变切换弹出框(解决)
+ - 弹出框加菜单
+ - 跟谁页面元素定位
+ - 弹出绝对定位
+ - 自动关闭弹出
+ - 关闭methods方法的调用
+ - 通过在view窗口输入数字和配置信息即可实现弹出框的风格(实现方式，生成的代码要copy到页面里面，后面想到，可以基于node实现)
 
 
-## 版本改变 
+## 版本改变
 (v1.0)[参考](https://github.com/koringz/co-dialog/releases)
 
 -  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
 -  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
+
+(v1.1)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 添加自弹出框适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
