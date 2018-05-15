@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # co-dialog来源
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./License.txt)
 [![issues](https://img.shields.io/github/issues/koringz/co-dialog.svg)](https://github.com/koringz/co-dialog/issues)
@@ -279,9 +278,8 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
  - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示.
 
-||||||| merged common ancestors
 # boxdialog
-=======
+
 # co-dialog来源
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./License.txt)
 [![issues](https://img.shields.io/github/issues/koringz/co-dialog.svg)](https://github.com/koringz/co-dialog/issues)
@@ -326,7 +324,7 @@ codialog.coani('.selector').bounch().stop();
 codialog.coani.render();
 ```
 
-## 配置选项
+## use配置选项
 
 **title**
 
@@ -475,15 +473,18 @@ options: function
 
 > 关闭的按钮事件，默认位true，点击右侧关闭按钮就会隐藏弹出框，反之同理。
 
-```
+```js
 default: true
 options: boolean(true / false)
 ```
 
 
-## 支持
-
-目前支持一个css3动画组件的功能`co-dialog`，使用时调用`.coani`方法，渲染时调用`.coani.render()`，调用动画方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+## 其他配置选项
+我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。。
+```
+codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
+codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
+```
 
 ## 公共方法
 
@@ -507,6 +508,16 @@ options: boolean(true / false)
 
 
 
+## 支持
+
+目前支持一个css3动画组件的功能`co-dialog`，使用时调用`.coani`方法，渲染时调用`.coani.render()`，调用动画方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+
+
+## 贡献
+欢迎开发人员助力开源co-dialog，欢迎任何人参与贡献，如果你决定要参与进来，请花点时间来浏览向导guidelines。
+
+ [pull request](https://github.com/koringz/co-dialog/blob/v1.4/pull%20request.md)
+
 ## 可优化
  - 在节点下面插入新的节点
  - 是否显示遮罩层 true/false
@@ -522,8 +533,17 @@ options: boolean(true / false)
  - 弹出框加菜单
  - 跟随页面元素定位
  - 弹出绝对定位
- - 自动关闭弹出
+ - 自动关闭弹出 通过.hide({timeout:1000})设置毫秒（解决）
  - 关闭methods方法的调用
+ - 兼容性解决 (目前拆分函数的功能)
+ - center居中模式 left right bottom top
+ - keyboard键盘模式
+ - 随机位置展示 非居中
+ - 放大 缩小 弹出框 以及最小和最大缩放
+ - 封装监听事件 启用原生监听方法如 addEventListener('start',fn)
+ - 启用颜色查询 在window侧边栏显示一组色调 (https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/)
+ - 依赖模块比如 dependencies注入一个js文件'.lib/jq/jq.js'
+ - 顶层开出新的分支, 使用黄金比例规则, 划分出新的布局弹出框. 同时基于新的api方法来使用dialog.
 
 
 ## 版本改变
@@ -536,5 +556,6 @@ options: boolean(true / false)
 
  - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
 
+(v1.4)[参考](https://github.com/koringz/co-dialog/releases)
 
->>>>>>> 008d3649e84cf3197fa2d2b4c7f03f9e37a4e1ed
+ - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示.

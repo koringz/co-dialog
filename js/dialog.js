@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var codialog = new codialog();
 
 var lust = {};
@@ -125,23 +124,26 @@ codialog.coani('.open-success [dialog],.open-success [shadow]').delay(500).zoomI
 codialog.coani.render();
 // codialog.show('.open-success');
 // codialog.show('.send-validate-code');
-||||||| merged common ancestors
-=======
 var codialog = new codialog();
+
+var lust = {};
+
+codialog.list = [];
+
+lust.dialogWidth = 491.90;
+lust.dialogHeight = 301.90;
+lust.title = '开通成功';
+lust.message = '协议已开通，赶快充值吧！';
+lust.headerMargin = { horizontal: '21px 21px', vertical: '19px 18px' },
+lust.bodyMargin = { horizontal: '10px 10px', vertical: '40px 30px'  };
+lust.footerMargin = { horizontal: '0', vertical: '0px 36px' };
+lust.message = true;
+lust.footerButtonCount = 1;
 
 // 开通成功
 codialog
 .app('.open-success')
-.use({
-    dialogWidth: 491.90,
-    dialogHeight: 304,
-    title: '开通成功',
-    message: '协议已开通，赶快充值吧！',
-    headerMargin: { horizontal: '21px 21px', vertical: '19px 18px' },
-    bodyMargin: { horizontal: '10px 10px', vertical: '40px 30px'  },
-    footerMargin: { horizontal: '0', vertical: '0px 36px' },
-    isClose: true,
-    footerButtonCount: 1,
+.use(Object.assign(lust, {
     onHeaderBefore: function (nodes) {
         $(nodes).find('span').css('margin','0');
     },
@@ -159,13 +161,14 @@ codialog
         $(nodes).on('click',function (e) {
             e.preventDefault();
             codialog.app('.open-success').hide();
-            codialog.app('.send-validate-code').show();
+            codialog.app('.send-validate-code').show({timeout: 1000});
 
             codialog.coani('.send-validate-code [dialog],.send-validate-code [shadow]').delay(10).flipOutY().stop();
             codialog.coani.render();
         })
-    },
+    }
 })
+)
 .hide()
 
 
@@ -199,7 +202,7 @@ codialog
             codialog.app('.send-validate-code').hide();
 
             codialog.coani('.open-fail [dialog]').delay(50).zoomIn(function () {
-                codialog.show('.open-fail');
+                codialog.app('.open-fail').show({timeout: 2000});
             }).wobble().stop();
             codialog.coani('.open-fail [shadow]').delay(50).zoomIn().stop();
             codialog.coani.render();
@@ -241,10 +244,9 @@ codialog
 .hide();
 
 codialog.coani('.open-success [dialog],.open-success [shadow]').delay(500).zoomInRight(function (){
-    codialog.app('.open-success').show();
+    codialog.app('.open-success').hide().show({timeout: 1000});
 }).stop();
 
 codialog.coani.render();
 // codialog.show('.open-success');
 // codialog.show('.send-validate-code');
->>>>>>> 008d3649e84cf3197fa2d2b4c7f03f9e37a4e1ed
