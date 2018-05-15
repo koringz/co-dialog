@@ -11,12 +11,12 @@
 1. 首先，你需要[Fork](https://help.github.com/articles/fork-a-repo/)这个项目，克隆到你的Fork，然后配置远程remote控制。
 
 ```
-	# Clone your fork of the repo into the current directory
-	git clone https://github.com/<your-username>/co-dialog.git
-	# Navigate to the newly cloned directory
-	cd co-dialog
-	# Assign the original repo to a remote called "upstream"
-	git remote add upstream git@github.com:koringz/co-dialog.git
+# Clone your fork of the repo into the current directory
+git clone https://github.com/<your-username>/co-dialog.git
+# Navigate to the newly cloned directory
+cd co-dialog
+# Assign the original repo to a remote called "upstream"
+git remote add upstream git@github.com:koringz/co-dialog.git
 ```
 
 2. 如果你已经克隆，那么从upstream获得最新改变的。
@@ -35,7 +35,7 @@ git checkout -b <topic-branch-name>
 git push origin <topic-branch-name>
 ```
 
-5. 
+5. 常见推入到远程分支
 ```
 git add .
 git commit -m ""
@@ -43,8 +43,5 @@ git push origin <topic-branch-name>
 ```
 
 6. 最后你在github上使用一个清楚的标题和描述推入请求[open a pull request](https://help.github.com/articles/about-pull-requests/)
-```
-new pull request
-```
 
  
