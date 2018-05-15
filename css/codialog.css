@@ -1,23 +1,22 @@
 /* dialog*/
-.boxdialog-dialog-shadow{
-    display: flex;
-    position: absolute;
+.codialog-dialog-shadow{
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+    z-index: 999;
     *background-color: #aaa !important;
     _background-color: #aaa;
     background-color: #aaa;
     background-color: rgba(0,0,0,.3);
 }
-.boxdialog-dialog-frame{
-    display: flex;
-    position: absolute;
+.codialog-dialog-frame{
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 558px;
-    /*height: 200px;*/
+    height: 300px;
     margin-left: -229px;
     margin-top: -100px;
     -webkit-border-radius: 10px;
@@ -27,16 +26,16 @@
     overflow: hidden;
     background-color: #fff;
 }
-.boxdialog-dialog-frame .boxdialog-dialog-box{
+.codialog-dialog-frame .codialog-dialog-box{
     display: block;
     width: 100%;
     height: 100% !important;
     min-height: 70%;
 }
-.boxdialog-dialog-frame .boxdialog-dialog-box .boxdialog-dialog-fixedDialog{
+.codialog-dialog-frame .codialog-dialog-box .codialog-dialog-fixedDialog{
     height: inherit;
 }
-.boxdialog-dialog-frame .boxdialog-dialog-box .boxdialog-dialog-fixedDialog .fixedDialog-styles{
+.codialog-dialog-frame .codialog-dialog-box .codialog-dialog-fixedDialog .fixedDialog-styles{
     height: inherit;
 }
 .fixedDialog-styles .styles-head{
@@ -88,7 +87,7 @@
     text-align: center;
 }
 .fixedDialog-styles .styles-content .content-message .message-text{
-    font-size: 26px;
+    font-size: inherit;
 }
 .fixedDialog-styles .styles-foot{
     display: block;
@@ -115,18 +114,15 @@
     -ms-border-radius: 6px;
     border-radius: 6px;
 }
-.fixedDialog-styles .styles-foot .foot-button .button-group .primary{
-    margin-left: 15px;
+.fixedDialog-styles .styles-foot .foot-button .button-group button::first-child{
+    *background-color: #ededed !important;
+    background-color: #ededed;
+}
+.fixedDialog-styles .styles-foot .foot-button .button-group button:last-child{
     *background-color: #16AEEE !important;
     background-color: #16AEEE ;
     background-color: rgba(22,174,238,1);
     color: #fff;
-}
-.fixedDialog-styles .styles-foot .foot-button .button-group .cancle{
-    margin-right: 15px;
-    *background-color: #ededed !important;
-    background-color: #ededed;
-    background-color: #ededed;
 }
 
 /*add*/
