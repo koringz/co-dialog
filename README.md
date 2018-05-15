@@ -234,7 +234,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 ## 贡献
 欢迎开发人员助力开源co-dialog，欢迎任何人参与贡献，如果你决定要参与进来，请花点时间来浏览向导guidelines。
 
- [pull request](https://github.com/koringz/co-dialog/blob/v1.4/pull%20request.md)
+ [pull request](https://github.com/koringz/co-dialog/blob/master/pull%20request.md)
 
 ## 可优化
  - 在节点下面插入新的节点
