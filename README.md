@@ -186,6 +186,14 @@ default: callback
 options: function
 ```
 
+**isDrag**
+
+> 关闭的弹出框的拖动功能，默认位false。在此之前需要开启手势isGesture
+
+```js
+default: false
+options: boolean(true / false)
+```
 
 **isClose**
 
@@ -196,9 +204,29 @@ default: true
 options: boolean(true / false)
 ```
 
+**isGestrue**
+
+> 关闭抓手特效手势。
+
+```js
+default: false
+options: boolean(true / false)
+```
+
+**isMask**
+
+> 默认显示遮罩层，如果为false就不能显示遮罩层。
+
+```js
+default: true
+options: boolean(true / false)
+```
+
 
 ## 其他配置选项
-我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。。
+**hide({timeout: 3000}) or show({timeout: 3000})**
+
+我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。
 ```
 codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
 codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
@@ -243,10 +271,10 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
  - 动画效果(渐变 淡入 淡出 贝塞尔)(解决)
  - 通过一个属性为true 在browser窗口显示strict结构目录 反之隐藏
  - 显示多个弹出框
- - 可拖动弹出框
+ - 可拖动弹出框 (已解决)
  - 自适应
  - 内容滚动弹出框
- - 抓手特效
+ - 抓手特效  (已解决)
  - 渐变切换弹出框
  - 弹出框加菜单
  - 跟随页面元素定位
@@ -276,5 +304,11 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 (v1.4)[参考](https://github.com/koringz/co-dialog/releases)
 
- - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示.
+ - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示
+ 
+ - 是否使用遮罩层 isMask默认为true使用遮罩层，否则同理
+ 
+ - 添加了抓手特效 isGesture 默认为false不展示抓手功能，否则同理
+ 
+ - 可拖动弹出框 isDrag 默认为false不可拖动dialog, 否则同理
 
