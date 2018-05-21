@@ -224,15 +224,16 @@ options: boolean(true / false)
 
 **isOverflow**
 
-> 设置isOverflow属性为true或为false，表示滚动和无滚动特效。如设置为空对象`{}`，无滚动特效。如果设置对象的属性为{x: true/false, y: true/false}都是有滚动效果。
+> 设置isOverflow属性为true或为false，表示滚动和无滚动特效。如设置为空对象`{}`，无滚动特效。如果设置对象的属性为 {properties:{x: true/false, y: true/false}}都是有滚动效果。
 
 ```js
 default: true || {properties: {x: boolean, y: boolean}}
-options: boolean(true / false) || {x: boolean(true / false), y: boolean(true / false)}
+options: boolean(true / false) || {properties:{x: boolean(true / false), y: boolean(true / false)}}
 
 or
 
-option: {properties: {{x: true, y: true}}, width: '60%', height: 70, pos: ['right' or 'center' or 'left'] } //其中的width/height表示设置内容的宽和高的属性以及pos位置
+option: {properties: {x: true, y: true}, width: '60%', height: 70, pos: ['right' or 'center' or 'left'] } 
+//其中的width/height表示设置内容的宽和高的属性以及pos位置
 ```
 
 ## 其他配置选项
@@ -324,5 +325,5 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
  - 可拖动弹出框 默认为false不可拖动dialog, 否则同理
  
- - 内容移除滚动效果 默认y轴滚动效果 直接设置isOverflow为true即可 如果想要x统一滚动 请使用对象的方式 {properties: {x:true, y: true}}
+ - 内容溢出滚动效果 默认y轴滚动效果 直接设置isOverflow为true即可 如果想要x统一滚动 请使用对象的方式 {properties: {x:true, y: true}}
 
