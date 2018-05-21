@@ -83,6 +83,9 @@
 .fixedDialog-styles .styles-content{
     margin: 30px 0;
 }
+.fixedDialog-styles .styles-content [dialog-body-overflow]{
+    overflow-y: scroll;
+}
 .fixedDialog-styles .styles-content .content-message{
     text-align: center;
 }
