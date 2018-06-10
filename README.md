@@ -60,8 +60,7 @@ $('.showme').on('click',function () {
     .app('.compact')
     .show()
     .$methods(function () {
-		// 修改标题的方式
-        this.$header.$ref.headText.innerHTML = '简洁版';
+        this.$header.$ref.headText.innerHTML = '简洁版'; // 修改标题的方式
         this.$body.$ref.message.innerHTML = '测试调用$methods方法';
         this.$footer.$ref.button.children[0].innerHTML = '删除 onclick';
         this.$footer.$ref.button.children[1].innerHTML = '提交 onclick';
