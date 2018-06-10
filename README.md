@@ -72,7 +72,6 @@ $('.showme').on('click',function () {
 HTML页面的代码
 ```html
 <link rel="stylesheet" type="text/css" href="./../css/codialog.css" />
-<link rel="stylesheet" type="text/css" href="./../css/animate.css">
 <center style="padding-top: 300px"><button class="showme">测试调用$methods方法</button></center>
 <script type="text/javascript" src="./../lib/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="./../lib/co-dialog.js" ></script>
