@@ -12,6 +12,76 @@
 ![co-dialog](http://images.cnblogs.com/cnblogs_com/hao5599/1211580/o_2018-05-12_11-53-10.gif)
 [效果](https://koringz.github.io/codialog/dialog.html)
 
+
+## 简洁版
+简洁版的代码非常地清晰，我们可在methods方法里面处理节点(删除改)，分别使用this.$header头部，this.$body主体，this.$footer底部操作节点信息，这三个节点下如果存在ref="name"属性，我们使用.$ref.name能直接拿到这个节点，这样非常的方便input赋值和设置style样式以及添加内容。当我们要显示弹出框并修改节点时，此刻调用$methods方法，方法内部的操作原理和methods一样处理。(添)这一步操作让给*before处理(如onHeaderBefore/onBodyBefore/onFooterBefore)。
+```js
+// 创建一个简洁版弹出框'.compact'
+var codialog = new codialog();
+
+codialog
+.app('.compact')
+.use({
+    dialogWidth: 583.3,
+    dialogHeight: 258.93,
+    title: '简洁版',
+    message: '消息生产中...',
+    headerMargin: { horizontal: '21px 21px', vertical: '19px 18px' },
+    bodyMargin: { horizontal: '10px 10px', vertical: '40px 15px' },
+    footerMargin: { horizontal: '0', vertical: '20px 40px' },
+    isClose: true,
+    footerButtonCount: 2,
+    onHeaderBefore: function (nodes) {
+        $(nodes).html('<div ref="headText"> 123 </div>');
+    },
+    methods: function () {
+        this.$header.$ref.headText.style.color = '#FB862E'
+        this.$header.$ref.headText.style.fontSize = '30px'
+
+        this.$footer.$ref.button.children[0].innerHTML = '确定';
+        this.$footer.$ref.button.children[1].innerHTML = '知道了';
+        this.$body.$ref.message.style.color = "#333";
+        this.$body.$ref.message.style.paddingTop = "29px";
+        this.$footer.$ref.button.children[0].style.color =
+        this.$footer.$ref.button.children[1].style.color = '#fff';
+        this.$footer.$ref.button.children[0].style.paddingLeft = 
+        this.$footer.$ref.button.children[0].style.paddingRight =
+        this.$footer.$ref.button.children[1].style.paddingLeft = 
+        this.$footer.$ref.button.children[1].style.paddingRight = '30px'; // this.$footer.$ref.text
+        this.$footer.$ref.button.children[0].style.backgroundColor =
+        this.$footer.$ref.button.children[1].style.backgroundColor = '#FB862E';
+        this.$footer.$ref.button.children[1].style.marginLeft = '20px';
+    }
+});
+
+// 点击按钮显示简洁版弹出框
+$('.showme').on('click',function () {
+    codialog
+    .app('.compact')
+    .show()
+    .$methods(function () {
+		// 修改标题的方式
+        this.$header.$ref.headText.innerHTML = '简洁版';
+        this.$body.$ref.message.innerHTML = '测试调用$methods方法';
+        this.$footer.$ref.button.children[0].innerHTML = '删除 onclick';
+        this.$footer.$ref.button.children[1].innerHTML = '提交 onclick';
+    })
+    .hide({timeout:3000}); // 三秒之后隐藏
+});
+```
+
+HTML页面的代码
+```html
+<link rel="stylesheet" type="text/css" href="./../css/codialog.css" />
+<link rel="stylesheet" type="text/css" href="./../css/animate.css">
+<center style="padding-top: 300px">
+	<button class="showme">测试调用$methods方法</button>
+</center>
+<script type="text/javascript" src="./../lib/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript" src="./../lib/co-dialog.js" ></script>
+```
+
+
 ## 使用
 
 ```js
@@ -179,7 +249,8 @@ options: function
 
 **methods**
 
-> 执行当前的弹出框的方法, 可以通过动态改变title,message的值(执行的顺序在onHeaderBefore/onBodyBefore/onFooterBefore的后面)
+> 执行当前的弹出框的方法, 可以通过
+> 改变title,message的值(执行的顺序在onHeaderBefore/onBodyBefore/onFooterBefore的后面)
 
 ```js
 default: callback
@@ -237,12 +308,14 @@ option: {properties: {x: true, y: true}, width: '60%', height: 70, pos: ['right'
 ```
 
 ## 其他配置选项
-**hide({timeout: 3000}) or show({timeout: 3000})**
+**hide({timeout: 3000, callback: function}) or show({timeout: 3000, callback: function})**
 
-我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。
+在web开发中，我们常常会使用ajax请求数据，当request数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，如果在规定时间内成功response数据，给弹出框设置自动关闭。
 ```
 codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
 codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
+
+其中callback回调仅在超时的间歇内处理数据和节点的方法。
 ```
 
 ## 公共方法
@@ -252,6 +325,9 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 - use
 > 使用弹出框的属性和callback回调
+
+- $methods
+> 继承use内部的methods方法的原理
 
 - hide
 > 隐藏弹出框的节点
@@ -269,7 +345,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 ## 支持
 
-目前支持一个css3动画组件的功能`co-dialog`，使用时调用`.coani`方法，渲染时调用`.coani.render()`，调用动画方式和`.use()`或`.app()`方法一样, 加入动画`.coani()`方法, 具体动画api参考[coani](https://github.com/koringz/co-ani)文档.
+目前支持一个css3动画组件的功能，使用时调用`.coani`方法，渲染时调用`.coani.render()`， 动画api参考[co-ani](https://github.com/koringz/co-ani)文档.
 
 
 ## 贡献
@@ -306,14 +382,17 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 
 ## 版本改变
-(v1.0)[参考](https://github.com/koringz/co-dialog/releases)
 
--  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
--  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
+(v1.6)[参考](https://github.com/koringz/co-dialog/releases)
 
-(v1.1)[参考](https://github.com/koringz/co-dialog/releases)
+ - 优化.show().hide({timeout: 3000,callback: function})与.show({timeout: 3000,callback: function})，表示处理超时的倒计时或其他节点信息。
+  
+ - 添加一个新的方法$methods，继承use内部的methods方法的原理。
+ 
+ - 添加节点信息全部交给onHeaderBefore/onBodyBefore/onFooterBefore处理。
+ 
+ - 通过设置ref="name" 实现节点的获取 比如this.$header.$ref.name 就是获得了头部的节点，具体看简洁版。
 
- - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
 
 (v1.4)[参考](https://github.com/koringz/co-dialog/releases)
 
@@ -327,3 +406,11 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
  
  - 内容溢出滚动效果 默认y轴滚动效果 直接设置isOverflow为true即可 如果想要x统一滚动 请使用对象的方式 {properties: {x:true, y: true}}
 
+(v1.1)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
+
+(v1.0)[参考](https://github.com/koringz/co-dialog/releases)
+
+-  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
+-  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]

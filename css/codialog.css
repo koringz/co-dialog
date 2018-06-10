@@ -40,7 +40,7 @@
 }
 .fixedDialog-styles .styles-head{
     display: block;
-    padding: 19px 0 18px;
+    padding: 19px 20px 18px 20px;
     *background-color: #F3F3F3 !important;
     background-color: #F3F3F3 ;
     clear: both;
@@ -71,10 +71,10 @@
     font-size: 16px;
 }
 .fixedDialog-styles .styles-head .head-title > span{
-    margin-left: 10px;
+    margin-left: 0px;
 }
 .fixedDialog-styles .styles-head .head-close > span{
-    margin-right: 10px;
+    margin-right: 0px;
     width: 24px;
     height: 24px;
     line-height: 24px;
@@ -126,6 +126,9 @@
     background-color: #16AEEE ;
     background-color: rgba(22,174,238,1);
     color: #fff;
+}
+.fixedDialog-styles .styles-foot .foot-button .text-group{
+    text-align: center;
 }
 
 /*add*/
