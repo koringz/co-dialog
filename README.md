@@ -60,8 +60,7 @@ $('.showme').on('click',function () {
     .app('.compact')
     .show()
     .$methods(function () {
-		// 修改标题的方式
-        this.$header.$ref.headText.innerHTML = '简洁版';
+        this.$header.$ref.headText.innerHTML = '简洁版'; // 修改标题的方式
         this.$body.$ref.message.innerHTML = '测试调用$methods方法';
         this.$footer.$ref.button.children[0].innerHTML = '删除 onclick';
         this.$footer.$ref.button.children[1].innerHTML = '提交 onclick';
@@ -74,9 +73,7 @@ HTML页面的代码
 ```html
 <link rel="stylesheet" type="text/css" href="./../css/codialog.css" />
 <link rel="stylesheet" type="text/css" href="./../css/animate.css">
-<center style="padding-top: 300px">
-	<button class="showme">测试调用$methods方法</button>
-</center>
+<center style="padding-top: 300px"><button class="showme">测试调用$methods方法</button></center>
 <script type="text/javascript" src="./../lib/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="./../lib/co-dialog.js" ></script>
 ```
@@ -391,7 +388,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
  
  - 添加节点信息全部交给onHeaderBefore/onBodyBefore/onFooterBefore处理。
  
- - 通过设置ref="name" 实现节点的获取 比如this.$header.$ref.name 就是获得了头部的节点，具体看简洁版。
+ - 通过设置ref="name"实现节点的获取，比如this.$header.$ref.name就是获取头部的节点，具体看简洁版。
 
 
 (v1.4)[参考](https://github.com/koringz/co-dialog/releases)
