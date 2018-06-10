@@ -83,6 +83,7 @@ codialog
         $(nodes).on('click',function (e) {
             e.preventDefault();
             codialog.app('.open-success').hide();
+            codialog.app('.newDialog-test-overflow').hide();
             codialog.app('.send-validate-code').show({timeout: 1000});
 
             codialog.coani('.send-validate-code [dialog],.send-validate-code [shadow]').delay(10).flipOutY().stop();
