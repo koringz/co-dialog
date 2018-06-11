@@ -22,10 +22,10 @@ codialog
         $(nodes).find('button').css({'background-color':'#FB862E','color':'#fff','padding-left':'30px','padding-right':'30px'}).text('我知道了')
     },
     methods: function (nodes) {
-        this.$body.$ref.message.style.color = "#333";
-        this.$body.$ref.message.style.paddingTop = "29px";
-        this.$header.$ref.title.style.color = 
-        this.$header.$ref.close.style.color = '#FB862E';
+        this.$body.$refs.message.style.color = "#333";
+        this.$body.$refs.message.style.paddingTop = "29px";
+        this.$header.$refs.title.style.color = 
+        this.$header.$refs.close.style.color = '#FB862E';
     },
 })
 .hide();

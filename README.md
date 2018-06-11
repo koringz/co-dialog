@@ -14,7 +14,7 @@
 
 
 ## 简洁版
-简洁版的代码非常地清晰，我们可在methods方法里面处理节点(删除改)，分别使用this.$header头部，this.$body主体，this.$footer底部操作节点信息，这三个节点下如果存在ref="name"属性，我们使用.$ref.name能直接拿到这个节点，这样非常的方便input赋值和设置style样式以及添加内容。当我们要显示弹出框并修改节点时，此刻调用$methods方法，方法内部的操作原理和methods一样处理。(添)这一步操作让给*before处理(如onHeaderBefore/onBodyBefore/onFooterBefore)。
+简洁版的代码非常地清晰，我们可在methods方法里面处理节点(删除改)，分别使用this.$header头部，this.$body主体，this.$footer底部操作节点信息，这三个节点下如果存在ref="name"属性，我们使用.$refs.name能直接拿到这个节点，这样非常的方便input赋值和设置style样式以及添加内容。当我们要显示弹出框并修改节点时，此刻调用$methods方法，方法内部的操作原理和methods一样处理。(添)这一步操作让给*before处理(如onHeaderBefore/onBodyBefore/onFooterBefore)。
 ```js
 // 创建一个简洁版弹出框'.compact'
 var codialog = new codialog();
@@ -35,22 +35,22 @@ codialog
         $(nodes).html('<div ref="headText"> 123 </div>');
     },
     methods: function () {
-        this.$header.$ref.headText.style.color = '#FB862E'
-        this.$header.$ref.headText.style.fontSize = '30px'
+        this.$header.$refs.headText.style.color = '#FB862E'
+        this.$header.$refs.headText.style.fontSize = '30px'
 
-        this.$footer.$ref.button.children[0].innerHTML = '确定';
-        this.$footer.$ref.button.children[1].innerHTML = '知道了';
-        this.$body.$ref.message.style.color = "#333";
-        this.$body.$ref.message.style.paddingTop = "29px";
-        this.$footer.$ref.button.children[0].style.color =
-        this.$footer.$ref.button.children[1].style.color = '#fff';
-        this.$footer.$ref.button.children[0].style.paddingLeft = 
-        this.$footer.$ref.button.children[0].style.paddingRight =
-        this.$footer.$ref.button.children[1].style.paddingLeft = 
-        this.$footer.$ref.button.children[1].style.paddingRight = '30px'; // this.$footer.$ref.text
-        this.$footer.$ref.button.children[0].style.backgroundColor =
-        this.$footer.$ref.button.children[1].style.backgroundColor = '#FB862E';
-        this.$footer.$ref.button.children[1].style.marginLeft = '20px';
+        this.$footer.$refs.button.children[0].innerHTML = '确定';
+        this.$footer.$refs.button.children[1].innerHTML = '知道了';
+        this.$body.$refs.message.style.color = "#333";
+        this.$body.$refs.message.style.paddingTop = "29px";
+        this.$footer.$refs.button.children[0].style.color =
+        this.$footer.$refs.button.children[1].style.color = '#fff';
+        this.$footer.$refs.button.children[0].style.paddingLeft = 
+        this.$footer.$refs.button.children[0].style.paddingRight =
+        this.$footer.$refs.button.children[1].style.paddingLeft = 
+        this.$footer.$refs.button.children[1].style.paddingRight = '30px'; // this.$footer.$refs.text
+        this.$footer.$refs.button.children[0].style.backgroundColor =
+        this.$footer.$refs.button.children[1].style.backgroundColor = '#FB862E';
+        this.$footer.$refs.button.children[1].style.marginLeft = '20px';
     }
 });
 
@@ -60,10 +60,10 @@ $('.showme').on('click',function () {
     .app('.compact')
     .show()
     .$methods(function () {
-        this.$header.$ref.headText.innerHTML = '简洁版'; // 修改标题的方式
-        this.$body.$ref.message.innerHTML = '测试调用$methods方法';
-        this.$footer.$ref.button.children[0].innerHTML = '删除 onclick';
-        this.$footer.$ref.button.children[1].innerHTML = '提交 onclick';
+        this.$header.$refs.headText.innerHTML = '简洁版'; // 修改标题的方式
+        this.$body.$refs.message.innerHTML = '测试调用$methods方法';
+        this.$footer.$refs.button.children[0].innerHTML = '删除 onclick';
+        this.$footer.$refs.button.children[1].innerHTML = '提交 onclick';
     })
     .hide({timeout:3000}); // 三秒之后隐藏
 });
@@ -387,7 +387,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
  
  - 添加节点信息全部交给onHeaderBefore/onBodyBefore/onFooterBefore处理。
  
- - 通过设置ref="name"实现节点的获取，比如this.$header.$ref.name就是获取头部的节点，具体看简洁版。
+ - 通过设置ref="name"实现节点的获取，比如this.$header.$refs.name就是获取头部的节点，具体看简洁版。
 
 
 (v1.4)[参考](https://github.com/koringz/co-dialog/releases)
