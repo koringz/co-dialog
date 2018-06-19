@@ -110,6 +110,15 @@ codialog.coani.render();
 
 ## use配置选项
 
+**tip**
+
+> 跟随元素定位
+
+```js
+default: {bool: true,follow: $(selector),message:'<div>123</div>'}
+options: object
+```
+
 **title**
 
 > 标题的内容填充
@@ -362,7 +371,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
  - 抓手特效 (已解决)
  - 渐变切换弹出框 (stop)
  - 弹出框加菜单, 在list上挂起所有的弹出框
- - 跟随页面元素定位 --
+ - 跟随页面元素定位 (已解决)
  - 弹出绝对定位 (stop)
  - 自动关闭弹出 通过.hide({timeout:1000})设置毫秒 (解决)
  - 关闭methods方法的调用 (stop)
@@ -378,6 +387,14 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 
 ## 版本改变
+
+
+(v1.7)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 优化清除定时器功能（如设定倒计时）
+ 
+ - 添加跟随元素定位提示框
+
 
 (v1.6)[参考](https://github.com/koringz/co-dialog/releases)
 

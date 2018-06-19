@@ -40,7 +40,6 @@
 }
 .fixedDialog-styles .styles-head{
     display: block;
-    padding: 19px 20px 18px 20px;
     *background-color: #F3F3F3 !important;
     background-color: #F3F3F3 ;
     clear: both;
@@ -81,7 +80,7 @@
     text-align: center;
 }
 .fixedDialog-styles .styles-content{
-    margin: 30px 0;
+    /*margin: 10px 0;*/
 }
 .fixedDialog-styles .styles-content [dialog-body-overflow]{
     overflow-y: scroll;
@@ -145,4 +144,46 @@
     color: #949494;
     font-weight: normal;
     cursor: pointer;
+}
+/*tip*/
+
+.default-tool-tip-content{
+    display: table;
+    vertical-align: middle;
+    padding: 10px;
+}
+.default-tool-tip-content div.default-tool-tip-content-middle{
+    display: table-cell;
+    vertical-align: middle;
+}
+.default-tool-tip-img-left{
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 11px;
+    background-color: transparent;
+}
+.default-tool-tip-img-center{
+    margin-left: 11px;
+    background-repeat: repeat-x;
+    background-position: center center;
+    background-size: contain;
+}
+.default-tool-tip-img-right{
+    float: right;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 3px;
+    background-color: transparent;
 }
