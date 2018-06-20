@@ -115,8 +115,8 @@ codialog.coani.render();
 > 跟随元素定位
 
 ```js
-default: {bool: true,follow: $(selector),message:'<div>123</div>'}
-options: object
+default: { bool: true, event:'mouseover', follow: $(selector), message: '<div>123</div>' }
+options: { bool: boolean, event: string | array, follow: object, message: string }
 ```
 
 **title**
@@ -388,6 +388,11 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 ## 版本改变
 
+(v1.7.1) 参考](https://github.com/koringz/co-dialog/releases
+
+ - 优化配置项tip，自动添加绑定事件
+
+ - 添加tip信息时，设置.hide方法必须在use后面追加才能正确实现
 
 (v1.7)[参考](https://github.com/koringz/co-dialog/releases)
 
