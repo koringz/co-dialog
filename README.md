@@ -388,7 +388,7 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 ## 版本改变
 
-(v1.7.1) 参考](https://github.com/koringz/co-dialog/releases
+(v1.7.1)[参考](https://github.com/koringz/co-dialog/releases)
 
  - 优化配置项tip，自动添加绑定事件
 
