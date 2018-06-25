@@ -108,6 +108,27 @@ codialog.coani('.selector').bounch().stop();
 codialog.coani.render();
 ```
 
+## 跟随元素定位
+```js
+
+// 首先，实例codialog方法
+var codialog = new codialog();
+
+codialog
+.$tip({
+    create: '.pop', // 创建一个提示信息
+    follow: document.querySelector('.showpop'),  // 跟随的节点元素
+    event: 'mouseover', // 事件产生
+    message: '<span>C罗 葡萄牙</span><br><span>内马尔 1前锋</span>', // 提示的信息
+    callback: function (nodes) { // 代替执行$methods方法
+        nodes.find('[tipleft]').css('background-image','url(../img/tip/zuo.png)');
+        nodes.find('[tipcenter]').css('background-image','url(../img/tip/zhong.png)');
+        nodes.find('[tipright]').css('background-image','url(../img/tip/you.png)');
+    }
+});
+
+```
+
 ## use配置选项
 
 **tip**
@@ -176,8 +197,8 @@ options: boolean(true / false)
 > 标题的外边距设置
 
 ```js
-default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
+default: 10 || { horizontal: 0 || '10px 10px', vertical: 0 || '10px 10px'} 
+options: integer || { horizontal: integer || string, vertical: integer ||　string } 
 ```
 
 **bodyMargin**
@@ -185,8 +206,8 @@ options: integer || { horizontal: integer, vertical: integer } || { horizontal: 
 > 容器的内容外边距(其实内部封装的时候设置为内边距)
 
 ```js
-default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
+default: 10 || { horizontal: 0 || '10px 10px', vertical: 0 || '10px 10px'}
+options: integer || { horizontal: integer || string, vertical: integer || string }
 ```
 
 **footerMargin**
@@ -194,10 +215,9 @@ options: integer || { horizontal: integer, vertical: integer } || { horizontal: 
 > 底部的内容外边距(同上)
 
 ```js
-default: 10 || { horizontal: 0, vertical: 0} || { horizontal: '10px 10px', vertical: '10px 10px' }
-options: integer || { horizontal: integer, vertical: integer } || { horizontal: string, vertical: string }
+default: 10 || { horizontal: 0 || '10px 10px', vertical: 0 || '10px 10px'}
+options: integer || { horizontal: integer || string, vertical: integer || string }
 ```
-
 
 **footerButtonCount**
 
@@ -208,7 +228,6 @@ default: 1
 options: integer(0 / 1 / 2)
 ```
 
-
 **footerText**
 
 > 底部内容的填充(可以和按钮共存)
@@ -217,7 +236,6 @@ options: integer(0 / 1 / 2)
 default: ['',...]
 options: array ([string, string])
 ```
-
 
 **onHeaderBefore**
 
@@ -228,8 +246,6 @@ default: callback
 options: function
 ```
 
-
-
 **onBodyBefore**
 
 > 设置容器的节点元素的attribute和style
@@ -239,8 +255,6 @@ default: callback
 options: function
 ```
 
-
-
 **onFooterBefore**
 
 > 设置底部的节点元素的attribute和style
@@ -249,8 +263,6 @@ options: function
 default: callback
 options: function
 ```
-
-
 
 **methods**
 
@@ -317,8 +329,8 @@ option: {properties: {x: true, y: true}, width: '60%', height: 70, pos: ['right'
 
 在web开发中，我们常常会使用ajax请求数据，当request数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，如果在规定时间内成功response数据，给弹出框设置自动关闭。
 ```
-codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
-codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
+codialog.app('.main').show().hide({timeout: 3000, callback}) // 先显示弹出框，后超时3s自动隐藏
+codialog.app('.main').hide().show({timeout: 3000, callback}) // 先隐藏弹出框，后超时3s自动显示
 
 其中callback回调仅在超时的间歇内处理数据和节点的方法。
 ```
@@ -333,6 +345,9 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 - $methods
 > 继承use内部的methods方法的原理
+
+- $tip
+> 继承use内部的tip对象的原理，但是把tip转变成为了$tip方法
 
 - hide
 > 隐藏弹出框的节点
@@ -388,11 +403,15 @@ codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后�
 
 ## 版本改变
 
-(v1.7.1)[参考](https://github.com/koringz/co-dialog/releases)
+(v1.7.2)
+
+ - 添加$tip方法，继承了use内部的tip对象的原理
+
+(v1.7.1)
 
  - 优化配置项tip，自动添加绑定事件
 
- - 添加tip信息时，设置.hide方法必须在use后面追加才能正确实现
+ - 添加tip信息时，设置.hide方法必须在use()后面追加才能正确实现
 
 (v1.7)[参考](https://github.com/koringz/co-dialog/releases)
 
