@@ -109,6 +109,9 @@ codialog.coani.render();
 ```
 
 ## 跟随元素定位
+![co-dialog](http://images.cnblogs.com/cnblogs_com/hao5599/1211580/o_2018-06-29_22-04-20.gif)
+[效果](https://koringz.github.io/codialog/html/tip.html)
+
 ```js
 
 // 首先，实例codialog方法
@@ -116,14 +119,22 @@ var codialog = new codialog();
 
 codialog
 .$tip({
-    create: '.pop', // 创建一个提示信息
+	bool: true, // 默认显示tip
+    create: '.pop', // 创建一个tip
+	pos:'right', // 默认位置居右显示
     follow: document.querySelector('.showpop'),  // 跟随的节点元素
-    event: 'mouseover', // 事件产生
+    event: 'mouseover', // 默认事件划过
     message: '<span>C罗 葡萄牙</span><br><span>内马尔 1前锋</span>', // 提示的信息
     callback: function (nodes) { // 代替执行$methods方法
         nodes.find('[tipleft]').css('background-image','url(../img/tip/zuo.png)');
         nodes.find('[tipcenter]').css('background-image','url(../img/tip/zhong.png)');
         nodes.find('[tipright]').css('background-image','url(../img/tip/you.png)');
+    },
+	mouseover: function (nodes) { // 鼠标划过节点时 开始执行的回调方法 用户操作
+        console.log(nodes)
+    },
+    mouseout: function (nodes) { // 鼠标划出节点时 开始执行的回调方法 用户操作
+        console.log('mouseout')
     }
 });
 
@@ -402,6 +413,9 @@ codialog.app('.main').hide().show({timeout: 3000, callback}) // 先隐藏弹出�
 
 
 ## 版本改变
+(v1.7.3)
+
+ - 优化$tip方法，当页面滚动时精确定位，以及上下左右的显示位置居中，添加鼠标悬停和鼠标划出的回调方法（mouseover/mouseout）。
 
 (v1.7.2)
 
