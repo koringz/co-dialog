@@ -120,12 +120,12 @@ var codialog = new codialog();
 codialog
 .$tip({
 	bool: true, // 默认显示tip
-    create: '.pop', // 创建一个tip
+	create: '.pop', // 创建一个tip
 	pos:'right', // 默认位置居右显示
-    follow: document.querySelector('.showpop'),  // 跟随的节点元素
-    event: 'mouseover', // 默认事件划过
-    message: '<span>C罗 葡萄牙</span><br><span>内马尔 1前锋</span>', // 提示的信息
-    callback: function (nodes) { // 代替执行$methods方法
+	follow: document.querySelector('.showpop'),  // 跟随的节点元素
+	event: 'mouseover', // 默认事件划过
+	message: '<span>C罗 葡萄牙</span><br><span>内马尔 1前锋</span>', // 提示的信息
+	callback: function (nodes) { // 代替执行$methods方法
         nodes.find('[tipleft]').css('background-image','url(../img/tip/zuo.png)');
         nodes.find('[tipcenter]').css('background-image','url(../img/tip/zhong.png)');
         nodes.find('[tipright]').css('background-image','url(../img/tip/you.png)');
@@ -133,7 +133,7 @@ codialog
 	mouseover: function (nodes) { // 鼠标划过节点时 开始执行的回调方法 用户操作
         console.log(nodes)
     },
-    mouseout: function (nodes) { // 鼠标划出节点时 开始执行的回调方法 用户操作
+	mouseout: function (nodes) { // 鼠标划出节点时 开始执行的回调方法 用户操作
         console.log('mouseout')
     }
 });
