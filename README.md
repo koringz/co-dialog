@@ -126,8 +126,7 @@ codialog
 	event: 'mouseover', // 默认事件划过
 	message: '<span>C罗 葡萄牙</span><br><span>内马尔 1前锋</span>', // 提示的信息
 	callback: function (nodes) { // 代替执行$methods方法
-	},
-	nodes.find('[tipleft]').css('background-image','url(../img/tip/zuo.png)');
+		nodes.find('[tipleft]').css('background-image','url(../img/tip/zuo.png)');
 		nodes.find('[tipcenter]').css('background-image','url(../img/tip/zhong.png)');
 		nodes.find('[tipright]').css('background-image','url(../img/tip/you.png)');
 	},
