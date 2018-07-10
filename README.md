@@ -413,6 +413,9 @@ codialog.app('.main').hide().show({timeout: 3000, callback}) // 先隐藏弹出�
 
 
 ## 版本改变
+(v1.7.4)
+ - 优化$tip方法，提示信息功能兼容IE8以上浏览器。
+
 (v1.7.3)
 
  - 优化$tip方法，当页面滚动时精确定位，以及上下左右的显示位置居中，添加鼠标悬停和鼠标划出的回调方法（mouseover/mouseout）。
