@@ -84,16 +84,15 @@ coog.app(".with-title").use(
  - 添加showCloseButton属性，是否关闭按钮的布尔值(true / false)。
  - layout属性在tips方法里面代替pos属性。
  - 添加layout属性，设置弹出框显示的位置，默认居中显示弹出框。
- - 添加type属性，弹出框的类型设置alert、prompt、warning、success、error、information、confirmation
  - 添加animatin动画属性。
  - 优化isGesture抓特效功能。
  - 优化innerHTML避免绑定事件失效。
  - 优化多个弹出框点击事件失效。
  - 清除isOverflow功能。
  - 清除footerButtonCount功能。
- - 添加超时timeout超时功能。
+ - 添加timeout超时功能。
  - 添加titleColor标题颜色。
  - 添加closeColor关闭颜色。
  - 添加messageColor内容颜色。
- - methods内部书写，以前this.$header.$refs；如今为this.header.$refs。
- - 添加确认回调函数和取消回调函数。
+ - methods方法内部书写格式，以前this.$header.$refs；如今为this.header.$refs。
+ - 添加confirmCallback确认回调函数和cancleCallback取消回调函数。
