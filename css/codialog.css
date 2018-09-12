@@ -1,112 +1,142 @@
 /* dialog*/
-.codialog-dialog-mask{
+.codialog-mask{
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+    align-items: center;
+    text-align: center;
     z-index: 999;
-    *background-color: #aaa !important;
-    _background-color: #aaa;
-    background-color: #aaa;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.3) !important;
+    *background-color: transparent !important;
+    _background-color: transparent;
 }
-.codialog-dialog-frame{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 558px;
-    height: 300px;
-    margin-left: -229px;
-    margin-top: -100px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    border-radius: 10px;
-    overflow: hidden;
+/*鼠标按下去重置scrollTop*/
+.codialog-show{overflow-y: hidden;height: auto !important;}
+.codialog-frame{
+    display: flex;
+    position: absolute;
     background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.3);
+    border: none;
+    border: 1px solid #DEDEDE\9;
+    border: calc(0px);
+    pointer-events: auto;
+    z-index: 99999;
 }
-.codialog-dialog-frame .codialog-dialog-box{
+.codialog-frame .codialog-box{
     display: block;
-    width: 100%;
-    height: 100% !important;
-    min-height: 70%;
+    width: 520px;
+    max-width: 100%;
+    height: 100%;
 }
-.codialog-dialog-frame .codialog-dialog-box .codialog-dialog-fixedDialog{
+.codialog-box .codialog-styles,
+.codialog-box .codialog-fixed{
     height: inherit;
 }
-.codialog-dialog-frame .codialog-dialog-box .codialog-dialog-fixedDialog .fixedDialog-styles{
-    height: inherit;
+.codialog-fixed .codialog-styles-head{
+    *background-color: #F6F8FB;
+    background-color: #F6F8FB;
+    padding: 15px 19px;
 }
-.fixedDialog-styles .styles-head{
-    display: block;
-    *background-color: #F3F3F3 !important;
-    background-color: #F3F3F3 ;
-    clear: both;
-}
-.fixedDialog-styles .styles-head .head-info{
+.codialog-styles-head .codialog-head-content{
     display: table;
     width: 100%;
+    clear: both;
+    text-align: left !important;
 }
-.fixedDialog-styles .styles-head .head-title,
-.fixedDialog-styles .styles-head .head-close{
+.codialog-head-content .codialog-head-title,
+.codialog-head-content .codialog-head-close{
     display: table-cell;
-    width: 50%;
+    position: relative;
     vertical-align: middle;
 }
-.fixedDialog-styles .styles-head .head-title{
+.codialog-head-content .codialog-head-title{
     float: left;
     text-align: left;
+    color: #9A9B9C;
 }
-.fixedDialog-styles .styles-head .head-close{
+.codialog-head-content .codialog-head-close{
     float: right;
     text-align: right;
+    color: #cccccc;
 }
 
-.fixedDialog-styles .styles-head .head-title > span,
-.fixedDialog-styles .styles-head .head-close > span{
+.codialog-head-content .codialog-head-title > span,
+.codialog-head-content .codialog-head-close > button{
     display: inline-block;
     font-weight: bold;
     font-size: 16px;
 }
-.fixedDialog-styles .styles-head .head-title > span{
+.codialog-head-content .codialog-head-title > span{
     margin-left: 0px;
+    color: inherit;
+    *color: #666;
+    font-weight: normal;
 }
-.fixedDialog-styles .styles-head .head-close > span{
-    margin-right: 0px;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
+.codialog-head-content .codialog-head-close > button{
+    position: relative;
+    *position: absolute;
+    *right: 0;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    padding: 0;
+    transition: color 0.1s ease-out;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    *color: #aaa;
+    font-family: serif;
+    font-size: 17px;
+    line-height: 19px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.codialog-fixed .codialog-styles-content {
+    display: block;
+    margin-top: 28px;
+    margin-left: 64px;
+    margin-right: 64px;
+    font-size: 28px;
+    overflow-y: hidden;
+    color: #696969;
     text-align: center;
 }
-.fixedDialog-styles .styles-content{
-    /*margin: 10px 0;*/
+.codialog-styles-content .codialog-content-message{
+    position: relative;
+    *min-width: auto;
+    *width: expression(this.offsetWidth < 1 ? 'auto' : '392px');
 }
-.fixedDialog-styles .styles-content [dialog-body-overflow]{
-    overflow-y: scroll;
-}
-.fixedDialog-styles .styles-content .content-message{
-    text-align: center;
-}
-.fixedDialog-styles .styles-content .content-message .message-text{
+.codialog-content-message .codialog-message-text{
+    width: 100%;
     font-size: inherit;
 }
-.fixedDialog-styles .styles-foot{
+.codialog-fixed .codialog-styles-foot{
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 22px;
+}
+.codialog-styles-foot .codialog-foot-button{
     display: block;
 }
-.fixedDialog-styles .styles-foot .foot-button{
-    display: block;
-}
-.fixedDialog-styles .styles-foot .foot-button .button-group{
+.codialog-foot-button .codialog-button-group{
     text-align: center;
 }
-.fixedDialog-styles .styles-foot .foot-button .button-group .group-btn{
+.codialog-button-group .group-btn{
     display: inline-block;
-    margin: 0;
-    padding: 10px 18px 8px 22px;
+    margin: 0 8px;
+    padding: 10px 32px;
     font-size: 16px;
     font-weight: 500;
-    color: #333;
     outline: none;
     border: none;
     cursor: pointer;
@@ -116,74 +146,155 @@
     -ms-border-radius: 6px;
     border-radius: 6px;
 }
-.fixedDialog-styles .styles-foot .foot-button .button-group button::first-child{
-    *background-color: #ededed !important;
-    background-color: #ededed;
+.codialog-foot-button .codialog-button-group button[confirm]{
+    *background-color: #45B680 !important;
+    background-color: #45B680;
 }
-.fixedDialog-styles .styles-foot .foot-button .button-group button:last-child{
+.codialog-foot-button .codialog-button-group button[cancle]{
+    display: none;
     *background-color: #16AEEE !important;
     background-color: #16AEEE ;
     background-color: rgba(22,174,238,1);
     color: #fff;
 }
-.fixedDialog-styles .styles-foot .foot-button .text-group{
+.codialog-foot-button .codialog-text-group{
     text-align: center;
+    margin-bottom: 22px;
+    color: #585858;
+}
+/*animation assets*/
+
+.animatedHalf {
+  -webkit-animation-duration: .2s;
+  animation-duration: .2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
-/*add*/
-.fixedDialog-styles .styles-head .head-title > span{
-    color: #666666;
-    font-weight: normal;
-}
-.fixedDialog-styles .styles-head .head-close > span{
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    border-radius: 30px;
-    border: 1px solid #949494;
-    color: #949494;
-    font-weight: normal;
-    cursor: pointer;
-}
-/*tip*/
+@-webkit-keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
 
-.default-tool-tip-content{
-    display: table;
-    vertical-align: middle;
-    padding: 10px;
-}
-.default-tool-tip-content div.default-tool-tip-content-middle{
-    display: table-cell;
-    vertical-align: middle;
-}
-.default-tool-tip-img-left{
-    float: left;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100% 100%;
-    position: absolute;
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
 
-    top: 0;
-    height: 100%;
-    width: 11px;
-    background-color: transparent;
-}
-.default-tool-tip-img-center{
-    margin-left: 11px;
-    background-repeat: repeat-x;
-    background-position: center center;
-    background-size: contain;
-}
-.default-tool-tip-img-right{
-    float: right;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100% 100%;
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 3px;
-    background-color: transparent;
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.bounceIn {
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
 }

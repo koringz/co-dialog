@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>timeout case</title>
+<title>drag case</title>
 <meta name="description" content="Nifty Modal Window Effects with CSS Transitions and Animations" />
 <meta name="keywords" content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
 <meta name="author" content="Codrops" />
@@ -44,12 +44,15 @@
 <script type="text/javascript">
 	// 基础弹出框
 coog
-.app('.timeout')
+.app('.drag')
 .use({
-    title: '超时-timeout',
-    message: '超时自动关闭',
+    title: '拖动',
+    message: '请尝试拖动窗口',
     isDrag: true,
-    timeout: 2000
+    layout: ' center ',
+    onDialogBefore: function (nodes) {
+        this.style.color = "#008576"
+    }
 })
 .show()
 
@@ -57,7 +60,7 @@ coog
 coog.addEventListener(coog.$('.onceRecharge'),'click', function () {
 
     coog
-    .app('.timeout')
+    .app('.drag')
     .show()
     .hide({
         timeout: 3000
