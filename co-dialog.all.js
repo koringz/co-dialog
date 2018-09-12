@@ -362,8 +362,12 @@
                 this.classList(document.documentElement, ' codialog-show', document.documentElement);
             }
             else {
-                this.classList(document.body, this.classList(document.body).replace(' codialog-show',''), '');
-                this.classList(document.documentElement, this.classList(document.documentElement).replace(' codialog-show',''), '');
+                var ignoreZoreClass = this.classList(document.body) || this.classList(document.documentElement);
+                if(typeof ignoreZoreClass != 'undefined') {
+                    this.classList(document.body, this.classList(document.body).replace(' codialog-show',''), '');
+                    this.classList(document.documentElement, this.classList(document.documentElement).replace(' codialog-show',''), '');
+                }
+                else return null;
             }
         }
 
@@ -677,7 +681,7 @@
                                 dialog.style.left = dragCurrentDialog.x + 'px';
                                 dialog.style.top = dragCurrentDialog.y + 'px';
 
-                                evt.preventDefault();
+                                self.preventDefault(ev);
                             }
                         };
 
@@ -686,10 +690,10 @@
                         self.addEventListener(self.$(document), 'mouseup', function (ev) {
                             self.removeEventListener(dialog.ownerDocument,'mouseover', mousemove);
                             ready = false;
-                            ev.preventDefault();
+                            self.preventDefault(ev);
                         });
 
-                        ev.preventDefault();
+                        self.preventDefault(ev);
                     });
                 }
 
@@ -1064,6 +1068,16 @@
             return this
         }
 
+        codialog.prototype.preventDefault = function (ev) {
+            if(ev.preventDefault) {
+                ev.preventDefault();
+            }
+            else if(ev.stopPropagation) {
+                ev.stopPropagation()
+            }
+            else return false;
+        }
+
         codialog.prototype.removeChild = function (child) {
             if(typeof child == 'undefined') return null;
 
@@ -1081,12 +1095,14 @@
         }
 
         codialog.prototype.forEach = function (options, fallback, context) {
-            if(typeof options.forEach == 'function') {
-                options.forEach(fallback, context || {})
-                return;
-            }
-            for(var i =0; i < options.length; i++) {
-                typeof fallback == 'function' ? fallback.call(context || null, options[i], i) : null
+            if(typeof options != 'undefined') {
+                if(typeof options.forEach == 'function') {
+                    options.forEach(fallback, context || {})
+                    return;
+                }
+                for(var i =0; i < options.length; i++) {
+                    typeof fallback == 'function' ? fallback.call(context || null, options[i], i) : null
+                }
             }
         }
 
@@ -1127,7 +1143,7 @@
                 }
                 return null;
             }
-            else return nowNodeList.classList.value || nowNodeList.className;
+            else return nowNodeList.className || nowNodeList.classList;
         }
 
 
