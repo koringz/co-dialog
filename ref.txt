@@ -11,3 +11,48 @@ http://craftpip.github.io/jquery-confirm/animations.html
 写配置和说明文档 描述代码的核心 理清思路为主
 
 C:\Users\think\Documents\GitHub\koringz.github.io\jsdk\jsdoc
+
+
+创建一个弹出框的方式，有一种是赋值的方式去处理，var pin = codialog.dialog("pin");
+这个pin就是获得弹出框，codialog.pin("i' m a content").set({ main: funciton() {} }).show()
+关闭这个pin弹出框也简单，codialog.pin().hide() or codialog.close(pin)
+
+
+2秒自动关闭弹出框
+放大百分百的方式，图标位置在头部，靠右与关闭贴近。
+透明弹出框
+上下左右居中弹出框
+
+
+浏览器支持 需要使用表格的形式
+--- --------
+IE | Chrome |
+--- --------
+
+弹出框的类型为组件划分：头部和底部
+alert()
+prompt()
+confirm()
+notifier()
+
+另外还有一种方式，就是简洁版的组件划分：
+msg() 仅内容显示
+load() 仅加载动画显示
+open() 具有内容和头部
+
+写一个官网
+参考模版
+https://sweetalert2.github.io/#configuration
+https://ned.im/noty/#/options
+https://aui.github.io/artDialog/doc/index.html
+
+国外网站 开源站点
+https://opencollective.com/iview
+https://alertifyjs.com/examples.html
+http://layer.layui.com/hello.html
+https://yuanyan.github.io/boron/
+
+
+
+
+
