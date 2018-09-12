@@ -15,6 +15,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="./../css/co-dialog.css">
 <style type="text/css">
 	body { 
 		margin: 0;
@@ -43,7 +44,7 @@
 	</center>
 </body>
 
-<script type="text/javascript" src="./../lib/co-dialog.js" ></script>
+<script type="text/javascript" src="./../lib/co-dialog.all.min.js" ></script>
 <script type="text/javascript">
 coog
 .app('.theme-purple')
@@ -59,9 +60,6 @@ coog
     confirmButtonBackground: '#4E5198',
     confirmCallback: function () {
     	coog.app('.new1111').use('成功清除').show()
-    },
-	cancleCallback: function () {
-    	coog.app('.new1112').use('取消清除~').show()
     }
 })
 .show();

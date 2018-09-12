@@ -77,6 +77,8 @@ coog.app(".with-title").use(
 ).show()
 ```
 
+## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
+
 ## 版本改变
 
 (v2.0.0) <Date:2018/09/12>
