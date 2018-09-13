@@ -1,0 +1,31 @@
+{
+  "name": "co-dialog",
+  "version": "2.0.0",
+  "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
+  "main": "lib/co-dialog.all.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koringz/co-dialog.git"
+  },
+  "keywords": [
+    "dialog",
+    "alert",
+    "popup",
+    "promp",
+    "notifi",
+    "codialog",
+    "tips"
+  ],
+  "author": "koringz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koringz/co-dialog/issues"
+  },
+  "homepage": "https://github.com/koringz/co-dialog#readme"
+}
