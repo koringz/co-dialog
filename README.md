@@ -20,7 +20,7 @@ zero dependencies and free dialog library
 </p>
 
 ## 下载
-------------
+
 
 ```bash
 npm install --save co-dialog
@@ -47,7 +47,7 @@ bower install --save co-dialog
 
 ```html
 <script src="co-dialog.min.js"></script>
-<link href="co-dialog.min.css"></link>
+<link rel="stylesheet" href="co-dialog.min.css">
 ```
 
 or
