@@ -23,13 +23,13 @@ zero dependencies and free dialog library
 
 
 ```bash
-npm install --save co-dialog
+npm install co-dialog
 ```
 
 Or:
 
 ```bash
-bower install --save co-dialog
+bower install co-dialog
 ```
 
 或者下载 CDN:
