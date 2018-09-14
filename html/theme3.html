@@ -1,10 +1,14 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Force best rendering mode for IE -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>animation co-dialog 弹窗</title>
+<title>theme case</title>
 <meta name="description" content="Nifty Modal Window Effects with CSS Transitions and Animations" />
 <meta name="keywords" content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
 <meta name="author" content="Codrops" />
@@ -16,37 +20,34 @@
 		margin: 0;
 	    width: 100%;
 	    min-height: 100vh;
-	    background: #FD655B;
-	    background: linear-gradient(300deg,#B00077,#FA3A19);
+	    background: #5A99F9;
+	    background: linear-gradient(300deg,#B00077,#5A99F9);
 	}
 </style>
 </head>
-<body bgColor="#fafafa" style="">
+<body>
 </body>
-<script type="text/javascript" src="./../lib/co-dialog.all.min.js" ></script>
+<script type="text/javascript" src="./../lib/co-dialog.all.js" ></script>
 <script type="text/javascript">
-	
-
-var time01 = (new Date).getTime();
-console.log(time01)
-	// 自定义动画
 coog
-.app('.customAnimation')
+.app('.test3')
 .use({
-    title: '自定义动画-customAnimation',
-    message: '基于animated.css类实现自定义动画',
+    title: 'Dialog Only Page',
+    message: "I can only be served as a dialog, and I don't need a data-rel='dialog' attribute on a link",
     isClose: true,
     isDrag: true,
     layout: 'center',
     animation: false,
-    customAnimation: 'slideInDown'
+    customAnimation: 'bounceInLeft',
+    showConfirmButton: false,
+    onHeaderBefore: function (){
+      this.style.background = "#2A2A2A"
+    },
+    onBodyBefore: function (){
+      this.style.fontSize = "14px"
+    },
 })
 .show();
-
-var time02 = (new Date).getTime();
-
-console.log(time02 - time01)
 </script>
 </html>
 
-<!-- https://www.cnblogs.com/cheng5x/p/4560426.html -->

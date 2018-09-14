@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Force best rendering mode for IE -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>theme case</title>
+<meta name="description" content="Nifty Modal Window Effects with CSS Transitions and Animations" />
+<meta name="keywords" content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
+<meta name="author" content="Codrops" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<style type="text/css">
+	body { 
+		margin: 0;
+	    width: 100%;
+	    min-height: 100vh;
+	    background: #5A99F9;
+	    background: linear-gradient(300deg,#B00077,#5A99F9);
+	}
+</style>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="./../lib/co-dialog.all.js" ></script>
+<script type="text/javascript">
+coog.app('.test').use({
+   title: 'JUST CHECKING.',
+   message: 'Delete your account?' + "<p style='font-size:12px;'>This action is final and you will be unable to recover any data</p>",
+   isDrag: true,
+   layout: 'center',
+   titleColor: '#865FDF',
+   closeColor: '#865FDF',
+   showCancleButton: true,
+   confirmButtonText: 'YES',
+   cancleButtonText: 'NO',
+   footerText: "",
+   confirmButtonBackground: '#865FDF',
+   cancleButtonBackground: '#865FDF',
+   confirmButtonColor: '#fff',
+   onHeaderBefore: function (node) {
+      this.style.backgroundColor = "#fff"
+      this.style.borderBottom = "1px solid #ddd"
+   },
+   onFooterBefore: function (node) {
+      this.style.backgroundColor = "#865FDF"
+      this.style.marginBottom = '0'
+      this.style.padding = '10px 0'
+   },
+   confirmCallback: function () {
+      coog.app(".test3").use({
+         titleColor: '#45B680',
+         title: 'Return Results',
+         message: 'Success Delete',
+         confirmButtonText: 'YES',
+         confirmCallback: function () {
+            coog.app('.test').show()
+         }
+      })
+      .show()
+   }
+})
+.show()
+</script>
+</html>
+
