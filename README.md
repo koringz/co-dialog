@@ -43,11 +43,12 @@ bower install co-dialog
 <script src="co-dialog.all.min.js"></script>
 ```
 
-如果你需要引入stylesheet样式：
+如果你需要单独引入stylesheet样式：
 
 ```html
-<script src="co-dialog.min.js"></script>
+<link rel="stylesheet" href="animation.min.css">
 <link rel="stylesheet" href="co-dialog.min.css">
+<script src="co-dialog.min.js"></script>
 ```
 
 or
@@ -79,12 +80,31 @@ coog.app(".with-title").use(
 
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
+
+## application
+
+
+## Dom,Event,Styles,Template,Properties
+
+
+## 运行测试
+
+```bash
+
+npm run test
+
+```
+
+## 作者
+
+查看[作者](https://github.com/koringz)
+
+
 ## 版本改变
 
 (v2.0.0) <Date:2018/09/12>
  - 优化isDrag拖动事件，拖动效果将会更加地平滑。
  - 添加showCloseButton属性，是否关闭按钮的布尔值(true / false)。
- - layout属性在tips方法里面代替pos属性。
  - 添加layout属性，设置弹出框显示的位置，默认居中显示弹出框。
  - 添加animatin动画属性。
  - 优化isGesture抓特效功能。
@@ -98,3 +118,8 @@ coog.app(".with-title").use(
  - 添加messageColor内容颜色。
  - methods方法内部书写格式，以前this.$header.$refs；如今为this.header.$refs。
  - 添加confirmCallback确认回调函数和cancleCallback取消回调函数。
+
+[查看历史版本]()
+
+## license
+MIT
