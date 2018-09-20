@@ -17,7 +17,7 @@ preventDefault
             else if(el.attachEvent) {
                 el.attachEvent('on' + type, fallback)
             }
-        }
+        };
 
 
         codialog.prototype.removeEventListener = function (el,type,callback){

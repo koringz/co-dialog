@@ -5,5 +5,4 @@
         $codialog.assign($coog, $codialog);
 
 
-
-        window.coog = $coog
+        window.coog  = $coog
