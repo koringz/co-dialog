@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="utf-8">
 <title>demo1</title>
+||||||| merged common ancestors
+	<title>demo1</title>
+=======
+    <meta charset="utf-8">
+	<title>demo1</title>
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
 </head>
 <body>
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+
+
+
+=======
+
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
 </body>
+<<<<<<< HEAD
 <script type="text/javascript" src="./../static.js"></script>
 <!-- application folder -->
 <script type="text/javascript" src="./../dialog.js"></script>
@@ -21,7 +38,54 @@
 
 
 <!-- <script type="text/javascript" src="./../application.js"></script> -->
+||||||| merged common ancestors
+
+<script type="text/javascript">
+
+
+        // 每一个功能的使用说明
+        var codialog = function (options) {
+            // 使用codialog节点元素列表
+            this.didDialogList = [];
+            // 目前codialog节点元素
+            this.dialogElement = options || null;
+            // codialog节点子元素结构
+            this.strict = {
+                header:'.dialog-header',
+                body:'.dialog-body',
+                footer:'.dialog-footer'
+            };
+            // 暂存codialog节点元素
+            this.cacheDialogElement = [];
+            // 清除定时器
+            this.setTimer = null;
+            // 使用codialog组件名称
+            this.name = 'codialog';
+            // 划出节点的定时器
+            this.mouseoutcount = 0;
+            // 根节点
+            this.rootDirectory = {};
+            // 关闭事件的返回值
+            this.closeBackValue = false;
+            // use 基础显示
+            this.xString = [];
+            // hasAnimation 验证动画
+            this.hasAnimation = true;
+            // 自定义动画
+            this.customAnimation = 'bounceOut'
+        }
+	
+
+</script>
+<script type="text/javascript" src="./../template.js"></script>
+<script type="text/javascript" src="./../style.js"></script>
+=======
+<!-- <script type="text/javascript" src="./../application.js"></script>
+<script type="text/javascript" src="./../template.js"></script>
+<script type="text/javascript" src="./../style.js"></script>
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
 <script type="text/javascript" src="./../context.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="./../middleproperties/properties.js"></script>
 <script type="text/javascript" src="./../event/addEventListener.js"></script>
 <script type="text/javascript" src="./../event/preventDefault.js"></script>
@@ -31,8 +95,57 @@
 <script type="text/javascript" src="./../style/cssText.js"></script>
 <script type="text/javascript" src="./../style/addCss.js"></script>
 <script type="text/javascript" src="./../index.js"></script>
+||||||| merged common ancestors
+<script type="text/javascript" src="./../properties.js"></script>
+<script type="text/javascript" src="./../event.js"></script>
+<script type="text/javascript" src="./../dom.js"></script>
+<script type="text/javascript" src="./../animation.js"></script>
+<script type="text/javascript" src="./../application.js"></script>
+<script type="text/javascript" src="./../index.js"></script>
+=======
+<script type="text/javascript" src="./../properties.js"></script>
+<script type="text/javascript" src="./../event.js"></script>
+<script type="text/javascript" src="./../dom.js"></script>
+<script type="text/javascript" src="./../animation.js"></script>
+<script type="text/javascript" src="./../index.js"></script> -->
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
 
+<<<<<<< HEAD
+||||||| merged common ancestors
+<script type="text/javascript">
+	
+	console.log(coog)
 
+=======
+<script type="text/javascript">
+// 设想 = 构建脚本 组装脚本 生成脚本 建立脚本
+// 梳理 = 建立脚本[创建] 生成脚本[使用底层dom] 构建脚本[传入参数] 验证脚本[测试] 组装脚本[合并]	
+
+function buildScript (_script) {
+	return document.createElement(_script);
+}
+
+function generateScript () {
+	var getBuildScript = buildScript('script');
+	getBuildScript.type = 'text/javascript';
+	return getBuildScript;
+}
+
+function contructorScript (_url) {
+	var getGenerateScript = generateScript();
+
+	if(_url instanceof Function) {
+		getGenerateScript.innerHTML = '(' + _url.toString() + ')(window)';
+	}
+	else if(typeof _url == 'string'){
+		getGenerateScript.src = _url;
+	}
+
+	return getGenerateScript
+}
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
+
+<<<<<<< HEAD
 <script type="text/javascript">
 coog.app('.test').use({
    title: 'JUST CHECKING.',
@@ -71,6 +184,76 @@ coog.app('.test').use({
    }
 })
 .show()
+||||||| merged common ancestors
+	coog.app('.app').use({
+		title: '123',
+		message: "yes"
+	}).show()
+=======
+function headNode () {
+	if(document.head) return document.head;
+	return document.querySelector('head');
+}
+
+function testScript (_url) {
+	try {
+		var res = contructorScript(_url);
+		if(res) {
+			return res
+		}
+		throw 'create script error.'
+	}
+	catch(err) {
+		return err
+	}
+}
+
+function function_name(argument) {
+	// body...
+}
+
+function composeScript () {
+	var getHeadNode = headNode();
+
+	var getTestScript = [testScript];
+
+	return function (_url_or_fn, win_plugin_name, callPlugin) {
+		getHeadNode.appendChild(getTestScript[0](_url_or_fn))
+
+		if(typeof win_plugin_name == 'string') {
+
+			return function inject (callPlugin) {
+				setTimeout(function () {
+					var co = window[win_plugin_name];
+					if(typeof co == 'undefined') {
+						return inject(callPlugin)
+					}
+					return callPlugin()
+				},5)
+
+			}(callPlugin)
+		}
+
+	}
+}
+
+var poolScript = composeScript()
+
+poolScript("./../application.js")
+poolScript("./../template.js")
+poolScript("./../style.js")
+poolScript("./../context.js")
+poolScript("./../properties.js")
+poolScript("./../event.js")
+poolScript("./../dom.js")
+poolScript("./../animation.js")
+poolScript("./../index.js", 'coog', function () {
+	coog.app('.app').use({
+		title: '123',
+		message: "yes"
+	}).show()
+})
+>>>>>>> 2c6df60b67b6c2455f21ef6606f28c5dc39a91d5
 </script>
 
 </html>
