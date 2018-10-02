@@ -71,11 +71,27 @@ coog.app(".base").use("这是一个基础的弹出框").show()
 
 这是一个带标题的弹出框
 
+<<<<<<< Updated upstream
 ```js
 coog.app(".with-title").use(
  "默认",
  "这是一个带标题的弹出框"
 ).show()
+||||||| merged common ancestors
+## 其他配置选项
+我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。。
+```
+codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
+codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
+=======
+## 其他配置选项
+**hide({timeout: 3000}) or show({timeout: 3000})**
+
+我们常常在web开发中，往往会通过ajax请求数据，当数据还没有加载完成，我们会抛出一个弹出框，然后给弹出框设定超时的秒数，假如在规定时间内成功reques到数据，弹出框就会自动关闭。
+```
+codialog.app('.main').show().hide({timeout: 3000}) // 先显示弹出框，后超时3s自动隐藏
+codialog.app('.main').hide().show({timeout: 3000}) // 先隐藏弹出框，后超时3s自动显示
+>>>>>>> Stashed changes
 ```
 
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
@@ -95,12 +111,56 @@ npm run test
 
 ```
 
+<<<<<<< Updated upstream
 ## 作者
+||||||| merged common ancestors
+## 贡献
+欢迎开发人员助力开源co-dialog，欢迎任何人参与贡献，如果你决定要参与进来，请花点时间来浏览向导guidelines。
+
+ [pull request](https://github.com/koringz/co-dialog/blob/master/pull%20request.md)
+=======
+## 贡献
+欢迎开发人员助力开源co-dialog，欢迎任何人参与贡献，如果你决定要参与进来，请花点时间来浏览向导guidelines。
+
+ [pull request](https://github.com/koringz/co-dialog/blob/v1.4/pull%20request.md)
+>>>>>>> Stashed changes
 
 查看[作者](https://github.com/koringz)
 
 
 ## 版本改变
+<<<<<<< Updated upstream
+||||||| merged common ancestors
+(v1.0)[参考](https://github.com/koringz/co-dialog/releases)
+
+-  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
+-  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
+
+(v1.1)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
+
+(v1.4)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示.
+=======
+(v1.0)[参考](https://github.com/koringz/co-dialog/releases)
+
+-  修复默认垂直居中状态 [hide()隐藏要在use()后面执行, 禁止在methods方法里面设置高度和内/外边距, 尽量在(onHeaderBefore/onBodyBefore/onFooterBefore)方法当中给father or sub元素设置高和边距, 防止影响垂直居中]
+-  CSS3动画效果已经引入 [渐变 淡入 淡出 贝塞尔]
+
+(v1.1)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 添加弹出框自适应高度(adaptDialogHeight)和自适应宽度(adaptDialogWidth)
+
+(v1.4)[参考](https://github.com/koringz/co-dialog/releases)
+
+ - 使用timeout设置超时自动隐藏元素.show().hide({timeout: 3000})和超时自动显示元素hide().show({timeout: 3000}), 分别代表3s之后隐藏和3s之后显示
+ 
+ - 是否使用遮罩层 isMask默认位true，反之同理
+ 
+ - 添加了抓手特效 isGesture 默认位false不展示抓手功能，反之同理
+>>>>>>> Stashed changes
 
 (v2.0.0) <Date:2018/09/12>
  - 优化isDrag拖动事件，拖动效果将会更加地平滑。
