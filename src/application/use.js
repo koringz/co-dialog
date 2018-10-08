@@ -9,6 +9,7 @@ codialog.prototype.use = function (obj, success_config) {
     var body    =  this.find(currentDialogElement, '[body]');
     var footer  =  this.find(currentDialogElement, '[footer]');
 
+    console.log(this)
     this.assign(this.rootDirectory, {
         dialog  : dialog,
         mask    : mask,
@@ -18,37 +19,8 @@ codialog.prototype.use = function (obj, success_config) {
     });
 
     // 情况1：传入''字符串
-    if (arguments.length && typeof obj == 'string' && this.xString.push(arguments)) {
-        switch (this.xString[0].length) {
-            case 1:
-                obj = {
-                    message: this.xString[0][0],
-                    onHeaderBefore: function () {
-                        this.style.display = 'none'
-                    }
-                };
-                break;
-            case 2:
-                var getSecondPart = this.xString[0][1];
-                obj = {
-                    title: this.xString[0][0],
-                    message: typeof getSecondPart == 'string' ? getSecondPart : 'No message text'
-                };
-                break;
-            case 3:
-                var getSecondPart = this.xString[0][1];
-                var getThirdPart = this.xString[0][2];
-                obj = {
-                    title: this.xString[0][0],
-                    message: typeof getSecondPart == 'string' ? getSecondPart : 'No message',
-                    confirmButtonText: typeof getThirdPart == 'string' ? getThirdPart : 'No confirm text'
-                };
-                break;
-            default:
-                break;
-        }
-        this.xString = [];
-    }
+   
+    this.x_string(obj,arguments)
 
     // 情况2：传入{}对象
     var footerButtonGroup =  this.find(footer,'[buttonGroup]');
@@ -59,111 +31,14 @@ codialog.prototype.use = function (obj, success_config) {
     if (typeof obj != 'undefined' && Object.prototype.toString.call(obj) == '[object Object]') {
 
 
-        // 在执行前处理节点属性设置
-        if (obj.onDialogBefore
-            || obj.onHeaderBefore
-            || obj.onBodyBefore
-            || obj.onFooterBefore) {
-
-            if(typeof obj.onDialogBefore == 'function') {
-                obj.onDialogBefore.call(dialog, dialog);
-            }
-            if(typeof obj.onHeaderBefore == 'function') {
-                obj.onHeaderBefore.call(header, header);
-            }
-            if(typeof obj.onBodyBefore == 'function') {
-                obj.onBodyBefore.call(body, body);
-            }
-            if(typeof obj.onFooterBefore == 'function') {
-                obj.onFooterBefore.call(footer, footer);
-            }
-        }
+        this.onMethod(obj);
 
 
-        // 超时自动关闭
-        if (typeof obj.timeout != 'undefined' && typeof isNaN(obj.timeout)){
-            this.hide({
-                timeout: obj.timeout
-            })
-        }
+        this.overtime(obj);
 
+        this.showMask(obj);
 
-        // 显示遮罩层 default: true
-        /** **
-        ** 是否显示遮罩层 **
-        - 添加了动画效果
-        - dialog层嵌套在mask遮罩层里面
-        - 不能给dialog设置position属性
-        - 只能给dialog设置backgound背景透明
-        ** **/
-        if (typeof obj.isMask != 'undefined' && typeof obj.isMask == 'boolean' && this.find(currentDialogElement,'[mask]')) {
-            if (!obj.isMask) {
-                this.find(currentDialogElement,'[mask]').style.backgroundColor = 'transparent';
-            }
-        }
-
-        // 开启抓手特效
-        // 只有点击之后才有手势效果
-        if (typeof obj.isDrag != 'undefined' && obj.isDrag) {
-            var ready = true;
-            var dragCurrentDialog = {};
-            var mouseCurrentPosition = {};
-            var mouseMovePosition = {};
-
-            if(typeof obj.isGesture != 'undefined' && obj.isGesture) {
-                dialog.style.cursor = 'move';
-            }
-            else {
-                dialog.style.cursor = 'unset';
-            }
-            self.addEventListener(dialog, 'mousedown', function (ev) {
-
-                // 第一次重置居左 
-                // dialog的left和top属性都统一到矢量位移上
-                dragCurrentDialog = {
-                    x: dialog.offsetLeft - document.body.scrollLeft,
-                    y: dialog.offsetTop -  document.body.scrollTop
-                };
-
-                mouseCurrentPosition = {
-                    x: ev.screenX,
-                    y: ev.screenY
-                };
-
-                ready = true;
-
-                var mousemove = function (evt) {
-                    if(ready) {
-                        // 鼠标的窗口位移坐标
-                        mouseMovePosition = {
-                            x: evt.screenX,
-                            y: evt.screenY
-                        };
-
-                        dragCurrentDialog.x += (mouseMovePosition.x - mouseCurrentPosition.x);
-                        dragCurrentDialog.y += (mouseMovePosition.y - mouseCurrentPosition.y);
-
-                        mouseCurrentPosition = mouseMovePosition;
-
-                        // 鼠标的位移变化
-                        dialog.style.left = dragCurrentDialog.x + 'px';
-                        dialog.style.top = dragCurrentDialog.y + 'px';
-
-                        self.preventDefault(ev);
-                    }
-                };
-
-                self.addEventListener(self.$(document), 'mousemove', mousemove);
-
-                self.addEventListener(self.$(document), 'mouseup', function (ev) {
-                    self.removeEventListener(dialog.ownerDocument,'mouseover', mousemove);
-                    ready = false;
-                    self.preventDefault(ev);
-                });
-
-                self.preventDefault(ev);
-            });
-        }
+        this.isDrag(obj);
 
         // 底部有无按钮
         // 底部显示的是倒计时或者是其他信息

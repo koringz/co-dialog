@@ -6,7 +6,6 @@ codialog.prototype.animate = function (options) {
 }
 
 
-
 // animation
 // base on co-animation plugins api
 var co = function () {};
