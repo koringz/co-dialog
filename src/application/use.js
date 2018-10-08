@@ -1,0 +1,412 @@
+
+codialog.prototype.use = function (obj, success_config) {
+    var self = this;
+    var currentDialogElement = this.$(this.dialogElement);
+
+    var dialog  =  this.find(currentDialogElement, '[dialog]');
+    var mask    =  this.find(currentDialogElement, '[mask]');
+    var header  =  this.find(currentDialogElement, '[header]');
+    var body    =  this.find(currentDialogElement, '[body]');
+    var footer  =  this.find(currentDialogElement, '[footer]');
+
+    console.log(this)
+    this.assign(this.rootDirectory, {
+        dialog  : dialog,
+        mask    : mask,
+        header  : header,
+        body    : body,
+        footer  : footer
+    });
+
+    // 情况1：传入''字符串
+   
+    this.x_string(obj,arguments)
+
+    // 情况2：传入{}对象
+    var footerButtonGroup =  this.find(footer,'[buttonGroup]');
+    // 多次调用 禁修改默认属性
+    var disabledChangedDefault = this.clone($default);
+
+    obj = this.assign(disabledChangedDefault, obj);
+    if (typeof obj != 'undefined' && Object.prototype.toString.call(obj) == '[object Object]') {
+
+
+        this.onMethod(obj);
+
+
+        this.overtime(obj);
+
+        this.showMask(obj);
+
+        this.isDrag(obj);
+
+        // 底部有无按钮
+        // 底部显示的是倒计时或者是其他信息
+        // attr = [textGroup] or string
+        if (typeof obj.footerText != 'undefined' && typeof obj.footerText == 'string'  && this.find(footer,'[textGroup]')) {
+            this.find(footer,'[textGroup]').innerHTML = obj.footerText;
+        }
+        else if (typeof obj.footerText != 'undefined' && Object.prototype.toString.call(obj.footerText) == '[object Array]' && this.find(footer,'[textGroup]')) {
+            if (obj.footerText.length > 0) {
+                this.find(footer,'[textGroup]').innerHTML = obj.footerText.concat().join('');
+            }
+        }
+        else {
+            this.removeChild(this.find(footer,'[textGroup]'));
+        }
+
+
+        // 重置属性绑定
+        // 改变默认的文本和节点数据
+
+        if (typeof obj.title != 'undefined' && typeof obj.title == 'string' && this.find(header,'[title]')) {
+            this.find(header,'[title]').innerHTML = obj.title;
+        }
+        if (typeof obj.message != 'undefined' && typeof obj.message == 'string' && this.find(body,'[message]')) {
+            this.find(body,'[message]').innerHTML = this.message || obj.message;
+        }
+        if (typeof obj.cancleButtonText != 'undefined' && typeof obj.cancleButtonText == 'string' && this.find(footerButtonGroup, '[cancle]')) {
+            this.find(footerButtonGroup, '[cancle]').textContent = obj.cancleButtonText
+        }
+        if (typeof obj.confirmButtonText != 'undefined' && typeof obj.confirmButtonText == 'string' && this.find(footerButtonGroup, '[confirm]')) {
+            this.find(footerButtonGroup, '[confirm]').textContent = obj.confirmButtonText
+        }
+        if (typeof obj.cancleButtonColor != 'undefined' && typeof obj.cancleButtonColor == 'string' && this.find(footerButtonGroup, '[cancle]')) {
+            this.find(footerButtonGroup, '[cancle]').style.color = obj.cancleButtonColor
+        }
+        if (typeof obj.confirmButtonColor != 'undefined' && typeof obj.confirmButtonColor == 'string' && this.find(footerButtonGroup, '[confirm]')) {
+            this.find(footerButtonGroup, '[confirm]').style.color = obj.confirmButtonColor
+        }
+        if (typeof obj.cancleButtonBackground != 'undefined' && typeof obj.cancleButtonBackground == 'string' && this.find(footerButtonGroup, '[cancle]')) {
+            this.find(footerButtonGroup, '[cancle]').style.background = obj.cancleButtonBackground
+        }
+        if (typeof obj.confirmButtonBackground != 'undefined' && typeof obj.confirmButtonBackground == 'string' && this.find(footerButtonGroup, '[confirm]')) {
+            this.find(footerButtonGroup, '[confirm]').style.background = obj.confirmButtonBackground
+        }
+        if (typeof obj.titleColor != 'undefined' && typeof obj.titleColor == 'string' && this.find(header, '[title]')) {
+            this.find(header, '[title]').style.color = obj.titleColor
+        }
+        if (typeof obj.closeColor != 'undefined' && typeof obj.closeColor == 'string' && this.find(header, '[close]')) {
+            this.find(header, '[close]').style.color = obj.closeColor
+        }
+        if (typeof obj.messageColor != 'undefined' && typeof obj.messageColor == 'string' && this.find(body, '[message]')) {
+            this.find(body, '[message]').style.color = obj.messageColor
+        }
+
+
+        // 所有子节点都会被获取 进行修改
+        // 但是都在before执行之后才执行methods
+        /*
+            $(this.dialogElement).find('[ref]').each(function (index,item) {
+                item.removeAttribute('ref');
+            });
+        */
+        if (typeof obj['methods'] == 'function') {
+            this.$methods();
+            obj.methods.call(this,this.dialogElement);
+        }
+
+        /*
+        * 设置边距 *
+        如果是数字 上下左右设置相同的值
+        ======================================================================================
+        if (typeof obj.headerMargin != 'undefined' && !isNaN(obj.headerMargin)) {
+            $(this.dialogElement).find(this.strict.header).css({'padding' : obj.headerMargin });
+        }
+        ======================================================================================
+        否则如果是对象的情况下
+        就会传入水平和垂直属性的值
+        有二种情况
+        其一是全部是数字
+        其二是全部使用px字符串
+        */
+        this.margin(obj,'header', 'headerMargin', 'padding');
+        // body
+        this.margin(obj,'body', 'bodyMargin', null);
+        // footer
+        this.margin(obj,'footer', 'footerMargin', 'padding');
+
+        // 是否关闭dialog
+        // 默认开启dialog
+        // default: true
+        if (typeof obj.isClose == 'boolean' && obj.isClose) {
+            // 防止通过 this.dialogElement 元素查找失效
+            var _currentDialogElement = this.$(this.dialogElement);
+
+            var cacheCloseList = [];
+            var headerClose = this.find(header,'[close]');
+            if(typeof headerClose != 'undefined', headerClose) {
+                cacheCloseList.push(headerClose);
+            }
+
+            var footerCancle = this.find(footerButtonGroup,'[cancle]');
+            if(typeof footerButtonGroup != 'undefined', footerCancle) {
+                if(typeof footerCancle != 'undefined') {
+                    cacheCloseList.push(footerCancle);
+                }
+            }
+
+            var footerConfirm = this.find(footerButtonGroup,'[confirm]');
+            if(typeof footerButtonGroup != 'undefined', footerConfirm) {
+                if(typeof footerConfirm != 'undefined') {
+                    cacheCloseList.push(footerConfirm);
+                }
+            }
+
+            if(cacheCloseList.length > 0) {
+                this.forEach(cacheCloseList, function (close, index) {
+                    close.onclick = function (e) {
+                        self.hide((_currentDialogElement.className.length ? '.' + _currentDialogElement.className : '#' + _currentDialogElement.getAttribute('id')))
+                        clearTimeout(self.setTimer);
+
+                        // 确认按钮的回调函数
+                        if(index == 2 && typeof obj.confirmCallback == 'function') {
+                            obj.confirmCallback()
+                        }
+                        // 取消按钮的回调函数
+                        else if(index == 1 && typeof obj.cancleCallback == 'function') {
+                            obj.cancleCallback()
+                        }
+
+                        self.closeBackValue = true;
+                    }
+                })
+            }
+        }
+
+
+        // 是否显示关闭按钮 默认显示
+        var getClose = this.find(header,'[close]'); // 防止自定义获取不到节点
+        if (typeof obj.showCloseButton != 'undefined' && typeof obj.showCloseButton == 'boolean' && !obj.showCloseButton && getClose) {
+            if(typeof getClose != 'undefined') {
+                getClose.style.display = 'none';
+            }
+        }
+
+        // 显示取消按钮 默认隐藏
+        var getCancle = this.find(footerButtonGroup,'[cancle]'); // 防止自定义获取不到节点
+        if (typeof obj.showCancleButton != 'undefined' && typeof obj.showCancleButton == 'boolean' && obj.showCancleButton && getCancle) {
+            if(typeof getCancle != 'undefined', getCancle) {
+                getCancle.style.display = 'inline-block';
+            }
+        }
+
+        // 显示确定按钮 默认显示
+        var getConfirm = this.find(footerButtonGroup,'[confirm]'); // 防止自定义获取不到节点
+        if(typeof obj.showConfirmButton != 'undefined' && typeof obj.showConfirmButton == 'boolean' && getConfirm) {
+            if(obj.showConfirmButton) {
+                getConfirm.style.display = 'inline-block';
+            }
+            else {
+                getConfirm.style.display = 'none';
+            }
+        }
+
+        // 所有节点和函数都执行之后处理
+        if (obj.onDialogAfter
+            || obj.onHeaderAfter
+            || obj.onBodyAfter
+            || obj.onFooterAfter) {
+            if(typeof obj.onDialogAfter == 'function') {
+                obj.onDialogAfter.call(dialog, dialog);
+            }
+            if(typeof obj.onHeaderAfter == 'function') {
+                obj.onHeaderAfter.call(header, header);
+            }
+            if(typeof obj.onBodyAfter == 'function') {
+                obj.onBodyAfter.call(body,body);
+            }
+            if(typeof obj.onFooterAfter == 'function') {
+                obj.onFooterAfter.call(footer,footer);
+            }
+        }
+
+
+
+        // layout 弹出框初始位置 上|下|左|右|居中|左上|左下|右上|右下
+        if (typeof obj.layout == 'string' && obj.layout.length) {
+            resize()
+        }
+
+        function resize () {
+            var windowWidth = (document.documentElement || document.body).clientWidth;
+            var windowHeidth = (document.documentElement || document.body).clientHeight;
+
+            // offsetWidth 隐藏不能获取处理
+            var isOpenDialog = false;
+            currentDialogElement.style.zIndex = '-9999';
+            if(currentDialogElement.style.display != 'block') {
+                currentDialogElement.style.display = 'block';
+                isOpenDialog = true;
+            }
+            
+            var targetWidth = dialog.offsetWidth;
+            var targetHeight = dialog.offsetHeight;
+
+            if(isOpenDialog) {
+                currentDialogElement.style.display = 'none';
+                isOpenDialog = false;
+            }
+            currentDialogElement.style.zIndex = '9999';
+
+            var getBraowserAxis = {
+                x: windowWidth / 2,
+                y: windowHeidth / 2
+            };
+            var getTargetAxis = {
+                x: targetWidth / 2,
+                y: targetHeight / 2
+            };
+
+            var currentPostion = obj.layout.toLowerCase().split(' ');
+            var filterCurrentPostion = [];
+            // 过滤空字符串
+            for(var i = 0; i < currentPostion.length; i++){
+                if(currentPostion[i].length) filterCurrentPostion.push(currentPostion[i]);
+            }
+            currentPostion = filterCurrentPostion;
+
+            // 默认重心位置
+            function layoutDefaultCenter () {
+                dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+                dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+            }
+
+            // 只有一个位置
+            if(currentPostion.length == 1) {
+                currentPostion = self.trim(currentPostion[0]);
+                switch (currentPostion) {
+                    case 'center' :
+                        layoutDefaultCenter();
+                        break;
+                    case 'left' :
+                        dialog.style.left = 10 + 'px';
+                        dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+                        break;
+                    case 'right' :
+                        dialog.style.left = windowWidth - targetWidth - 10 + 'px';
+                        dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+                        break;
+                    case 'top' :
+                        dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+                        dialog.style.top = 10 + 'px';
+                        break;
+                    case 'bottom' :
+                        dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+                        dialog.style.top = windowHeidth - targetHeight - 10 + 'px';
+                        break;
+                    default: 
+                        layoutDefaultCenter();
+                        break;
+                }
+            }
+            else if(currentPostion.length > 1) {
+            // 有二个位置
+                currentPostion = currentPostion.join(' ');
+                if(currentPostion == 'left top' || currentPostion == 'top left') {
+                    dialog.style.left = 10 + 'px';
+                    dialog.style.top = 10 + 'px';
+                }
+                else if(currentPostion == 'left bottom' || currentPostion == 'bottom left') {
+                    dialog.style.left = 10 + 'px';
+                    dialog.style.top = windowHeidth - targetHeight - 10 + 'px';
+                }
+                else if(currentPostion == 'right top' || currentPostion == 'top right') {
+                    dialog.style.left = windowWidth - targetWidth + 10 + 'px';
+                    dialog.style.top = 10 + 'px';
+                }
+                else if(currentPostion == 'right bottom' || currentPostion == 'bottom right') {
+                    dialog.style.left = windowWidth - targetWidth + 'px';
+                    dialog.style.top = windowHeidth - targetHeight - 10 + 'px';
+                }
+                else {
+                    layoutDefaultCenter();
+                }
+            }
+        }
+
+        // 弹出框固定宽度
+        this.width(obj);
+        // 弹出框固定高度
+        this.height(obj);
+
+        // 自适应高度
+        this.adaptHeight(obj);
+        // 自适应宽度
+        this.adaptWidth(obj);
+
+        // 水平居中
+        this.left(obj);
+        // 垂直居中
+        this.top(obj);
+
+
+        // 验证是否为空对象返回一个 非0
+        function isEmptyObj (io) {
+            for (var dist in io) {
+                return !1
+            }
+            return !0
+        }
+    }
+
+
+    // 默认点击mask隐藏弹出框 all actions 
+    // 点击dialog不会隐藏弹出框 all actions
+    var ignoreBorderSideClick = false;
+
+    mask.onclick = function (ea) {
+        if(ignoreBorderSideClick) {
+            ignoreBorderSideClick = false;
+            return;
+        }
+
+        ea = ea || window.event;
+        if((ea.target || ea.srcElement) == mask) {
+            // 点击外边框 清除timeout未到时间关闭的定时器
+            clearTimeout(self.setTimer);
+
+            self.$(self.dialogElement).style.display = 'none';
+
+            // 重置scrollTop属性
+            self.classList(document.body, self.classList(document.body).replace(' codialog-show',''), '');
+            self.classList(document.documentElement, self.classList(document.documentElement).replace(' codialog-show',''), '');
+        }
+    }
+
+    mask.onmousedown = function () {
+        dialog.onmouseup = function (ea) {
+            dialog.onmouseup = null;
+
+            ea = ea || window.event;
+            if((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target||ea.srcElement)) {
+                ignoreBorderSideClick = true;
+            }
+        }
+    }
+
+    dialog.onmousedown = function () {
+        mask.onmouseup = function (ea) {
+            mask.onmouseup = null;
+
+            ea = ea || window.event;
+            if((ea.target || ea.srcElement) == mask) {
+                ignoreBorderSideClick = true;
+            }
+        }
+    }
+
+
+    if (typeof obj.animation != 'undefined' && typeof obj.animation == 'boolean' && currentDialogElement) {
+        if(!obj.animation) {
+            if(typeof obj.customAnimation == 'string') {
+                this.hasAnimation = false;
+                this.customAnimation = obj.customAnimation;
+            }
+        }
+        else this.hasAnimation = true;
+    }
+        
+
+    return this
+}

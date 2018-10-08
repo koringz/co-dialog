@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo1</title>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="./../static.js"></script>
+<script type="text/javascript" src="./../dialog.js"></script>
+<script type="text/javascript" src="./../application/template/template.js"></script>
+<script type="text/javascript" src="./../application/app.js"></script>
+<script type="text/javascript" src="./../application/$methods.js"></script>
+<script type="text/javascript" src="./../application/hide.js"></script>
+<script type="text/javascript" src="./../application/show.js"></script>
+<script type="text/javascript" src="./../application/layout.js"></script>
+<script type="text/javascript" src="./../application/refs.js"></script>
+<!-- use options -->
+<script type="text/javascript" src="./../application/xString.js"></script>
+<script type="text/javascript" src="./../application/onMethod.js"></script>
+<script type="text/javascript" src="./../application/overtime.js"></script>
+<script type="text/javascript" src="./../application/showMask.js"></script>
+<script type="text/javascript" src="./../application/isDrag.js"></script>
+<script type="text/javascript" src="./../application/use.js"></script>
+<!-- <script type="text/javascript" src="./../application.js"></script> -->
+<script type="text/javascript" src="./../context/context.js"></script>
+<script type="text/javascript" src="./../middleproperties/properties.js"></script>
+<script type="text/javascript" src="./../event/addEventListener.js"></script>
+<script type="text/javascript" src="./../event/preventDefault.js"></script>
+<script type="text/javascript" src="./../event/removeEventListener.js"></script>
+<script type="text/javascript" src="./../dom/dom.js"></script>
+<script type="text/javascript" src="./../animation/animation.js"></script>
+<script type="text/javascript" src="./../style/cssText.js"></script>
+<script type="text/javascript" src="./../style/addCss.js"></script>
+<script type="text/javascript" src="./../index.js"></script>
+
+
+<script type="text/javascript">
+coog.app('.test').use({
+   title: 'JUST CHECKING.',
+   message: 'Delete your account?' + "<p style='font-size:12px;'>This action is final and you will be unable to recover any data</p>",
+   isDrag: true,
+   layout: 'center',
+   titleColor: '#865FDF',
+   closeColor: '#865FDF',
+   showCancleButton: true,
+   confirmButtonText: 'YES',
+   cancleButtonText: 'NO',
+   footerText: "",
+   confirmButtonBackground: '#865FDF',
+   cancleButtonBackground: '#865FDF',
+   confirmButtonColor: '#fff',
+   onHeaderBefore: function (node) {
+      this.style.backgroundColor = "#fff"
+      this.style.borderBottom = "1px solid #ddd"
+   },
+   onFooterBefore: function (node) {
+      this.style.backgroundColor = "#865FDF"
+      this.style.marginBottom = '0'
+      this.style.padding = '6px 0'
+   },
+   confirmCallback: function () {
+      coog.app(".test3").use({
+         titleColor: '#45B680',
+         title: 'Return Results',
+         message: 'Success Delete',
+         confirmButtonText: 'YES',
+         confirmCallback: function () {
+            coog.app('.test').show()
+         }
+      })
+      .show()
+   }
+})
+.show()
+</script>
+
+</html>
