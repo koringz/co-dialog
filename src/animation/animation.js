@@ -5,7 +5,6 @@ codialog.prototype.animate = function (options) {
     return _coanimation(options)
 }
 
-
 // animation
 // base on co-animation plugins api
 var co = function () {};
@@ -123,12 +122,6 @@ for(var k = 0, calen = co.animatiomApi.length; k < calen; k++) {
 // 延迟处理当前节点整体的动画时间
 co.prototype.delay = function (options) {
     if(typeof options !== 'undefined') co.delay.push(Number(options));
-    return this;
-}
-
-// 停止调用api方法
-// 监听Animation动画
-co.prototype.stop = function () {
     return this;
 }
 

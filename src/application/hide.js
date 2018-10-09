@@ -24,7 +24,6 @@ codialog.prototype.hide = function (options) {
                     self.resetScroll(false)
                 }
             })
-            .stop()
             .render();
         }
         else {
