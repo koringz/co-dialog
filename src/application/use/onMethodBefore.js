@@ -1,4 +1,4 @@
- codialog.prototype.onMethod = function  (obj) {
+ codialog.prototype.onMethodBefore = function  (obj) {
     // 在执行前处理节点属性设置
     if (obj.onDialogBefore
         || obj.onHeaderBefore
