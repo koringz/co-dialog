@@ -5,17 +5,14 @@ codialog.prototype.animate = function (options) {
     return _coanimation(options)
 }
 
-// animation
-// base on co-animation plugins api
+// excuteAnimation
+// base on co-excuteAnimation plugins api
 var co = function () {};
 co.count = void null;
-co.delay = new Array();
+co.wait = new Array();
 co.listItems = new Array();
-co.bufferTimer = new Array();
 co.animatiomApi = new Array();
 co.saveAnimation = new Array();
-co.saveApiMethods = new Array();
-co.saveAllNodeAnimation = new Array();
 co.animatiomApi = [
     'bounce','flash','pulse','rubberBand','shake', 'headShake',
     'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown',
@@ -32,14 +29,14 @@ co.animatiomApi = [
     'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
 ];
 co.supportBrowserAnimationEventOfName_end = {
-    "animation"      : "animationend",
+    "excuteAnimation"      : "animationend",
     "OAnimation"     : "oAnimationEnd",
     "MozAnimation"   : "animationend",
     "WebkitAnimation": "webkitAnimationEnd",
     'MSAnimation': 'MSAnimationEnd'
 };
 co.supportBrowserAnimationEventOfName_start = {
-    "animation"      : "animationstart",
+    "excuteAnimation"      : "animationstart",
     "OAnimation"     : "oAnimationStart",
     "MozAnimation"   : "animationstart",
     "WebkitAnimation": "webkitAnimationStart",
@@ -54,7 +51,7 @@ co.validateAnimationEvent = function (el, eventObjectName) {
     }
 }
 
-co.prototype.animation = function (nodelist,currentNodeAnimation,x,fallback, showAndHideApi) {
+co.prototype.excuteAnimation = function (nodelist,currentNodeAnimation,x,fallback, showAndHideApi) {
     var getNodeList = document.querySelector(nodelist);
     var classList = codialog.prototype.classList;
     var supportsAntEvent_end = co.validateAnimationEvent(getNodeList, co.supportBrowserAnimationEventOfName_end);
@@ -104,7 +101,7 @@ var createAnimationApi = function (param) {
         co.prototype[param] = function (options) {
             var _this = this;
             co.saveAnimation = function (nodelist, nooo ,delay) {
-                _this.animation(nodelist, nooo, param, delay, (options instanceof Object ? options : { type: null, callback: function (){} }));
+                _this.excuteAnimation(nodelist, nooo, param, delay, (options instanceof Object ? options : { type: null, callback: function (){} }));
             }
 
             // 开始执行初始回调 
@@ -121,31 +118,16 @@ for(var k = 0, calen = co.animatiomApi.length; k < calen; k++) {
 
 // 延迟处理当前节点整体的动画时间
 co.prototype.delay = function (options) {
-    if(typeof options !== 'undefined') co.delay.push(Number(options));
+    if(typeof options != 'undefined') co.wait.push(Number(options));
     return this;
-}
-
-co.invokeRender = function (options) {
-    return this.prototype.render(options);
 }
 
 // 渲染当前脚本的动画效果
-co.prototype.render = function (bindArrayParams) {
+co.prototype.render = function () {
     // bindArrayParams =  [options]
-    co.saveAnimation(co.listItems.shift(), null , co.delay[0]);
+    co.saveAnimation(co.listItems.shift(), null , co.wait[0]);
 }
-
-function readyRender (options) {
-    return this;
-}
-
-readyRender.prototype = co;
 
 function _coanimation (options) {
     return co.listItems.push(options ? options : null), new co;
-}
-
-_coanimation.prototype.render = function (options) {
-    var instReadyRender = new readyRender();
-    return instReadyRender.invokeRender.apply(instReadyRender, [options]);
 }
