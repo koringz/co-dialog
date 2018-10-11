@@ -1,61 +1,27 @@
 /* animate */
-
-
 codialog.prototype.animate = function (options) {
-    return _coanimation(options)
+    return new co(options)
 }
 
-// excuteAnimation
-// base on co-excuteAnimation plugins api
-var co = function () {};
-co.count = void null;
-co.wait = new Array();
-co.listItems = new Array();
-co.animatiomApi = new Array();
-co.saveAnimation = new Array();
-co.animatiomApi = [
-    'bounce','flash','pulse','rubberBand','shake', 'headShake',
-    'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown',
-    'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft',
-    'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft',
-    'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut',
-    'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig',
-    'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
-    'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft',
-    'rotateInUpRight',  'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
-    'hinge', 'jackInTheBox', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown',
-    'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft',
-    'zoomOutRight', 'zoomOutUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp',
-    'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
-];
-co.supportBrowserAnimationEventOfName_end = {
-    "excuteAnimation"      : "animationend",
-    "OAnimation"     : "oAnimationEnd",
-    "MozAnimation"   : "animationend",
-    "WebkitAnimation": "webkitAnimationEnd",
-    'MSAnimation': 'MSAnimationEnd'
+// base on co-excuteAni plugins api
+var co = function (options) {
+    this.listItems = [options]
+    this.wait = []
 };
-co.supportBrowserAnimationEventOfName_start = {
-    "excuteAnimation"      : "animationstart",
-    "OAnimation"     : "oAnimationStart",
-    "MozAnimation"   : "animationstart",
-    "WebkitAnimation": "webkitAnimationStart",
-    'MSAnimation': 'MSAnimationStart'
-};
-co.validateAnimationEvent = function (el, eventObjectName) {
-    var SPAEON = eventObjectName;
-    for(var k in SPAEON) {
+
+co.prototype.validateAnimationEvent = function (el, eventObjectName) {
+    for(var k in eventObjectName) {
         if(el.style[k] != undefined) {
-            return SPAEON[k]
+            return eventObjectName[k]
         }
     }
 }
 
-co.prototype.excuteAnimation = function (nodelist,currentNodeAnimation,x,fallback, showAndHideApi) {
+co.prototype.excuteAnimation = function (nodelist,x, showAndHideApi) {
     var getNodeList = document.querySelector(nodelist);
     var classList = codialog.prototype.classList;
-    var supportsAntEvent_end = co.validateAnimationEvent(getNodeList, co.supportBrowserAnimationEventOfName_end);
-    var supportsAntEvent_start = co.validateAnimationEvent(getNodeList, co.supportBrowserAnimationEventOfName_start);
+    var supportsAntEvent_end = this.validateAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
+    var supportsAntEvent_start = this.validateAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
     if(showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,' ' + x + ' animatedHalf', getNodeList);
     else classList(getNodeList,' ' + x + ' animated', getNodeList);
@@ -86,7 +52,7 @@ co.prototype.excuteAnimation = function (nodelist,currentNodeAnimation,x,fallbac
         else {
             classList(getNodeList, classList(getNodeList).replace(' ' + x + ' animated',''), '')
         }
-        // fallback(nodelist,currentNodeAnimation);
+
         getNodeList.removeEventListener(supportsAntEvent_end, callAnimationEventEnd, false);
         getNodeList.removeEventListener(supportsAntEvent_start, callAnimationEventStart, false);
     };
@@ -96,38 +62,43 @@ co.prototype.excuteAnimation = function (nodelist,currentNodeAnimation,x,fallbac
 }
 
 var createAnimationApi = function (param) {
-    if(co.prototype.hasOwnProperty(param)) return null;
-    else {
-        co.prototype[param] = function (options) {
-            var _this = this;
-            co.saveAnimation = function (nodelist, nooo ,delay) {
-                _this.excuteAnimation(nodelist, nooo, param, delay, (options instanceof Object ? options : { type: null, callback: function (){} }));
-            }
-
-            // 开始执行初始回调 
-            // 第一次执行动画 需要display : block
-            if(options.type == 'start' && typeof options.callback === 'function') options.callback();
-            return this;
+    co.prototype[param] = function (options) {
+        var _this = this;
+        co.saveAnimation = function (nodelist ,delay) {
+            _this.excuteAnimation(
+                nodelist, 
+                param, 
+                (options instanceof Object ? 
+                    options : 
+                    { 
+                        type: null, 
+                        callback: function (){} 
+                    }
+                )
+            );
         }
+
+        // 开始执行初始回调 
+        // 第一次执行动画 需要display : block
+        if(options.type == 'start' && typeof options.callback === 'function') options.callback();
+        return this;
     }
 }
 
-for(var k = 0, calen = co.animatiomApi.length; k < calen; k++) {
-    createAnimationApi(co.animatiomApi[k]);
+for(var k = 0, calen = animatiomApi.length; k < calen; k++) {
+    createAnimationApi(animatiomApi[k]);
 }
 
 // 延迟处理当前节点整体的动画时间
 co.prototype.delay = function (options) {
-    if(typeof options != 'undefined') co.wait.push(Number(options));
+    if(typeof options != 'undefined') this.wait.push(Number(options));
     return this;
 }
 
 // 渲染当前脚本的动画效果
 co.prototype.render = function () {
     // bindArrayParams =  [options]
-    co.saveAnimation(co.listItems.shift(), null , co.wait[0]);
+    co.saveAnimation(this.listItems.slice(0), null , this.wait[0]);
 }
 
-function _coanimation (options) {
-    return co.listItems.push(options ? options : null), new co;
-}
+co.validateAnimationEvent = co.prototype.validateAnimationEvent
