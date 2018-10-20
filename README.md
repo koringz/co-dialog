@@ -26,12 +26,6 @@ zero dependencies and free dialog library
 npm install co-dialog
 ```
 
-Or:
-
-```bash
-bower install co-dialog
-```
-
 或者下载 CDN:
 [jsdelivr.com/package/npm/co-dialog](https://cdn.jsdelivr.net/npm/co-dialog)
 
@@ -80,12 +74,18 @@ coog.app(".with-title").use(
 
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
+
 ## 作者
 
 查看[作者](https://github.com/koringz)
 
 
 ## 版本改变
+
+
+(v2.0.2) <Date:2018/10/21>
+ - 优化压缩 co-dialog.js 代码
+
 
 (v2.0.0) <Date:2018/09/12>
  - 优化isDrag拖动事件，拖动效果将会更加地平滑。

@@ -35,15 +35,20 @@
 </style>
 </head>
 <body style="height: 100%; background-color: #fff">
+	<button class="test">test</button>
 </body>
 <script type="text/javascript" src="./../lib/co-dialog.all.js" ></script>
 <script type="text/javascript">
 	
 // 基础弹出框
-Coog
-.app('.base')
-.use('coog组件')
+coog
+.app('._123base')
+.use('coog组件','3213','123')
 .show()
 
+
+coog.addEventListener(coog.$('.test'),'click', function () {
+	coog.app('._123base').show()	
+})
 </script>
 </html>

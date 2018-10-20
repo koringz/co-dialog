@@ -161,6 +161,15 @@
     text-align: center;
     color: #585858;
 }
+/*兼容移动端*/
+@media only screen and (max-width: 801px) {
+  .codialog-frame{
+    width: 96%
+  }
+  .codialog-frame .codialog-box {
+    width: 100%
+  }
+}
 /*animation assets*/
 
 .animatedHalf {
