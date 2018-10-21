@@ -18,16 +18,15 @@
 <style type="text/css">
 	body { 
 		margin: 0;
-	    width: 100%;
-	    min-height: 100vh;
-	    background: #5A99F9;
-	    background: linear-gradient(300deg,#B00077,#5A99F9);
+      min-height: 100vh;
+      background: #5A99F9;
+      background: linear-gradient(300deg,#B00077,#5A99F9);
 	}
 </style>
 </head>
 <body>
 </body>
-<script type="text/javascript" src="./../lib/co-dialog.all.js" ></script>
+<script type="text/javascript" src="./../lib/co-dialog.all.min.js" ></script>
 <script type="text/javascript">
 coog.app('.test').use({
    title: 'JUST CHECKING.',
@@ -58,6 +57,7 @@ coog.app('.test').use({
          title: 'Return Results',
          message: 'Success Delete',
          confirmButtonText: 'YES',
+         type: 'Success',
          confirmCallback: function () {
             coog.app('.test').show()
          }

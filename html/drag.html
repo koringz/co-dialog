@@ -14,9 +14,8 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <style type="text/css">
 	body { 
+        height: 1200px;
 		margin: 0;
-	    width: 100%;
-	    min-height: 100vh;
 	    background: #FFCD42;
 	    background: linear-gradient(300deg,#3ECF9A,#FFCD42);
 	}
@@ -34,13 +33,13 @@
 </style>
 </head>
 
-<body bgColor="#fafafa">
+<body bgColor="#fafafa" class="asdf asf3">
 	<center style="padding-top: 300px; height: 900px">
 		<button class="onceRecharge">立即充值</button>
 	</center>
 </body>
 
-<script type="text/javascript" src="./../lib/co-dialog.all.js" ></script>
+<script type="text/javascript" src="./../lib/co-dialog.all.min.js" ></script>
 <script type="text/javascript">
 	// 基础弹出框
 coog
@@ -49,7 +48,8 @@ coog
     title: '拖动',
     message: '请尝试拖动窗口',
     isDrag: true,
-    layout: ' center ',
+    layout: 'center ',
+    type: 'error',
     onDialogBefore: function (nodes) {
         this.style.color = "#008576"
     }
