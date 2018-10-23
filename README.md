@@ -67,8 +67,9 @@ coog.app(".base").use("这是一个基础的弹出框").show()
 
 ```js
 coog.app(".with-title").use(
- "默认",
- "这是一个带标题的弹出框"
+ "标题",
+ "这是一个带标题的弹出框",
+ 'success'
 ).show()
 ```
 
