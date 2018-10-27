@@ -18,6 +18,9 @@
 <p align="center">
 zero dependencies and free dialog library
 </p>
+<p align="center">
+打包之后大小总共为 `css + js = 30kb`
+</p>
 
 ## 下载
 
@@ -34,15 +37,14 @@ npm install co-dialog
 初始化你需要加载以下文件：
 
 ```html
-<script src="co-dialog.all.min.js"></script>
+<script src="co-dialog.js"></script>
 ```
 
 如果你需要单独引入stylesheet样式：
 
 ```html
 <link rel="stylesheet" href="animation.min.css">
-<link rel="stylesheet" href="co-dialog.min.css">
-<script src="co-dialog.min.js"></script>
+<script src="co-dialog.js"></script>
 ```
 
 or
@@ -79,13 +81,13 @@ coog.app(".with-title").use(
 
 查看[作者](https://github.com/koringz)
 
-## 参考 (sweetalert2)[https://github.com/sweetalert2/sweetalert2]
+## 参考 [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 `co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
 
 ## 版本改变
 (v2.0.2) <Date:2018/10/27>
  - 升级为 es6 版本
- - 在你的 node_module 导入即可调用此插件
+ - 在你的 node_module 导入即可调用`co-dialog`插件
 
 (v2.0.1) <Date:2018/10/21>
  - 优化压缩 co-dialog.js 代码
