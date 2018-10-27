@@ -79,8 +79,13 @@ coog.app(".with-title").use(
 
 查看[作者](https://github.com/koringz)
 
+## 参考 (sweetalert2)[https://github.com/sweetalert2/sweetalert2]
+`co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
 
 ## 版本改变
+(v2.0.2) <Date:2018/10/27>
+ - 升级为 es6 版本
+ - 在你的 node_module 导入即可调用此插件
 
 (v2.0.1) <Date:2018/10/21>
  - 优化压缩 co-dialog.js 代码
