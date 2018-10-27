@@ -19,7 +19,7 @@
 zero dependencies and free dialog library
 </p>
 <p align="center">
-打包之后大小总共为 `css + js = 30kb`
+打包之后大小总共为 css + js = 30kb
 </p>
 
 ## 下载
@@ -65,7 +65,7 @@ const coog = require("co-dialog")
 coog.app(".base").use("这是一个基础的弹出框").show()
 ```
 
-这是一个带标题的弹出框
+这是一个带标题的`success`弹出框
 
 ```js
 coog.app(".with-title").use(
