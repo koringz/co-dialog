@@ -1,4 +1,6 @@
-const { isExist } = require('./staticMethods.js');
+const { 
+  isExist 
+} = require('./staticMethods.js')
 
 // validate style exist
 export const validateBrowserCompatiblityAnimationEvent = (el, eventObjectName) => {

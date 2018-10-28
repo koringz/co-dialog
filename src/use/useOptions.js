@@ -6,14 +6,23 @@ const {
     isExist, 
     isFalse, 
     isTrue, 
-    addEventListener, 
-    removeEventListener,
-    removeChild,
     isArray,
     forEach,
-    trim,
-    preventDefault } = require('../staticMethods.js');
+    trim 
+} = require('../staticMethods.js')
 
+const {
+    addEventListener,
+    preventDefault, 
+    removeEventListener,
+    removeChild 
+} = require('../domMethods.js')
+
+const {
+    selfApi
+} = require('../refs.js')
+
+const dialogNodeNamePart = ['header','header','body']
 
 export const useOptions = function (...args) {
     const self = this
@@ -185,13 +194,12 @@ export const useOptions = function (...args) {
 
         // 所有子节点都会被获取 进行修改
         // 但是都在before执行之后才执行methods
-        /*
-            $(this.dialogElement).find('[ref]').each(function (index,item) {
-                item.removeAttribute('ref');
-            });
-        */
         if (isFun(obj['methods'])) {
-            this.$methods();
+            forEach(selfApi, (items, index) => {
+                self[dialogNodeNamePart[index]] = self[items]({
+                    children: self.rootDirectory[dialogNodeNamePart[index]] 
+                })
+            });
             obj.methods.call(this,this.dialogElement);
         }
 

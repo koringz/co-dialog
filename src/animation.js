@@ -1,6 +1,23 @@
-const { isFun, isExist, classList, removeEventListener, addEventListener } = require('./staticMethods.js');
-const { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } = require('./defaultParameters.js');
-const { validateBrowserCompatiblityAnimationEvent } = require('./compatiblity.js')
+const { 
+    isFun, 
+    isExist 
+} = require('./staticMethods.js')
+
+const { 
+    validateBrowserCompatiblityAnimationEvent 
+} = require('./compatiblity.js')
+
+const { 
+    addEventListener, 
+    removeEventListener, 
+    classList 
+} = require('./domMethods.js')
+
+const { 
+    animatiomApi, 
+    supportBrowserAnimationEventOfName_end, 
+    supportBrowserAnimationEventOfName_start 
+} = require('./defaultParameters.js')
 
 class coani {
     constructor(options) {

@@ -1,4 +1,6 @@
-const { forEach } = require('./staticMethods.js');
+const { 
+    forEach 
+} = require('./staticMethods.js')
 
 /*
 需要在dialog body里面加载其他元素, 比如图片的失效 和 其他图片icon信息
@@ -15,8 +17,10 @@ const defineRefs = (self, child) => {
     return obj;
 }
 
+export const selfApi = ['onHeader','onBody','onFooter']
+
 export const defaultRefs = (PROTO) => {
-    ['onHeader','onBody','onFooter'].map((items) => {
+    selfApi.map((items) => {
         PROTO[items] = function (child) {
             var self = this;
             return {
