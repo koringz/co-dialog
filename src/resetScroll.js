@@ -1,7 +1,7 @@
 const { classList, isExist } = require('./staticMethods.js');
 
 // 重置scrollTop属性
-export const resetScroll = function (attr, isTruth) {
+export const resetScroll = (attr, isTruth) => {
     var bodyNode = document.body;
     // 设置body时 不能给body css设置 width:100%
     // 防止padding不起作用

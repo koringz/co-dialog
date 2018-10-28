@@ -186,7 +186,7 @@ export const paramsAndCallback = (params, fallback) => {
 }
 
 export const classOrId = {
-    _class: function (el, name) {
+    _class(el, name) {
         if(el.classList) {
             el.setAttribute('class',name);
         }
@@ -194,7 +194,7 @@ export const classOrId = {
             el.className = name;
         }
     },
-    _id: function (el, name) {
+    _id(el, name) {
         el.setAttribute('id',name);
     }
 }

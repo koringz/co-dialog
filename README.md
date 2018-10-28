@@ -18,9 +18,6 @@
 <p align="center">
 zero dependencies and free dialog library
 </p>
-<p align="center">
-打包之后大小总共为 css + js = 30kb
-</p>
 
 ## 下载
 
@@ -83,6 +80,12 @@ coog.app(".with-title").use(
 
 ## 参考 [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 `co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
+
+## 其他版本
+
+[es5 version](https://github.com/koringz/co-dialog/releases/tag/v2.0.1)
+[es6 目前](https://github.com/koringz/co-dialog/releases/tag/v2.0.2)
+<!-- [vue version](https://github.com/koringz/co-dialog/releases/tag/v2.0.3) -->
 
 ## 版本改变
 (v2.0.2) <Date:2018/10/27>

@@ -1,5 +1,7 @@
 import style from './../assets/css/co-dialog.min.css';
 
+import 'babel-polyfill'
+
 const {
     isUndefined,
     isExist,
@@ -63,8 +65,10 @@ const {
 } = require('./use/useOptions.js')
 
 // co-dialog explanation of each methods
-class codialog {
+class codialog extends coani {
     constructor(options) {
+        super(options);
+
         this.didDialogList = [];
         this.dialogElement = options || null;
         this.strict = {
@@ -144,7 +148,7 @@ class codialog {
 
         if (isStr(options)) {
             if (inArray(options, this.cacheDialogElement)) {
-                excuteShowAnimation(this, options + ' [dialog]', _currentElements);
+                excuteShowAnimation.call(this, options + ' [dialog]', _currentElements);
             }
         } else if (isObj(options)) {
             var _timeout = Number(options.timeout);
@@ -178,11 +182,11 @@ class codialog {
             var divTagName = parent.getElementsByTagName('*');
             var divTagNameLength = divTagName.length;
             var saveSensitiveElement = [];
-            for (var i = 0; i < divTagNameLength; i++) {
-                if (isStr(divTagName[i].className)) {
-                    var getClassNameGroup = divTagName[i].className.split(' ');
+            for (const getNode of divTagName) {
+                if (isStr(getNode.className)) {
+                    var getClassNameGroup = getNode.className.split(' ');
                     if (inArray(childClass, getClassNameGroup)) {
-                        saveSensitiveElement.push(divTagName[i]);
+                        saveSensitiveElement.push(getNode);
                         break;
                     }
                 }
@@ -204,26 +208,20 @@ class codialog {
 
                     // arr 表示当前节点下面 存在多个节点
                     function fromAttributesToFindElement(parentElement, attr, arr) {
-                        if (parentElement.length) {
-                            for (var i = 0,
-                            parentLength = parentElement.length; i < parentLength; i++) {
+                        let parentLength = parentElement.length
+                        if (parentLength) {
+                            for (const items of parentElement) {
 
                                 // 检查属性 [mask] 为字符串 获得当前节点
-                                if (isStr(parentElement[i].getAttribute(attr))) {
-                                    saveChildList.push(parentElement[i]);
+                                if (isStr(items.getAttribute(attr))) {
+                                    saveChildList.push(items);
                                     // 数组 继续执行for循环
                                     if (isArray(arr)) continue;
                                     else break; // break;退出兼容ie9and10 
                                 } else {
-                                    if (parentElement.length == 1) {
+                                    if (parentLength == 1) {
                                         // 长度为1 往下找
-                                        return fromAttributesToFindElement(parentElement[i].children, attr, arr)
-                                    }
-                                    if (parentLength > 1 && i < parentLength) {
-                                        // 存在多个节点
-                                        continue;
-                                    } else {
-                                        return;
+                                        return fromAttributesToFindElement(items.children, attr, arr)
                                     }
                                 }
                             }
@@ -378,10 +376,9 @@ class codialog {
         if (isFun(callback)) callback.call(this, this.dialogElement);
         return this;
     }
-
 }
 
-(function(d, s) {
+;((d, s) => {
     var sty = d.createElement('style');
     var head = d.getElementsByTagName('head')[0];
     sty.type = 'text/css';
@@ -397,10 +394,6 @@ class codialog {
     }
 })(document, style);
 
-// base on co-ani plugins api
-codialog.prototype.animate = function(options) {
-    return new coani(options)
-}
 
 const coog = new(codialog);
 

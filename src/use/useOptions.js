@@ -15,9 +15,9 @@ const {
     preventDefault } = require('../staticMethods.js');
 
 
-export const useOptions = function () {
+export const useOptions = function (...args) {
     const self = this
-    const { obj, dialog,mask,header,body,footer,footerButtonGroup,currentDialogElement } = arguments[0]
+    const { obj, dialog,mask,header,body,footer,footerButtonGroup,currentDialogElement } = args[0]
 
     if (isObj(obj)) {
         // 在执行前处理节点属性设置
@@ -220,16 +220,17 @@ export const useOptions = function () {
 
             if(cacheCloseList.length > 0) {
                 forEach(cacheCloseList, function (close, index) {
-                    close.onclick = function (e) {
+                    var currentNode = close;
+                    currentNode.onclick = function (e) {
                         self.hide((_currentDialogElement.className.length ? '.' + _currentDialogElement.className : '#' + _currentDialogElement.getAttribute('id')))
                         clearTimeout(self.setTimer);
 
                         // 确认按钮的回调函数
-                        if(index == 2 && isFun(obj.confirmCallback)) {
+                        if(isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
                             obj.confirmCallback()
                         }
                         // 取消按钮的回调函数
-                        else if(index == 1 && isFun(obj.cancleCallback)) {
+                        else if(isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
                             obj.cancleCallback()
                         }
                         self.closeBackValue = true;
@@ -264,15 +265,9 @@ export const useOptions = function () {
         }
 
         // layout 弹出框初始位置 上|下|左|右|居中|左上|左下|右上|右下
-        if (isStr(obj.layout) && obj.layout.length) {
-            resize()
-        }
+        if (isStr(obj.layout) && obj.layout.length) resize();
 
-        if(isTrue(obj.onResize)) {
-            window.onresize = function () {
-                resize()
-            }
-        }
+        if (isTrue(obj.onResize)) window.onresize = () => resize();
 
         function resize () {
             var windowWidth  = (document.documentElement || document.body).clientWidth;
@@ -305,12 +300,10 @@ export const useOptions = function () {
             };
 
             var currentPostion = obj.layout.toLowerCase().split(' ');
-            var filterCurrentPostion = [];
             // 过滤空字符串
-            for(var i = 0; i < currentPostion.length; i++){
-                if(currentPostion[i].length) filterCurrentPostion.push(currentPostion[i]);
-            }
-            currentPostion = filterCurrentPostion;
+            currentPostion = currentPostion.filter((items) => {
+                return items.length
+            });
 
             // 默认重心位置
             function layoutDefaultCenter () {

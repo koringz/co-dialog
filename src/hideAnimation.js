@@ -4,8 +4,6 @@ const { validateBrowserCompatiblityAnimationEvent } = require('./compatiblity.js
 const { resetScroll } = require('./resetScroll.js')
 
 export const excuteHideAnimation = function (options, currentDialogNode) {
-    var self = this;
-
     // ie8 是否支持 animation.
     if(document.querySelector && document.addEventListener) {
         // 兼容ie9

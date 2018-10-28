@@ -4,7 +4,6 @@ const { validateBrowserCompatiblityAnimationEvent } = require('./compatiblity.js
 const { resetScroll } = require('./resetScroll.js')
 
 export const excuteShowAnimation = function (options, currentDialogNode) {
-    var self = this;
     var resetDefaultAnimation = 'bounceIn';
 
     // ie8 是否支持 animation.
@@ -15,11 +14,11 @@ export const excuteShowAnimation = function (options, currentDialogNode) {
             resetScroll(' codialog-show', true);
             return null;
         }
-        if(isFalse(self.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
+        if(isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
         // animation动画加载
-        self.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation,{
+        this.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation,{
             type: 'start',
-            callback: function () {
+            callback: () => {
                 currentDialogNode.style.display = 'block';
                 resetScroll(' codialog-show', true);
             }

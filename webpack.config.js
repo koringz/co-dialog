@@ -6,10 +6,6 @@ module.exports = {
 
   entry: './src/index.js',
 
-  resolve: {
-    extensions: ['.js'],
-  },
-
   output: {
     path: __dirname + "/dist",
     filename: 'co-dialog.js',
@@ -21,12 +17,19 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-           'css-loader'
-        ]
-      }
+        use: {
+          loader: 'css-loader',
+        }
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        }
+      },
     ]
   },
 
-  plugins: []
+  plugins: [
+  ]
 };

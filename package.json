@@ -4,7 +4,8 @@
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
   "main": "core.js",
   "directories": {
-    "lib": "lib"
+    "example": "examples",
+    "test": "test"
   },
   "scripts": {
     "build": "webpack",
@@ -30,9 +31,15 @@
     "url": "https://github.com/koringz/co-dialog/issues"
   },
   "homepage": "https://github.com/koringz/co-dialog#readme",
-  "dependencies": {},
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
   "devDependencies": {
-    "babel-loader": "^8.0.4",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^1.0.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
