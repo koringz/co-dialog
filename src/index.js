@@ -294,13 +294,13 @@ class codialog extends coani {
         if (typeof parent == 'object') {
             if (isStr(options)) {
                 if (options.search(/^(\.)/) + 1) {
-                    return getElementsByClassName(parent, options.slice(1))
+                    return getElementsByClassName(parent, options.slice(1));
                 } else if (options.search(/^(\#)/) + 1) {
-                    return parent.ownerDocument.getElementById(options.slice(1))
+                    return parent.ownerDocument.getElementById(options.slice(1));
                 } else if (options.search(/^(\s*)(\[.*\])/g) + 1) {
                     // arr 表示当前节点下面 存在多个节点
-                    return fromAttributesToFindElement(parent.children, options.slice(1, options.length - 1), arr)
-                } else return parent.getElementsByTagName(options)
+                    return fromAttributesToFindElement(parent.children, options.slice(1, options.length - 1), arr);
+                } else return parent.getElementsByTagName(options);
             }
         }
     }
