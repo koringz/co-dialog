@@ -23,14 +23,14 @@ const {
     objectKey,
     inArray,
     isArray,
-    paramsAndCallback 
+    paramsAndCallback
 } = require('./staticMethods.js');
 
-const { 
+const {
     addEventListener,
     removeEventListener,
     classOrId,
-    classList 
+    classList
 } = require('./domMethods.js')
 
 const {
@@ -125,6 +125,7 @@ class codialog extends coani {
             }
         } else if (isObj(options)) {
             var _timeout = Number(options.timeout);
+
             if ('timeout' in options && isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
                     _currentElements.style.display = 'none';
@@ -154,6 +155,7 @@ class codialog extends coani {
             }
         } else if (isObj(options)) {
             var _timeout = Number(options.timeout);
+
             if ('timeout' in options && isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
                     _currentElements.style.display = 'block';
@@ -183,13 +185,7 @@ class codialog extends coani {
         const body      = this.find(currentDialogElement, '[body]');
         const footer    = this.find(currentDialogElement, '[footer]');
 
-        assign(this.rootDirectory, {
-            dialog  : dialog,
-            mask    : mask,
-            header  : header,
-            body    : body,
-            footer  : footer
-        });
+        assign(this.rootDirectory, { dialog, mask, header, body, footer });
 
         // 情况1：传入''字符串
         if (arguments.length && isStr(obj) && (this.xString, this.xString = arguments)) {
@@ -203,28 +199,23 @@ class codialog extends coani {
                     };
                     break;
                 case 2:
-                    var getSecondPart = this.xString[1];
                     obj = {
                         title: this.xString[0],
-                        message: isStr(getSecondPart) ? getSecondPart: 'No message text'
+                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message text'
                     };
                     break;
                 case 3:
-                    var getSecondPart = this.xString[1];
-                    var getType = this.xString[2];
                     obj = {
                         title: this.xString[0],
-                        message: isStr(getSecondPart) ? getSecondPart: 'No message',
-                        type: isStr(getType) ? getType: ''
+                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message',
+                        type: isStr(this.xString[2]) ? this.xString[2]: ''
                     };
                     break;
                 default:
-                    var getSecondPart = this.xString[1];
-                    var getType = this.xString[2];
                     obj = {
                         title: this.xString[0],
-                        message: isStr(getSecondPart) ? getSecondPart: 'No message',
-                        type: isStr(getType) ? getType: ''
+                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message',
+                        type: isStr(this.xString[2]) ? this.xString[2]: ''
                     };
                     break;
             }
@@ -237,18 +228,17 @@ class codialog extends coani {
         var disabledChangedDefault = clone($default);
 
         obj = assign(disabledChangedDefault, obj);
-        var arrel = { obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement }
+        var arrel = { obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement };
 
         useOptions.apply(this, [arrel]);
 
-        // 默认点击mask隐藏弹出框 all actions 
+        // 默认点击mask隐藏弹出框 all actions
         // 点击dialog不会隐藏弹出框 all actions
         var ignoreBorderSideClick = false;
 
         mask.onclick = (ea) => {
             if (ignoreBorderSideClick) {
-                ignoreBorderSideClick = false;
-                return;
+                return ignoreBorderSideClick = false, null;
             }
             ea = ea || window.event;
             if ((ea.target || ea.srcElement) == mask) {
@@ -262,21 +252,21 @@ class codialog extends coani {
             }
         }
 
-        mask.onmousedown = () => {
-            dialog.onmouseup = (ea) => {
-                dialog.onmouseup = null;
-                ea = ea || window.event;
-                if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
-                    ignoreBorderSideClick = true;
-                }
-            }
-        }
-
         dialog.onmousedown = () => {
             mask.onmouseup = (ea) => {
                 mask.onmouseup = null;
                 ea = ea || window.event;
                 if ((ea.target || ea.srcElement) == mask) {
+                    ignoreBorderSideClick = true;
+                }
+            }
+        }
+
+        mask.onmousedown = () => {
+            dialog.onmouseup = (ea) => {
+                dialog.onmouseup = null;
+                ea = ea || window.event;
+                if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
                     ignoreBorderSideClick = true;
                 }
             }
@@ -291,11 +281,6 @@ class codialog extends coani {
             } else this.hasAnimation = true;
         }
         return this
-    }
-
-    $methods(callback) {
-        if (isFun(callback)) callback.call(this, this.dialogElement);
-        return this;
     }
 
     $(options) {
@@ -325,7 +310,6 @@ class codialog extends coani {
     var sty = d.createElement('style');
     var head = d.getElementsByTagName('head')[0];
     sty.type = 'text/css';
-
     if (head.appendChild(sty), sty.stylesheet) {
         sty.stylesheet.cssText = s;
     } else {
@@ -337,7 +321,4 @@ class codialog extends coani {
     }
 })(document, style);
 
-
-const coog = new(codialog);
-
-export default coog
+export default new(codialog);

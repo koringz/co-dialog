@@ -84,6 +84,7 @@ coog.app(".with-title").use(
 ## 其他版本
 
 [es5 version](https://github.com/koringz/co-dialog/releases/tag/v2.0.1)
+
 [es6 目前](https://github.com/koringz/co-dialog/releases/tag/v2.0.2)
 <!-- [vue version](https://github.com/koringz/co-dialog/releases/tag/v2.0.3) -->
 
