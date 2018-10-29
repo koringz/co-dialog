@@ -1,0 +1,12 @@
+
+  button{
+    display: inline-block;
+    padding: 12px 18px;
+    position: relative;
+    outline: none;
+    border: none;
+    background-color: #45B680;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+  }
