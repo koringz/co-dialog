@@ -1,23 +1,7 @@
-const { 
-    isFun, 
-    isExist 
-} = require('./staticMethods.js')
-
-const { 
-    validateBrowserCompatiblityAnimationEvent 
-} = require('./compatiblity.js')
-
-const { 
-    addEventListener, 
-    removeEventListener, 
-    classList 
-} = require('./domMethods.js')
-
-const { 
-    animatiomApi, 
-    supportBrowserAnimationEventOfName_end, 
-    supportBrowserAnimationEventOfName_start 
-} = require('./defaultParameters.js')
+import { isFun, isExist } from './staticMethods.js'
+import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
+import { addEventListener, removeEventListener, classList } from './domMethods.js'
+import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
 class coani {
     constructor(options) {
@@ -37,7 +21,7 @@ class coani {
 
     usebind(self) {
         for(const items of animatiomApi) {
-            this[items] = this.callAnimationApi
+            coani.prototype[items] = this.callAnimationApi
         }
     }
 
@@ -57,19 +41,20 @@ class coani {
 
         if(showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,' ' + animationClass + ' animatedHalf', getNodeList);
         else classList(getNodeList,' ' + animationClass + ' animated', getNodeList);
-        
+
         var callAnimationEventStart = () => {
             var typeStartWith = showAndHideApi.type;
-            // 2种情况 
+            // 2种情况
             // 显示弹出框时 有一次动画开始 到结束过程
             // 隐藏弹出框时 也有一次动画开始 到结束过程
-            // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听 
+            // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
             // 而之前隐藏的弹出框  不可见 就不会立马被监听
             removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventEnd);
         };
 
         var callAnimationEventEnd = () => {
             var typeStartWith = showAndHideApi.type;
+
             // 显示和隐藏的弹出框 都会监听一次结束
             if(typeStartWith.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
@@ -78,7 +63,6 @@ class coani {
             else {
                 classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animated',''), '')
             }
-
             removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
             removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
         };

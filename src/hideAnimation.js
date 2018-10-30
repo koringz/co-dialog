@@ -1,18 +1,7 @@
-const { 
-    isFalse 
-} = require('./staticMethods.js')
-
-const { 
-    supportBrowserAnimationEventOfName_end 
-} = require('./defaultParameters.js')
-
-const { 
-    validateBrowserCompatiblityAnimationEvent 
-} = require('./compatiblity.js')
-
-const { 
-    resetScroll 
-} = require('./resetScroll.js')
+import { isFalse } from './staticMethods.js'
+import { supportBrowserAnimationEventOfName_end } from './defaultParameters.js'
+import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
+import { resetScroll } from './resetScroll.js'
 
 export const excuteHideAnimation = function (options, currentDialogNode) {
     // ie8 是否支持 animation.

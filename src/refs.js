@@ -1,6 +1,4 @@
-const { 
-    forEach 
-} = require('./staticMethods.js')
+import { forEach } from './staticMethods.js'
 
 export const selfApi = ['onHeader','onBody','onFooter']
 

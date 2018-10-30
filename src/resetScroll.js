@@ -1,10 +1,5 @@
-const { 
-    isExist 
-} = require('./staticMethods.js')
-
-const { 
-    classList 
-} = require('./domMethods.js')
+import {isExist } from './staticMethods.js'
+import {classList } from './domMethods.js'
 
 // 重置scrollTop属性
 export const resetScroll = (attr, isTruth) => {

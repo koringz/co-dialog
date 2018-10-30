@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Force best rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theme case</title>
+    <meta name="description" content="Modal Window Effects" />
+    <meta name="keywords" content="Modal Window Effects transition animation perspective" />
+    <meta name="author" content="koringz" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <style type="text/css">
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #5A99F9;
+            background: linear-gradient(300deg, #B00077, #5A99F9);
+        }
+    </style>
+</head>
+
+<body>
+</body>
+<link rel="stylesheet" type="text/css" href="./../assets/css/animate.min.css">
+<script type="text/javascript" src="./../dist/co-dialog.js"></script>
+<script type="text/javascript">
+    var coog = coog.default
+    
+    coog
+        .app('.customAnimation')
+        .use({
+            title: 'This is a title',
+            message: 'We’re also releasing our first step towards showcasing what’s possible when using GitHub Desktop. In 1.4, we’ve added our release notes to the app to highlight what’s changed since the last release, and to recognize—and thank—our amazing contributors',
+            isClose: true,
+            isDrag: true,
+            layout: 'center',
+            animation: false,
+            customAnimation: 'slideInDown',
+            titleColor: '#333',
+            closeColor: '#333',
+            confirmButtonText: "Read More",
+            confirmButtonColor: '#333',
+            animation: false,
+            customAnimation: 'swing',
+            onDialogBefore: function() {
+                this.style.background = "#F1F1F1";
+                this.style.border = "3px solid #333";
+            },
+            onHeaderBefore: function() {
+                this.style.background = "#F1F1F1";
+                this.style.borderBottom = "2px solid #333";
+                this.style.margin = "0 30px";
+                this.style.paddingLeft = "0";
+                this.style.paddingRight = "0";
+            },
+            onBodyBefore: function() {
+                this.style.fontSize = "14px";
+                this.style.textAlign = "left";
+            },
+            onFooterBefore: function() {
+                this.style.float = 'left'
+                this.style.marginLeft = '30px'
+            },
+            methods: function() {
+                this.footer.$refs.button.children[0].style.background = "transparent";
+                this.footer.$refs.button.children[0].style.border = "2px solid #333"
+            }
+        })
+        .show();
+</script>
+
+</html>

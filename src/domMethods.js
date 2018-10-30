@@ -1,7 +1,4 @@
-const { 
-    isExist, 
-    isStr 
-} = require('./staticMethods.js')
+import { isExist, isStr } from './staticMethods.js'
 
 export const removeChild = (child) => {
     if(isExist(child)) return null;

@@ -1,18 +1,7 @@
-const { 
-    isFalse 
-} = require('./staticMethods.js')
-
-const { 
-    supportBrowserAnimationEventOfName_end 
-} = require('./defaultParameters.js')
-
-const { 
-    validateBrowserCompatiblityAnimationEvent 
-} = require('./compatiblity.js')
-
-const { 
-    resetScroll 
-} = require('./resetScroll.js')
+import { isFalse } from './staticMethods.js'
+import { resetScroll } from './resetScroll.js'
+import { supportBrowserAnimationEventOfName_end } from './defaultParameters.js'
+import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
 
 export const excuteShowAnimation = function (options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn';

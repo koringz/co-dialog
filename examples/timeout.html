@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timeout case</title>
+    <meta name="description" content="Modal Window Effects" />
+    <meta name="keywords" content="Modal Window Effects transition animation perspective" />
+    <meta name="author" content="koringz" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <style type="text/css">
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #FFCD42;
+            background: linear-gradient(300deg, #3ECF9A, #FFCD42);
+        }
+
+        button {
+            display: inline-block;
+            padding: 12px 18px;
+            position: relative;
+            outline: none;
+            border: none;
+            background-color: #45B680;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body bgColor="#fafafa">
+    <center style="padding-top: 300px; height: 900px">
+        <button class="onceRecharge">立即充值</button>
+    </center>
+</body>
+<script type="text/javascript" src="./../dist/co-dialog.js"></script>
+<script type="text/javascript">
+    var coog = coog.default
+    
+    // 基础弹出框
+    coog
+        .app('.timeout')
+        .use({
+            title: '超时-timeout',
+            message: '超时自动关闭',
+            isDrag: true,
+            timeout: 2000
+        })
+        .show()
+
+
+    coog.$('.onceRecharge').addEventListener('click', function() {
+
+        coog
+            .app('.timeout')
+            .show()
+            .hide({
+                timeout: 3000
+            })
+
+        /*callback: function (nodes) {
+            for (var i = 0; i < 3; i++) {
+                (function (i) {
+                    setTimeout(function () {
+                        var timeoutNodes = codialog.find(codialog.$('.timeSelector'),'.timeout');
+                        timeoutNodes.textContent = (3-i);
+                    },1000*i);
+                })(i);
+            }
+        }*/
+    })
+</script>
+
+</html>

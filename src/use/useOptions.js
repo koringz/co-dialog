@@ -1,28 +1,28 @@
-const { 
+import {
     isStr,
-    isObj, 
-    isFun, 
+    isObj,
+    isFun,
     isNum,
-    isExist, 
-    isFalse, 
-    isTrue, 
+    isExist,
+    isFalse,
+    isTrue,
     isArray,
     forEach,
-    trim 
-} = require('../staticMethods.js')
+    trim
+} from '../staticMethods.js'
 
-const {
+import {
     addEventListener,
-    preventDefault, 
+    preventDefault,
     removeEventListener,
-    removeChild 
-} = require('../domMethods.js')
+    removeChild
+} from '../domMethods.js'
 
-const {
+import {
     selfApi
-} = require('../refs.js')
+} from '../refs.js'
 
-const dialogNodeNamePart = ['header','header','body']
+const dialogNodeNamePart = ['header','body','footer']
 
 export const useOptions = function (...args) {
     const self = this
@@ -82,7 +82,7 @@ export const useOptions = function (...args) {
                 dialog.style.cursor = 'unset';
             }
             addEventListener(dialog, 'mousedown', function (ev) {
-                // 第一次重置居左 
+                // 第一次重置居左
                 // dialog的left和top属性都统一到矢量位移上
                 dragCurrentDialog = {
                     x: dialog.offsetLeft - document.body.scrollLeft,
@@ -187,7 +187,7 @@ export const useOptions = function (...args) {
                 case typeGroup[4]:
                     self.find(body, '.codialog-icon-'+ typeGroup[4]).style.display = 'flex'
                     break;
-                default: 
+                default:
                     break;
             }
         }
@@ -197,7 +197,7 @@ export const useOptions = function (...args) {
         if (isFun(obj['methods'])) {
             forEach(selfApi, (items, index) => {
                 self[dialogNodeNamePart[index]] = self[items]({
-                    children: self.rootDirectory[dialogNodeNamePart[index]] 
+                    children: self.rootDirectory[dialogNodeNamePart[index]]
                 })
             });
             obj.methods.call(this,this.dialogElement);
@@ -288,7 +288,7 @@ export const useOptions = function (...args) {
                 currentDialogElement.style.display = 'block';
                 isOpenDialog = true;
             }
-            
+
             var targetWidth = dialog.offsetWidth;
             var targetHeight = dialog.offsetHeight;
 
@@ -342,7 +342,7 @@ export const useOptions = function (...args) {
                         dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
                         dialog.style.top  = windowHeidth - targetHeight - 10 + 'px';
                         break;
-                    default: 
+                    default:
                         layoutDefaultCenter();
                         break;
                 }

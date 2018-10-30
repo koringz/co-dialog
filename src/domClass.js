@@ -1,8 +1,4 @@
-const {
-    isFun,
-    isStr,
-    inArray
-} = require('./staticMethods.js')
+import { isFun, isStr, inArray } from './staticMethods.js'
 
 export const getElementsByClassName = (parent, childClass) => {
     if (isFun(parent.getElementsByClassName)) {

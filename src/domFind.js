@@ -1,7 +1,4 @@
-const { 
-    isStr, 
-    isArray 
-} = require('./staticMethods.js')
+import { isStr, isArray } from './staticMethods.js'
 
 export const fromAttributesToFindElement = (parentElement, attr, arr) => {
     let saveChildList = [];
@@ -13,7 +10,7 @@ export const fromAttributesToFindElement = (parentElement, attr, arr) => {
                 saveChildList.push(items);
                 // 数组 继续执行for循环
                 if (isArray(arr)) continue;
-                else break; // break;退出兼容ie9and10 
+                else break; // break;退出兼容ie9and10
             } else {
                 if (parentLength == 1) {
                     // 长度为1 往下找

@@ -1,14 +1,14 @@
-const {
+import {
     isStr
-} = require('../staticMethods.js')
+} from '../staticMethods.js'
 
-const { 
-    dialogTemplate 
-} = require('../dialogTemplate.js')
+import {
+    dialogTemplate
+} from '../dialogTemplate.js'
 
-const { 
+import {
     createDivAndSetAttribute
-} = require('../domMethods.js')
+} from '../domMethods.js'
 
 export function appPushNewElements (attr) {
     if (isStr(attr), attr.search(/^(\.|\#)/) + 1, attr.slice(1).search(/^[\_|(a-zA-Z)]/) + 1) {

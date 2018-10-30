@@ -1,80 +1,17 @@
 import 'babel-polyfill'
 import style from './../assets/css/co-dialog.min.css';
-
-const {
-    isUndefined,
-    isExist,
-    isFun,
-    isObj,
-    isNull,
-    isArr,
-    isStr,
-    isBoolean,
-    isTrue,
-    isFalse,
-    isNum,
-    isEmptyObj,
-    isNan,
-    search,
-    trim,
-    forEach,
-    clone,
-    assign,
-    objectKey,
-    inArray,
-    isArray,
-    paramsAndCallback
-} = require('./staticMethods.js');
-
-const {
-    addEventListener,
-    removeEventListener,
-    classOrId,
-    classList
-} = require('./domMethods.js')
-
-const {
-    $default,
-    animatiomApi,
-    supportBrowserAnimationEventOfName_end,
-    supportBrowserAnimationEventOfName_start
-} = require('./defaultParameters.js')
-
-const {
-    defaultRefs
-} = require('./refs.js')
-
-const {
-    excuteHideAnimation
-} = require('./hideAnimation.js')
-
-const {
-    excuteShowAnimation
-} = require('./showAnimation.js')
-
-const {
-    resetScroll
-} = require('./resetScroll.js')
-
-const {
-    useOptions
-} = require('./use/useOptions.js')
-
-const {
-    getElementsByClassName
-} = require('./domClass.js')
-
-const {
-    coani
-} = require('./animation.js')
-
-const {
-    appPushNewElements
-} = require('./app/appContext.js')
-
-const {
-    fromAttributesToFindElement
-} = require('./domFind.js')
+import * as staticMethods from './staticMethods.js'
+import { defaultRefs } from './refs.js'
+import { excuteHideAnimation } from './hideAnimation.js'
+import { excuteShowAnimation } from './showAnimation.js'
+import { resetScroll } from './resetScroll.js'
+import { useOptions } from './use/useOptions.js'
+import { getElementsByClassName } from './domClass.js'
+import { coani } from './animation.js'
+import { appPushNewElements } from './app/appContext.js'
+import { fromAttributesToFindElement } from './domFind.js'
+import { addEventListener, removeEventListener, classOrId, classList } from './domMethods.js'
+import { $default, animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
 const dialogClassNamePart = {
     header: '.dialog-header',
@@ -100,11 +37,12 @@ class codialog extends coani {
         this.strict = dialogClassNamePart;
         this.dialogElement = options || null;
 
-        defaultRefs(this)
+        Object.assign(codialog.prototype, staticMethods);
+        defaultRefs(codialog.prototype)
     }
 
     app(params) {
-        if (inArray(params, this.cacheDialogElement)) {
+        if (this.inArray(params, this.cacheDialogElement)) {
             this.dialogElement = params;
         } else {
             var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
@@ -119,14 +57,14 @@ class codialog extends coani {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
-        if (isStr(options)) {
-            if (inArray(options, this.cacheDialogElement)) {
+        if (this.isStr(options)) {
+            if (this.inArray(options, this.cacheDialogElement)) {
                 excuteHideAnimation.call(this, options + ' [mask]', this.$(options))
             }
-        } else if (isObj(options)) {
+        } else if (this.isObj(options)) {
             var _timeout = Number(options.timeout);
 
-            if ('timeout' in options && isNum(_timeout) && _timeout > 0) {
+            if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
                     _currentElements.style.display = 'none';
                     resetScroll(' codialog-show', false);
@@ -134,10 +72,10 @@ class codialog extends coani {
                 },
                 _timeout);
             }
-            if ('callback' in options && isFun(options.callback)) {
+            if ('callback' in options && this.isFun(options.callback)) {
                 options.callback(_currentElements);
             }
-        } else if (isUndefined(options)) {
+        } else if (this.isUndefined(options)) {
             _currentElements.style.display = 'none';
             resetScroll(' codialog-show', false);
         }
@@ -149,14 +87,14 @@ class codialog extends coani {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
-        if (isStr(options)) {
-            if (inArray(options, this.cacheDialogElement)) {
+        if (this.isStr(options)) {
+            if (this.inArray(options, this.cacheDialogElement)) {
                 excuteShowAnimation.call(this, options + ' [dialog]', _currentElements);
             }
-        } else if (isObj(options)) {
+        } else if (this.isObj(options)) {
             var _timeout = Number(options.timeout);
 
-            if ('timeout' in options && isNum(_timeout) && _timeout > 0) {
+            if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
                     _currentElements.style.display = 'block';
                     resetScroll(' codialog-show', true);
@@ -165,10 +103,10 @@ class codialog extends coani {
                 },
                 _timeout);
             }
-            if ('callback' in options && isFun(options.callback)) {
+            if ('callback' in options && this.isFun(options.callback)) {
                 options.callback(_currentElements);
             }
-        } else if (isUndefined(options)) {
+        } else if (this.isUndefined(options)) {
             excuteShowAnimation.call(this, self.dialogElement + ' [dialog]', _currentElements);
         }
 
@@ -184,11 +122,12 @@ class codialog extends coani {
         const header    = this.find(currentDialogElement, '[header]');
         const body      = this.find(currentDialogElement, '[body]');
         const footer    = this.find(currentDialogElement, '[footer]');
+        const footerButtonGroup = this.find(footer, '[buttonGroup]');
 
-        assign(this.rootDirectory, { dialog, mask, header, body, footer });
+        this.assign(this.rootDirectory, { dialog, mask, header, body, footer });
 
         // 情况1：传入''字符串
-        if (arguments.length && isStr(obj) && (this.xString, this.xString = arguments)) {
+        if (arguments.length && this.isStr(obj) && (this.xString, this.xString = arguments)) {
             switch (this.xString.length) {
                 case 1:
                     obj = {
@@ -201,39 +140,33 @@ class codialog extends coani {
                 case 2:
                     obj = {
                         title: this.xString[0],
-                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message text'
+                        message: this.isStr(this.xString[1]) ? this.xString[1]: 'No message text'
                     };
                     break;
                 case 3:
                     obj = {
                         title: this.xString[0],
-                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message',
-                        type: isStr(this.xString[2]) ? this.xString[2]: ''
+                        message: this.isStr(this.xString[1]) ? this.xString[1]: 'No message',
+                        type: this.isStr(this.xString[2]) ? this.xString[2]: ''
                     };
                     break;
                 default:
                     obj = {
                         title: this.xString[0],
-                        message: isStr(this.xString[1]) ? this.xString[1]: 'No message',
-                        type: isStr(this.xString[2]) ? this.xString[2]: ''
+                        message: this.isStr(this.xString[1]) ? this.xString[1]: 'No message',
+                        type: this.isStr(this.xString[2]) ? this.xString[2]: ''
                     };
                     break;
             }
             this.xString = [];
         }
 
-        // 情况2：传入{}对象
-        var footerButtonGroup = this.find(footer, '[buttonGroup]');
         // 多次调用 禁修改默认属性
-        var disabledChangedDefault = clone($default);
+        obj = this.assign(this.clone($default), obj);
 
-        obj = assign(disabledChangedDefault, obj);
-        var arrel = { obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement };
+        useOptions.apply(this, [{ obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement }]);
 
-        useOptions.apply(this, [arrel]);
-
-        // 默认点击mask隐藏弹出框 all actions
-        // 点击dialog不会隐藏弹出框 all actions
+        // 默认点击mask隐藏弹出框 点击dialog不会隐藏弹出框
         var ignoreBorderSideClick = false;
 
         mask.onclick = (ea) => {
@@ -272,9 +205,9 @@ class codialog extends coani {
             }
         }
 
-        if (isBoolean(obj.animation) && currentDialogElement) {
+        if (this.isBoolean(obj.animation) && currentDialogElement) {
             if (!obj.animation) {
-                if (isStr(obj.customAnimation)) {
+                if (this.isStr(obj.customAnimation)) {
                     this.hasAnimation = false;
                     this.customAnimation = obj.customAnimation;
                 }
@@ -285,14 +218,14 @@ class codialog extends coani {
 
     $(options) {
         if (options.nodeType === 9) return options.documentElement;
-        else if (isFun(options.HTMLDocument)) return options;
+        else if (this.isFun(options.HTMLDocument)) return options;
         return this.find(document.body, options)
     }
 
     find(parent, options, arr) {
         var self = this;
         if (typeof parent == 'object') {
-            if (isStr(options)) {
+            if (this.isStr(options)) {
                 if (options.search(/^(\.)/) + 1) {
                     return getElementsByClassName(parent, options.slice(1))
                 } else if (options.search(/^(\#)/) + 1) {
@@ -306,17 +239,18 @@ class codialog extends coani {
     }
 }
 
+
 ;((d, s) => {
-    var sty = d.createElement('style');
-    var head = d.getElementsByTagName('head')[0];
-    sty.type = 'text/css';
-    if (head.appendChild(sty), sty.stylesheet) {
-        sty.stylesheet.cssText = s;
+    let styl = d.createElement('style');
+    let head = d.getElementsByTagName('head')[0];
+    styl.type = 'text/css';
+    if (head.appendChild(styl), styl.stylesheet) {
+        styl.stylesheet.cssText = s;
     } else {
         try {
-            sty.innerHTML = s;
+            styl.innerHTML = s;
         } catch(e) {
-            sty.innerText = s;
+            styl.innerText = s;
         }
     }
 })(document, style);
