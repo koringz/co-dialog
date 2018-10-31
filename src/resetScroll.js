@@ -10,8 +10,7 @@ export const resetScroll = (attr, isTruth) => {
     if(isTruth) {
         classList(bodyNode, attr, document.body);
         classList(document.documentElement, attr, document.documentElement);
-        var currentBody = bodyNode.offsetWidth
-        bodyNode.style.paddingRight = currentBody - previousBody + 'px'
+        bodyNode.style.paddingRight = bodyNode.offsetWidth - previousBody + 'px'
     }
     else {
         var ignoreZoreClass = classList(document.body) || classList(document.documentElement);

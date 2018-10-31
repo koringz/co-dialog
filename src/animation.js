@@ -3,7 +3,7 @@ import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
 import { addEventListener, removeEventListener, classList } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
-class coani {
+class coanimation {
     constructor(options) {
         this.listItems = [];
         this.wait = [];
@@ -63,8 +63,11 @@ class coani {
             else {
                 classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animated',''), '')
             }
-            removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
-            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
+
+            {
+                removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
+                removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
+            }
         };
 
         addEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
@@ -81,7 +84,6 @@ class coani {
     }
 }
 
-
 export {
-    coani
+    coanimation
 }

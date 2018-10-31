@@ -7,11 +7,11 @@ import { excuteShowAnimation } from './showAnimation.js'
 import { resetScroll } from './resetScroll.js'
 import { useOptions } from './use/useOptions.js'
 import { getElementsByClassName } from './domClass.js'
-import { coani } from './animation.js'
+import { coanimation } from './animation.js'
 import { appPushNewElements } from './app/appContext.js'
 import { fromAttributesToFindElement } from './domFind.js'
-import { addEventListener, removeEventListener, classOrId, classList } from './domMethods.js'
-import { $default, animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
+import { classList } from './domMethods.js'
+import { $default } from './defaultParameters.js'
 
 const dialogClassNamePart = {
     header: '.dialog-header',
@@ -20,7 +20,7 @@ const dialogClassNamePart = {
 }
 
 // co-dialog explanation of each methods
-class codialog extends coani {
+class codialog extends coanimation {
     constructor(options) {
         super(options);
 
@@ -37,7 +37,6 @@ class codialog extends coani {
         this.strict = dialogClassNamePart;
         this.dialogElement = options || null;
 
-        Object.assign(codialog.prototype, staticMethods);
         defaultRefs(codialog.prototype)
     }
 
@@ -66,9 +65,14 @@ class codialog extends coani {
 
             if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
-                    _currentElements.style.display = 'none';
-                    resetScroll(' codialog-show', false);
-                    clearTimeout(self.setTimer);
+                    if(self.setTimer) {
+                        clearTimeout(self.setTimer);
+                    }
+
+                    {
+                        _currentElements.style.display = 'none';
+                        resetScroll(' codialog-show', false);
+                    }
                 },
                 _timeout);
             }
@@ -96,10 +100,18 @@ class codialog extends coani {
 
             if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
                 this.setTimer = setTimeout(() => {
-                    _currentElements.style.display = 'block';
-                    resetScroll(' codialog-show', true);
-                    options.timeout = null;
-                    clearTimeout(self.setTimer);
+                    if (self.setTimer) {
+                        clearTimeout(self.setTimer);
+                    }
+
+                    if (self.isNum(options.timeout)) {
+                        options.timeout = null;
+                    }
+
+                    {
+                        _currentElements.style.display = 'block';
+                        resetScroll(' codialog-show', true);
+                    }
                 },
                 _timeout);
             }
@@ -176,12 +188,18 @@ class codialog extends coani {
             ea = ea || window.event;
             if ((ea.target || ea.srcElement) == mask) {
                 // 点击外边框 清除timeout未到时间关闭的定时器
-                clearTimeout(self.setTimer);
+                if (self.setTimer) {
+                    clearTimeout(self.setTimer);
+                }
+
                 self.$(self.dialogElement).style.display = 'none';
-                // 重置scrollTop属性
-                classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
-                classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-                document.body.style.paddingRight = '0'
+
+                {
+                    // 重置scrollTop属性
+                    classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
+                    classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
+                    document.body.style.paddingRight = '0'
+                }
             }
         }
 
@@ -237,8 +255,9 @@ class codialog extends coani {
             }
         }
     }
-}
+};
 
+Object.assign(codialog.prototype, staticMethods);
 
 ;((d, s) => {
     let styl = d.createElement('style');

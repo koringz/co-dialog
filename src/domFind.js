@@ -7,7 +7,11 @@ export const fromAttributesToFindElement = (parentElement, attr, arr) => {
         for (const items of parentElement) {
             // 检查属性 [mask] 为字符串 获得当前节点
             if (isStr(items.getAttribute(attr))) {
-                saveChildList.push(items);
+
+                {
+                    saveChildList.push(items);
+                }
+
                 // 数组 继续执行for循环
                 if (isArray(arr)) continue;
                 else break; // break;退出兼容ie9and10

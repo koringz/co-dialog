@@ -21,7 +21,6 @@ zero dependencies and free dialog library
 
 ## 下载
 
-
 ```bash
 npm install co-dialog
 ```
@@ -52,8 +51,6 @@ or
 const coog = require("co-dialog")
 ```
 
-
-
 ## 例子
 
 这是一个显示基本内容的弹出框
@@ -71,7 +68,6 @@ coog.app(".with-title").use(
  'success'
 ).show()
 ```
-
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
 ## 作者

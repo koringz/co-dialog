@@ -1,26 +1,6 @@
-import {
-    isStr,
-    isObj,
-    isFun,
-    isNum,
-    isExist,
-    isFalse,
-    isTrue,
-    isArray,
-    forEach,
-    trim
-} from '../staticMethods.js'
-
-import {
-    addEventListener,
-    preventDefault,
-    removeEventListener,
-    removeChild
-} from '../domMethods.js'
-
-import {
-    selfApi
-} from '../refs.js'
+import { isStr, isObj, isFun, isNum, isExist, isFalse, isTrue, isArray, forEach, trim } from '../staticMethods.js'
+import { addEventListener, preventDefault, removeEventListener, removeChild } from '../domMethods.js'
+import { selfApi } from '../refs.js'
 
 const dialogNodeNamePart = ['header','body','footer']
 
@@ -113,12 +93,14 @@ export const useOptions = function (...args) {
                     }
                 };
 
-                addEventListener(self.$(document), 'mousemove', mousemove);
-                addEventListener(self.$(document), 'mouseup', function (ev) {
-                    removeEventListener( dialog.ownerDocument,'mouseover', mousemove);
-                    ready = false;
-                    preventDefault(ev);
-                });
+                {
+                    addEventListener(self.$(document), 'mousemove', mousemove);
+                    addEventListener(self.$(document), 'mouseup', function (ev) {
+                        removeEventListener( dialog.ownerDocument,'mouseover', mousemove);
+                        ready = false;
+                        preventDefault(ev);
+                    });
+                }
 
                 preventDefault(ev);
             });
@@ -182,8 +164,7 @@ export const useOptions = function (...args) {
                     self.find(body, '.codialog-icon-'+ typeGroup[2]).style.display = 'flex'
                     break;
                 case typeGroup[3]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[3]).style.display = 'flex'
-                    break;
+                    return self.find(body, '.codialog-icon-'+ typeGroup[3]).style.display = 'flex'
                 case typeGroup[4]:
                     self.find(body, '.codialog-icon-'+ typeGroup[4]).style.display = 'flex'
                     break;
@@ -231,16 +212,21 @@ export const useOptions = function (...args) {
                     var currentNode = close;
                     currentNode.onclick = function (e) {
                         self.hide((_currentDialogElement.className.length ? '.' + _currentDialogElement.className : '#' + _currentDialogElement.getAttribute('id')))
-                        clearTimeout(self.setTimer);
+
+                        if (self.setTimer) {
+                            clearTimeout(self.setTimer);
+                        }
 
                         // 确认按钮的回调函数
                         if(isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
                             obj.confirmCallback()
                         }
+
                         // 取消按钮的回调函数
                         else if(isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
                             obj.cancleCallback()
                         }
+
                         self.closeBackValue = true;
                     }
                 })
