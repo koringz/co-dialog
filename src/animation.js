@@ -21,7 +21,7 @@ class coanimation {
 
     usebind(self) {
         for(const items of animatiomApi) {
-            coani.prototype[items] = this.callAnimationApi
+            coanimation.prototype[items] = this.callAnimationApi
         }
     }
 
