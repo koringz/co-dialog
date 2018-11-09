@@ -1,6 +1,6 @@
 {
   "name": "co-dialog",
-  "version": "2.0.2",
+  "version": "2.0.8",
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
   "main": "core.js",
   "directories": {

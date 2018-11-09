@@ -135,17 +135,17 @@ export const useOptions = function (...args) {
             content.style.color = obj.messageColor
         }
         if((content = this.find(footerButtonGroup, '[confirm]')) && content) {
-            content.textContent = obj.confirmButtonText
-            content.style.color = obj.confirmButtonColor
-            content.style.background = obj.confirmButtonBackground
+            content.textContent = obj.confirmButtonText;
+            content.style.color = obj.confirmButtonColor;
+            content.style.background = obj.confirmButtonBackground;
         }
         if((content = this.find(footerButtonGroup, '[cancle]')) && content) {
-            content.textContent = obj.cancleButtonText
-            content.style.color = obj.cancleButtonColor
-            content.style.background = obj.cancleButtonBackground
+            content.textContent = obj.cancleButtonText;
+            content.style.color = obj.cancleButtonColor;
+            content.style.background = obj.cancleButtonBackground;
         }
         if ((content = this.find(header, '[close]')) && content) {
-            content.style.color = obj.closeColor
+            content.style.color = obj.closeColor;
         }
 
         // 根据 type 不同显示弹出框
@@ -155,16 +155,16 @@ export const useOptions = function (...args) {
             var types = obj.type.toLowerCase();
             switch(types) {
                 case typeGroup[0]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[0]).style.display = 'flex'
+                    self.find(body, '.codialog-icon-'+ typeGroup[0]).style.display = 'flex';
                     break;
                 case typeGroup[1]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[1]).style.display = 'flex'
+                    self.find(body, '.codialog-icon-'+ typeGroup[1]).style.display = 'flex';
                     break;
                 case typeGroup[2]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[2]).style.display = 'flex'
+                    self.find(body, '.codialog-icon-'+ typeGroup[2]).style.display = 'flex';
                     break;
                 case typeGroup[3]:
-                    return self.find(body, '.codialog-icon-'+ typeGroup[3]).style.display = 'flex'
+                    return self.find(body, '.codialog-icon-'+ typeGroup[3]).style.display = 'flex';
                 case typeGroup[4]:
                     self.find(body, '.codialog-icon-'+ typeGroup[4]).style.display = 'flex'
                     break;
@@ -211,20 +211,19 @@ export const useOptions = function (...args) {
                 forEach(cacheCloseList, function (close, index) {
                     var currentNode = close;
                     currentNode.onclick = function (e) {
-                        self.hide((_currentDialogElement.className.length ? '.' + _currentDialogElement.className : '#' + _currentDialogElement.getAttribute('id')))
-
                         if (self.setTimer) {
                             clearTimeout(self.setTimer);
                         }
 
+                        self.hide();
+
                         // 确认按钮的回调函数
                         if(isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
-                            obj.confirmCallback()
+                            obj.confirmCallback();
                         }
-
                         // 取消按钮的回调函数
                         else if(isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
-                            obj.cancleCallback()
+                            obj.cancleCallback();
                         }
 
                         self.closeBackValue = true;

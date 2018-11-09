@@ -56,32 +56,30 @@ class codialog extends coanimation {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
-        if (this.isStr(options)) {
-            if (this.inArray(options, this.cacheDialogElement)) {
-                excuteHideAnimation.call(this, options + ' [mask]', this.$(options))
-            }
-        } else if (this.isObj(options)) {
+         if (this.isObj(options)) {
             var _timeout = Number(options.timeout);
 
-            if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
-                this.setTimer = setTimeout(() => {
-                    if(self.setTimer) {
-                        clearTimeout(self.setTimer);
-                    }
+            if('timeout' in options) {
+                if (this.isNum(_timeout) && _timeout > 0) {
+                    this.setTimer = setTimeout(() => {
+                        if(self.setTimer) {
+                            clearTimeout(self.setTimer);
+                        }
 
-                    {
-                        _currentElements.style.display = 'none';
-                        resetScroll(' codialog-show', false);
-                    }
-                },
-                _timeout);
+                        {
+                            _currentElements.style.display = 'none';
+                            resetScroll(' codialog-show', false);
+                        }
+                    },
+                    _timeout);
+                }
+                if (this.isFun(options.callback)) {
+                    options.callback(_currentElements);
+                }
             }
-            if ('callback' in options && this.isFun(options.callback)) {
-                options.callback(_currentElements);
-            }
+
         } else if (this.isUndefined(options)) {
-            _currentElements.style.display = 'none';
-            resetScroll(' codialog-show', false);
+            excuteHideAnimation.call(this, this.dialogElement + ' [mask]', _currentElements)
         }
 
         return this;
@@ -91,35 +89,31 @@ class codialog extends coanimation {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
-        if (this.isStr(options)) {
-            if (this.inArray(options, this.cacheDialogElement)) {
-                excuteShowAnimation.call(this, options + ' [dialog]', _currentElements);
-            }
-        } else if (this.isObj(options)) {
+        if (this.isObj(options)) {
             var _timeout = Number(options.timeout);
 
-            if ('timeout' in options && this.isNum(_timeout) && _timeout > 0) {
-                this.setTimer = setTimeout(() => {
-                    if (self.setTimer) {
-                        clearTimeout(self.setTimer);
-                    }
+            if('timeout' in options) {
+                if (this.isNum(_timeout) && _timeout > 0) {
+                    this.setTimer = setTimeout(() => {
+                        if (self.setTimer) {
+                            clearTimeout(self.setTimer);
+                        }
 
-                    if (self.isNum(options.timeout)) {
+                        {
+                            _currentElements.style.display = 'block';
+                            resetScroll(' codialog-show', true);
+                        }
+
                         options.timeout = null;
-                    }
-
-                    {
-                        _currentElements.style.display = 'block';
-                        resetScroll(' codialog-show', true);
-                    }
-                },
-                _timeout);
-            }
-            if ('callback' in options && this.isFun(options.callback)) {
-                options.callback(_currentElements);
+                    },
+                    _timeout);
+                }
+                if (this.isFun(options.callback)) {
+                    options.callback(_currentElements);
+                }
             }
         } else if (this.isUndefined(options)) {
-            excuteShowAnimation.call(this, self.dialogElement + ' [dialog]', _currentElements);
+            excuteShowAnimation.call(this, this.dialogElement + ' [dialog]', _currentElements);
         }
 
         return this;
@@ -139,7 +133,7 @@ class codialog extends coanimation {
         this.assign(this.rootDirectory, { dialog, mask, header, body, footer });
 
         // 情况1：传入''字符串
-        if (arguments.length && this.isStr(obj) && (this.xString, this.xString = arguments)) {
+        if (this.isStr(obj) && (this.xString = arguments, this.xString)) {
             switch (this.xString.length) {
                 case 1:
                     obj = {

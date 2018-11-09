@@ -1,4 +1,4 @@
-// default static methods 
+// default static methods
 export const isUndefined = (options) => {
     return typeof options == 'undefined'
 }
@@ -52,7 +52,7 @@ export const isEmptyObj = (io) => {
 }
 
 export const isNan = (options) => {
-    return isExist(options) && isNaN(options)
+    return isNaN(options)
 }
 
 export const search = (options,val) => {
@@ -106,7 +106,7 @@ export const objectKey = (options) => {
     if(Object.keys) {
         return Object.keys(options);
     }
-    var arrKey = []; 
+    var arrKey = [];
     for(var k in options) {
         if(Object.prototype.hasOwnProperty.call(options, k)){
             arrKey.push(k)

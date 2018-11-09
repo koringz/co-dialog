@@ -14,17 +14,17 @@ export const preventDefault = (ev) => {
         ev.preventDefault();
     }
     else if(ev.stopPropagation) {
-        ev.stopPropagation()
+        ev.stopPropagation();
     }
     else return false;
 }
 
 export const addEventListener = (el, type, fallback) => {
     if(el.addEventListener) {
-        el.addEventListener(type, fallback, false)
+        el.addEventListener(type, fallback, false);
     }
     else if(el.attachEvent) {
-        el.attachEvent('on' + type, fallback)
+        el.attachEvent('on' + type, fallback);
     }
 }
 
@@ -55,10 +55,10 @@ export const createDivAndSetAttribute = (options) => {
     var createDiv = document.createElement('div');
 
     if (options.charAt(0) == '.') {
-        classOrId._class(createDiv, options.slice(1))
+        classOrId._class(createDiv, options.slice(1));
     }
     if (options.charAt(0) == '#') {
-        classOrId._id(createDiv, options.slice(1))
+        classOrId._id(createDiv, options.slice(1));
     }
 
     return createDiv

@@ -70,10 +70,6 @@ coog.app(".with-title").use(
 ```
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
-## 作者
-
-查看[作者](https://github.com/koringz)
-
 ## 参考 [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 `co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
 
@@ -81,8 +77,7 @@ coog.app(".with-title").use(
 
 [es5 version](https://github.com/koringz/co-dialog/releases/tag/v2.0.1)
 
-[es6 目前](https://github.com/koringz/co-dialog/releases/tag/v2.0.2)
-<!-- [vue version](https://github.com/koringz/co-dialog/releases/tag/v2.0.3) -->
+[es6 目前](https://github.com/ZWLTZ/co-dialog/releases/latest)
 
 ## 版本改变
 (v2.0.2) <Date:2018/10/27>

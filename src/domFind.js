@@ -7,7 +7,6 @@ export const fromAttributesToFindElement = (parentElement, attr, arr) => {
         for (const items of parentElement) {
             // 检查属性 [mask] 为字符串 获得当前节点
             if (isStr(items.getAttribute(attr))) {
-
                 {
                     saveChildList.push(items);
                 }
