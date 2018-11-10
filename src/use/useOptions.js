@@ -88,8 +88,8 @@ export const useOptions = function (...args) {
                         mouseCurrentPosition = mouseMovePosition;
 
                         // 鼠标的位移变化
-                        dialog.style.left = dragCurrentDialog.x + 'px';
-                        dialog.style.top = dragCurrentDialog.y + 'px';
+                        dialog.style.left = `${dragCurrentDialog.x}px`;
+                        dialog.style.top  = `${dragCurrentDialog.y}px`;
                     }
                 };
 
@@ -155,18 +155,18 @@ export const useOptions = function (...args) {
             var types = obj.type.toLowerCase();
             switch(types) {
                 case typeGroup[0]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[0]).style.display = 'flex';
+                    self.find(body, `.codialog-icon-${typeGroup[0]}`).style.display = 'flex';
                     break;
                 case typeGroup[1]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[1]).style.display = 'flex';
+                    self.find(body, `.codialog-icon-${typeGroup[1]}`).style.display = 'flex';
                     break;
                 case typeGroup[2]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[2]).style.display = 'flex';
+                    self.find(body, `.codialog-icon-${typeGroup[2]}`).style.display = 'flex';
                     break;
                 case typeGroup[3]:
-                    return self.find(body, '.codialog-icon-'+ typeGroup[3]).style.display = 'flex';
+                    return self.find(body, `.codialog-icon-${typeGroup[3]}`).style.display = 'flex';
                 case typeGroup[4]:
-                    self.find(body, '.codialog-icon-'+ typeGroup[4]).style.display = 'flex'
+                    self.find(body, `.codialog-icon-${typeGroup[4]}`).style.display = 'flex'
                     break;
                 default:
                     break;
@@ -300,8 +300,8 @@ export const useOptions = function (...args) {
 
             // 默认重心位置
             function layoutDefaultCenter () {
-                dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
-                dialog.style.top  = getBraowserAxis.y - getTargetAxis.y + 'px';
+                dialog.style.left = `${getBraowserAxis.x - getTargetAxis.x}px`;
+                dialog.style.top  = `${getBraowserAxis.y - getTargetAxis.y}px`;
             }
 
             // 只有一个位置
@@ -312,20 +312,20 @@ export const useOptions = function (...args) {
                         layoutDefaultCenter();
                         break;
                     case 'left' :
-                        dialog.style.left = 10 + 'px';
-                        dialog.style.top  = getBraowserAxis.y - getTargetAxis.y + 'px';
+                        dialog.style.left = `${ten}px`;
+                        dialog.style.top  = `${getBraowserAxis.y - getTargetAxis.y}px`;
                         break;
                     case 'right' :
-                        dialog.style.left = windowWidth - targetWidth - 10 + 'px';
-                        dialog.style.top  = getBraowserAxis.y - getTargetAxis.y + 'px';
+                        dialog.style.left = `${windowWidth - targetWidth - ten}px`;
+                        dialog.style.top  = `${getBraowserAxis.y - getTargetAxis.y}px`;
                         break;
                     case 'top' :
-                        dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
-                        dialog.style.top  = 10 + 'px';
+                        dialog.style.left = `${getBraowserAxis.x - getTargetAxis.x}px`;
+                        dialog.style.top  = `${ten}px`;
                         break;
                     case 'bottom' :
-                        dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
-                        dialog.style.top  = windowHeidth - targetHeight - 10 + 'px';
+                        dialog.style.left = `${getBraowserAxis.x - getTargetAxis.x}px`;
+                        dialog.style.top  = `${windowHeidth - targetHeight - ten}px`;
                         break;
                     default:
                         layoutDefaultCenter();
@@ -333,23 +333,24 @@ export const useOptions = function (...args) {
                 }
             }
             else if(currentPostion.length > 1) {
-            // 有二个位置
+                var ten = 10;
+                // 有二个位置
                 currentPostion = currentPostion.join(' ');
                 if(currentPostion == 'left top' || currentPostion == 'top left') {
-                    dialog.style.left = 10 + 'px';
-                    dialog.style.top  = 10 + 'px';
+                    dialog.style.left = `${ten}px`;
+                    dialog.style.top  = `${ten}px`;
                 }
                 else if(currentPostion == 'left bottom' || currentPostion == 'bottom left') {
-                    dialog.style.left  = 10 + 'px';
-                    dialog.style.top   = windowHeidth - targetHeight - 10 + 'px';
+                    dialog.style.left  = `${ten}px`;
+                    dialog.style.top   = `${windowHeidth - targetHeight - ten}px`;
                 }
                 else if(currentPostion == 'right top' || currentPostion == 'top right') {
-                    dialog.style.left = windowWidth - targetWidth + 10 + 'px';
-                    dialog.style.top  = 10 + 'px';
+                    dialog.style.left = `${windowWidth - targetWidth + ten}px`;
+                    dialog.style.top  = `${ten}px`;
                 }
                 else if(currentPostion == 'right bottom' || currentPostion == 'bottom right') {
-                    dialog.style.left = windowWidth - targetWidth + 'px';
-                    dialog.style.top  = windowHeidth - targetHeight - 10 + 'px';
+                    dialog.style.left = `${windowWidth - targetWidth}px`;
+                    dialog.style.top  = `${windowHeidth - targetHeight - ten}px`;
                 }
                 else {
                     layoutDefaultCenter();

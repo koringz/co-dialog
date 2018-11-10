@@ -46,7 +46,7 @@ class codialog extends coanimation {
         } else {
             var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
             if (!firstCheckedAppMethodOfParamsIsCorrect) {
-                return window.console.warn('this methods .app("' + params + '") accepts wrong parameters.', 'you must define correct "class" and "id" and "_"') && false
+                return window.console.warn(`this methods .app("${params}") accepts wrong parameters.', 'you must define correct "class" and "id" and "_"`) && false
             }
         }
         return this
@@ -79,7 +79,7 @@ class codialog extends coanimation {
             }
 
         } else if (this.isUndefined(options)) {
-            excuteHideAnimation.call(this, this.dialogElement + ' [mask]', _currentElements)
+            excuteHideAnimation.call(this, `${this.dialogElement} [mask]`, _currentElements)
         }
 
         return this;
@@ -113,7 +113,7 @@ class codialog extends coanimation {
                 }
             }
         } else if (this.isUndefined(options)) {
-            excuteShowAnimation.call(this, this.dialogElement + ' [dialog]', _currentElements);
+            excuteShowAnimation.call(this, `${this.dialogElement} [dialog]`, _currentElements);
         }
 
         return this;

@@ -39,8 +39,8 @@ class coanimation {
         var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
-        if(showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,' ' + animationClass + ' animatedHalf', getNodeList);
-        else classList(getNodeList,' ' + animationClass + ' animated', getNodeList);
+        if(showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,` ${animationClass} animatedHalf`, getNodeList);
+        else classList(getNodeList,` ${animationClass} animated`, getNodeList);
 
         var callAnimationEventStart = () => {
             var typeStartWith = showAndHideApi.type;
@@ -58,10 +58,10 @@ class coanimation {
             // 显示和隐藏的弹出框 都会监听一次结束
             if(typeStartWith.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
-                classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animatedHalf',''), '');
+                classList(getNodeList, classList(getNodeList).replace(` ${animationClass} animatedHalf`,''), '');
             }
             else {
-                classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animated',''), '')
+                classList(getNodeList, classList(getNodeList).replace(` ${animationClass} animated`,''), '')
             }
 
             {

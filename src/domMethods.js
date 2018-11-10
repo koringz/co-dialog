@@ -24,7 +24,7 @@ export const addEventListener = (el, type, fallback) => {
         el.addEventListener(type, fallback, false);
     }
     else if(el.attachEvent) {
-        el.attachEvent('on' + type, fallback);
+        el.attachEvent(`on${type}`, fallback);
     }
 }
 
@@ -33,7 +33,7 @@ export const removeEventListener = (el,type,callback)=> {
         el.removeEventListener(type,callback,false);
     }
     else{
-        el.detachEvent('on' + type, callback);
+        el.detachEvent(`on${type}`, callback);
     }
 }
 

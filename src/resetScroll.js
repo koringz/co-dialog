@@ -10,14 +10,14 @@ export const resetScroll = (attr, isTruth) => {
     if(isTruth) {
         classList(bodyNode, attr, document.body);
         classList(document.documentElement, attr, document.documentElement);
-        bodyNode.style.paddingRight = bodyNode.offsetWidth - offsetWidth + 'px'
+        bodyNode.style.paddingRight = `${bodyNode.offsetWidth - offsetWidth}px`
     }
     else {
         var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
         if(isExist(ignoreZoreClass)) {
             classList(document.body, classList(document.body).replace(attr,''), '');
             classList(document.documentElement, classList(document.documentElement).replace(attr,''), '');
-            bodyNode.style.paddingRight = '0'
+            bodyNode.style.paddingRight = 0
         }
         else return null;
     }
