@@ -1,47 +1,27 @@
 // default static methods
-export const isUndefined = (options) => {
-    return typeof options == 'undefined'
-}
+export const isUndefined = (options) => typeof options == 'undefined'
 
-export const isExist = (options) => {
-    return !isUndefined(options)
-}
+export const isExist = (options) => !isUndefined(options)
 
-export const isFun = (options) => {
-    return isExist(options) && typeof options == 'function'
-}
+export const isNan = (options) => isNaN(options)
 
-export const isObj = (options) => {
-    return isExist(options) && Object.prototype.toString.call(options) == '[object Object]'
-}
+export const isFun = (options) => isExist(options) && typeof options == 'function'
 
-export const isNull = (options) => {
-    return isExist(options) && Object.prototype.toString.call(options) == '[object Null]'
-}
+export const isObj = (options) => isExist(options) && Object.prototype.toString.call(options) == '[object Object]'
 
-export const isArr = (options) => {
-    return isExist(options) && options instanceof Array
-}
+export const isNull = (options) => isExist(options) && Object.prototype.toString.call(options) == '[object Null]'
 
-export const isStr = (options) => {
-    return isExist(options) && typeof options == 'string'
-}
+export const isArr = (options) => isExist(options) && options instanceof Array
 
-export const isBoolean = (options) => {
-    return isExist(options) && typeof options == 'boolean'
-}
+export const isStr = (options) => isExist(options) && typeof options == 'string'
 
-export const isTrue = (options) => {
-  return isBoolean(options) && options
-}
+export const isBoolean = (options) => isExist(options) && typeof options == 'boolean'
 
-export const isFalse = (options) => {
-  return isBoolean(options) && !options
-}
+export const isNum = (options) => isExist(options) && typeof options == 'number'
 
-export const isNum = (options) => {
-    return isExist(options) && typeof options == 'number'
-}
+export const isTrue = (options) => isBoolean(options) && options
+
+export const isFalse = (options) => isBoolean(options) && !options
 
 // 验证是否为空对象
 export const isEmptyObj = (io) => {
@@ -49,10 +29,6 @@ export const isEmptyObj = (io) => {
         return !1
     }
     return !0
-}
-
-export const isNan = (options) => {
-    return isNaN(options)
 }
 
 export const search = (options,val) => {
@@ -134,7 +110,9 @@ export const isArray = (arr) => {
     else if(isArr(arr)) {
         return true
     }
-    else return false;
+    else {
+        return false;
+    }
 }
 
 // the first params exists
