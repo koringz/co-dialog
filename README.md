@@ -74,40 +74,17 @@ coog.app(".with-title").use(
 `co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
 
 ## 其他版本
+ - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/tag/v2.0.1) - ES5 Wraper
+ - [vue-co-dialog](https://github.com/ZWLTZ/vue-co-dialog) - Vue.js Binding
 
-[es5 version](https://github.com/koringz/co-dialog/releases/tag/v2.0.1)
 
-[es6 目前](https://github.com/ZWLTZ/co-dialog/releases/latest)
+## 浏览器兼容
+
+Edge | Chrome | Firefox | Safari | Opera | Android Browser
+------|--------|---------|--------|-------|------------------
+:heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 ## 版本改变
-(v2.0.2) <Date:2018/10/27>
- - 升级为 es6 版本
- - 在你的 node_module 导入即可调用`co-dialog`插件
-
-(v2.0.1) <Date:2018/10/21>
- - 优化压缩 co-dialog.js 代码
- - 修复PC 和 移动端自适应
- - 修复弹出框显示浏览器边框隐藏内容错位
- - 添加 onResize 默认为 true
- - 添加 type 不同类型显示弹出框 ['success', 'error', 'warning', 'info', 'question']
-
-(v2.0.0) <Date:2018/09/12>
- - 优化isDrag拖动事件，拖动效果将会更加地平滑。
- - 添加showCloseButton属性，是否关闭按钮的布尔值(true / false)。
- - 添加layout属性，设置弹出框显示的位置，默认居中显示弹出框。
- - 添加animatin动画属性。
- - 优化isGesture抓特效功能。
- - 优化innerHTML避免绑定事件失效。
- - 优化多个弹出框点击事件失效。
- - 清除isOverflow功能。
- - 清除footerButtonCount功能。
- - 添加timeout超时功能。
- - 添加titleColor标题颜色。
- - 添加closeColor关闭颜色。
- - 添加messageColor内容颜色。
- - methods方法内部书写格式，以前this.$header.$refs；如今为this.header.$refs。
- - 添加confirmCallback确认回调函数和cancleCallback取消回调函数。
-
 [查看历史版本](https://github.com/koringz/co-dialog/blob/master/history.md)
 
 ## license

@@ -2,7 +2,7 @@
   "name": "co-dialog",
   "version": "2.0.9",
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
-  "main": "core.js",
+  "main": "dist/co-dialog.js",
   "directories": {
     "example": "examples",
     "test": "test"

@@ -72,24 +72,6 @@
     coog.$('.showme').addEventListener('click', function() {
         coog
             .app('.custom')
-            .use({
-                isGesture: true,
-                isDrag: true,
-                onHeaderBefore: function() {
-                    this.innerHTML = '<span ref="top">顶部</span>'
-                },
-                onBodyBefore: function() {
-                    this.innerHTML = '<span ref="middle">中间</span>'
-                },
-                onFooterBefore: function() {
-                    this.innerHTML = '<span ref="bottom">底部</span>'
-                },
-                methods: function() {
-                    this.header.$refs.top.style.color =
-                        this.body.$refs.middle.style.color =
-                        this.footer.$refs.bottom.style.color = '#4E5198'
-                }
-            })
             .show();
     })
 </script>

@@ -46,7 +46,7 @@ class codialog extends coanimation {
         } else {
             var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
             if (!firstCheckedAppMethodOfParamsIsCorrect) {
-                return window.console.warn(`this methods .app("${params}") accepts wrong parameters.', 'you must define correct "class" and "id" and "_"`) && false
+                return window.console.warn(`this methods .app("${params}") accepts wrong parameters.you must define correct "class" and "id" and "_"`) && false
             }
         }
         return this
@@ -56,7 +56,7 @@ class codialog extends coanimation {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
-         if (this.isObj(options)) {
+        if (this.isObj(options)) {
             var _timeout = Number(options.timeout);
 
             if('timeout' in options) {
@@ -192,7 +192,7 @@ class codialog extends coanimation {
                     // 重置scrollTop属性
                     classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
                     classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-                    document.body.style.paddingRight = '0'
+                    document.body.style.paddingRight = 0
                 }
             }
         }

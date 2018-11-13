@@ -52,7 +52,7 @@ export const classOrId = {
 }
 
 export const createDivAndSetAttribute = (options) => {
-    var createDiv = document.createElement('div');
+    const createDiv = document.createElement('div');
 
     if (options.charAt(0) == '.') {
         classOrId._class(createDiv, options.slice(1));

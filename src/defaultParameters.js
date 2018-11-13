@@ -34,38 +34,38 @@ export const $default = {
     onHeaderAfter: function () {},
     onBodyAfter: function () {},
     onFooterAfter: function () {},
-    confirmCallback: null,
-    cancleCallback: null
+    confirmCallback: function () {},
+    cancleCallback: function () {},
 };
 
 export const animatiomApi = [
     'bounce','flash','pulse','rubberBand','shake', 'headShake','bounceOutLeft',
-    'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown','fadeInDownBig', 
-    'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 
+    'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown','fadeInDownBig',
+    'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown',
     'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'rotateInUpLeft',
-    'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 
-    'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 
+    'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig',
+    'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight',
     'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY','fadeInLeft',
-    'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 
+    'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight',
     'rotateInUpRight',  'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'zoomOutLeft',
     'hinge', 'jackInTheBox', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown','rotateOutUpRight',
-    'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'rotateOutUpLeft', 
+    'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'rotateOutUpLeft',
     'zoomOutRight', 'zoomOutUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp',
     'slideOutDown', 'slideOutLeft', 'slideOutRight', 'fadeOutRightBig','fadeOut','slideOutUp'
 ];
 
 export const supportBrowserAnimationEventOfName_end = {
-    "excuteAnimation"      : "animationend",
-    "OAnimation"     : "oAnimationEnd",
-    "MozAnimation"   : "animationend",
-    "WebkitAnimation": "webkitAnimationEnd",
-    'MSAnimation': 'MSAnimationEnd'
+    "excuteAnimation"   : "animationend",
+    "OAnimation"        : "oAnimationEnd",
+    "MozAnimation"      : "animationend",
+    "WebkitAnimation"   : "webkitAnimationEnd",
+    'MSAnimation'       : 'MSAnimationEnd'
 };
 
 export const supportBrowserAnimationEventOfName_start = {
-    "excuteAnimation"      : "animationstart",
-    "OAnimation"     : "oAnimationStart",
-    "MozAnimation"   : "animationstart",
-    "WebkitAnimation": "webkitAnimationStart",
-    'MSAnimation': 'MSAnimationStart'
+    "excuteAnimation"   : "animationstart",
+    "OAnimation"        : "oAnimationStart",
+    "MozAnimation"      : "animationstart",
+    "WebkitAnimation"   : "webkitAnimationStart",
+    'MSAnimation'       : 'MSAnimationStart'
 };
