@@ -26,7 +26,7 @@ npm install co-dialog
 ```
 
 或者下载 CDN:
-[jsdelivr.com/package/npm/co-dialog](https://cdn.jsdelivr.net/npm/co-dialog)
+[jsdelivr.com/package/npm/co-dialog](https://www.jsdelivr.com/package/npm/co-dialog)
 
 ## 使用
 

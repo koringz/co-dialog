@@ -1,3 +1,7 @@
+(v2.1.0) <Date:2018/11/13>
+- bug 修复
+- 修改src/use/useOptions.js文件，其中'case typeGroup[3]: return '多了一个return，删除'return'避免`type: 'info'`失效
+- dialogTemplate.js文件模版字符串丢失'>'尖括号
 
 (v2.0.9) <Date:2018/11/13>
  - bug 修复

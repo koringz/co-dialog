@@ -164,7 +164,8 @@ export const useOptions = function (...args) {
                     self.find(body, `.codialog-icon-${typeGroup[2]}`).style.display = 'flex';
                     break;
                 case typeGroup[3]:
-                    return self.find(body, `.codialog-icon-${typeGroup[3]}`).style.display = 'flex';
+                    self.find(body, `.codialog-icon-${typeGroup[3]}`).style.display = 'flex';
+                    break;
                 case typeGroup[4]:
                     self.find(body, `.codialog-icon-${typeGroup[4]}`).style.display = 'flex'
                     break;
