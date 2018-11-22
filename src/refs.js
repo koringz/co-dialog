@@ -17,7 +17,7 @@ const defineRefs = (self, child) => {
     return obj;
 }
 
-export const defaultRefs = (PROTO) => {
+const defaultRefs = (PROTO) => {
     selfApi.map((items) => {
         PROTO[items] = function (child) {
             var self = this;
@@ -27,3 +27,5 @@ export const defaultRefs = (PROTO) => {
         }
     });
 }
+
+export default defaultRefs

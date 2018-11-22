@@ -1,9 +1,9 @@
 import { isFalse } from './staticMethods.js'
-import { resetScroll } from './resetScroll.js'
+import resetScroll from './resetScroll.js'
+import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { supportBrowserAnimationEventOfName_end } from './defaultParameters.js'
-import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
 
-export const excuteShowAnimation = function (options, currentDialogNode) {
+export default function excuteShowAnimation (options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn';
 
     // ie8 是否支持 animation.

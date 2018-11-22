@@ -1,9 +1,9 @@
 import { isFalse } from './staticMethods.js'
 import { supportBrowserAnimationEventOfName_end } from './defaultParameters.js'
-import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
-import { resetScroll } from './resetScroll.js'
+import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
+import resetScroll from './resetScroll.js'
 
-export const excuteHideAnimation = function (options, currentDialogNode) {
+export default function excuteHideAnimation (options, currentDialogNode) {
     // ie8 是否支持 animation.
     if(document.querySelector && document.addEventListener) {
         // 兼容ie9

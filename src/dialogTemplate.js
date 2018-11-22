@@ -1,4 +1,4 @@
-export const dialogTemplate = `
+const dialogTemplate = `
 <div mask="" class="codialog-mask" aria-hidden="false">
     <div dialog="" class="codialog-frame" role="dialog" aria-dialog="true">
         <div aria-dialogBox="true" class="codialog-box">
@@ -52,3 +52,4 @@ export const dialogTemplate = `
     </div>
 </div>
 `
+export default dialogTemplate

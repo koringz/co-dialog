@@ -68,6 +68,15 @@ coog.app(".with-title").use(
  'success'
 ).show()
 ```
+
+```js
+// 使用追踪器
+const with = this.app('.with-title').tracker
+
+if(with) return false
+else \\ doing something
+```
+
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
 ## 参考 [sweetalert2](https://github.com/sweetalert2/sweetalert2)

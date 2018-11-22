@@ -1,23 +1,16 @@
-import 'babel-polyfill'
-import style from './../assets/css/co-dialog.min.css';
-import * as staticMethods from './staticMethods.js'
-import { defaultRefs } from './refs.js'
-import { excuteHideAnimation } from './hideAnimation.js'
-import { excuteShowAnimation } from './showAnimation.js'
-import { resetScroll } from './resetScroll.js'
-import { useOptions } from './use/useOptions.js'
-import { getElementsByClassName } from './domClass.js'
-import { coanimation } from './animation.js'
-import { appPushNewElements } from './app/appContext.js'
-import { fromAttributesToFindElement } from './domFind.js'
+import './addStyle.js'
 import { classList } from './domMethods.js'
-import { $default } from './defaultParameters.js'
-
-const dialogClassNamePart = {
-    header: '.dialog-header',
-    body: '.dialog-body',
-    footer: '.dialog-footer'
-}
+import defaultRefs from './refs.js'
+import coanimation from './animation.js'
+import resetScroll from './resetScroll.js'
+import useOptions from './use/useOptions.js'
+import getElementsByClassName from './domClass.js'
+import appPushNewElements from './app/appContext.js'
+import excuteShowAnimation from './showAnimation.js'
+import excuteHideAnimation from './hideAnimation.js'
+import fromAttributesToFindElement from './domFind.js'
+import * as staticMethods from './staticMethods.js'
+import { $default, dialogClassNamePart } from './defaultParameters.js'
 
 // co-dialog explanation of each methods
 class codialog extends coanimation {
@@ -27,6 +20,7 @@ class codialog extends coanimation {
         this.name = 'coog';
         this.xString = [];
         this.setTimer = null;
+        this.tracker = false；
         this.mouseoutcount = 0;
         this.rootDirectory = {};
         this.didDialogList = [];
@@ -43,9 +37,17 @@ class codialog extends coanimation {
     app(params) {
         if (this.inArray(params, this.cacheDialogElement)) {
             this.dialogElement = params;
+            // 添加一个追踪当前类的条件
+            // 通过 this.app('.dialog').tracker
+            // 验证存在为true 否则为false
+            // 一般用在 onDialogBefore\onHeaderBefore\onBodyBefore\onFooterBefore\methods 等函数里
+            // 当函数里面使用dom动态添加外部节点时, 可以避免多次`appendChildren`添加
+            // 比如 if(coog.app('.dialog').tracker) return; else dom.appendChildren(node)
+            this.tracker = true
         } else {
             var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
             if (!firstCheckedAppMethodOfParamsIsCorrect) {
+                this.tracker = false
                 return window.console.warn(`this methods .app("${params}") accepts wrong parameters.you must define correct "class" and "id" and "_"`) && false
             }
         }
@@ -123,11 +125,11 @@ class codialog extends coanimation {
         const self = this;
         const currentDialogElement = this.$(this.dialogElement);
 
-        const dialog    = this.find(currentDialogElement, '[dialog]');
-        const mask      = this.find(currentDialogElement, '[mask]');
-        const header    = this.find(currentDialogElement, '[header]');
-        const body      = this.find(currentDialogElement, '[body]');
-        const footer    = this.find(currentDialogElement, '[footer]');
+        const dialog            = this.find(currentDialogElement, '[dialog]');
+        const mask              = this.find(currentDialogElement, '[mask]');
+        const header            = this.find(currentDialogElement, '[header]');
+        const body              = this.find(currentDialogElement, '[body]');
+        const footer            = this.find(currentDialogElement, '[footer]');
         const footerButtonGroup = this.find(footer, '[buttonGroup]');
 
         this.assign(this.rootDirectory, { dialog, mask, header, body, footer });
@@ -252,20 +254,5 @@ class codialog extends coanimation {
 };
 
 Object.assign(codialog.prototype, staticMethods);
-
-;((d, s) => {
-    let styl = d.createElement('style');
-    let head = d.getElementsByTagName('head')[0];
-    styl.type = 'text/css';
-    if (head.appendChild(styl), styl.stylesheet) {
-        styl.stylesheet.cssText = s;
-    } else {
-        try {
-            styl.innerHTML = s;
-        } catch(e) {
-            styl.innerText = s;
-        }
-    }
-})(document, style);
 
 export default new(codialog);

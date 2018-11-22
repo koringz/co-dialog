@@ -1,6 +1,6 @@
 import { isStr, isArray } from './staticMethods.js'
 
-export const fromAttributesToFindElement = (parentElement, attr, arr) => {
+const fromAttributesToFindElement = (parentElement, attr, arr) => {
     let saveChildList = [];
     let parentLength = parentElement.length
     if (parentLength) {
@@ -25,3 +25,5 @@ export const fromAttributesToFindElement = (parentElement, attr, arr) => {
         return saveChildList[0]
     }
 }
+
+export default fromAttributesToFindElement

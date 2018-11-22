@@ -1,6 +1,6 @@
 import { isFun, isStr, inArray } from './staticMethods.js'
 
-export const getElementsByClassName = (parent, childClass) => {
+const getElementsByClassName = (parent, childClass) => {
     if (isFun(parent.getElementsByClassName)) {
         var divTagName = parent.getElementsByTagName('*');
         var saveSensitiveElement = [];
@@ -17,3 +17,5 @@ export const getElementsByClassName = (parent, childClass) => {
         return saveSensitiveElement[0]
     }
 }
+
+export default getElementsByClassName

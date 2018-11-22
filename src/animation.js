@@ -1,9 +1,9 @@
 import { isFun, isExist } from './staticMethods.js'
-import { validateBrowserCompatiblityAnimationEvent } from './compatiblity.js'
+import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { addEventListener, removeEventListener, classList } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
-class coanimation {
+export default class coanimation {
     constructor(options) {
         this.listItems = [];
         this.wait = [];
@@ -30,7 +30,7 @@ class coanimation {
         this.animationConfig = _animationConfig;
         // 开始执行初始回调  第一次执行动画 需要display : block
         var callback = _animationConfig.callback;
-        if(_animationConfig.type == 'start' && typeof isFun(callback)) callback();
+        if(_animationConfig.type == 'start' && isFun(callback)) callback();
         return this;
     }
 
@@ -82,8 +82,4 @@ class coanimation {
     render() {
         this.excuteAnimation(this.listItems.slice(0),this.animationName,this.animationConfig);
     }
-}
-
-export {
-    coanimation
 }

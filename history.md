@@ -1,3 +1,16 @@
+(v2.1.1) <Date:2018/11/22>
+- code 优化
+- src/index.js文件添加样式部分移到新文件addStyle.js里面
+- src/index.js文件声明对象`dialogClassNamePart`移到defaultParameters.js文件下面
+- src/use/useOtions文件设置'确认'or'取消'按钮的背景颜色设置为不等于默认的背景颜色，并设置按钮:hover行为
+- assets/css/co-dialog.min.css修改button样式的背景颜色
+- src/use/useOtions.js文件下判断obj条件的模块，全部拆分成obj功能函数的模块
+- `export`输出单一模块或类统一使用`export default`处理。
+- conflict 优化
+- index.js文件移除外部`polyfill`模块
+- add module 优化
+- tracker使用追踪器，coog.app('.dialog').tracker为true表示存在，否则不存在这个弹出框节点
+
 (v2.1.0) <Date:2018/11/13>
 - bug 修复
 - 修改src/use/useOptions.js文件，其中'case typeGroup[3]: return '多了一个return，删除'return'避免`type: 'info'`失效

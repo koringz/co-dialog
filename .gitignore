@@ -1,2 +1,4 @@
 assets/css/**.css
 node_module
+**.md
+**.txt

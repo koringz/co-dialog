@@ -24,7 +24,7 @@ export const $default = {
     cancleButtonColor: '#fff', // 显示 ui
     confirmButtonColor: '#fff', // 显示 ui
     cancleButtonBackground: '#aaa', // 显示 ui
-    confirmButtonBackground: '#45B680', // 显示 ui
+    confirmButtonBackground: '#51BF8C', // 显示 ui
     methods: function () {},
     onDialogBefore: function () {},
     onHeaderBefore: function () {},
@@ -68,4 +68,10 @@ export const supportBrowserAnimationEventOfName_start = {
     "MozAnimation"      : "animationstart",
     "WebkitAnimation"   : "webkitAnimationStart",
     'MSAnimation'       : 'MSAnimationStart'
+};
+
+export const dialogClassNamePart = {
+    header: '.dialog-header',
+    body: '.dialog-body',
+    footer: '.dialog-footer'
 };
