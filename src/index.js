@@ -1,10 +1,10 @@
 import './addStyle.js'
-import { classList } from './domMethods.js'
 import defaultRefs from './refs.js'
+import getClass from './domClass.js'
 import coanimation from './animation.js'
 import resetScroll from './resetScroll.js'
+import { classList } from './domMethods.js'
 import useOptions from './use/useOptions.js'
-import getElementsByClassName from './domClass.js'
 import appPushNewElements from './app/appContext.js'
 import excuteShowAnimation from './showAnimation.js'
 import excuteHideAnimation from './hideAnimation.js'
@@ -20,7 +20,7 @@ class codialog extends coanimation {
         this.name = 'coog';
         this.xString = [];
         this.setTimer = null;
-        this.tracker = false；
+        this.tracker = false;
         this.mouseoutcount = 0;
         this.rootDirectory = {};
         this.didDialogList = [];
@@ -241,10 +241,10 @@ class codialog extends coanimation {
         if (typeof parent == 'object') {
             if (this.isStr(options)) {
                 if (options.search(/^(\.)/) + 1) {
-                    return getElementsByClassName(parent, options.slice(1))
+                    return getClass(parent, options.slice(1))
                 } else if (options.search(/^(\#)/) + 1) {
                     return parent.ownerDocument.getElementById(options.slice(1))
-                } else if (options.search(/^(\s*)(\[.*\])/g) + 1) {
+                } else if (options.search(/^(\s*)(\[.*\])(\s*)$/g) + 1) {
                     // arr 表示当前节点下面 存在多个节点
                     return fromAttributesToFindElement(parent.children, options.slice(1, options.length - 1), arr)
                 } else return parent.getElementsByTagName(options)
@@ -253,6 +253,6 @@ class codialog extends coanimation {
     }
 };
 
-Object.assign(codialog.prototype, staticMethods);
+staticMethods.assign(codialog.prototype, staticMethods);
 
 export default new(codialog);

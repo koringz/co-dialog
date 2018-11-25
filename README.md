@@ -69,8 +69,8 @@ coog.app(".with-title").use(
 ).show()
 ```
 
+使用追踪器
 ```js
-// 使用追踪器
 const with = this.app('.with-title').tracker
 
 if(with) return false

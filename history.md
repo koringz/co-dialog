@@ -1,3 +1,8 @@
+(v2.1.3) <Date:2018/11/25>
+- code 优化
+- index.js文件修改find方法else if条件，查找节点属性的后缀含有空格`(\s*)$`
+- index.js文件修改`this.tracker = false；`特殊字符'，'改为英文字符';'
+- domClass.js文件移除`getElementsByClassName`方法, 使用`getClass`方法
 (v2.1.1) <Date:2018/11/22>
 - code 优化
 - src/index.js文件添加样式部分移到新文件addStyle.js里面
@@ -7,7 +12,7 @@
 - src/use/useOtions.js文件下判断obj条件的模块，全部拆分成obj功能函数的模块
 - `export`输出单一模块或类统一使用`export default`处理。
 - conflict 优化
-- index.js文件移除外部`polyfill`模块
+- index.js文件移除外部`babel-polyfill`模块
 - add module 优化
 - tracker使用追踪器，coog.app('.dialog').tracker为true表示存在，否则不存在这个弹出框节点
 
