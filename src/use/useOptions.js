@@ -346,6 +346,7 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
         }
 
         // 只有一个位置
+        const ten = 10;
         if(currentPostion.length == 1) {
             currentPostion = trim(currentPostion[0]);
             switch (currentPostion) {
@@ -374,7 +375,6 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
             }
         }
         else if(currentPostion.length > 1) {
-            var ten = 10;
             // 有二个位置
             currentPostion = currentPostion.join(' ');
             if(currentPostion == 'left top' || currentPostion == 'top left') {

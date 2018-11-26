@@ -1,5 +1,5 @@
-import {isExist } from './staticMethods.js'
-import {classList } from './domMethods.js'
+import { isExist, search } from './staticMethods.js'
+import { classList } from './domMethods.js'
 
 // 重置scrollTop属性
 const resetScroll = function (attr, isTruth) {
@@ -14,7 +14,7 @@ const resetScroll = function (attr, isTruth) {
     }
     else {
         var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
-        if(isExist(ignoreZoreClass)) {
+        if(isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
             classList(document.body, classList(document.body).replace(attr,''), '');
             classList(document.documentElement, classList(document.documentElement).replace(attr,''), '');
             bodyNode.style.paddingRight = 0

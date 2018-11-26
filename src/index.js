@@ -22,12 +22,13 @@ class codialog extends coanimation {
         this.setTimer = null;
         this.tracker = false;
         this.mouseoutcount = 0;
+        this.version = 'v2.1.4';
         this.rootDirectory = {};
         this.didDialogList = [];
         this.hasAnimation = true;
         this.closeBackValue = false;
         this.cacheDialogElement = [];
-        this.customAnimation = 'bounceOut'
+        this.customAnimation = 'bounceOut';
         this.strict = dialogClassNamePart;
         this.dialogElement = options || null;
 
@@ -35,7 +36,7 @@ class codialog extends coanimation {
     }
 
     app(params) {
-        if (this.inArray(params, this.cacheDialogElement)) {
+        if ((this.tracker = false) || this.inArray(params, this.cacheDialogElement)) {
             this.dialogElement = params;
             // 添加一个追踪当前类的条件
             // 通过 this.app('.dialog').tracker
@@ -45,7 +46,7 @@ class codialog extends coanimation {
             // 比如 if(coog.app('.dialog').tracker) return; else dom.appendChildren(node)
             this.tracker = true
         } else {
-            var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
+            const firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
             if (!firstCheckedAppMethodOfParamsIsCorrect) {
                 this.tracker = false
                 return window.console.warn(`this methods .app("${params}") accepts wrong parameters.you must define correct "class" and "id" and "_"`) && false
@@ -59,10 +60,8 @@ class codialog extends coanimation {
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            var _timeout = Number(options.timeout);
-
             if('timeout' in options) {
-                if (this.isNum(_timeout) && _timeout > 0) {
+                if (this.isNum(options.timeout)) {
                     this.setTimer = setTimeout(() => {
                         if(self.setTimer) {
                             clearTimeout(self.setTimer);
@@ -73,7 +72,7 @@ class codialog extends coanimation {
                             resetScroll(' codialog-show', false);
                         }
                     },
-                    _timeout);
+                    options.timeout);
                 }
                 if (this.isFun(options.callback)) {
                     options.callback(_currentElements);
@@ -92,10 +91,8 @@ class codialog extends coanimation {
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            var _timeout = Number(options.timeout);
-
             if('timeout' in options) {
-                if (this.isNum(_timeout) && _timeout > 0) {
+                if (this.isNum(options.timeout)) {
                     this.setTimer = setTimeout(() => {
                         if (self.setTimer) {
                             clearTimeout(self.setTimer);
@@ -108,7 +105,7 @@ class codialog extends coanimation {
 
                         options.timeout = null;
                     },
-                    _timeout);
+                    options.timeout);
                 }
                 if (this.isFun(options.callback)) {
                     options.callback(_currentElements);

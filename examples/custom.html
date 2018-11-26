@@ -51,6 +51,8 @@
         .use({
             isGesture: true,
             isDrag: true,
+            layout: 'right',
+            onResize: true,
             onHeaderBefore: function() {
                 this.innerHTML = '<span ref="top">顶部</span>'
             },
@@ -66,15 +68,38 @@
                     this.footer.$refs.bottom.style.color = '#4E5198'
             }
         })
-        .hide({
-            timeout: 0
-        });
+        .show();
 
+    coog
+        .app('.custom2')
+        .use({
+            isGesture: true,
+            isDrag: true,
+            layout: 'left',
+            onHeaderBefore: function() {
+                this.innerHTML = '<span ref="top">顶部</span>'
+            },
+            onBodyBefore: function() {
+                this.innerHTML = '<span ref="middle">中间</span>'
+            },
+            onFooterBefore: function() {
+                this.innerHTML = '<span ref="bottom">底部</span>'
+            },
+            methods: function() {
+                this.header.$refs.top.style.color =
+                this.body.$refs.middle.style.color =
+                this.footer.$refs.bottom.style.color = '#4E5198'
+            }
+        })
+        .show();
 
     coog.$('.showme').addEventListener('click', function() {
         coog
             .app('.custom')
             .show();
+        /*coog
+            .app('.custom2')
+            .show();*/
     })
 </script>
 

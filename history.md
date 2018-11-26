@@ -1,8 +1,16 @@
-(v2.1.3) <Date:2018/11/25>
+(v2.1.4) <Date:2018/11/25>
 - code 优化
+- index.js 优化 `timeout` 是否为数字类型
+- src/use/useOptions.js 文件修改layout选项`ten`缺少调用
+- resetScroll 文件对attr未识别的字符串`search`进行条件验证
+
+(v2.1.3) <Date:2018/11/25>
+- code & bugs 优化
 - index.js文件修改find方法else if条件，查找节点属性的后缀含有空格`(\s*)$`
 - index.js文件修改`this.tracker = false；`特殊字符'，'改为英文字符';'
 - domClass.js文件移除`getElementsByClassName`方法, 使用`getClass`方法
+- 将会优化 多个弹出框的 点击事件失效的问题，采取coog多个输出多个实例对象，代替现在一个实例执行所有的 app 导致的问题
+
 (v2.1.1) <Date:2018/11/22>
 - code 优化
 - src/index.js文件添加样式部分移到新文件addStyle.js里面
