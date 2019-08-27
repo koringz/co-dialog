@@ -1,4 +1,10 @@
-assets/css/**.css
-node_module
+node_modules
 **.md
 **.txt
+
+# .gitignore
+# node_modules
+# dist
+# yarn.lock
+# **.md
+# **.txt

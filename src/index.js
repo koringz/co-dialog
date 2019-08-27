@@ -1,6 +1,5 @@
 import './addStyle.js'
 import defaultRefs from './refs.js'
-import getClass from './domClass.js'
 import coanimation from './animation.js'
 import resetScroll from './resetScroll.js'
 import { classList } from './domMethods.js'
@@ -8,8 +7,8 @@ import useOptions from './use/useOptions.js'
 import appPushNewElements from './app/appContext.js'
 import excuteShowAnimation from './showAnimation.js'
 import excuteHideAnimation from './hideAnimation.js'
-import fromAttributesToFindElement from './domFind.js'
 import * as staticMethods from './staticMethods.js'
+import { getNodeElement, getAllNodeElement} from './domElement.js'
 import { $default, dialogClassNamePart } from './defaultParameters.js'
 
 // co-dialog explanation of each methods
@@ -121,7 +120,7 @@ class codialog extends coanimation {
     use(obj, success_config) {
         const self = this;
         const currentDialogElement = this.$(this.dialogElement);
-
+        
         const dialog            = this.find(currentDialogElement, '[dialog]');
         const mask              = this.find(currentDialogElement, '[mask]');
         const header            = this.find(currentDialogElement, '[header]');
@@ -234,17 +233,12 @@ class codialog extends coanimation {
     }
 
     find(parent, options, arr) {
-        var self = this;
         if (typeof parent == 'object') {
             if (this.isStr(options)) {
-                if (options.search(/^(\.)/) + 1) {
-                    return getClass(parent, options.slice(1))
-                } else if (options.search(/^(\#)/) + 1) {
-                    return parent.ownerDocument.getElementById(options.slice(1))
-                } else if (options.search(/^(\s*)(\[.*\])(\s*)$/g) + 1) {
-                    // arr 表示当前节点下面 存在多个节点
-                    return fromAttributesToFindElement(parent.children, options.slice(1, options.length - 1), arr)
-                } else return parent.getElementsByTagName(options)
+                if(this.isArr(arr)) {
+                    return getAllNodeElement(parent || parent.ownerDocument, options)
+                }
+                return getNodeElement(parent || parent.ownerDocument, options)
             }
         }
     }

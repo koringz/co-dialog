@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -32,6 +33,33 @@ module.exports = {
     ]
   },
 
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+
+        uglifyOptions: {
+            warnings: false,
+            parse: {},
+            compress: {
+              drop_console: false,
+              drop_debugger: false
+            },
+            mangle: true, // Note `mangle.properties` is `false` by default.
+            output: true,
+            toplevel: false,
+            nameCache: null,
+            comments: true,
+            ie8: false,
+            keep_fnames: true,
+            parallel: false,
+            cache: true
+         }
+      })
+    ]
+  },
+
   plugins: [
+    
   ]
 };

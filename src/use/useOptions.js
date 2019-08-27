@@ -1,4 +1,4 @@
-import { isStr, isObj, isFun, isNum, isExist, isFalse, isTrue, isArray, forEach, trim } from '../staticMethods.js'
+import { isStr, isObj, isFun, isNum, isExist, isNull, isFalse, isTrue, isArray, forEach, trim } from '../staticMethods.js'
 import { addEventListener, preventDefault, removeEventListener, removeChild } from '../domMethods.js'
 import { selfApi } from '../refs.js'
 
@@ -228,17 +228,17 @@ export const onDialogIsClose = (obj,header,footerButtonGroup,self) => {
 
         var cacheCloseList = [];
         var headerClose = self.find(header,'[close]');
-        if(isExist(headerClose)) {
+        if(!isNull(headerClose)) {
             cacheCloseList.push(headerClose);
         }
 
         var footerCancle = self.find(footerButtonGroup,'[cancle]');
-        if(isExist(footerButtonGroup), isExist(footerCancle)) {
+        if(!isNull(footerButtonGroup), isExist(footerCancle)) {
             cacheCloseList.push(footerCancle);
         }
 
         var footerConfirm = self.find(footerButtonGroup,'[confirm]');
-        if(isExist(footerButtonGroup), isExist(footerConfirm)) {
+        if(!isNull(footerButtonGroup), !isNull(footerConfirm)) {
             cacheCloseList.push(footerConfirm);
         }
 

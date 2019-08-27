@@ -1,15 +1,15 @@
 <p align="center">
-    <a href="https://github.com/koringz/co-dialog" alt="co-dialog">
+    <a href="https://github.com/ZWLTZ/co-dialog" alt="co-dialog">
         <img src="./assets/codialog.gif" alt="co-dialog">
     </a>
 </p>
 
 <p align="center">
 <a href="./License.txt"><img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
-<a href="https://github.com/koringz/co-dialog/issues"><img alt="issues" src="https://img.shields.io/github/issues/koringz/co-dialog.svg"></a>
-<a href="https://github.com/koringz/co-dialog/releases/latest"><img alt="releases" src="https://img.shields.io/badge/release-lastest-blue.svg" > </a>
-<a href="https://github.com/koringz/co-dialog/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/koringz/co-dialog.svg?style=social" ></a>
-<a href="https://github.com/koringz/co-dialog/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/koringz/co-dialog.svg?style=social" ></a>
+<a href="https://github.com/ZWLTZ/co-dialog/issues"><img alt="issues" src="https://img.shields.io/github/issues/ZWLTZ/co-dialog.svg"></a>
+<a href="https://github.com/ZWLTZ/co-dialog/releases/latest"><img alt="releases" src="https://img.shields.io/badge/release-lastest-blue.svg" > </a>
+<a href="https://github.com/ZWLTZ/co-dialog/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ZWLTZ/co-dialog.svg?style=social" ></a>
+<a href="https://github.com/ZWLTZ/co-dialog/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ZWLTZ/co-dialog.svg?style=social" ></a>
 </p>
 
 <p align="center">

@@ -1,3 +1,9 @@
+(v2.1.5) <Date:2019/08/27>
+ - 修改`src/domClass.js`文件名为`src/domElement.js`，并且修改`getClass`变量为`getNodeElement`，增加新的变量`getAllNodeElement`
+ - 删除`src/domFind.js`文件
+ - 修改`src/index.js`文件
+ - 修改`src/use/useOptions.js`文件方法`onDialogIsClose`判断条件`isExit`改为`!isNull`
+
 (v2.1.4) <Date:2018/11/25>
 - code 优化
 - index.js 优化 `timeout` 是否为数字类型
