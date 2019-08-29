@@ -44,9 +44,7 @@
 <link rel="stylesheet" type="text/css" href="./../assets/css/animate.min.css">
 <script type="text/javascript" src='../dist/co-dialog.js'></script>
 <script type="text/javascript">
-    var coog = coog.default
-
-    coog
+    Coog
         .app('.custom')
         .use({
             isGesture: true,
@@ -70,7 +68,7 @@
         })
         .show();
 
-    coog
+    Coog
         .app('.custom2')
         .use({
             isGesture: true,
@@ -93,11 +91,11 @@
         })
         .show();
 
-    coog.$('.showme').addEventListener('click', function() {
-        coog
+    Coog.$('.showme').addEventListener('click', function() {
+        Coog
             .app('.custom')
             .show();
-        /*coog
+        /*Coog
             .app('.custom2')
             .show();*/
     })

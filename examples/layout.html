@@ -42,9 +42,8 @@
 
 <script type="text/javascript" src="./../dist/co-dialog.js"></script>
 <script type="text/javascript">
-    var coog = coog.default
     // 基础弹出框
-    coog
+    Coog
         .app('.layout')
         .use({
             title: '布局-layout',
@@ -57,9 +56,9 @@
         .show()
 
 
-    coog.$('.onceRecharge').addEventListener( 'click', function() {
+    Coog.$('.onceRecharge').addEventListener( 'click', function() {
 
-        coog
+        Coog
             .app('.layout')
             .show()
             .hide({

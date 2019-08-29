@@ -28,9 +28,7 @@
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.js"></script>
 <script type="text/javascript">
-    var coog = coog.default;
-
-    coog
+    Coog
         .app('.theme-purple')
         .use({
             title: 'theme',
@@ -42,7 +40,7 @@
             showCancleButton: true,
             confirmButtonBackground: '#4E5198',
             confirmCallback: function() {
-                coog.app('.new1111').use('success clear theme').show()
+                Coog.app('.new1111').use('success clear theme').show()
             }
         })
         .show();

@@ -46,9 +46,9 @@ npm install co-dialog
 or
 
 ```js
-import coog from "co-dialog"
+import Coog from "co-dialog"
 or
-const coog = require("co-dialog")
+const Coog = require("co-dialog")
 ```
 
 ## 例子
@@ -56,13 +56,13 @@ const coog = require("co-dialog")
 这是一个显示基本内容的弹出框
 
 ```js
-coog.app(".base").use("这是一个基础的弹出框").show()
+Coog.app(".base").use("这是一个基础的弹出框").show()
 ```
 
 这是一个带标题的`success`弹出框
 
 ```js
-coog.app(".with-title").use(
+Coog.app(".with-title").use(
  "标题",
  "这是一个带标题的弹出框",
  'success'

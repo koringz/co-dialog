@@ -55,17 +55,15 @@
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.js"></script>
 <script type="text/javascript">
-    var coog = coog.default
-
     // 基础弹出框
-    coog
+    Coog
         .app('#_123base')
-        .use('coog组件', 'COOG body', 'success')
+        .use('Coog组件', 'Coog body', 'success')
         .show()
 
 
-    coog.$('.onceRecharge').addEventListener('click', function() {
-        coog.app('#_123base').show()
+    Coog.$('.onceRecharge').addEventListener('click', function() {
+        Coog.app('#_123base').show()
     })
 </script>
 

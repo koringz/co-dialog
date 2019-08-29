@@ -21,7 +21,7 @@ class codialog extends coanimation {
         this.setTimer = null;
         this.tracker = false;
         this.mouseoutcount = 0;
-        this.version = 'v2.1.4';
+        this.version = 'v2.1.5';
         this.rootDirectory = {};
         this.didDialogList = [];
         this.hasAnimation = true;
@@ -246,4 +246,4 @@ class codialog extends coanimation {
 
 staticMethods.assign(codialog.prototype, staticMethods);
 
-export default new(codialog);
+export default codialog

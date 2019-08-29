@@ -5,13 +5,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   mode: 'production',
 
-  entry: './src/index.js',
+  entry: './src/codialog.js',
 
   output: {
     path: __dirname + "/dist",
     filename: 'co-dialog.js',
-    library: 'coog',
     libraryTarget: 'umd',
+    // library: 'Coog',
   },
 
   module: {

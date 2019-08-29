@@ -1,6 +1,7 @@
 node_modules
 **.md
 **.txt
+dist
 
 # .gitignore
 # node_modules

@@ -28,9 +28,7 @@ body {
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.js" ></script>
 <script type="text/javascript">
-var coog = coog.default
-
-coog
+Coog
    .app('.test').use({
       title: 'JUST CHECKING.',
       message: 'Delete your account?' + "<p style='font-size:12px;'>This action is final and you will be unable to recover any data</p>",
@@ -55,14 +53,14 @@ coog
          this.style.padding = '6px 0'
       },
       confirmCallback: function () {
-         coog.app(".test3").use({
+         Coog.app(".test3").use({
             titleColor: '#45B680',
             title: 'Return Results',
             message: 'Success Delete',
             confirmButtonText: 'YES',
             type: 'Success',
             confirmCallback: function () {
-               coog.app('.test').show()
+               Coog.app('.test').show()
             }
          })
          .show()
