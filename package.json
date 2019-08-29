@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "test": "test"
+    "test": "mocha test/"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,11 @@
   },
   "homepage": "https://github.com/koringz/co-dialog#readme",
   "dependencies": {
-    "es6-symbol": "^3.1.1"
+    "chai": "^4.2.0",
+    "es6-symbol": "^3.1.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^6.2.0",
+    "mocha-jsdom": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
