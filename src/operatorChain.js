@@ -1,4 +1,4 @@
-import codialog from './index.js'
+import codialog from './codialog.js'
 export default function operatorChain() {}
 
 /*

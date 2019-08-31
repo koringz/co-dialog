@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   mode: 'production',
 
-  entry: './src/codialog.js',
+  entry: './src/index.js',
 
   output: {
     path: __dirname + "/dist",
@@ -60,6 +60,6 @@ module.exports = {
   },
 
   plugins: [
-    
+
   ]
 };

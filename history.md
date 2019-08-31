@@ -5,6 +5,7 @@
  - 清除`Coog`库外部方法`show()`和`hide()`
  - 添加新文件`operatorChain.js`，打通库外部和内部连接
  - 导入方式暂时使用 `import { Coog } from 'co-dialog'`
+ - 更改文件名 `codialog.js` 和 `index.js`
 
 (v2.1.5) <Date:2019/08/27>
  - 修改`src/domClass.js`文件名为`src/domElement.js`，修改`getClass`变量为`getNodeElement`，增加新方法`getAllNodeElement`
