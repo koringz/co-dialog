@@ -1,5 +1,7 @@
 import { isExist, isStr } from './staticMethods.js'
 
+export const contains = (node) => (node === document.body) ? false : document.body.contains(node);
+
 export const removeChild = (child) => {
     if(isExist(child)) return null;
 

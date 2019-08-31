@@ -50,17 +50,16 @@
             isDrag: true,
             timeout: 2000
         })
-        .show()
-
 
     Coog.$('.onceRecharge').addEventListener('click', function() {
 
-        Coog
-            .app('.timeout')
-            .show()
-            .hide({
-                timeout: 3000
-            })
+        Coog.app('.timeout').use({
+            title: '超时-timeout',
+            message: '超时自动关闭',
+            isDrag: true,
+            timeout: 2000
+        })
+
 
         /*callback: function (nodes) {
             for (var i = 0; i < 3; i++) {

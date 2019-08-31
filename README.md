@@ -30,23 +30,16 @@ npm install co-dialog
 
 ## 使用
 
-初始化你需要加载以下文件：
+初始化使用`src`连接方式，你需要加载以下文件：
 
 ```html
 <script src="co-dialog.js"></script>
 ```
 
-如果你需要单独引入stylesheet样式：
-
-```html
-<link rel="stylesheet" href="animation.min.css">
-<script src="co-dialog.js"></script>
-```
-
-or
+使用`import`导入方式：
 
 ```js
-import Coog from "co-dialog"
+import { Coog } from "co-dialog"
 or
 const Coog = require("co-dialog")
 ```
@@ -56,7 +49,7 @@ const Coog = require("co-dialog")
 这是一个显示基本内容的弹出框
 
 ```js
-Coog.app(".base").use("这是一个基础的弹出框").show()
+Coog.app(".base").use("这是一个基础的弹出框")
 ```
 
 这是一个带标题的`success`弹出框
@@ -66,7 +59,7 @@ Coog.app(".with-title").use(
  "标题",
  "这是一个带标题的弹出框",
  'success'
-).show()
+)
 ```
 
 使用追踪器

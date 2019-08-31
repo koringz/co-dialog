@@ -65,8 +65,7 @@
                     this.body.$refs.middle.style.color =
                     this.footer.$refs.bottom.style.color = '#4E5198'
             }
-        })
-        .show();
+        });
 
     Coog
         .app('.custom2')
@@ -88,16 +87,10 @@
                 this.body.$refs.middle.style.color =
                 this.footer.$refs.bottom.style.color = '#4E5198'
             }
-        })
-        .show();
+        });
 
     Coog.$('.showme').addEventListener('click', function() {
-        Coog
-            .app('.custom')
-            .show();
-        /*Coog
-            .app('.custom2')
-            .show();*/
+        Coog.app('.custom');
     })
 </script>
 

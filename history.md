@@ -1,5 +1,13 @@
+ (v2.1.6) <Date:2019/09/01>
+ - 修改`.gitignore`和`.npmignore`文件
+ - 修改库名`coog`首字母大写`Coog`
+ - 清除文件多余的空格
+ - 清除`Coog`库外部方法`show()`和`hide()`
+ - 添加新文件`operatorChain.js`，打通库外部和内部连接
+ - 导入方式暂时使用 `import { Coog } from 'co-dialog'`
+
 (v2.1.5) <Date:2019/08/27>
- - 修改`src/domClass.js`文件名为`src/domElement.js`，并且修改`getClass`变量为`getNodeElement`，增加新的变量`getAllNodeElement`
+ - 修改`src/domClass.js`文件名为`src/domElement.js`，修改`getClass`变量为`getNodeElement`，增加新方法`getAllNodeElement`
  - 删除`src/domFind.js`文件
  - 修改`src/index.js`文件
  - 修改`src/use/useOptions.js`文件方法`onDialogIsClose`判断条件`isExit`改为`!isNull`

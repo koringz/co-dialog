@@ -3,7 +3,7 @@ import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { addEventListener, removeEventListener, classList } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
-export default class coanimation {
+export default class animation {
     constructor(options) {
         this.listItems = [];
         this.wait = [];
@@ -21,7 +21,7 @@ export default class coanimation {
 
     usebind(self) {
         for(const items of animatiomApi) {
-            coanimation.prototype[items] = this.callAnimationApi
+            animation.prototype[items] = this.callAnimationApi
         }
     }
 

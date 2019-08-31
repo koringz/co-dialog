@@ -1,5 +1,15 @@
 import codialog from './index.js'
+import operatorChain from './operatorChain.js'
 
-const Coog = new codialog
+class coog {
+	constructor(options) {
+	}
+}
+
+Object.assign(coog, operatorChain)
+
+Object.assign(coog.prototype, codialog.prototype)
+
+const Coog = coog
 
 export { Coog }

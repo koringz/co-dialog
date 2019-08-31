@@ -1,6 +1,6 @@
 {
   "name": "co-dialog",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
   "main": "dist/co-dialog.js",
   "directories": {
@@ -10,11 +10,11 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "test": "mocha test/"
+    "test:mocha": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/koringz/co-dialog.git"
+    "url": "git+https://github.com/ZWLTZ/co-dialog.git"
   },
   "keywords": [
     "dialog",
@@ -28,9 +28,9 @@
   "author": "koringz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/koringz/co-dialog/issues"
+    "url": "https://github.com/ZWLTZ/co-dialog/issues"
   },
-  "homepage": "https://github.com/koringz/co-dialog#readme",
+  "homepage": "https://github.com/ZWLTZ/co-dialog#readme",
   "dependencies": {
     "chai": "^4.2.0",
     "es6-symbol": "^3.1.1",

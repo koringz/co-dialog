@@ -1,7 +1,6 @@
 node_modules
-**.md
-**.txt
 dist
+*.txt
 
 # .gitignore
 # node_modules

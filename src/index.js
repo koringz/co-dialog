@@ -1,27 +1,27 @@
 import './addStyle.js'
 import defaultRefs from './refs.js'
-import coanimation from './animation.js'
+import animation from './animation.js'
 import resetScroll from './resetScroll.js'
-import { classList } from './domMethods.js'
 import useOptions from './use/useOptions.js'
 import appPushNewElements from './app/appContext.js'
 import excuteShowAnimation from './showAnimation.js'
 import excuteHideAnimation from './hideAnimation.js'
 import * as staticMethods from './staticMethods.js'
+import { contains, classList } from './domMethods.js'
 import { getNodeElement, getAllNodeElement} from './domElement.js'
 import { $default, dialogClassNamePart } from './defaultParameters.js'
 
 // co-dialog explanation of each methods
-class codialog extends coanimation {
+class codialog extends animation {
     constructor(options) {
         super(options);
 
-        this.name = 'coog';
+        this.name = 'Coog';
         this.xString = [];
         this.setTimer = null;
         this.tracker = false;
         this.mouseoutcount = 0;
-        this.version = 'v2.1.5';
+        this.version = 'v2.1.6';
         this.rootDirectory = {};
         this.didDialogList = [];
         this.hasAnimation = true;
@@ -35,7 +35,7 @@ class codialog extends coanimation {
     }
 
     app(params) {
-        if ((this.tracker = false) || this.inArray(params, this.cacheDialogElement)) {
+        if ((this.tracker = false) || contains(this.$(params))) {
             this.dialogElement = params;
             // 添加一个追踪当前类的条件
             // 通过 this.app('.dialog').tracker
@@ -51,7 +51,7 @@ class codialog extends coanimation {
                 return window.console.warn(`this methods .app("${params}") accepts wrong parameters.you must define correct "class" and "id" and "_"`) && false
             }
         }
-        return this
+        return  this.show() &&　this
     }
 
     hide(options) {
@@ -120,7 +120,7 @@ class codialog extends coanimation {
     use(obj, success_config) {
         const self = this;
         const currentDialogElement = this.$(this.dialogElement);
-        
+
         const dialog            = this.find(currentDialogElement, '[dialog]');
         const mask              = this.find(currentDialogElement, '[mask]');
         const header            = this.find(currentDialogElement, '[header]');
