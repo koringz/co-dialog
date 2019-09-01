@@ -29,7 +29,6 @@ describe('Excute Coog is object and method ', function() {
 	            layout: 'center',
 	            showCancleButton: true,
 	        })
-	        .show();
 		});
 	});
 
@@ -37,7 +36,7 @@ describe('Excute Coog is object and method ', function() {
 	describe('continue call "Coog" object', function() {
 		it('should return value "function" is exist', function() {
 		    expect(typeof Coog.app).to.be.equal('function')
-		    expect(typeof Coog.use).to.be.equal('function')
+		    expect(typeof Coog.use).to.be.equal('undefined')
 		});
 	});
 });

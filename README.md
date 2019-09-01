@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+<a href="https://travis-ci.org/ZWLTZ/co-dialog"><img alt="Build Status" src="https://api.travis-ci.org/ZWLTZ/co-dialog.svg?branch=master"></a>
 <a href="./License.txt"><img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
 <a href="https://github.com/ZWLTZ/co-dialog/issues"><img alt="issues" src="https://img.shields.io/github/issues/ZWLTZ/co-dialog.svg"></a>
 <a href="https://github.com/ZWLTZ/co-dialog/releases/latest"><img alt="releases" src="https://img.shields.io/badge/release-lastest-blue.svg" > </a>
@@ -41,7 +42,7 @@ npm install co-dialog
 ```js
 import { Coog } from "co-dialog"
 or
-const Coog = require("co-dialog")
+const Coog = require("co-dialog").Coog
 ```
 
 ## 例子
