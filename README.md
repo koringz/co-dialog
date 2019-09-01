@@ -73,9 +73,6 @@ else \\ doing something
 
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
-## 参考 [sweetalert2](https://github.com/sweetalert2/sweetalert2)
-`co-dialog`参考`sweetalert2`插件. 并且最新版本支持 `es6` 写法.
-
 ## 其他版本
  - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/tag/v2.0.1) - ES5 Wraper
  - [vue-co-dialog](https://github.com/ZWLTZ/vue-co-dialog) - Vue.js Binding
