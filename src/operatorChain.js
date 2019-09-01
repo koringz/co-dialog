@@ -1,8 +1,8 @@
 import codialog from './codialog.js'
+
 export default function operatorChain() {}
 
 /*
- * 进行顶层封装
  * 打通`Coog`库外部和内部进行连接起来
  * 去掉`hide`和`show`方法
  * 并不是默认执行显示和隐藏,而是根据用户自定义设置`hide`和`show`实现需求功能.
