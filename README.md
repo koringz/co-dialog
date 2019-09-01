@@ -31,17 +31,21 @@ npm install co-dialog
 
 ## 使用
 
-初始化使用`src`连接方式，你需要加载以下文件：
+你可以使用`src`加载文件：
 
 ```html
 <script src="co-dialog.js"></script>
 ```
 
-使用`import`导入方式：
+或者使用`import`导入模块：
 
 ```js
 import { Coog } from "co-dialog"
+```
+
 or
+
+```js
 const Coog = require("co-dialog").Coog
 ```
 
