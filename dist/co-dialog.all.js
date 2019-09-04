@@ -1029,7 +1029,7 @@
           _this.setTimer = null;
           _this.tracker = false;
           _this.mouseoutcount = 0;
-          _this.version = 'v2.1.6';
+          _this.version = 'v2.1.7';
           _this.rootDirectory = {};
           _this.didDialogList = [];
           _this.hasAnimation = true;
