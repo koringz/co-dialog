@@ -1,1 +1,1294 @@
-!function webpackUniversalModuleDefinition(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var o=t();for(var n in o)("object"==typeof exports?exports:e)[n]=o[n]}}(window,function(){return n={},__webpack_require__.m=o=[function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=t.isUndefined=function isUndefined(e){return void 0===e},i=t.isExist=function isExist(e){return!n(e)},a=(t.isNan=function isNan(e){return isNaN(e)},t.isFun=function isFun(e){return i(e)&&"function"==typeof e}),r=t.isObj=function isObj(e){return i(e)&&"[object Object]"==Object.prototype.toString.call(e)},s=(t.isNull=function isNull(e){return i(e)&&"[object Null]"==Object.prototype.toString.call(e)},t.isArr=function isArr(e){return i(e)&&e instanceof Array}),l=t.isStr=function isStr(e){return i(e)&&"string"==typeof e},c=t.isBoolean=function isBoolean(e){return i(e)&&"boolean"==typeof e},u=t.isNum=function isNum(e){return i(e)&&"number"==typeof e},d=(t.isTrue=function isTrue(e){return c(e)&&e},t.isFalse=function isFalse(e){return c(e)&&!e},t.isEmptyObj=function isEmptyObj(e){for(var t in e)return!1;return!0},t.search=function search(e,t){return!!(l(e)&&e.search(t)+1)});t.trim=function trim(e){return d(e," ")?e.replace(/(\s*)/g,""):e},t.forEach=function forEach(e,t,o){if(i(e)){if(a(e.forEach))return void e.forEach(t,o||{});for(var n=0;n<e.length;n++)a(t)?t.call(o||null,e[n],n):nul}},t.clone=function clone(e){if(e instanceof Object)return i(JSON)?JSON.parse(JSON.stringify(e)):e},t.assign=function assign(e,t){if(n(t))return null;if(r(t)){for(var o in t)e[o]=t[o];return e}},t.objectKey=function objectKey(e){if(!e)return null;if(Object.keys)return Object.keys(e);var t=[];for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&t.push(o);return t},t.inArray=function inArray(e,t){if(l(e)||u(t)){for(var o=0,n=t.length;o<n;o++)if(t[o]==e)return 1;return!1}return!1},t.isArray=function isArray(e){return Array.isArray?Array.isArray(e):!!s(e)},t.paramsAndCallback=function paramsAndCallback(e,t){e&&t(e)}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.createDivAndSetAttribute=t.classOrId=t.removeEventListener=t.addEventListener=t.preventDefault=t.removeChild=t.contains=void 0;var a="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};t.classList=function classList(e,t){var o=[Array.prototype.slice.apply(arguments).slice(2)];{if(!(0,n.isStr)(t))return e.className||e.classList;if(e.classList)e.setAttribute("class",eachClassName(o[0],"classList")+t);else{if(!e.className)return null;e.setAttribute("class",eachClassName(o[0],"className")+t)}}};var n=o(0),i=(t.contains=function contains(e){return e!==document.body&&document.body.contains(e)},t.removeChild=function removeChild(e){return(0,n.isExist)(e)?null:e.parentElement.removeChild?e.parentElement.removeChild(e):e.parentElement.removeNode(e)},t.preventDefault=function preventDefault(e){if(e.preventDefault)e.preventDefault();else{if(!e.stopPropagation)return!1;e.stopPropagation()}},t.addEventListener=function addEventListener(e,t,o){e.addEventListener?e.addEventListener(t,o,!1):e.attachEvent&&e.attachEvent("on"+t,o)},t.removeEventListener=function removeEventListener(e,t,o){e.removeEventListener?e.removeEventListener(t,o,!1):e.detachEvent("on"+t,o)},t.classOrId={_class:function _class(e,t){e.classList?e.setAttribute("class",t):e.className=t},_id:function _id(e,t){e.setAttribute("id",t)}});t.createDivAndSetAttribute=function createDivAndSetAttribute(e){var t=document.createElement("div");return"."==e.charAt(0)&&i._class(t,e.slice(1)),"#"==e.charAt(0)&&i._id(t,e.slice(1)),t};function eachClassName(e,t){for(var o="",n=e.length,i=0;i<n;i++)"object"==a(e[i])&&(o+=e[i][t]);return o}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.$default={title:"",message:"",footerText:"",layout:"center",timeout:0,isGesture:!0,isDrag:!1,isClose:!0,onResize:!0,type:"",isMask:!0,animation:!0,customAnimation:"bounceIn",titleColor:"#9A9B9C",closeColor:"#9A9B9C",messageColor:"#696969",showCloseButton:!0,showCancleButton:!1,showConfirmButton:!0,cancleButtonText:"取消",confirmButtonText:"确定",cancleButtonColor:"#fff",confirmButtonColor:"#fff",cancleButtonBackground:"#aaa",confirmButtonBackground:"#51BF8C",methods:function methods(){},onDialogBefore:function onDialogBefore(){},onHeaderBefore:function onHeaderBefore(){},onBodyBefore:function onBodyBefore(){},onFooterBefore:function onFooterBefore(){},onDialogAfter:function onDialogAfter(){},onHeaderAfter:function onHeaderAfter(){},onBodyAfter:function onBodyAfter(){},onFooterAfter:function onFooterAfter(){},confirmCallback:function confirmCallback(){},cancleCallback:function cancleCallback(){}},t.animatiomApi=["bounce","flash","pulse","rubberBand","shake","headShake","bounceOutLeft","swing","tada","wobble","jello","bounceIn","bounceInDown","fadeInDownBig","bounceInLeft","bounceInRight","bounceInUp","bounceOut","bounceOutDown","bounceOutRight","bounceOutUp","fadeIn","fadeInDown","rotateInUpLeft","fadeInLeftBig","fadeInRight","fadeInRightBig","fadeInUp","fadeInUpBig","fadeOutDown","fadeOutDownBig","fadeOutLeft","fadeOutLeftBig","fadeOutRight","fadeOutUp","fadeOutUpBig","flipInX","flipInY","flipOutX","flipOutY","fadeInLeft","lightSpeedIn","lightSpeedOut","rotateIn","rotateInDownLeft","rotateInDownRight","rotateInUpRight","rotateOut","rotateOutDownLeft","rotateOutDownRight","zoomOutLeft","hinge","jackInTheBox","rollIn","rollOut","zoomIn","zoomInDown","rotateOutUpRight","zoomInLeft","zoomInRight","zoomInUp","zoomOut","zoomOutDown","rotateOutUpLeft","zoomOutRight","zoomOutUp","slideInDown","slideInLeft","slideInRight","slideInUp","slideOutDown","slideOutLeft","slideOutRight","fadeOutRightBig","fadeOut","slideOutUp"],t.supportBrowserAnimationEventOfName_end={excuteAnimation:"animationend",OAnimation:"oAnimationEnd",MozAnimation:"animationend",WebkitAnimation:"webkitAnimationEnd",MSAnimation:"MSAnimationEnd"},t.supportBrowserAnimationEventOfName_start={excuteAnimation:"animationstart",OAnimation:"oAnimationStart",MozAnimation:"animationstart",WebkitAnimation:"webkitAnimationStart",MSAnimation:"MSAnimationStart"},t.dialogClassNamePart={header:".dialog-header",body:".dialog-body",footer:".dialog-footer"}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=o(0);t.default=function validateBrowserCompatiblityAnimationEvent(e,t){for(var o in t)if((0,n.isExist)(e.style[o]))return t[o]}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=o(0),r=o(1);t.default=function resetScroll(e,t){var o=document.body,n=o.offsetWidth;if(t)(0,r.classList)(o,e,document.body),(0,r.classList)(document.documentElement,e,document.documentElement),o.style.paddingRight=o.offsetWidth-n+"px";else{var i=(0,r.classList)(document.body)||(0,r.classList)(document.documentElement);if(!(0,a.isExist)(i)||!(0,a.search)(i,e))return null;(0,r.classList)(document.body,(0,r.classList)(document.body).replace(e,""),""),(0,r.classList)(document.documentElement,(0,r.classList)(document.documentElement).replace(e,""),""),o.style.paddingRight=0}}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},i=function(e,t,o){return t&&defineProperties(e.prototype,t),o&&defineProperties(e,o),e};function defineProperties(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}o(8);var a=_interopRequireDefault(o(6)),r=_interopRequireDefault(o(11)),s=_interopRequireDefault(o(4)),d=_interopRequireDefault(o(12)),l=_interopRequireDefault(o(13)),c=_interopRequireDefault(o(15)),u=_interopRequireDefault(o(16)),f=function _interopRequireWildcard(e){{if(e&&e.__esModule)return e;var t={};if(null!=e)for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t.default=e,t}}(o(0)),p=o(1),m=o(17),g=o(2);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var b=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(codialog,r.default),i(codialog,[{key:"app",value:function app(e){if((this.tracker=!1)||(0,p.contains)(this.$(e)))this.dialogElement=e,this.tracker=!0;else if(!l.default.call(this,e))return this.tracker=!1,window.console.warn('this methods .app("'+e+'") accepts wrong parameters.you must define correct "class" and "id" and "_"')&&!1;return this.show()&&this}},{key:"hide",value:function hide(e){var t=this,o=this.$(this.dialogElement);return this.isObj(e)?"timeout"in e&&(this.isNum(e.timeout)&&(this.setTimer=setTimeout(function(){t.setTimer&&clearTimeout(t.setTimer),o.style.display="none",(0,s.default)(" codialog-show",!1)},e.timeout)),this.isFun(e.callback)&&e.callback(o)):this.isUndefined(e)&&u.default.call(this,this.dialogElement+" [mask]",o),this}},{key:"show",value:function show(e){var t=this,o=this.$(this.dialogElement);return this.isObj(e)?"timeout"in e&&(this.isNum(e.timeout)&&(this.setTimer=setTimeout(function(){t.setTimer&&clearTimeout(t.setTimer),o.style.display="block",(0,s.default)(" codialog-show",!0),e.timeout=null},e.timeout)),this.isFun(e.callback)&&e.callback(o)):this.isUndefined(e)&&c.default.call(this,this.dialogElement+" [dialog]",o),this}},{key:"use",value:function use(e,t){var o=this,n=this.$(this.dialogElement),i=this.find(n,"[dialog]"),a=this.find(n,"[mask]"),r=this.find(n,"[header]"),s=this.find(n,"[body]"),l=this.find(n,"[footer]"),c=this.find(l,"[buttonGroup]");if(this.assign(this.rootDirectory,{dialog:i,mask:a,header:r,body:s,footer:l}),this.isStr(e)&&(this.xString=arguments,this.xString)){switch(this.xString.length){case 1:e={message:this.xString[0],onHeaderBefore:function onHeaderBefore(){this.style.display="none"}};break;case 2:e={title:this.xString[0],message:this.isStr(this.xString[1])?this.xString[1]:"No message text"};break;case 3:default:e={title:this.xString[0],message:this.isStr(this.xString[1])?this.xString[1]:"No message",type:this.isStr(this.xString[2])?this.xString[2]:""}}this.xString=[]}e=this.assign(this.clone(g.$default),e),d.default.apply(this,[{obj:e,dialog:i,mask:a,header:r,body:s,footer:l,footerButtonGroup:c,currentDialogElement:n}]);var u=!1;return a.onclick=function(e){if(u)return u=!1,null;((e=e||window.event).target||e.srcElement)==a&&(o.setTimer&&clearTimeout(o.setTimer),o.$(o.dialogElement).style.display="none",(0,p.classList)(document.body,(0,p.classList)(document.body).replace(" codialog-show",""),""),(0,p.classList)(document.documentElement,(0,p.classList)(document.documentElement).replace(" codialog-show",""),""),document.body.style.paddingRight=0)},i.onmousedown=function(){a.onmouseup=function(e){a.onmouseup=null,((e=e||window.event).target||e.srcElement)==a&&(u=!0)}},a.onmousedown=function(){i.onmouseup=function(e){i.onmouseup=null,((e=e||window.event).target||e.srcElement)!=i&&!i.contains(e.target||e.srcElement)||(u=!0)}},this.isBoolean(e.animation)&&n&&(e.animation?this.hasAnimation=!0:this.isStr(e.customAnimation)&&(this.hasAnimation=!1,this.customAnimation=e.customAnimation)),this}},{key:"$",value:function $(e){return 9===e.nodeType?e.documentElement:this.isFun(e.HTMLDocument)?e:this.find(document.body,e)}},{key:"find",value:function find(e,t,o){if("object"==(void 0===e?"undefined":n(e))&&this.isStr(t))return this.isArr(o)?(0,m.getAllNodeElement)(e||e.ownerDocument,t):(0,m.getNodeElement)(e||e.ownerDocument,t)}}]),codialog);function codialog(e){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,codialog);var t=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(codialog.__proto__||Object.getPrototypeOf(codialog)).call(this,e));return t.name="Coog",t.xString=[],t.setTimer=null,t.tracker=!1,t.mouseoutcount=0,t.version="v2.1.6",t.rootDirectory={},t.didDialogList=[],t.hasAnimation=!0,t.closeBackValue=!1,t.cacheDialogElement=[],t.customAnimation="bounceOut",t.strict=g.dialogClassNamePart,t.dialogElement=e||null,(0,a.default)(codialog.prototype),t}f.assign(b.prototype,f),t.default=b},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.selfApi=void 0;var i=o(0),n=t.selfApi=["onHeader","onBody","onFooter"];t.default=function defaultRefs(t){n.map(function(e){t[e]=function(e){return{$refs:function defineRefs(e,t){var o=new Object,n=e.find(t.children,"[ref]",[]);return(0,i.forEach)(n,function(e){e.getAttribute("ref")&&(o[e.getAttribute("ref")]=e)}),o}(this,e)}}})}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Coog=void 0;var n=_interopRequireDefault(o(5)),i=_interopRequireDefault(o(18));function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function Ad(e){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Ad)}Object.assign(Ad,i.default),Object.assign(Ad.prototype,n.default.prototype);var a=Ad;t.Coog=a},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}(o(9));t.default=function autoAddStyle(e,t){var o=e.createElement("style"),n=e.getElementsByTagName("head")[0];if(o.type="text/css",n.appendChild(o),o.stylesheet)o.stylesheet.cssText=t;else try{o.innerHTML=t}catch(e){o.innerText=t}}(document,n.default)},function(e,t,o){(e.exports=o(10)(!1)).push([e.i,".codialog-mask{position:fixed;left:0;right:0;top:0;bottom:0;align-items:center;text-align:center;z-index:999;background-color:rgba(0,0,0,.3)}.codialog-show{overflow-y:hidden;height:auto!important}.codialog-frame{display:flex;position:absolute;background-color:#fff;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;border-radius:6px;overflow:hidden;box-shadow:0 0 12px rgba(0,0,0,.3);border:calc(0px);pointer-events:auto;z-index:99999}.codialog-frame .codialog-box{display:block;width:520px;max-width:100%;height:100%}.codialog-box .codialog-styles{height:inherit}.codialog-styles .codialog-styles-head{background-color:#f6f8fb;padding:15px 19px}.codialog-styles-head .codialog-head-content{display:table;width:100%;clear:both;text-align:left!important}.codialog-head-content .codialog-head-close,.codialog-head-content .codialog-head-title{display:table-cell;position:relative;vertical-align:middle}.codialog-head-content .codialog-head-title{float:left;text-align:left;color:#9a9b9c}.codialog-head-content .codialog-head-close{float:right;text-align:right;color:#ccc}.codialog-head-content .codialog-head-close>button,.codialog-head-content .codialog-head-title>span{display:inline-block;font-weight:700;font-size:16px}.codialog-head-content .codialog-head-title>span{margin-left:0;color:inherit;font-weight:400}.codialog-head-content .codialog-head-close>button{position:relative;justify-content:center;width:19px;height:19px;margin:0;padding:0;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:inherit;font-family:serif;font-size:17px;line-height:19px;cursor:pointer;overflow:hidden}.codialog-styles .codialog-styles-content{display:block;margin-top:28px;margin-left:64px;margin-right:64px;font-size:28px;overflow-y:hidden;color:#696969;text-align:center}.codialog-styles-content .codialog-content-message{position:relative}.codialog-icon{position:relative;display:flex;margin:0 auto 20px;height:76px;width:76px;line-height:76px;border-radius:50%;border:4px solid transparent;text-align:center;user-select:none;justify-content:center}.codialog-success-ring{position:absolute;width:100%;height:100%;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;z-index:2;left:-4px;top:-4px}.codialog-icon-success .codialog-icon-success--line-small{position:absolute;display:inline-block;top:48px;left:16px;width:20px;height:5px;background-color:#a5dc86;transform:rotate(45deg)}.codialog-icon-success .codialog-icon-success--line-long{position:absolute;display:inline-block;top:41px;left:25px;width:42px;height:5px;background-color:#a5dc86;transform:rotate(135deg)}.codialog-icon-error{border-color:#f27474}.codialog-icon-error--line-left{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(45deg);left:15px;background-color:#f27474}.codialog-icon-error--line-right{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(-45deg);right:17px;background-color:#f27474}.codialog-icon-warning{border-color:#facea8;color:#f8bb86}.codialog-icon-error--text{color:#f8bb86;font-size:56px}.codialog-icon-info{border-color:#9de0f6}.codialog-icon-info--text{color:#3fc3ee;font-size:56px;transform:rotate(180deg)}.codialog-icon-question{border-color:#c9dae1;color:#87adbd}.codialog-icon-question--text{font-size:56px}.codialog-icon-error,.codialog-icon-info,.codialog-icon-question,.codialog-icon-success,.codialog-icon-warning{display:none}.codialog-content-message .codialog-message-text{width:100%;font-size:inherit}.codialog-styles .codialog-styles-foot{display:block;margin-top:30px;margin-bottom:22px}.codialog-styles-foot .codialog-foot-button{display:block}.codialog-foot-button .codialog-button-group{text-align:center}.codialog-button-group .group-btn{display:inline-block;margin:0 8px;padding:10px 32px;font-size:16px;font-weight:500;outline:0;border:none;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;-ms-border-radius:6px;border-radius:6px;transition: background-color ease-in-out .2s;}.codialog-foot-button .codialog-button-group button[confirm]{background-color:#51BF8C}.codialog-foot-button .codialog-button-group button[confirm]:hover{background-color:#45b680;}.codialog-foot-button .codialog-button-group button[cancle]{display:none;background-color:#16aeee;background-color:rgba(22,174,238,1);color:#fff}.codialog-foot-button .codialog-text-group{text-align:center;color:#585858}@media only screen and (max-width:801px){.codialog-frame{width:96%}.codialog-frame .codialog-box{width:100%}}.animatedHalf{-webkit-animation-duration:.2s;animation-duration:.2s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}@-webkit-keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}@keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}.bounceIn{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:bounceIn;animation-name:bounceIn}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}",""])},function(e,t,o){"use strict";e.exports=function(o){var s=[];return s.toString=function toString(){return this.map(function(e){var t=function cssWithMappingToString(e,t){var o=e[1]||"",n=e[3];if(!n)return o;if(t&&"function"==typeof btoa){var i=function toComment(e){var t=btoa(unescape(encodeURIComponent(JSON.stringify(e)))),o="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(t);return"/*# ".concat(o," */")}(n),a=n.sources.map(function(e){return"/*# sourceURL=".concat(n.sourceRoot).concat(e," */")});return[o].concat(a).concat([i]).join("\n")}return[o].join("\n")}(e,o);return e[2]?"@media ".concat(e[2],"{").concat(t,"}"):t}).join("")},s.i=function(e,t){"string"==typeof e&&(e=[[null,e,""]]);for(var o={},n=0;n<this.length;n++){var i=this[n][0];null!=i&&(o[i]=!0)}for(var a=0;a<e.length;a++){var r=e[a];null!=r[0]&&o[r[0]]||(t&&!r[2]?r[2]=t:t&&(r[2]="(".concat(r[2],") and (").concat(t,")")),s.push(r))}},s}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(e,t,o){return t&&defineProperties(e.prototype,t),o&&defineProperties(e,o),e};function defineProperties(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}var i=o(0),s=function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}(o(3)),l=o(1),c=o(2);var a=(n(animation,[{key:"animate",value:function animate(e){return this.listItems=[e],this}},{key:"usebind",value:function usebind(){var e=!0,t=!1,o=void 0;try{for(var n,i=c.animatiomApi[Symbol.iterator]();!(e=(n=i.next()).done);e=!0){var a=n.value;animation.prototype[a]=this.callAnimationApi}}catch(e){t=!0,o=e}finally{try{!e&&i.return&&i.return()}finally{if(t)throw o}}}},{key:"callAnimationApi",value:function callAnimationApi(e,t){this.animationName=e;var o=(this.animationConfig=t).callback;return"start"==t.type&&(0,i.isFun)(o)&&o(),this}},{key:"excuteAnimation",value:function excuteAnimation(e,t,o){var n=document.querySelector(e),i=(0,s.default)(n,c.supportBrowserAnimationEventOfName_end),a=(0,s.default)(n,c.supportBrowserAnimationEventOfName_start);function cf(){o.type,(0,l.removeEventListener)(n,a,r)}"end"==o.type.toLowerCase()?(0,l.classList)(n," "+t+" animatedHalf",n):(0,l.classList)(n," "+t+" animated",n);var r=function callAnimationEventEnd(){"end"==o.type.toLowerCase()?(o.callback(t),(0,l.classList)(n,(0,l.classList)(n).replace(" "+t+" animatedHalf",""),"")):(0,l.classList)(n,(0,l.classList)(n).replace(" "+t+" animated",""),""),(0,l.removeEventListener)(n,i,callAnimationEventEnd),(0,l.removeEventListener)(n,a,cf)};(0,l.addEventListener)(n,i,r),(0,l.addEventListener)(n,a,cf)}},{key:"delay",value:function delay(e){return(0,i.isExist)(e)&&this.wait.push(Number(e)),this}},{key:"render",value:function render(){this.excuteAnimation(this.listItems.slice(0),this.animationName,this.animationConfig)}}]),animation);function animation(e){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,animation),this.listItems=[],this.wait=[],this.animationName="bounceOut",this.animationConfig={},this.usebind()}t.default=a},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.onDialogOnresize=t.onDialogAfter=t.onDialogShowButton=t.onDialogIsClose=t.onDialogMethods=t.onDialogType=t.onDialogInnertextOrBasestyle=t.coDialogFooterText=t.coDialogIsDrag=t.coDilaogIsMask=t.coDialogTimeout=t.onDialogHeaderBodyFooterMethod=void 0,t.default=function useOptions(){var e=arguments.length<=0?void 0:arguments[0],t=e.obj,o=e.dialog,n=(e.mask,e.header),i=e.body,a=e.footer,r=e.footerButtonGroup,s=e.currentDialogElement;(0,p.isObj)(t)&&c(t,o,n,i,a);u(t,this),f(t,o,this),m(t,a,this),d(t,s,this),g(t,n,i,r,this),b(t,i,this),h(t,l,this),y(t,n,r,this),v(t,n,r,this),x(t,o,n,i,a),_(t,o,s)};var p=o(0),s=o(1),i=o(6),l=["header","body","footer"];var c=t.onDialogHeaderBodyFooterMethod=function onDialogHeaderBodyFooterMethod(e,t,o,n,i){(e.onDialogBefore||e.onHeaderBefore||e.onBodyBefore||e.onFooterBefore)&&((0,p.isFun)(e.onDialogBefore)&&e.onDialogBefore.call(t,t),(0,p.isFun)(e.onHeaderBefore)&&e.onHeaderBefore.call(o,o),(0,p.isFun)(e.onBodyBefore)&&e.onBodyBefore.call(n,n),(0,p.isFun)(e.onFooterBefore)&&e.onFooterBefore.call(i,i))},u=t.coDialogTimeout=function coDialogTimeout(e,t){(0,p.isNum)(e.timeout)&&0<Number(e.timeout)&&t.hide({timeout:e.timeout})},d=t.coDilaogIsMask=function coDilaogIsMask(e,t,o){(0,p.isFalse)(e.isMask)&&o.find(t,"[mask]")&&(o.find(t,"[mask]").style.backgroundColor="transparent")},f=t.coDialogIsDrag=function coDialogIsDrag(e,t,o){if((0,p.isTrue)(e.isDrag)){var n=!0,i={},a={},r={};(0,p.isTrue)(e.isGesture)?t.style.cursor="move":t.style.cursor="unset",(0,s.addEventListener)(t,"mousedown",function(e){i={x:t.offsetLeft-document.body.scrollLeft,y:t.offsetTop-document.body.scrollTop},a={x:e.screenX,y:e.screenY},n=!0;function ag(e){n&&(r={x:e.screenX,y:e.screenY},i.x+=r.x-a.x,i.y+=r.y-a.y,a=r,t.style.left=i.x+"px",t.style.top=i.y+"px")}(0,s.addEventListener)(o.$(document),"mousemove",ag),(0,s.addEventListener)(o.$(document),"mouseup",function(e){(0,s.removeEventListener)(t.ownerDocument,"mouseover",ag),n=!1,(0,s.preventDefault)(e)}),(0,s.preventDefault)(e)})}},m=t.coDialogFooterText=function coDialogFooterText(e,t,o){(0,p.isStr)(e.footerText)&&o.find(t,"[textGroup]")?o.find(t,"[textGroup]").innerHTML=e.footerText:(0,p.isArray)(e.footerText)&&o.find(t,"[textGroup]")?0<e.footerText.length&&(o.find(t,"[textGroup]").innerHTML=e.footerText.concat().join("")):o.find(t,"[textGroup]")&&(0,s.removeChild)(o.find(t,"[textGroup]"))},g=t.onDialogInnertextOrBasestyle=function onDialogInnertextOrBasestyle(e,t,o,n,i){var a;(a=i.find(t,"[title]"))&&a&&(a.innerHTML=e.title,a.style.color=e.titleColor),(a=i.find(o,"[message]"))&&a&&(a.innerHTML=i.message||e.message,a.style.color=e.messageColor),(a=i.find(n,"[confirm]"))&&a&&(a.textContent=e.confirmButtonText,a.style.color=e.confirmButtonColor,"#51BF8C"==e.confirmButtonBackground||(a.style.backgroundColor=e.confirmButtonBackground)),(a=i.find(n,"[cancle]"))&&a&&(a.textContent=e.cancleButtonText,a.style.color=e.cancleButtonColor,"#aaa"==e.cancleButtonBackground||(a.style.backgroundColor=e.cancleButtonBackground)),(a=i.find(t,"[close]"))&&a&&(a.style.color=e.closeColor)},b=t.onDialogType=function onDialogType(e,t,o){if((0,p.isStr)(e.type)){var n=["success","error","warning","info","question"];switch(e.type.toLowerCase()){case n[0]:o.find(t,".codialog-icon-"+n[0]).style.display="flex";break;case n[1]:o.find(t,".codialog-icon-"+n[1]).style.display="flex";break;case n[2]:o.find(t,".codialog-icon-"+n[2]).style.display="flex";break;case n[3]:o.find(t,".codialog-icon-"+n[3]).style.display="flex";break;case n[4]:o.find(t,".codialog-icon-"+n[4]).style.display="flex"}}},h=t.onDialogMethods=function onDialogMethods(e,o,n){(0,p.isFun)(e.methods)&&((0,p.forEach)(i.selfApi,function(e,t){n[o[t]]=n[e]({children:n.rootDirectory[o[t]]})}),e.methods.call(n,n.dialogElement))},y=t.onDialogIsClose=function onDialogIsClose(n,e,t,i){if((0,p.isTrue)(n.isClose)){i.$(i.dialogElement);var o=[],a=i.find(e,"[close]");(0,p.isNull)(a)||o.push(a);var r=i.find(t,"[cancle]");(0,p.isNull)(t),(0,p.isExist)(r)&&o.push(r);var s=i.find(t,"[confirm]");(0,p.isNull)(t),(0,p.isNull)(s)||o.push(s),0<o.length&&(0,p.forEach)(o,function(e,t){var o=e;o.onclick=function(e){i.setTimer&&clearTimeout(i.setTimer),i.hide(),(0,p.isStr)(o.getAttribute("confirm"))&&(0,p.isFun)(n.confirmCallback)?n.confirmCallback():(0,p.isStr)(o.getAttribute("cancle"))&&(0,p.isFun)(n.cancleCallback)&&n.cancleCallback(),i.closeBackValue=!0}})}},v=t.onDialogShowButton=function onDialogShowButton(e,t,o,n){var i,a,r;(0,p.isFalse)(e.showCloseButton)&&(i=n.find(t,"[close]"))&&(0,p.isExist)(i)&&(i.style.display="none"),(0,p.isTrue)(e.showCancleButton)&&(a=n.find(o,"[cancle]"))&&(0,p.isExist)(a)&&(a.style.display="inline-block"),(0,p.isFalse)(e.showConfirmButton)&&(r=n.find(o,"[confirm]"))&&(0,p.isExist)(r)&&(r.style.display="none")},x=t.onDialogAfter=function onDialogAfter(e,t,o,n,i){(e.onDialogAfter||e.onHeaderAfter||e.onBodyAfter||e.onFooterAfter)&&((0,p.isFun)(e.onDialogAfter)&&e.onDialogAfter.call(t,t),(0,p.isFun)(e.onHeaderAfter)&&e.onHeaderAfter.call(o,o),(0,p.isFun)(e.onBodyAfter)&&e.onBodyAfter.call(n,n),(0,p.isFun)(e.onFooterAfter)&&e.onFooterAfter.call(i,i))},_=t.onDialogOnresize=function onDialogOnresize(u,d,f){function resize(){var e=(document.documentElement||document.body).clientWidth,t=(document.documentElement||document.body).clientHeight,o=!1;"block"!=f.style.display&&(f.style.zIndex="-9999",f.style.display="block",o=!0);var n=d.offsetWidth,i=d.offsetHeight;o=o&&!(f.style.display="none"),f.style.zIndex="9999";var a=e/2,r=t/2,s=n/2,l=i/2,c=u.layout.toLowerCase().split(" ");function layoutDefaultCenter(){d.style.left=a-s+"px",d.style.top=r-l+"px"}if(1==(c=c.filter(function(e){return e.length})).length)switch(c=(0,p.trim)(c[0])){case"center":layoutDefaultCenter();break;case"left":d.style.left="10px",d.style.top=r-l+"px";break;case"right":d.style.left=e-n-10+"px",d.style.top=r-l+"px";break;case"top":d.style.left=a-s+"px",d.style.top="10px";break;case"bottom":d.style.left=a-s+"px",d.style.top=t-i-10+"px";break;default:layoutDefaultCenter()}else 1<c.length&&("left top"==(c=c.join(" "))||"top left"==c?(d.style.left="10px",d.style.top="10px"):"left bottom"==c||"bottom left"==c?(d.style.left="10px",d.style.top=t-i-10+"px"):"right top"==c||"top right"==c?(d.style.left=e-n+10+"px",d.style.top="10px"):"right bottom"==c||"bottom right"==c?(d.style.left=e-n+"px",d.style.top=t-i-10+"px"):layoutDefaultCenter())}(0,p.isStr)(u.layout)&&u.layout.length&&resize(),(0,p.isTrue)(u.onResize)&&(window.onresize=function(){return resize()})}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function appPushNewElements(e){{if((0,n.isStr)(e),e.search(/^(\.|\#)/),e.slice(1).search(/^[\_|(a-zA-Z)]/)+1){var t=(0,a.createDivAndSetAttribute)(e);return t.innerHTML=i.default.replace(/(^|\n)\s*/g,""),document.body.appendChild(t),this.dialogElement=e||null,this.cacheDialogElement.push(e),!0}return!1}};var n=o(0),i=function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}(o(14)),a=o(1)},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.default='\n<div mask="" class="codialog-mask" aria-hidden="false">\n    <div dialog="" class="codialog-frame" role="dialog" aria-dialog="true">\n        <div aria-dialogBox="true" class="codialog-box">\n            <div class="codialog-styles">\n                <div header="" class="codialog-styles-head dialog-header">\n                    <div class="codialog-head-content">\n                        <div title="" ref="title" class="codialog-head-title codialog-head-info">\n                            <span ></span>\n                        </div>\n                        <div close="" ref="close" class="codialog-head-close">\n                            <button type="button" class="addClose">×</button>\n                        </div>\n                    </div>\n                </div>\n                <div body="" class="codialog-styles-content dialog-body">\n                    <div class="codialog-content-message" dialog-body-overflow>\n                        <div class="codialog-icon codialog-icon-success">\n                            <div class="codialog-success-ring"></div>\n                            <span class="codialog-icon-success--line-small"></span>\n                            <span class="codialog-icon-success--line-long"></span>\n                        </div>\n                        <div class="codialog-icon codialog-icon-error">\n                            <span class="codialog-icon-error--line-left"></span>\n                            <span class="codialog-icon-error--line-right"></span>\n                        </div>\n                        <div class="codialog-icon codialog-icon-warning">\n                            <span class="codialog-icon-error--text">!</span>\n                        </div>\n                        <div class="codialog-icon codialog-icon-info">\n                            <span class="codialog-icon-info--text">!</span>\n                        </div>\n                        <div class="codialog-icon codialog-icon-question">\n                            <span class="codialog-icon-question--text">?</span>\n                        </div>\n                        <div message="" ref="message" class="codialog-message-text message-text codialog-text">\n                            <span></span>\n                        </div>\n                    </div>\n                </div>\n                <div footer="" class="codialog-styles-foot dialog-footer">\n                    <div class="codialog-foot-button codialog-foot-text">\n                        <div textGroup="" ref="text" class="codialog-text-group"></div>\n                        <div buttonGroup="" ref="button" class="codialog-button-group">\n                            <button type="button" confirm="" class="primary group-btn">确定</button>\n                            <button type="button" cancle="" class="cancle group-btn">取消</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n'},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function excuteShowAnimation(e,t){var o="bounceIn";null!=(0,a.default)(t,r.supportBrowserAnimationEventOfName_end)?((0,n.isFalse)(this.hasAnimation)&&(o=this.customAnimation||o),this.animate(e).delay(100)[o](o,{type:"start",callback:function callback(){t.style.display="block",(0,i.default)(" codialog-show",!0)}}).render()):(t.style.display="block",(0,i.default)(" codialog-show",!0))};var n=o(0),i=_interopRequireDefault(o(4)),a=_interopRequireDefault(o(3)),r=o(2);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function excuteHideAnimation(e,t){null!=(0,i.default)(t,n.supportBrowserAnimationEventOfName_end)?this.animate(e).delay(100).fadeOut("fadeOut",{type:"end",callback:function callback(){t.style.display="none",(0,a.default)(" codialog-show",!1)}}).render():(t.style.display="none",(0,a.default)(" codialog-show",!1))};var n=o(2),i=_interopRequireDefault(o(3)),a=_interopRequireDefault(o(4));function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.getAllNodeElement=t.getNodeElement=void 0;o(0),t.getNodeElement=function getNodeElement(e,t){return e.querySelector(""+t)},t.getAllNodeElement=function getAllNodeElement(e,t){return e.querySelectorAll(""+t)}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=operatorChain;var n=function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}(o(5));function operatorChain(){}operatorChain.app=function(e){return(new n.default).app(e)},operatorChain.$=function(e){return(new n.default).$(e)}}],__webpack_require__.c=n,__webpack_require__.d=function(e,t,o){__webpack_require__.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},__webpack_require__.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},__webpack_require__.t=function(t,e){if(1&e&&(t=__webpack_require__(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(__webpack_require__.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)__webpack_require__.d(o,n,function(e){return t[e]}.bind(null,n));return o},__webpack_require__.n=function(e){var t=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(t,"a",t),t},__webpack_require__.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},__webpack_require__.p="",__webpack_require__(__webpack_require__.s=7);function __webpack_require__(e){if(n[e])return n[e].exports;var t=n[e]={i:e,l:!1,exports:{}};return o[e].call(t.exports,t,t.exports,__webpack_require__),t.l=!0,t.exports}var o,n});
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.Coog = factory());
+}(this, function () { 'use strict';
+
+  // default static methods
+  var isUndefined = function isUndefined(options) {
+      return typeof options == 'undefined';
+  };
+
+  var isExist = function isExist(options) {
+      return !isUndefined(options);
+  };
+
+  var isNan = function isNan(options) {
+      return isNaN(options);
+  };
+
+  var isFun = function isFun(options) {
+      return isExist(options) && typeof options == 'function';
+  };
+
+  var isObj = function isObj(options) {
+      return isExist(options) && Object.prototype.toString.call(options) == '[object Object]';
+  };
+
+  var isNull = function isNull(options) {
+      return isExist(options) && Object.prototype.toString.call(options) == '[object Null]';
+  };
+
+  var isArr = function isArr(options) {
+      return isExist(options) && options instanceof Array;
+  };
+
+  var isStr = function isStr(options) {
+      return isExist(options) && typeof options == 'string';
+  };
+
+  var isBoolean = function isBoolean(options) {
+      return isExist(options) && typeof options == 'boolean';
+  };
+
+  var isNum = function isNum(options) {
+      return isExist(options) && typeof options == 'number';
+  };
+
+  var isTrue = function isTrue(options) {
+      return isBoolean(options) && options;
+  };
+
+  var isFalse = function isFalse(options) {
+      return isBoolean(options) && !options;
+  };
+
+  // 验证是否为空对象
+  var isEmptyObj = function isEmptyObj(io) {
+      for (var dist in io) {
+          return !1;
+      }
+      return !0;
+  };
+
+  var search = function search(options, val) {
+      if (isStr(options) && options.search(val) + 1) {
+          return !0;
+      }
+      return !1;
+  };
+
+  var trim = function trim(options) {
+      if (search(options, ' ')) {
+          return options.replace(/(\s*)/g, '');
+      }
+      return options;
+  };
+
+  var forEach = function forEach(options, fallback, context) {
+      if (isExist(options)) {
+          if (isFun(options.forEach)) {
+              options.forEach(fallback, context || {});
+              return;
+          }
+          for (var i = 0; i < options.length; i++) {
+              isFun(fallback) ? fallback.call(context || null, options[i], i) : nul;
+          }
+      }
+  };
+
+  var clone = function clone(options) {
+      if (options instanceof Object) {
+          if (isExist(JSON)) return JSON.parse(JSON.stringify(options));else return options;
+      }
+  };
+
+  var assign = function assign(orignal, objectGroup) {
+      if (isUndefined(objectGroup)) {
+          return null;
+      }
+      if (isObj(objectGroup)) {
+          for (var o in objectGroup) {
+              orignal[o] = objectGroup[o];
+          }
+          return orignal;
+      }
+  };
+
+  var objectKey = function objectKey(options) {
+      if (!options) return null;
+      if (Object.keys) {
+          return Object.keys(options);
+      }
+      var arrKey = [];
+      for (var k in options) {
+          if (Object.prototype.hasOwnProperty.call(options, k)) {
+              arrKey.push(k);
+          }
+      }
+      return arrKey;
+  };
+
+  var inArray = function inArray(val, arr) {
+      if (isStr(val) || isNum(arr)) {
+          for (var i = 0, len = arr.length; i < len; i++) {
+              if (arr[i] == val) {
+                  return 1;
+              }
+          }
+          return !1;
+      }
+      return !1;
+  };
+
+  var isArray = function isArray(arr) {
+      if (Array.isArray) {
+          return Array.isArray(arr);
+      } else if (isArr(arr)) {
+          return true;
+      } else {
+          return false;
+      }
+  };
+
+  // the first params exists
+  // and the second params is the callback methods
+  // this parameters will injected to fallback methods
+  // we can used the params as array objects
+  // call paramsAndCallback()
+  var paramsAndCallback = function paramsAndCallback(params, fallback) {
+      if (params) {
+          fallback(params);
+      }
+  };
+
+  var staticMethods = /*#__PURE__*/Object.freeze({
+    isUndefined: isUndefined,
+    isExist: isExist,
+    isNan: isNan,
+    isFun: isFun,
+    isObj: isObj,
+    isNull: isNull,
+    isArr: isArr,
+    isStr: isStr,
+    isBoolean: isBoolean,
+    isNum: isNum,
+    isTrue: isTrue,
+    isFalse: isFalse,
+    isEmptyObj: isEmptyObj,
+    search: search,
+    trim: trim,
+    forEach: forEach,
+    clone: clone,
+    assign: assign,
+    objectKey: objectKey,
+    inArray: inArray,
+    isArray: isArray,
+    paramsAndCallback: paramsAndCallback
+  });
+
+  var selfApi = ['onHeader', 'onBody', 'onFooter'];
+
+  /*
+  需要在dialog body里面加载其他元素, 比如图片的失效 和 其他图片icon信息
+  或者添加一条新的节点信息
+  */
+  var defineRefs = function defineRefs(self, child) {
+      var obj = new Object();
+      var refList = self.find(child.children, '[ref]', []);
+      forEach(refList, function (item) {
+          if (item.getAttribute('ref')) {
+              obj[item.getAttribute('ref')] = item;
+          }
+      });
+      return obj;
+  };
+
+  var defaultRefs = function defaultRefs(PROTO) {
+      selfApi.map(function (items) {
+          PROTO[items] = function (child) {
+              var self = this;
+              return {
+                  $refs: defineRefs(self, child)
+              };
+          };
+      });
+  };
+
+  // validate style exist
+  var validateBrowserCompatiblityAnimationEvent = function validateBrowserCompatiblityAnimationEvent(el, eventObjectName) {
+      for (var k in eventObjectName) {
+          if (isExist(el.style[k])) {
+              return eventObjectName[k];
+          }
+      }
+  };
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
+
+  var classCallCheck = function (instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  };
+
+  var createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  var inherits = function (subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  };
+
+  var possibleConstructorReturn = function (self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  };
+
+  var contains = function contains(node) {
+      return node === document.body ? false : document.body.contains(node);
+  };
+
+  var removeChild = function removeChild(child) {
+      if (isExist(child)) return null;
+
+      if (child.parentElement.removeChild) {
+          return child.parentElement.removeChild(child);
+      }
+      return child.parentElement.removeNode(child);
+  };
+
+  var preventDefault = function preventDefault(ev) {
+      if (ev.preventDefault) {
+          ev.preventDefault();
+      } else if (ev.stopPropagation) {
+          ev.stopPropagation();
+      } else return false;
+  };
+
+  var addEventListener = function addEventListener(el, type, fallback) {
+      if (el.addEventListener) {
+          el.addEventListener(type, fallback, false);
+      } else if (el.attachEvent) {
+          el.attachEvent('on' + type, fallback);
+      }
+  };
+
+  var removeEventListener = function removeEventListener(el, type, callback) {
+      if (el.removeEventListener) {
+          el.removeEventListener(type, callback, false);
+      } else {
+          el.detachEvent('on' + type, callback);
+      }
+  };
+
+  var classOrId = {
+      _class: function _class(el, name) {
+          if (el.classList) {
+              el.setAttribute('class', name);
+          } else {
+              el.className = name;
+          }
+      },
+      _id: function _id(el, name) {
+          el.setAttribute('id', name);
+      }
+  };
+
+  var createDivAndSetAttribute = function createDivAndSetAttribute(options) {
+      var createDiv = document.createElement('div');
+
+      if (options.charAt(0) == '.') {
+          classOrId._class(createDiv, options.slice(1));
+      }
+      if (options.charAt(0) == '#') {
+          classOrId._id(createDiv, options.slice(1));
+      }
+
+      return createDiv;
+  };
+
+  // compatiblity
+  function eachClassName(_splitArrItems, className) {
+      var params = '';
+      for (var len = _splitArrItems.length, kk = 0; kk < len; kk++) {
+          // disabled changed the parameters of type. maybe there are HTML elements
+          if (_typeof(_splitArrItems[kk]) == 'object') {
+              params += _splitArrItems[kk][className];
+          }
+      }
+      return params;
+  }
+
+  function classList(nowNodeList, params) {
+      var argTransformToArray = [Array.prototype.slice.apply(arguments).slice(2)];
+
+      if (isStr(params)) {
+          if (nowNodeList.classList) {
+              nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'classList') + params);
+          } else if (nowNodeList.className) {
+              nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'className') + params);
+          } else return null;
+      } else return nowNodeList.className || nowNodeList.classList;
+  }
+
+  // static parameters
+  var $default = {
+      title: '', // 内容 ui
+      message: '', // 内容 ui
+      footerText: '', // 内容 ui
+      layout: 'center',
+      timeout: 0, // setTimeout
+      isGesture: true, // 处理 evnet
+      isDrag: false, // 处理 evnet
+      isClose: true, // 处理 evnet
+      onResize: true, // 处理 event
+      type: '', // 显示 ui
+      isMask: true, // 显示 ui
+      animation: true, // 显示 ui
+      customAnimation: 'bounceIn', // 显示 ui
+      titleColor: '#9A9B9C', // 显示 ui
+      closeColor: '#9A9B9C', // 显示 ui
+      messageColor: '#696969', // 显示 ui
+      showCloseButton: true, // 显示 ui
+      showCancleButton: false, // 显示 ui
+      showConfirmButton: true, // 显示 ui
+      cancleButtonText: '取消', // 内容 ui
+      confirmButtonText: '确定', // 内容 ui
+      cancleButtonColor: '#fff', // 显示 ui
+      confirmButtonColor: '#fff', // 显示 ui
+      cancleButtonBackground: '#aaa', // 显示 ui
+      confirmButtonBackground: '#51BF8C', // 显示 ui
+      methods: function methods() {},
+      onDialogBefore: function onDialogBefore() {},
+      onHeaderBefore: function onHeaderBefore() {},
+      onBodyBefore: function onBodyBefore() {},
+      onFooterBefore: function onFooterBefore() {},
+      onDialogAfter: function onDialogAfter() {},
+      onHeaderAfter: function onHeaderAfter() {},
+      onBodyAfter: function onBodyAfter() {},
+      onFooterAfter: function onFooterAfter() {},
+      confirmCallback: function confirmCallback() {},
+      cancleCallback: function cancleCallback() {}
+  };
+
+  var animatiomApi = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'headShake', 'bounceOutLeft', 'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown', 'fadeInDownBig', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'rotateInUpLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'fadeInLeft', 'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'zoomOutLeft', 'hinge', 'jackInTheBox', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown', 'rotateOutUpRight', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'rotateOutUpLeft', 'zoomOutRight', 'zoomOutUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight', 'fadeOutRightBig', 'fadeOut', 'slideOutUp'];
+
+  var supportBrowserAnimationEventOfName_end = {
+      "excuteAnimation": "animationend",
+      "OAnimation": "oAnimationEnd",
+      "MozAnimation": "animationend",
+      "WebkitAnimation": "webkitAnimationEnd",
+      'MSAnimation': 'MSAnimationEnd'
+  };
+
+  var supportBrowserAnimationEventOfName_start = {
+      "excuteAnimation": "animationstart",
+      "OAnimation": "oAnimationStart",
+      "MozAnimation": "animationstart",
+      "WebkitAnimation": "webkitAnimationStart",
+      'MSAnimation': 'MSAnimationStart'
+  };
+
+  var dialogClassNamePart = {
+      header: '.dialog-header',
+      body: '.dialog-body',
+      footer: '.dialog-footer'
+  };
+
+  var animation = function () {
+      function animation(options) {
+          classCallCheck(this, animation);
+
+          this.listItems = [];
+          this.wait = [];
+          this.animationName = 'bounceOut';
+          this.animationConfig = {};
+
+          this.usebind();
+      }
+
+      // base on co-ani plugins api
+
+
+      createClass(animation, [{
+          key: 'animate',
+          value: function animate(options) {
+              this.listItems = [options];
+              return this;
+          }
+      }, {
+          key: 'usebind',
+          value: function usebind(self) {
+              var _iteratorNormalCompletion = true;
+              var _didIteratorError = false;
+              var _iteratorError = undefined;
+
+              try {
+                  for (var _iterator = animatiomApi[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                      var items = _step.value;
+
+                      animation.prototype[items] = this.callAnimationApi;
+                  }
+              } catch (err) {
+                  _didIteratorError = true;
+                  _iteratorError = err;
+              } finally {
+                  try {
+                      if (!_iteratorNormalCompletion && _iterator.return) {
+                          _iterator.return();
+                      }
+                  } finally {
+                      if (_didIteratorError) {
+                          throw _iteratorError;
+                      }
+                  }
+              }
+          }
+      }, {
+          key: 'callAnimationApi',
+          value: function callAnimationApi(_animationName, _animationConfig) {
+              this.animationName = _animationName;
+              this.animationConfig = _animationConfig;
+              // 开始执行初始回调  第一次执行动画 需要display : block
+              var callback = _animationConfig.callback;
+              if (_animationConfig.type == 'start' && isFun(callback)) callback();
+              return this;
+          }
+      }, {
+          key: 'excuteAnimation',
+          value: function excuteAnimation(nodelist, animationClass, showAndHideApi) {
+              var getNodeList = document.querySelector(nodelist);
+              var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
+              var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
+
+              if (showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList, ' ' + animationClass + ' animatedHalf', getNodeList);else classList(getNodeList, ' ' + animationClass + ' animated', getNodeList);
+
+              var callAnimationEventStart = function callAnimationEventStart() {
+                  var typeStartWith = showAndHideApi.type;
+                  // 2种情况
+                  // 显示弹出框时 有一次动画开始 到结束过程
+                  // 隐藏弹出框时 也有一次动画开始 到结束过程
+                  // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
+                  // 而之前隐藏的弹出框  不可见 就不会立马被监听
+                  removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventEnd);
+              };
+
+              var callAnimationEventEnd = function callAnimationEventEnd() {
+                  var typeStartWith = showAndHideApi.type;
+
+                  // 显示和隐藏的弹出框 都会监听一次结束
+                  if (typeStartWith.toLowerCase() == 'end') {
+                      showAndHideApi.callback(animationClass);
+                      classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animatedHalf', ''), '');
+                  } else {
+                      classList(getNodeList, classList(getNodeList).replace(' ' + animationClass + ' animated', ''), '');
+                  }
+
+                  {
+                      removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
+                      removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
+                  }
+              };
+
+              addEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
+              addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
+          }
+      }, {
+          key: 'delay',
+          value: function delay(options) {
+              if (isExist(options)) this.wait.push(Number(options));
+              return this;
+          }
+      }, {
+          key: 'render',
+          value: function render() {
+              this.excuteAnimation(this.listItems.slice(0), this.animationName, this.animationConfig);
+          }
+      }]);
+      return animation;
+  }();
+
+  // 重置scrollTop属性
+  var resetScroll = function resetScroll(attr, isTruth) {
+      var bodyNode = document.body;
+      // 设置body时 不能给body css设置 width:100%
+      // 防止padding不起作用
+      var offsetWidth = bodyNode.offsetWidth;
+
+      if (isTruth) {
+          classList(bodyNode, attr, document.body);
+          classList(document.documentElement, attr, document.documentElement);
+          bodyNode.style.paddingRight = bodyNode.offsetWidth - offsetWidth + 'px';
+      } else {
+          var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
+          if (isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
+              classList(document.body, classList(document.body).replace(attr, ''), '');
+              classList(document.documentElement, classList(document.documentElement).replace(attr, ''), '');
+              bodyNode.style.paddingRight = 0;
+          } else return null;
+      }
+  };
+
+  var dialogNodeNamePart = ['header', 'body', 'footer'];
+
+  function useOptions() {
+      var _ref = arguments.length <= 0 ? undefined : arguments[0],
+          obj = _ref.obj,
+          dialog = _ref.dialog,
+          mask = _ref.mask,
+          header = _ref.header,
+          body = _ref.body,
+          footer = _ref.footer,
+          footerButtonGroup = _ref.footerButtonGroup,
+          currentDialogElement = _ref.currentDialogElement;
+
+      if (isObj(obj)) onDialogHeaderBodyFooterMethod(obj, dialog, header, body, footer);
+      coDialogTimeout(obj, this);
+      coDialogIsDrag(obj, dialog, this);
+      coDialogFooterText(obj, footer, this);
+      coDilaogIsMask(obj, currentDialogElement, this);
+      onDialogInnertextOrBasestyle(obj, header, body, footerButtonGroup, this);
+      onDialogType(obj, body, this);
+      onDialogMethods(obj, dialogNodeNamePart, this);
+      onDialogIsClose(obj, header, footerButtonGroup, this);
+      onDialogShowButton(obj, header, footerButtonGroup, this);
+      onDialogAfter(obj, dialog, header, body, footer);
+      onDialogOnresize(obj, dialog, currentDialogElement);
+  }
+
+  var onDialogHeaderBodyFooterMethod = function onDialogHeaderBodyFooterMethod(obj, dialog, header, body, footer) {
+      // 在执行前处理节点属性设置
+      if (obj.onDialogBefore || obj.onHeaderBefore || obj.onBodyBefore || obj.onFooterBefore) {
+
+          if (isFun(obj.onDialogBefore)) {
+              obj.onDialogBefore.call(dialog, dialog);
+          }
+          if (isFun(obj.onHeaderBefore)) {
+              obj.onHeaderBefore.call(header, header);
+          }
+          if (isFun(obj.onBodyBefore)) {
+              obj.onBodyBefore.call(body, body);
+          }
+          if (isFun(obj.onFooterBefore)) {
+              obj.onFooterBefore.call(footer, footer);
+          }
+      }
+  };
+
+  var coDialogTimeout = function coDialogTimeout(obj, self) {
+      // 超时自动关闭
+      if (isNum(obj.timeout) && Number(obj.timeout) > 0) {
+          self.hide({
+              timeout: obj.timeout
+          });
+      }
+  };
+
+  var coDilaogIsMask = function coDilaogIsMask(obj, currentDialogElement, self) {
+      /** **
+      - 是否显示遮罩层
+      - 添加了动画效果
+      - dialog层嵌套在mask遮罩层里面
+      - 不能给dialog设置position属性
+      - 只能给dialog设置backgound背景透明
+      ** **/
+      if (isFalse(obj.isMask) && self.find(currentDialogElement, '[mask]')) {
+          self.find(currentDialogElement, '[mask]').style.backgroundColor = 'transparent';
+      }
+  };
+
+  var coDialogIsDrag = function coDialogIsDrag(obj, dialog, self) {
+      // 开启抓手特效
+      // 只有点击之后才有手势效果
+      if (isTrue(obj.isDrag)) {
+          var ready = true;
+          var dragCurrentDialog = {};
+          var mouseCurrentPosition = {};
+          var mouseMovePosition = {};
+
+          if (isTrue(obj.isGesture)) {
+              dialog.style.cursor = 'move';
+          } else {
+              dialog.style.cursor = 'unset';
+          }
+
+          addEventListener(dialog, 'mousedown', function (ev) {
+              // 第一次重置居左
+              // dialog的left和top属性都统一到矢量位移上
+              dragCurrentDialog = {
+                  x: dialog.offsetLeft - document.body.scrollLeft,
+                  y: dialog.offsetTop - document.body.scrollTop
+              };
+
+              mouseCurrentPosition = {
+                  x: ev.screenX,
+                  y: ev.screenY
+              };
+
+              ready = true;
+              var mousemove = function mousemove(evt) {
+                  if (ready) {
+                      // 鼠标的窗口位移坐标
+                      mouseMovePosition = {
+                          x: evt.screenX,
+                          y: evt.screenY
+                      };
+
+                      dragCurrentDialog.x += mouseMovePosition.x - mouseCurrentPosition.x;
+                      dragCurrentDialog.y += mouseMovePosition.y - mouseCurrentPosition.y;
+                      mouseCurrentPosition = mouseMovePosition;
+
+                      // 鼠标的位移变化
+                      dialog.style.left = dragCurrentDialog.x + 'px';
+                      dialog.style.top = dragCurrentDialog.y + 'px';
+                  }
+              };
+
+              {
+                  addEventListener(self.$(document), 'mousemove', mousemove);
+                  addEventListener(self.$(document), 'mouseup', function (ev) {
+                      removeEventListener(dialog.ownerDocument, 'mouseover', mousemove);
+                      ready = false;
+                      preventDefault(ev);
+                  });
+              }
+
+              preventDefault(ev);
+          });
+      }
+  };
+
+  var coDialogFooterText = function coDialogFooterText(obj, footer, self) {
+      // 底部有无按钮
+      // 底部显示的是倒计时或者是其他信息
+      // attr = [textGroup] or string
+      if (isStr(obj.footerText) && self.find(footer, '[textGroup]')) {
+          self.find(footer, '[textGroup]').innerHTML = obj.footerText;
+      } else if (isArray(obj.footerText) && self.find(footer, '[textGroup]')) {
+          if (obj.footerText.length > 0) {
+              self.find(footer, '[textGroup]').innerHTML = obj.footerText.concat().join('');
+          }
+      } else {
+          if (self.find(footer, '[textGroup]')) {
+              removeChild(self.find(footer, '[textGroup]'));
+          }
+      }
+  };
+
+  var onDialogInnertextOrBasestyle = function onDialogInnertextOrBasestyle(obj, header, body, footerButtonGroup, self) {
+      // 重置属性绑定
+      // 改变默认的文本和节点数据
+      var content;
+      if ((content = self.find(header, '[title]')) && content) {
+          content.innerHTML = obj.title;
+          content.style.color = obj.titleColor;
+      }
+      if ((content = self.find(body, '[message]')) && content) {
+          content.innerHTML = self.message || obj.message;
+          content.style.color = obj.messageColor;
+      }
+      if ((content = self.find(footerButtonGroup, '[confirm]')) && content) {
+          content.textContent = obj.confirmButtonText;
+          content.style.color = obj.confirmButtonColor;
+          if (obj.confirmButtonBackground == '#51BF8C') ;else content.style.backgroundColor = obj.confirmButtonBackground;
+      }
+      if ((content = self.find(footerButtonGroup, '[cancle]')) && content) {
+          content.textContent = obj.cancleButtonText;
+          content.style.color = obj.cancleButtonColor;
+          if (obj.cancleButtonBackground == '#aaa') ;else content.style.backgroundColor = obj.cancleButtonBackground;
+      }
+      if ((content = self.find(header, '[close]')) && content) {
+          content.style.color = obj.closeColor;
+      }
+  };
+
+  var onDialogType = function onDialogType(obj, body, self) {
+      // 根据 type 不同显示弹出框
+      // type:`success`, `error`, `warning`, `info`, `question`
+      if (isStr(obj.type)) {
+          var typeGroup = ['success', 'error', 'warning', 'info', 'question'];
+          var types = obj.type.toLowerCase();
+          switch (types) {
+              case typeGroup[0]:
+                  self.find(body, '.codialog-icon-' + typeGroup[0]).style.display = 'flex';
+                  break;
+              case typeGroup[1]:
+                  self.find(body, '.codialog-icon-' + typeGroup[1]).style.display = 'flex';
+                  break;
+              case typeGroup[2]:
+                  self.find(body, '.codialog-icon-' + typeGroup[2]).style.display = 'flex';
+                  break;
+              case typeGroup[3]:
+                  self.find(body, '.codialog-icon-' + typeGroup[3]).style.display = 'flex';
+                  break;
+              case typeGroup[4]:
+                  self.find(body, '.codialog-icon-' + typeGroup[4]).style.display = 'flex';
+                  break;
+              default:
+                  break;
+          }
+      }
+  };
+
+  var onDialogMethods = function onDialogMethods(obj, dialogNodeNamePart, self) {
+
+      // 所有子节点都会被获取 进行修改
+      // 但是都在before执行之后才执行methods
+      if (isFun(obj['methods'])) {
+          forEach(selfApi, function (items, index) {
+              self[dialogNodeNamePart[index]] = self[items]({
+                  children: self.rootDirectory[dialogNodeNamePart[index]]
+              });
+          });
+          obj.methods.call(self, self.dialogElement);
+      }
+  };
+
+  var onDialogIsClose = function onDialogIsClose(obj, header, footerButtonGroup, self) {
+      // 是否禁用 colse(关闭) dialog
+      // 默认开启 colse x
+      // default: true
+      if (isTrue(obj.isClose)) {
+          // 防止通过 this.dialogElement 元素查找失效
+          var _currentDialogElement = self.$(self.dialogElement);
+
+          var cacheCloseList = [];
+          var headerClose = self.find(header, '[close]');
+          if (!isNull(headerClose)) {
+              cacheCloseList.push(headerClose);
+          }
+
+          var footerCancle = self.find(footerButtonGroup, '[cancle]');
+          if (!isNull(footerButtonGroup), isExist(footerCancle)) {
+              cacheCloseList.push(footerCancle);
+          }
+
+          var footerConfirm = self.find(footerButtonGroup, '[confirm]');
+          if (!isNull(footerButtonGroup), !isNull(footerConfirm)) {
+              cacheCloseList.push(footerConfirm);
+          }
+
+          if (cacheCloseList.length > 0) {
+              forEach(cacheCloseList, function (close, index) {
+                  var currentNode = close;
+                  currentNode.onclick = function (e) {
+                      if (self.setTimer) {
+                          clearTimeout(self.setTimer);
+                      }
+
+                      self.hide();
+
+                      // 确认按钮的回调函数
+                      if (isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
+                          obj.confirmCallback();
+                      }
+                      // 取消按钮的回调函数
+                      else if (isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
+                              obj.cancleCallback();
+                          }
+
+                      self.closeBackValue = true;
+                  };
+              });
+          }
+      }
+  };
+
+  var onDialogShowButton = function onDialogShowButton(obj, header, footerButtonGroup, self) {
+      // 是否显示关闭按钮 默认显示 true
+      // 防止自定义获取不到节点
+      // 显示取消按钮 默认隐藏 false
+      // 防止自定义获取不到节点
+      // 显示确定按钮 默认显示
+      // 防止自定义获取不到节点
+      var getClose, getCancle, getConfirm;
+      if (isFalse(obj.showCloseButton) && (getClose = self.find(header, '[close]'), getClose) && isExist(getClose)) {
+          getClose.style.display = 'none';
+      }
+      if (isTrue(obj.showCancleButton) && (getCancle = self.find(footerButtonGroup, '[cancle]'), getCancle) && isExist(getCancle)) {
+          getCancle.style.display = 'inline-block';
+      }
+      if (isFalse(obj.showConfirmButton) && (getConfirm = self.find(footerButtonGroup, '[confirm]'), getConfirm) && isExist(getConfirm)) {
+          getConfirm.style.display = 'none';
+      }
+  };
+
+  var onDialogAfter = function onDialogAfter(obj, dialog, header, body, footer) {
+      // 所有节点和函数都执行之后处理
+      if (obj.onDialogAfter || obj.onHeaderAfter || obj.onBodyAfter || obj.onFooterAfter) {
+          if (isFun(obj.onDialogAfter)) obj.onDialogAfter.call(dialog, dialog);
+          if (isFun(obj.onHeaderAfter)) obj.onHeaderAfter.call(header, header);
+          if (isFun(obj.onBodyAfter)) obj.onBodyAfter.call(body, body);
+          if (isFun(obj.onFooterAfter)) obj.onFooterAfter.call(footer, footer);
+      }
+  };
+
+  var onDialogOnresize = function onDialogOnresize(obj, dialog, currentDialogElement) {
+      // layout 弹出框初始位置 上|下|左|右|居中|左上|左下|右上|右下
+      if (isStr(obj.layout) && obj.layout.length) resize();
+
+      if (isTrue(obj.onResize)) window.onresize = function () {
+          return resize();
+      };
+
+      function resize() {
+          var windowWidth = (document.documentElement || document.body).clientWidth;
+          var windowHeidth = (document.documentElement || document.body).clientHeight;
+
+          // offsetWidth 处理隐藏不能获取 offsetWidth style
+          var isOpenDialog = false;
+          if (currentDialogElement.style.display != 'block') {
+              currentDialogElement.style.zIndex = '-9999';
+              currentDialogElement.style.display = 'block';
+              isOpenDialog = true;
+          }
+
+          var targetWidth = dialog.offsetWidth;
+          var targetHeight = dialog.offsetHeight;
+
+          if (isOpenDialog) {
+              currentDialogElement.style.display = 'none';
+              isOpenDialog = false;
+          }
+          currentDialogElement.style.zIndex = '9999';
+
+          var getBraowserAxis = {
+              x: windowWidth / 2,
+              y: windowHeidth / 2
+          };
+          var getTargetAxis = {
+              x: targetWidth / 2,
+              y: targetHeight / 2
+          };
+
+          var currentPostion = obj.layout.toLowerCase().split(' ');
+          // 过滤空字符串
+          currentPostion = currentPostion.filter(function (items) {
+              return items.length;
+          });
+
+          // 默认重心位置
+          function layoutDefaultCenter() {
+              dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+              dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+          }
+
+          // 只有一个位置
+          var ten = 10;
+          if (currentPostion.length == 1) {
+              currentPostion = trim(currentPostion[0]);
+              switch (currentPostion) {
+                  case 'center':
+                      layoutDefaultCenter();
+                      break;
+                  case 'left':
+                      dialog.style.left = ten + 'px';
+                      dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+                      break;
+                  case 'right':
+                      dialog.style.left = windowWidth - targetWidth - ten + 'px';
+                      dialog.style.top = getBraowserAxis.y - getTargetAxis.y + 'px';
+                      break;
+                  case 'top':
+                      dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+                      dialog.style.top = ten + 'px';
+                      break;
+                  case 'bottom':
+                      dialog.style.left = getBraowserAxis.x - getTargetAxis.x + 'px';
+                      dialog.style.top = windowHeidth - targetHeight - ten + 'px';
+                      break;
+                  default:
+                      layoutDefaultCenter();
+                      break;
+              }
+          } else if (currentPostion.length > 1) {
+              // 有二个位置
+              currentPostion = currentPostion.join(' ');
+              if (currentPostion == 'left top' || currentPostion == 'top left') {
+                  dialog.style.left = ten + 'px';
+                  dialog.style.top = ten + 'px';
+              } else if (currentPostion == 'left bottom' || currentPostion == 'bottom left') {
+                  dialog.style.left = ten + 'px';
+                  dialog.style.top = windowHeidth - targetHeight - ten + 'px';
+              } else if (currentPostion == 'right top' || currentPostion == 'top right') {
+                  dialog.style.left = windowWidth - targetWidth + ten + 'px';
+                  dialog.style.top = ten + 'px';
+              } else if (currentPostion == 'right bottom' || currentPostion == 'bottom right') {
+                  dialog.style.left = windowWidth - targetWidth + 'px';
+                  dialog.style.top = windowHeidth - targetHeight - ten + 'px';
+              } else {
+                  layoutDefaultCenter();
+              }
+          }
+      }
+  };
+
+  var dialogTemplate = "\n<div mask=\"\" class=\"codialog-mask\" aria-hidden=\"false\">\n    <div dialog=\"\" class=\"codialog-frame\" role=\"dialog\" aria-dialog=\"true\">\n        <div aria-dialogBox=\"true\" class=\"codialog-box\">\n            <div class=\"codialog-styles\">\n                <div header=\"\" class=\"codialog-styles-head dialog-header\">\n                    <div class=\"codialog-head-content\">\n                        <div title=\"\" ref=\"title\" class=\"codialog-head-title codialog-head-info\">\n                            <span ></span>\n                        </div>\n                        <div close=\"\" ref=\"close\" class=\"codialog-head-close\">\n                            <button type=\"button\" class=\"addClose\">\xD7</button>\n                        </div>\n                    </div>\n                </div>\n                <div body=\"\" class=\"codialog-styles-content dialog-body\">\n                    <div class=\"codialog-content-message\" dialog-body-overflow>\n                        <div class=\"codialog-icon codialog-icon-success\">\n                            <div class=\"codialog-success-ring\"></div>\n                            <span class=\"codialog-icon-success--line-small\"></span>\n                            <span class=\"codialog-icon-success--line-long\"></span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-error\">\n                            <span class=\"codialog-icon-error--line-left\"></span>\n                            <span class=\"codialog-icon-error--line-right\"></span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-warning\">\n                            <span class=\"codialog-icon-error--text\">!</span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-info\">\n                            <span class=\"codialog-icon-info--text\">!</span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-question\">\n                            <span class=\"codialog-icon-question--text\">?</span>\n                        </div>\n                        <div message=\"\" ref=\"message\" class=\"codialog-message-text message-text codialog-text\">\n                            <span></span>\n                        </div>\n                    </div>\n                </div>\n                <div footer=\"\" class=\"codialog-styles-foot dialog-footer\">\n                    <div class=\"codialog-foot-button codialog-foot-text\">\n                        <div textGroup=\"\" ref=\"text\" class=\"codialog-text-group\"></div>\n                        <div buttonGroup=\"\" ref=\"button\" class=\"codialog-button-group\">\n                            <button type=\"button\" confirm=\"\" class=\"primary group-btn\">\u786E\u5B9A</button>\n                            <button type=\"button\" cancle=\"\" class=\"cancle group-btn\">\u53D6\u6D88</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+
+  function appPushNewElements(attr) {
+          if (attr.search(/^(\.|\#)/) + 1, attr.slice(1).search(/^[\_|(a-zA-Z)]/) + 1) {
+                  var getElement = createDivAndSetAttribute(attr);
+
+                  {
+                          getElement.innerHTML = dialogTemplate.replace(/(^|\n)\s*/g, '');
+                          document.body.appendChild(getElement);
+                  }
+
+                  {
+                          this.dialogElement = attr || null;
+                          this.cacheDialogElement.push(attr);
+                  }
+
+                  return true;
+          } else return false;
+  }
+
+  function excuteShowAnimation(options, currentDialogNode) {
+      var resetDefaultAnimation = 'bounceIn';
+
+      // 兼容 animation.
+      if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
+          if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
+          // animation动画加载
+          this.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation, {
+              type: 'start',
+              callback: function callback() {
+                  currentDialogNode.style.display = 'block';
+                  resetScroll(' codialog-show', true);
+              }
+          }).render();
+      } else {
+          // ie9 不兼容 animation.
+          currentDialogNode.style.display = 'block';
+          resetScroll(' codialog-show', true);
+      }
+  }
+
+  function excuteHideAnimation(options, currentDialogNode) {
+      // 兼容 animation.
+      if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
+          // animation动画加载
+          this.animate(options).delay(100).fadeOut('fadeOut', {
+              type: 'end',
+              callback: function callback() {
+                  currentDialogNode.style.display = 'none';
+                  resetScroll(' codialog-show', false);
+              }
+          }).render();
+      } else {
+          // ie9 不兼容 animation.
+          currentDialogNode.style.display = 'none';
+          resetScroll(' codialog-show', false);
+      }
+  }
+
+  var getNodeElement = function getNodeElement(parent, childElement) {
+      return parent.querySelector('' + childElement);
+  };
+
+  var getAllNodeElement = function getAllNodeElement(parent, childElement) {
+      return parent.querySelectorAll('' + childElement);
+  };
+
+  // co-dialog explanation of each methods
+
+  var codialog = function (_animation) {
+      inherits(codialog, _animation);
+
+      function codialog(options) {
+          classCallCheck(this, codialog);
+
+          var _this = possibleConstructorReturn(this, (codialog.__proto__ || Object.getPrototypeOf(codialog)).call(this, options));
+
+          _this.name = 'Coog';
+          _this.xString = [];
+          _this.setTimer = null;
+          _this.tracker = false;
+          _this.mouseoutcount = 0;
+          _this.version = 'v2.1.6';
+          _this.rootDirectory = {};
+          _this.didDialogList = [];
+          _this.hasAnimation = true;
+          _this.closeBackValue = false;
+          _this.cacheDialogElement = [];
+          _this.customAnimation = 'bounceOut';
+          _this.strict = dialogClassNamePart;
+          _this.dialogElement = options || null;
+
+          defaultRefs(codialog.prototype);
+          return _this;
+      }
+
+      createClass(codialog, [{
+          key: 'app',
+          value: function app(params) {
+              if ((this.tracker = false) || contains(this.$(params))) {
+                  this.dialogElement = params;
+                  // 添加一个追踪当前类的条件
+                  // 通过 this.app('.dialog').tracker
+                  // 验证存在为true 否则为false
+                  // 一般用在 onDialogBefore\onHeaderBefore\onBodyBefore\onFooterBefore\methods 等函数里
+                  // 当函数里面使用dom动态添加外部节点时, 可以避免多次`appendChildren`添加
+                  // 比如 if(coog.app('.dialog').tracker) return; else dom.appendChildren(node)
+                  this.tracker = true;
+              } else {
+                  var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
+                  if (!firstCheckedAppMethodOfParamsIsCorrect) {
+                      this.tracker = false;
+                      return window.console.warn('this methods .app("' + params + '") accepts wrong parameters.you must define correct "class" and "id" and "_"') && false;
+                  }
+              }
+              return this.show() && this;
+          }
+      }, {
+          key: 'hide',
+          value: function hide(options) {
+              var self = this;
+              var _currentElements = this.$(this.dialogElement);
+
+              if (this.isObj(options)) {
+                  if ('timeout' in options) {
+                      if (this.isNum(options.timeout)) {
+                          this.setTimer = setTimeout(function () {
+                              if (self.setTimer) {
+                                  clearTimeout(self.setTimer);
+                              }
+
+                              {
+                                  _currentElements.style.display = 'none';
+                                  resetScroll(' codialog-show', false);
+                              }
+                          }, options.timeout);
+                      }
+                      if (this.isFun(options.callback)) {
+                          options.callback(_currentElements);
+                      }
+                  }
+              } else if (this.isUndefined(options)) {
+                  excuteHideAnimation.call(this, this.dialogElement + ' [mask]', _currentElements);
+              }
+
+              return this;
+          }
+      }, {
+          key: 'show',
+          value: function show(options) {
+              var self = this;
+              var _currentElements = this.$(this.dialogElement);
+
+              if (this.isObj(options)) {
+                  if ('timeout' in options) {
+                      if (this.isNum(options.timeout)) {
+                          this.setTimer = setTimeout(function () {
+                              if (self.setTimer) {
+                                  clearTimeout(self.setTimer);
+                              }
+
+                              {
+                                  _currentElements.style.display = 'block';
+                                  resetScroll(' codialog-show', true);
+                              }
+
+                              options.timeout = null;
+                          }, options.timeout);
+                      }
+                      if (this.isFun(options.callback)) {
+                          options.callback(_currentElements);
+                      }
+                  }
+              } else if (this.isUndefined(options)) {
+                  excuteShowAnimation.call(this, this.dialogElement + ' [dialog]', _currentElements);
+              }
+
+              return this;
+          }
+      }, {
+          key: 'use',
+          value: function use(obj, success_config) {
+              var self = this;
+              var currentDialogElement = this.$(this.dialogElement);
+
+              var dialog = this.find(currentDialogElement, '[dialog]');
+              var mask = this.find(currentDialogElement, '[mask]');
+              var header = this.find(currentDialogElement, '[header]');
+              var body = this.find(currentDialogElement, '[body]');
+              var footer = this.find(currentDialogElement, '[footer]');
+              var footerButtonGroup = this.find(footer, '[buttonGroup]');
+
+              this.assign(this.rootDirectory, { dialog: dialog, mask: mask, header: header, body: body, footer: footer });
+
+              // 情况1：传入''字符串
+              if (this.isStr(obj) && (this.xString = arguments, this.xString)) {
+                  switch (this.xString.length) {
+                      case 1:
+                          obj = {
+                              message: this.xString[0],
+                              onHeaderBefore: function onHeaderBefore() {
+                                  this.style.display = 'none';
+                              }
+                          };
+                          break;
+                      case 2:
+                          obj = {
+                              title: this.xString[0],
+                              message: this.isStr(this.xString[1]) ? this.xString[1] : 'No message text'
+                          };
+                          break;
+                      case 3:
+                          obj = {
+                              title: this.xString[0],
+                              message: this.isStr(this.xString[1]) ? this.xString[1] : 'No message',
+                              type: this.isStr(this.xString[2]) ? this.xString[2] : ''
+                          };
+                          break;
+                      default:
+                          obj = {
+                              title: this.xString[0],
+                              message: this.isStr(this.xString[1]) ? this.xString[1] : 'No message',
+                              type: this.isStr(this.xString[2]) ? this.xString[2] : ''
+                          };
+                          break;
+                  }
+                  this.xString = [];
+              }
+
+              // 多次调用 禁修改默认属性
+              obj = this.assign(this.clone($default), obj);
+
+              useOptions.apply(this, [{ obj: obj, dialog: dialog, mask: mask, header: header, body: body, footer: footer, footerButtonGroup: footerButtonGroup, currentDialogElement: currentDialogElement }]);
+
+              // 默认点击mask隐藏弹出框 点击dialog不会隐藏弹出框
+              var ignoreBorderSideClick = false;
+
+              mask.onclick = function (ea) {
+                  if (ignoreBorderSideClick) {
+                      return ignoreBorderSideClick = false, null;
+                  }
+                  ea = ea || window.event;
+                  if ((ea.target || ea.srcElement) == mask) {
+                      // 点击外边框 清除timeout未到时间关闭的定时器
+                      if (self.setTimer) {
+                          clearTimeout(self.setTimer);
+                      }
+
+                      self.$(self.dialogElement).style.display = 'none';
+
+                      {
+                          // 重置scrollTop属性
+                          classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
+                          classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
+                          document.body.style.paddingRight = 0;
+                      }
+                  }
+              };
+
+              dialog.onmousedown = function () {
+                  mask.onmouseup = function (ea) {
+                      mask.onmouseup = null;
+                      ea = ea || window.event;
+                      if ((ea.target || ea.srcElement) == mask) {
+                          ignoreBorderSideClick = true;
+                      }
+                  };
+              };
+
+              mask.onmousedown = function () {
+                  dialog.onmouseup = function (ea) {
+                      dialog.onmouseup = null;
+                      ea = ea || window.event;
+                      if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
+                          ignoreBorderSideClick = true;
+                      }
+                  };
+              };
+
+              if (this.isBoolean(obj.animation) && currentDialogElement) {
+                  if (!obj.animation) {
+                      if (this.isStr(obj.customAnimation)) {
+                          this.hasAnimation = false;
+                          this.customAnimation = obj.customAnimation;
+                      }
+                  } else this.hasAnimation = true;
+              }
+              return this;
+          }
+      }, {
+          key: '$',
+          value: function $(options) {
+              if (options.nodeType === 9) return options.documentElement;else if (this.isFun(options.HTMLDocument)) return options;
+              return this.find(document.body, options);
+          }
+      }, {
+          key: 'find',
+          value: function find(parent, options, arr) {
+              if ((typeof parent === 'undefined' ? 'undefined' : _typeof(parent)) == 'object') {
+                  if (this.isStr(options)) {
+                      if (this.isArr(arr)) {
+                          return getAllNodeElement(parent || parent.ownerDocument, options);
+                      }
+                      return getNodeElement(parent || parent.ownerDocument, options);
+                  }
+              }
+          }
+      }]);
+      return codialog;
+  }(animation);
+
+  assign(codialog.prototype, staticMethods);
+
+  function operatorChain() {}
+
+  /*
+   * 打通`Coog`库外部和内部进行连接起来
+   * 去掉`hide`和`show`方法
+   * 并不是默认执行显示和隐藏,而是根据用户自定义设置`hide`和`show`实现需求功能.
+   * 默认点击阴影部分会自动隐藏弹出框
+   * Coog.app('.codialog').use({title: 'hello world! ^_^'})
+   */
+  operatorChain.app = function (options) {
+    var instance = new codialog();
+    return instance.app(options);
+  };
+
+  operatorChain.$ = function (options) {
+    var instance = new codialog();
+    return instance.$(options);
+  };
+
+  var coog = function coog(options) {
+  	classCallCheck(this, coog);
+  };
+
+  Object.assign(coog, operatorChain);
+
+  Object.assign(coog.prototype, codialog.prototype);
+
+  var Coog = coog;
+
+  return Coog;
+
+}));

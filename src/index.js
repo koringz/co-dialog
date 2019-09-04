@@ -12,4 +12,4 @@ Object.assign(coog.prototype, codialog.prototype)
 
 const Coog = coog
 
-export { Coog }
+export default Coog
