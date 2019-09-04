@@ -50,7 +50,7 @@ or
 const Coog = require("co-dialog")
 ```
 
-如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库.
+如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库, 在项目中引入文件：
 
 ```js
 <head>
