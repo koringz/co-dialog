@@ -1,3 +1,11 @@
 {
-  "presets": ["env","stage-0"]
+    presets: [
+        [
+            'es2015',
+            {
+                modules: false
+            }
+        ]
+    ],
+    plugins: ['external-helpers']
 }

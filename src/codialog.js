@@ -1,4 +1,3 @@
-import './addStyle.js'
 import defaultRefs from './refs.js'
 import animation from './animation.js'
 import resetScroll from './resetScroll.js'
@@ -21,7 +20,7 @@ class codialog extends animation {
         this.setTimer = null;
         this.tracker = false;
         this.mouseoutcount = 0;
-        this.version = 'v2.1.6';
+        this.version = 'v2.1.7';
         this.rootDirectory = {};
         this.didDialogList = [];
         this.hasAnimation = true;

@@ -40,13 +40,13 @@ npm install co-dialog
 或者使用`import`导入模块：
 
 ```js
-import { Coog } from "co-dialog"
+import Coog from "co-dialog"
 ```
 
 or
 
 ```js
-const Coog = require("co-dialog").Coog
+const Coog = require("co-dialog")
 ```
 
 ## 例子
