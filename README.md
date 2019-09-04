@@ -34,6 +34,7 @@ npm install co-dialog
 你可以使用`src`加载文件：
 
 ```html
+<link rel="stylesheet" type="text/css" href="co-dialog.css">
 <script src="co-dialog.js"></script>
 ```
 
@@ -48,6 +49,24 @@ or
 ```js
 const Coog = require("co-dialog")
 ```
+
+如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库.
+
+```js
+<head>
+  <link rel="stylesheet" href="animate.min.css">
+</head>
+```
+
+或者引入一个CDN版本：
+
+```js
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+```
+
+详细动画请参考文档 [Animate.css](https://daneden.github.io/animate.css/)
 
 ## 例子
 
@@ -67,13 +86,6 @@ Coog.app(".with-title").use(
 )
 ```
 
-使用追踪器
-```js
-const with = this.app('.with-title').tracker
-
-if(with) return false
-else \\ doing something
-```
 
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 

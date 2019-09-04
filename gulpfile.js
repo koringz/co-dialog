@@ -47,7 +47,7 @@ gulp.task('coDialog:js', async function(params) {
         })
 
     await js.write({
-        file: pkgs.main,
+        file: pkgs.browser,
         format: 'umd',
         name: 'Coog',
         sourcemap: false,
