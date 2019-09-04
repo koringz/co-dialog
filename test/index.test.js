@@ -8,8 +8,7 @@ describe('Excute Coog is object and method ', function() {
 	jdglobal()
 
 	before(function () {
-	    // Coog = require('../dist/co-dialog.js').Coog;
-	    Coog = require('../dist/co-dialog.js').Coog;
+	    Coog = require('../dist/co-dialog.js');
 	})
 
 	it('should return console info', function() {
