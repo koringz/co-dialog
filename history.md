@@ -1,3 +1,13 @@
+ (v2.1.7) <Date:2019/09/01>
+ - `webpack`构建工具替换成`gulp`构建工具
+ - 删除`webpack`环境配置`webpack.config.js`文件
+ - 修改`.babelrc`文件`babel`编译配置
+ - 添加`gulpfile.js`文件
+ - 修改`index.js`相关文件修改
+ - 修改测试的库地址
+ - 修改example导入库的地址
+ - 添加打包结束库文件
+
  (v2.1.6) <Date:2019/09/01>
  - 修改`.gitignore`和`.npmignore`文件
  - 修改库名`coog`首字母大写`Coog`
