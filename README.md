@@ -98,6 +98,20 @@ Coog.app(".with-title").use(
 ```
 
 
+## 调CSS3动画库
+
+```js
+Coog
+    .app('.the-third-animate')
+    .use({
+        title: 'use animate.css',
+        message: 'Your have seen the animation theme',
+        animation: false,
+        customAnimation: 'bounceInLeft', // 使用 animate.css 动画
+    })
+    .show()
+```
+
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
 ## 其他版本
