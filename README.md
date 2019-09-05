@@ -34,7 +34,7 @@ npm install co-dialog
 你可以使用`src`加载文件：
 
 ```html
-<link rel="stylesheet" type="text/css" href="co-dialog.css">
+<link rel="stylesheet" href="co-dialog.css">
 <script src="co-dialog.js"></script>
 ```
 
