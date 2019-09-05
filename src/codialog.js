@@ -50,7 +50,7 @@ class codialog extends animation {
                 return window.console.warn(`this methods .app("${params}") accepts wrong parameters.you must define correct "class" and "id" and "_"`) && false
             }
         }
-        return  this.show() &&　this
+        return this
     }
 
     hide(options) {

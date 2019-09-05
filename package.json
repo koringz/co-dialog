@@ -3,7 +3,7 @@
   "version": "2.1.7",
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
   "main": "dist/co-dialog.all.js",
-  "btowser": "dist/co-dialog.js",
+  "browser": "dist/co-dialog.js",
   "directories": {
     "example": "examples",
     "test": "test"
