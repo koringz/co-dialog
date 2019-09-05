@@ -182,24 +182,12 @@ export const onDialogType = (obj,body,self) => {
     if(isStr(obj.type)) {
         var typeGroup = ['success', 'error', 'warning', 'info', 'question'];
         var types = obj.type.toLowerCase();
-        switch(types) {
-            case typeGroup[0]:
-                self.find(body, `.codialog-icon-${typeGroup[0]}`).style.display = 'flex';
-                break;
-            case typeGroup[1]:
-                self.find(body, `.codialog-icon-${typeGroup[1]}`).style.display = 'flex';
-                break;
-            case typeGroup[2]:
-                self.find(body, `.codialog-icon-${typeGroup[2]}`).style.display = 'flex';
-                break;
-            case typeGroup[3]:
-                self.find(body, `.codialog-icon-${typeGroup[3]}`).style.display = 'flex';
-                break;
-            case typeGroup[4]:
-                self.find(body, `.codialog-icon-${typeGroup[4]}`).style.display = 'flex'
-                break;
-            default:
-                break;
+        var isTruth = typeGroup.includes(types)
+        if (isTruth) {
+            typeGroup.map(item => {
+                if (types === item) self.find(body, `.codialog-icon-${item}`).style.display = 'flex';
+                else self.find(body, `.codialog-icon-${item}`).style.display = 'none';
+            })
         }
     }
 }
