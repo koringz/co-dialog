@@ -76,7 +76,7 @@ const Coog = require("co-dialog")
 const baseBox = Coog.app(".base").use("这是一个基础的弹出框").show()
 ```
 
-其他地方调用`base`弹出框非常简单
+任何地方都能调用`base`类弹出框
 
 ```js
 baseBox.show()
