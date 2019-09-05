@@ -731,11 +731,15 @@
       // type:`success`, `error`, `warning`, `info`, `question`
       if (isStr(obj.type)) {
           var typeGroup = ['success', 'error', 'warning', 'info', 'question'];
-          var types = obj.type.toLowerCase();
+          var types = obj.type.replace(/\s*/gi, '').toLowerCase();
           var isTruth = typeGroup.includes(types);
           if (isTruth) {
               typeGroup.map(function (item) {
-                  if (types === item) self.find(body, '.codialog-icon-' + item).style.display = 'flex';else self.find(body, '.codialog-icon-' + item).style.display = 'none';
+                  if (types === item) {
+                      self.find(body, '.codialog-icon-' + item).style.display = 'flex';
+                  } else {
+                      self.find(body, '.codialog-icon-' + item).style.display = 'none';
+                  }
               });
           }
       }

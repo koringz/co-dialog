@@ -40,7 +40,7 @@ gulp.task('coDialog:js', async function(params) {
                 // mainfields:['module', 'main'], //默认值：['module'，'main']
                 // mainfields 已经弃用, 使用 modeule 代替
                 resolve({
-                    module: true,
+                    mainFields: [ 'main'],
                     extensions: [ '.mjs', '.js', '.json' ],
                 }),
                 roBabel({
