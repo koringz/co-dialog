@@ -42,7 +42,7 @@
 <script type="text/javascript" src="./../dist/co-dialog.all.js"></script>
 <script type="text/javascript">
     // 基础弹出框
-    Coog
+    const drag = Coog
         .app('.drag')
         .use({
             title: '拖动',
@@ -54,12 +54,11 @@
                 this.style.color = "#008576"
             }
         })
+        .show()
 
 
     Coog.$('.onceRecharge').addEventListener( 'click', function() {
-
-        Coog.app('.drag')
-
+        drag.show()
         /*callback: function (nodes) {
             for (var i = 0; i < 3; i++) {
                 (function (i) {

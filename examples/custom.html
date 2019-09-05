@@ -42,7 +42,7 @@
     </center>
 </body>
 <link rel="stylesheet" type="text/css" href="./../assets/css/animate.min.css">
-<script type="text/javascript" src='../dist/co-dialog.js'></script>
+<script type="text/javascript" src='../dist/co-dialog.all.js'></script>
 <script type="text/javascript">
     Coog
         .app('.custom')
@@ -65,9 +65,10 @@
                     this.body.$refs.middle.style.color =
                     this.footer.$refs.bottom.style.color = '#4E5198'
             }
-        });
+        })
+        .show()
 
-    Coog
+    const custom2 = Coog
         .app('.custom2')
         .use({
             isGesture: true,
@@ -87,10 +88,11 @@
                 this.body.$refs.middle.style.color =
                 this.footer.$refs.bottom.style.color = '#4E5198'
             }
-        });
+        })
+        .show()
 
     Coog.$('.showme').addEventListener('click', function() {
-        Coog.app('.custom');
+        custom2.show()
     })
 </script>
 

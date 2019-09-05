@@ -28,7 +28,7 @@
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.all.js"></script>
 <script type="text/javascript">
-    Coog
+    const themePurple = Coog
         .app('.theme-purple')
         .use({
             title: 'theme',
@@ -40,9 +40,12 @@
             showCancleButton: true,
             confirmButtonBackground: '#4E5198',
             confirmCallback: function() {
-                Coog.app('.new1111').use('success clear theme').show()
+                newXox.show()
             }
         })
+        .show()
+
+        const newXox = Coog.app('.newXox').use('success clear theme')
 </script>
 
 </html>
