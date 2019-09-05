@@ -61,17 +61,13 @@ import 'co-dialog/dist/co-dialog.min.css'
 如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库, 在项目中引入文件：
 
 ```js
-<head>
-  <link rel="stylesheet" href="animate.min.css">
-</head>
+<link rel="stylesheet" href="animate.min.css">
 ```
 
 或者引入一个CDN版本：
 
 ```js
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 ```
 
 详细动画请参考文档 [Animate.css](https://daneden.github.io/animate.css/)
