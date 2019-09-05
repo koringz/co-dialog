@@ -50,6 +50,14 @@ or
 const Coog = require("co-dialog")
 ```
 
+如果使用`import`引入库需要单独引入`style`样式：
+
+```js
+import Coog from "co-dialog"
+
+import 'co-dialog/dist/co-dialog.min.css'
+```
+
 如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库, 在项目中引入文件：
 
 ```js

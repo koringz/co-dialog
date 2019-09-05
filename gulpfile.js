@@ -34,9 +34,14 @@ gulp.task('coDialog:js', async function(params) {
     const js = await rollup.rollup({
             input: 'src/index.js',
             plugins: [
+                //要在package.json中扫描以确定入口点的字段
+                //如果此列表包含“browser”，则重写“pkg.browser”中指定的
+                //将被使用
+                // mainfields:['module', 'main'], //默认值：['module'，'main']
+                // mainfields 已经弃用, 使用 modeule 代替
                 resolve({
-                    extensions: [ '.mjs', '.js', '.ejs'],
-                    browser: true,
+                    module: true,
+                    extensions: [ '.mjs', '.js', '.json' ],
                 }),
                 roBabel({
                     babelrc: true,
@@ -47,7 +52,7 @@ gulp.task('coDialog:js', async function(params) {
         })
 
     await js.write({
-        file: pkgs.browser,
+        file: pkgs.module,
         format: 'umd',
         name: 'Coog',
         sourcemap: false,
