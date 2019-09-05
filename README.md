@@ -73,7 +73,13 @@ const Coog = require("co-dialog")
 这是一个显示基本内容的弹出框
 
 ```js
-Coog.app(".base").use("这是一个基础的弹出框")
+const baseBox = Coog.app(".base").use("这是一个基础的弹出框").show()
+```
+
+其他地方调用`base`弹出框非常简单
+
+```js
+baseBox.show()
 ```
 
 这是一个带标题的`success`弹出框
@@ -84,6 +90,7 @@ Coog.app(".with-title").use(
  "这是一个带标题的弹出框",
  'success'
 )
+.show()
 ```
 
 
