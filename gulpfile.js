@@ -28,7 +28,6 @@ gulp.task('coDialog:clean', async function () {
 })
 
 
-var caches = {};
 gulp.task('coDialog:js', async function(params) {
 
     const js = await rollup.rollup({
@@ -37,10 +36,9 @@ gulp.task('coDialog:js', async function(params) {
                 //要在package.json中扫描以确定入口点的字段
                 //如果此列表包含“browser”，则重写“pkg.browser”中指定的
                 //将被使用
-                // mainfields:['module', 'main'], //默认值：['module'，'main']
-                // mainfields 已经弃用, 使用 modeule 代替
+                // mainfields:['module', 'main'], //默认值
                 resolve({
-                    mainFields: [ 'main'],
+                    mainFields: [ 'main' ],
                     extensions: [ '.mjs', '.js', '.json' ],
                 }),
                 roBabel({
@@ -66,20 +64,19 @@ gulp.task('coDialog:css', async function (params) {
     const css = await gulp
         .src('src/css/co-dialog.css')
         .pipe(concat('co-dialog.css'))
-        .pipe(dest('dist/'))
+        .pipe(dest('dist'))
         .pipe(cleancss({compatibility: 'ie8'}))
         .pipe(concat('co-dialog.min.css'))
-        .pipe(dest('dist/'))
+        .pipe(dest('dist'))
 
     return css
 })
 
 
-
 gulp.task('coDialog:build', async function (params) {
 
         // 把 rollup 编译之后生成的 co-dialog.js 文件压缩成 co-dialog.min.js 文件
-        gulp.src('dist/co-dialog.js').pipe(uglify()).pipe(concat('co-dialog.min.js')).pipe(dest('dist/'))
+        gulp.src('dist/co-dialog.js').pipe(uglify()).pipe(concat('co-dialog.min.js')).pipe(dest('dist'))
 
         const all =  merge2(
             gulp.src('dist/co-dialog.js'),
@@ -88,10 +85,10 @@ gulp.task('coDialog:build', async function (params) {
 
         return all
         .pipe(concat('co-dialog.all.js'))
-        .pipe(dest('dist/'))
+        .pipe(dest('dist'))
         .pipe(uglify())
         .pipe(concat('co-dialog.all.min.js'))
-        .pipe(dest('dist/'))
+        .pipe(dest('dist'))
 })
 
 
