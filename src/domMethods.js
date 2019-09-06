@@ -3,7 +3,7 @@ import { isExist, isStr } from './staticMethods.js'
 export const contains = (node) => (node === document.body) ? false : document.body.contains(node);
 
 export const removeChild = (child) => {
-    if(isExist(child)) return null;
+    if (isExist(child)) return null;
 
     if (child.parentElement.removeChild) {
         return child.parentElement.removeChild(child)
@@ -12,26 +12,26 @@ export const removeChild = (child) => {
 }
 
 export const preventDefault = (ev) => {
-    if(ev.preventDefault) {
+    if (ev.preventDefault) {
         ev.preventDefault();
     }
-    else if(ev.stopPropagation) {
+    else if (ev.stopPropagation) {
         ev.stopPropagation();
     }
     else return false;
 }
 
 export const addEventListener = (el, type, fallback) => {
-    if(el.addEventListener) {
+    if (el.addEventListener) {
         el.addEventListener(type, fallback, false);
     }
-    else if(el.attachEvent) {
+    else if (el.attachEvent) {
         el.attachEvent(`on${type}`, fallback);
     }
 }
 
 export const removeEventListener = (el,type,callback)=> {
-    if(el.removeEventListener){
+    if (el.removeEventListener){
         el.removeEventListener(type,callback,false);
     }
     else{
@@ -41,7 +41,7 @@ export const removeEventListener = (el,type,callback)=> {
 
 export const classOrId = {
     _class(el, name) {
-        if(el.classList) {
+        if (el.classList) {
             el.setAttribute('class',name);
         }
         else {
@@ -71,7 +71,7 @@ function eachClassName (_splitArrItems, className) {
     var params = '';
     for(var len = _splitArrItems.length, kk = 0; kk < len; kk++) {
         // disabled changed the parameters of type. maybe there are HTML elements
-        if(typeof _splitArrItems[kk] == 'object') {
+        if (typeof _splitArrItems[kk] == 'object') {
             params += _splitArrItems[kk][className]
         }
     }
@@ -81,11 +81,11 @@ function eachClassName (_splitArrItems, className) {
 export function classList (nowNodeList, params) {
     var argTransformToArray = [Array.prototype.slice.apply(arguments).slice(2)]
 
-    if(isStr(params)) {
-        if(nowNodeList.classList) {
+    if (isStr(params)) {
+        if (nowNodeList.classList) {
             nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'classList') + params);
         }
-        else if(nowNodeList.className) {
+        else if (nowNodeList.className) {
             nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'className') + params);
         }
         else return null;

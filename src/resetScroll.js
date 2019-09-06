@@ -7,14 +7,14 @@ const resetScroll = function (attr, isTruth) {
     // 设置body时 不能给body css设置 width:100%
     // 防止padding不起作用
     const { offsetWidth } = bodyNode;
-    if(isTruth) {
+    if (isTruth) {
         classList(bodyNode, attr, document.body);
         classList(document.documentElement, attr, document.documentElement);
         bodyNode.style.paddingRight = `${bodyNode.offsetWidth - offsetWidth}px`
     }
     else {
         var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
-        if(isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
+        if (isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
             classList(document.body, classList(document.body).replace(attr,''), '');
             classList(document.documentElement, classList(document.documentElement).replace(attr,''), '');
             bodyNode.style.paddingRight = 0

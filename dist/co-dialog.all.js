@@ -1044,7 +1044,7 @@
                   // 验证存在为true 否则为false
                   // 一般用在 onDialogBefore\onHeaderBefore\onBodyBefore\onFooterBefore\methods 等函数里
                   // 当函数里面使用dom动态添加外部节点时, 可以避免多次`appendChildren`添加
-                  // 比如 if(coog.app('.dialog').tracker) return; else dom.appendChildren(node)
+                  // 比如 if (coog.app('.dialog').tracker) return; else dom.appendChildren(node)
                   this.tracker = true;
               } else {
                   var firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);

@@ -10,7 +10,7 @@ const defineRefs = (self, child) => {
     var obj = new Object;
     var refList = self.find(child.children,'[ref]', []);
     forEach(refList, (item) => {
-        if(item.getAttribute('ref')) {
+        if (item.getAttribute('ref')) {
             obj[item.getAttribute('ref')] = item;
         }
     });

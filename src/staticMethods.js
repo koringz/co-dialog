@@ -32,7 +32,7 @@ export const isEmptyObj = (io) => {
 }
 
 export const search = (options,val) => {
-    if(isStr(options) && options.search(val) + 1) {
+    if (isStr(options) && options.search(val) + 1) {
         return !0
     }
     return !1
@@ -47,29 +47,29 @@ export const trim = (options) => {
 
 
 export const forEach = (options, fallback, context) => {
-  if(isExist(options)) {
-    if(isFun(options.forEach)) {
+  if (isExist(options)) {
+    if (isFun(options.forEach)) {
       options.forEach(fallback, context || {})
       return;
     }
-    for(var i =0; i < options.length; i++) {
+    for (var i =0; i < options.length; i++) {
       isFun(fallback) ? fallback.call(context || null, options[i], i) : nul
     }
   }
 }
 
 export const clone = (options) => {
-    if(options instanceof Object) {
-        if(isExist(JSON)) return JSON.parse(JSON.stringify(options))
+    if (options instanceof Object) {
+        if (isExist(JSON)) return JSON.parse(JSON.stringify(options))
         else return options
     }
 }
 
 export const assign = (orignal, objectGroup) => {
-    if(isUndefined(objectGroup)) {
+    if (isUndefined(objectGroup)) {
         return null;
     }
-    if(isObj(objectGroup)) {
+    if (isObj(objectGroup)) {
         for(var o in objectGroup) {
             orignal[o] = objectGroup[o];
         }
@@ -78,13 +78,13 @@ export const assign = (orignal, objectGroup) => {
 }
 
 export const objectKey = (options) => {
-    if(!options) return null;
-    if(Object.keys) {
+    if (!options) return null;
+    if (Object.keys) {
         return Object.keys(options);
     }
     var arrKey = [];
-    for(var k in options) {
-        if(Object.prototype.hasOwnProperty.call(options, k)){
+    for (var k in options) {
+        if (Object.prototype.hasOwnProperty.call(options, k)){
             arrKey.push(k)
         }
     }
@@ -92,9 +92,9 @@ export const objectKey = (options) => {
 }
 
 export const inArray = (val, arr) => {
-    if(isStr(val) || isNum(arr)) {
-        for(var i =0, len = arr.length; i < len; i++) {
-            if(arr[i] == val) {
+    if (isStr(val) || isNum(arr)) {
+        for (var i =0, len = arr.length; i < len; i++) {
+            if (arr[i] == val) {
                 return 1
             }
         }
@@ -104,10 +104,10 @@ export const inArray = (val, arr) => {
 }
 
 export const isArray = (arr) => {
-    if(Array.isArray) {
+    if (Array.isArray) {
         return Array.isArray(arr)
     }
-    else if(isArr(arr)) {
+    else if (isArr(arr)) {
         return true
     }
     else {
@@ -121,7 +121,7 @@ export const isArray = (arr) => {
 // we can used the params as array objects
 // call paramsAndCallback()
 export const paramsAndCallback = (params, fallback) => {
-  if(params) {
+  if (params) {
     fallback(params)
   }
 }

@@ -7,4 +7,3 @@ export const getNodeElement = (parent, childElement) => {
 export const getAllNodeElement = (parent, childElement) => {
     return parent.querySelectorAll(`${childElement}`)
 }
-

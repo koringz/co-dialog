@@ -7,8 +7,8 @@ export default function excuteShowAnimation (options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn';
 
     // 兼容 animation.
-    if( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
-        if(isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
+    if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
+        if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
         // animation动画加载
         this.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation,{
             type: 'start',

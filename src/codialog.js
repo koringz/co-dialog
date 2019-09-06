@@ -12,7 +12,7 @@ import { $default, dialogClassNamePart } from './defaultParameters.js'
 
 // co-dialog explanation of each methods
 class codialog extends animation {
-    constructor(options) {
+    constructor (options) {
         super(options);
 
         this.name = 'Coog';
@@ -33,7 +33,7 @@ class codialog extends animation {
         defaultRefs(codialog.prototype)
     }
 
-    app(params) {
+    app (params) {
         if ((this.tracker = false) || contains(this.$(params))) {
             this.dialogElement = params;
             // 添加一个追踪当前类的条件
@@ -41,7 +41,7 @@ class codialog extends animation {
             // 验证存在为true 否则为false
             // 一般用在 onDialogBefore\onHeaderBefore\onBodyBefore\onFooterBefore\methods 等函数里
             // 当函数里面使用dom动态添加外部节点时, 可以避免多次`appendChildren`添加
-            // 比如 if(coog.app('.dialog').tracker) return; else dom.appendChildren(node)
+            // 比如 if (coog.app('.dialog').tracker) return; else dom.appendChildren(node)
             this.tracker = true
         } else {
             const firstCheckedAppMethodOfParamsIsCorrect = appPushNewElements.call(this, params);
@@ -53,15 +53,15 @@ class codialog extends animation {
         return this
     }
 
-    hide(options) {
+    hide (options) {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            if('timeout' in options) {
+            if ('timeout' in options) {
                 if (this.isNum(options.timeout)) {
                     this.setTimer = setTimeout(() => {
-                        if(self.setTimer) {
+                        if (self.setTimer) {
                             clearTimeout(self.setTimer);
                         }
 
@@ -84,12 +84,12 @@ class codialog extends animation {
         return this;
     }
 
-    show(options) {
+    show (options) {
         var self = this;
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            if('timeout' in options) {
+            if ('timeout' in options) {
                 if (this.isNum(options.timeout)) {
                     this.setTimer = setTimeout(() => {
                         if (self.setTimer) {
@@ -116,7 +116,7 @@ class codialog extends animation {
         return this;
     }
 
-    use(obj, success_config) {
+    use (obj, success_config) {
         const self = this;
         const currentDialogElement = this.$(this.dialogElement);
 
@@ -225,16 +225,16 @@ class codialog extends animation {
         return this
     }
 
-    $(options) {
+    $ (options) {
         if (options.nodeType === 9) return options.documentElement;
         else if (this.isFun(options.HTMLDocument)) return options;
         return this.find(document.body, options)
     }
 
-    find(parent, options, arr) {
+    find (parent, options, arr) {
         if (typeof parent == 'object') {
             if (this.isStr(options)) {
-                if(this.isArr(arr)) {
+                if (this.isArr(arr)) {
                     return getAllNodeElement(parent || parent.ownerDocument, options)
                 }
                 return getNodeElement(parent || parent.ownerDocument, options)

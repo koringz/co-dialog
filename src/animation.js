@@ -4,7 +4,7 @@ import { addEventListener, removeEventListener, classList } from './domMethods.j
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
 export default class animation {
-    constructor(options) {
+    constructor (options) {
         this.listItems = [];
         this.wait = [];
         this.animationName = 'bounceOut';
@@ -14,32 +14,32 @@ export default class animation {
     }
 
     // base on co-ani plugins api
-    animate(options) {
+    animate (options) {
         this.listItems = [options]
         return this
     }
 
-    usebind(self) {
-        for(const items of animatiomApi) {
+    usebind (self) {
+        for (const items of animatiomApi) {
             animation.prototype[items] = this.callAnimationApi
         }
     }
 
-    callAnimationApi(_animationName,_animationConfig) {
+    callAnimationApi (_animationName,_animationConfig) {
         this.animationName = _animationName;
         this.animationConfig = _animationConfig;
         // 开始执行初始回调  第一次执行动画 需要display : block
         var callback = _animationConfig.callback;
-        if(_animationConfig.type == 'start' && isFun(callback)) callback();
+        if (_animationConfig.type == 'start' && isFun(callback)) callback();
         return this;
     }
 
-    excuteAnimation(nodelist,animationClass, showAndHideApi) {
+    excuteAnimation (nodelist,animationClass, showAndHideApi) {
         var getNodeList = document.querySelector(nodelist);
         var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
-        if(showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,` ${animationClass} animatedHalf`, getNodeList);
+        if (showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,` ${animationClass} animatedHalf`, getNodeList);
         else classList(getNodeList,` ${animationClass} animated`, getNodeList);
 
         var callAnimationEventStart = () => {
@@ -56,7 +56,7 @@ export default class animation {
             var typeStartWith = showAndHideApi.type;
 
             // 显示和隐藏的弹出框 都会监听一次结束
-            if(typeStartWith.toLowerCase() == 'end') {
+            if (typeStartWith.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
                 classList(getNodeList, classList(getNodeList).replace(` ${animationClass} animatedHalf`,''), '');
             }
@@ -74,12 +74,12 @@ export default class animation {
         addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
     }
 
-    delay(options) {
-        if(isExist(options)) this.wait.push(Number(options));
+    delay (options) {
+        if (isExist(options)) this.wait.push(Number(options));
         return this;
     }
 
-    render() {
+    render () {
         this.excuteAnimation(this.listItems.slice(0),this.animationName,this.animationConfig);
     }
 }

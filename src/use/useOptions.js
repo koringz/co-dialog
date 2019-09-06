@@ -29,16 +29,16 @@ export const onDialogHeaderBodyFooterMethod = (obj,dialog,header,body,footer) =>
         || obj.onBodyBefore
         || obj.onFooterBefore) {
 
-        if(isFun(obj.onDialogBefore)) {
+        if (isFun(obj.onDialogBefore)) {
             obj.onDialogBefore.call(dialog, dialog);
         }
-        if(isFun(obj.onHeaderBefore)) {
+        if (isFun(obj.onHeaderBefore)) {
             obj.onHeaderBefore.call(header, header);
         }
-        if(isFun(obj.onBodyBefore)) {
+        if (isFun(obj.onBodyBefore)) {
             obj.onBodyBefore.call(body, body);
         }
-        if(isFun(obj.onFooterBefore)) {
+        if (isFun(obj.onFooterBefore)) {
             obj.onFooterBefore.call(footer, footer);
         }
     }
@@ -75,7 +75,7 @@ export const coDialogIsDrag = (obj,dialog,self) => {
         var mouseCurrentPosition = {};
         var mouseMovePosition = {};
 
-        if(isTrue(obj.isGesture)) {
+        if (isTrue(obj.isGesture)) {
             dialog.style.cursor = 'move';
         }
         else {
@@ -97,7 +97,7 @@ export const coDialogIsDrag = (obj,dialog,self) => {
 
             ready = true;
             var mousemove = function (evt) {
-                if(ready) {
+                if (ready) {
                     // 鼠标的窗口位移坐标
                     mouseMovePosition = {
                         x: evt.screenX,
@@ -141,7 +141,7 @@ export const coDialogFooterText = (obj,footer,self) => {
         }
     }
     else {
-        if(self.find(footer,'[textGroup]')) {
+        if (self.find(footer,'[textGroup]')) {
             removeChild(self.find(footer,'[textGroup]'));
         }
     }
@@ -159,16 +159,16 @@ export const onDialogInnertextOrBasestyle = (obj,header,body,footerButtonGroup,s
         content.innerHTML = self.message || obj.message;
         content.style.color = obj.messageColor
     }
-    if((content = self.find(footerButtonGroup, '[confirm]')) && content) {
+    if ((content = self.find(footerButtonGroup, '[confirm]')) && content) {
         content.textContent = obj.confirmButtonText;
         content.style.color = obj.confirmButtonColor;
-        if(obj.confirmButtonBackground == '#51BF8C') false;
+        if (obj.confirmButtonBackground == '#51BF8C') false;
         else content.style.backgroundColor = obj.confirmButtonBackground;
     }
-    if((content = self.find(footerButtonGroup, '[cancle]')) && content) {
+    if ((content = self.find(footerButtonGroup, '[cancle]')) && content) {
         content.textContent = obj.cancleButtonText;
         content.style.color = obj.cancleButtonColor;
-        if(obj.cancleButtonBackground == '#aaa') false;
+        if (obj.cancleButtonBackground == '#aaa') false;
         else content.style.backgroundColor = obj.cancleButtonBackground;
     }
     if ((content = self.find(header, '[close]')) && content) {
@@ -179,7 +179,7 @@ export const onDialogInnertextOrBasestyle = (obj,header,body,footerButtonGroup,s
 export const onDialogType = (obj,body,self) => {
     // 根据 type 不同显示弹出框
     // type:`success`, `error`, `warning`, `info`, `question`
-    if(isStr(obj.type)) {
+    if (isStr(obj.type)) {
         var typeGroup = ['success', 'error', 'warning', 'info', 'question'];
         var types = obj.type.replace(/\s*/gi,'').toLowerCase();
         var isTruth = typeGroup.includes(types);
@@ -220,21 +220,21 @@ export const onDialogIsClose = (obj,header,footerButtonGroup,self) => {
 
         var cacheCloseList = [];
         var headerClose = self.find(header,'[close]');
-        if(!isNull(headerClose)) {
+        if (!isNull(headerClose)) {
             cacheCloseList.push(headerClose);
         }
 
         var footerCancle = self.find(footerButtonGroup,'[cancle]');
-        if(!isNull(footerButtonGroup), isExist(footerCancle)) {
+        if (!isNull(footerButtonGroup), isExist(footerCancle)) {
             cacheCloseList.push(footerCancle);
         }
 
         var footerConfirm = self.find(footerButtonGroup,'[confirm]');
-        if(!isNull(footerButtonGroup), !isNull(footerConfirm)) {
+        if (!isNull(footerButtonGroup), !isNull(footerConfirm)) {
             cacheCloseList.push(footerConfirm);
         }
 
-        if(cacheCloseList.length > 0) {
+        if (cacheCloseList.length > 0) {
             forEach(cacheCloseList, function (close, index) {
                 var currentNode = close;
                 currentNode.onclick = function (e) {
@@ -245,11 +245,11 @@ export const onDialogIsClose = (obj,header,footerButtonGroup,self) => {
                     self.hide();
 
                     // 确认按钮的回调函数
-                    if(isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
+                    if (isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
                         obj.confirmCallback();
                     }
                     // 取消按钮的回调函数
-                    else if(isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
+                    else if (isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
                         obj.cancleCallback();
                     }
 
@@ -274,7 +274,7 @@ export const onDialogShowButton = (obj,header,footerButtonGroup,self) => {
     if (isTrue(obj.showCancleButton) && (getCancle = self.find(footerButtonGroup,'[cancle]'), getCancle) && isExist(getCancle)) {
         getCancle.style.display = 'inline-block';
     }
-    if(isFalse(obj.showConfirmButton) && (getConfirm = self.find(footerButtonGroup,'[confirm]'), getConfirm) && isExist(getConfirm)) {
+    if (isFalse(obj.showConfirmButton) && (getConfirm = self.find(footerButtonGroup,'[confirm]'), getConfirm) && isExist(getConfirm)) {
         getConfirm.style.display = 'none';
     }
 }
@@ -282,10 +282,10 @@ export const onDialogShowButton = (obj,header,footerButtonGroup,self) => {
 export const onDialogAfter = (obj,dialog,header,body,footer) => {
     // 所有节点和函数都执行之后处理
     if (obj.onDialogAfter || obj.onHeaderAfter || obj.onBodyAfter || obj.onFooterAfter) {
-        if(isFun(obj.onDialogAfter)) obj.onDialogAfter.call(dialog, dialog);
-        if(isFun(obj.onHeaderAfter)) obj.onHeaderAfter.call(header, header);
-        if(isFun(obj.onBodyAfter))   obj.onBodyAfter.call(body,body);
-        if(isFun(obj.onFooterAfter)) obj.onFooterAfter.call(footer,footer);
+        if (isFun(obj.onDialogAfter)) obj.onDialogAfter.call(dialog, dialog);
+        if (isFun(obj.onHeaderAfter)) obj.onHeaderAfter.call(header, header);
+        if (isFun(obj.onBodyAfter))   obj.onBodyAfter.call(body,body);
+        if (isFun(obj.onFooterAfter)) obj.onFooterAfter.call(footer,footer);
     }
 }
 
@@ -301,7 +301,7 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
 
         // offsetWidth 处理隐藏不能获取 offsetWidth style
         var isOpenDialog = false;
-        if(currentDialogElement.style.display != 'block') {
+        if (currentDialogElement.style.display != 'block') {
             currentDialogElement.style.zIndex = '-9999';
             currentDialogElement.style.display = 'block';
             isOpenDialog = true;
@@ -310,7 +310,7 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
         var targetWidth = dialog.offsetWidth;
         var targetHeight = dialog.offsetHeight;
 
-        if(isOpenDialog) {
+        if (isOpenDialog) {
             currentDialogElement.style.display = 'none';
             isOpenDialog = false;
         }
@@ -339,7 +339,7 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
 
         // 只有一个位置
         const ten = 10;
-        if(currentPostion.length == 1) {
+        if (currentPostion.length == 1) {
             currentPostion = trim(currentPostion[0]);
             switch (currentPostion) {
                 case 'center' :
@@ -366,22 +366,22 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
                     break;
             }
         }
-        else if(currentPostion.length > 1) {
+        else if (currentPostion.length > 1) {
             // 有二个位置
             currentPostion = currentPostion.join(' ');
-            if(currentPostion == 'left top' || currentPostion == 'top left') {
+            if (currentPostion == 'left top' || currentPostion == 'top left') {
                 dialog.style.left = `${ten}px`;
                 dialog.style.top  = `${ten}px`;
             }
-            else if(currentPostion == 'left bottom' || currentPostion == 'bottom left') {
+            else if (currentPostion == 'left bottom' || currentPostion == 'bottom left') {
                 dialog.style.left  = `${ten}px`;
                 dialog.style.top   = `${windowHeidth - targetHeight - ten}px`;
             }
-            else if(currentPostion == 'right top' || currentPostion == 'top right') {
+            else if (currentPostion == 'right top' || currentPostion == 'top right') {
                 dialog.style.left = `${windowWidth - targetWidth + ten}px`;
                 dialog.style.top  = `${ten}px`;
             }
-            else if(currentPostion == 'right bottom' || currentPostion == 'bottom right') {
+            else if (currentPostion == 'right bottom' || currentPostion == 'bottom right') {
                 dialog.style.left = `${windowWidth - targetWidth}px`;
                 dialog.style.top  = `${windowHeidth - targetHeight - ten}px`;
             }

@@ -4,7 +4,7 @@ import resetScroll from './resetScroll.js'
 
 export default function excuteHideAnimation (options, currentDialogNode) {
     // 兼容 animation.
-    if( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
+    if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
         // animation动画加载
         this.animate(options).delay(100).fadeOut('fadeOut',{
             type: 'end',
