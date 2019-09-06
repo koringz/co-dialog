@@ -58,7 +58,7 @@ import Coog from "co-dialog"
 import 'co-dialog/dist/co-dialog.min.css'
 ```
 
-如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库, 在项目中引入文件：
+如果想用CSS3动画, 需要下载 [animate.css](https://github.com/daneden/animate.css) 库, 在项目中引入库文件：
 
 ```js
 <link rel="stylesheet" href="animate.min.css">
@@ -97,8 +97,11 @@ Coog.app(".with-title").use(
 .show()
 ```
 
+## 第三方插件
 
-## 调CSS3动画库
+**CSS3动画**
+
+如果要使用CSS3动画功能, 暂时只支持[animate.css](https://github.com/daneden/animate.css)动画库, 实现动画的方式非常简单, 只要导入`animate.css`动画库, `className`类名就能被`customAnimation`识别出来.
 
 ```js
 Coog
@@ -111,10 +114,10 @@ Coog
     })
     .show()
 ```
-
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
 
 ## 其他版本
+ - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/latest) - ES6 Wraper. Now master branch
  - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/tag/v2.0.1) - ES5 Wraper
  - [vue-co-dialog](https://github.com/ZWLTZ/vue-co-dialog) - Vue.js Binding
 
