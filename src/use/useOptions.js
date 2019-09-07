@@ -9,15 +9,15 @@ export default function useOptions (...args) {
 
     if (isObj(obj))
         onDialogHeaderBodyFooterMethod(obj,dialog,header,body,footer);
-        coDialogTimeout(obj,this);
-        coDialogIsDrag(obj,dialog,this);
-        coDialogFooterText(obj,footer,this);
-        coDilaogIsMask(obj,currentDialogElement,this);
-        onDialogInnertextOrBasestyle(obj,header,body,footerButtonGroup,this);
-        onDialogType(obj,body,this);
-        onDialogMethods(obj,dialogNodeNamePart,this);
-        onDialogIsClose(obj,header,footerButtonGroup,this);
-        onDialogShowButton(obj,header,footerButtonGroup,this);
+        coDialogTimeout(this,obj);
+        coDialogIsDrag(this,obj,dialog);
+        coDialogFooterText(this,obj,footer);
+        coDilaogIsMask(this,obj,currentDialogElement);
+        onDialogInnertextOrBasestyle(this,obj,header,body,footerButtonGroup);
+        onDialogType(this,obj,body);
+        onDialogMethods(this,obj,dialogNodeNamePart);
+        onDialogIsClose(this,obj,header,footerButtonGroup);
+        onDialogShowButton(this,obj,header,footerButtonGroup);
         onDialogAfter(obj,dialog,header,body,footer);
         onDialogOnresize(obj,dialog,currentDialogElement);
 }
@@ -44,7 +44,7 @@ export const onDialogHeaderBodyFooterMethod = (obj,dialog,header,body,footer) =>
     }
 }
 
-export const coDialogTimeout = (obj,self) => {
+export const coDialogTimeout = (self,obj,) => {
     // 超时自动关闭
     if (isNum(obj.timeout) && Number(obj.timeout) > 0){
         self.hide({
@@ -53,7 +53,7 @@ export const coDialogTimeout = (obj,self) => {
     }
 }
 
-export const coDilaogIsMask = (obj,currentDialogElement,self) => {
+export const coDilaogIsMask = (self,obj,currentDialogElement) => {
     /** **
     - 是否显示遮罩层
     - 添加了动画效果
@@ -66,7 +66,7 @@ export const coDilaogIsMask = (obj,currentDialogElement,self) => {
     }
 }
 
-export const coDialogIsDrag = (obj,dialog,self) => {
+export const coDialogIsDrag = (self,obj,dialog) => {
     // 开启抓手特效
     // 只有点击之后才有手势效果
     if (isTrue(obj.isDrag)) {
@@ -128,7 +128,7 @@ export const coDialogIsDrag = (obj,dialog,self) => {
     }
 }
 
-export const coDialogFooterText = (obj,footer,self) => {
+export const coDialogFooterText = (self,obj,footer) => {
     // 底部有无按钮
     // 底部显示的是倒计时或者是其他信息
     // attr = [textGroup] or string
@@ -147,7 +147,7 @@ export const coDialogFooterText = (obj,footer,self) => {
     }
 }
 
-export const onDialogInnertextOrBasestyle = (obj,header,body,footerButtonGroup,self) => {
+export const onDialogInnertextOrBasestyle = (self,obj,header,body,footerButtonGroup) => {
     // 重置属性绑定
     // 改变默认的文本和节点数据
     var content;
@@ -176,7 +176,7 @@ export const onDialogInnertextOrBasestyle = (obj,header,body,footerButtonGroup,s
     }
 }
 
-export const onDialogType = (obj,body,self) => {
+export const onDialogType = (self,obj,body) => {
     // 根据 type 不同显示弹出框
     // type:`success`, `error`, `warning`, `info`, `question`
     if (isStr(obj.type)) {
@@ -196,7 +196,7 @@ export const onDialogType = (obj,body,self) => {
     }
 }
 
-export const onDialogMethods = (obj,dialogNodeNamePart,self) => {
+export const onDialogMethods = (self,obj,dialogNodeNamePart) => {
 
     // 所有子节点都会被获取 进行修改
     // 但是都在before执行之后才执行methods
@@ -210,7 +210,7 @@ export const onDialogMethods = (obj,dialogNodeNamePart,self) => {
     }
 }
 
-export const onDialogIsClose = (obj,header,footerButtonGroup,self) => {
+export const onDialogIsClose = (self,obj,header,footerButtonGroup) => {
     // 是否禁用 colse(关闭) dialog
     // 默认开启 colse x
     // default: true
@@ -260,7 +260,7 @@ export const onDialogIsClose = (obj,header,footerButtonGroup,self) => {
     }
 }
 
-export const onDialogShowButton = (obj,header,footerButtonGroup,self) => {
+export const onDialogShowButton = (self,obj,header,footerButtonGroup) => {
     // 是否显示关闭按钮 默认显示 true
     // 防止自定义获取不到节点
     // 显示取消按钮 默认隐藏 false
