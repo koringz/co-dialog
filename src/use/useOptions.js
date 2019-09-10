@@ -132,17 +132,18 @@ export const coDialogFooterText = (self,obj,footer) => {
     // 底部有无按钮
     // 底部显示的是倒计时或者是其他信息
     // attr = [textGroup] or string
-    if (isStr(obj.footerText) && self.find(footer,'[textGroup]')) {
-        self.find(footer,'[textGroup]').innerHTML = obj.footerText;
+    const textGroupElement = self.find(footer,'[textGroup]')
+    if (isStr(obj.footerText) && textGroupElement) {
+        textGroupElement.innerHTML = obj.footerText;
     }
-    else if (isArray(obj.footerText) && self.find(footer,'[textGroup]')) {
+    else if (isArray(obj.footerText) && textGroupElement) {
         if (obj.footerText.length > 0) {
-            self.find(footer,'[textGroup]').innerHTML = obj.footerText.concat().join('');
+            textGroupElement.innerHTML = obj.footerText.concat().join('');
         }
     }
     else {
-        if (self.find(footer,'[textGroup]')) {
-            removeChild(self.find(footer,'[textGroup]'));
+        if (textGroupElement) {
+            removeChild(textGroupElement);
         }
     }
 }
