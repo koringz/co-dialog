@@ -1,3 +1,9 @@
+ <Date:2019/09/14>
+ - `includes`替换成`indexOf`
+ - `const of`特换为`map`数组
+ - babel编译`es2015`替换`preset-env`
+ - `assign`使用原生object方法
+
  (v2.1.7) <Date:2019/09/01>
  - `webpack`构建工具替换成`gulp`构建工具
  - 删除`webpack`环境配置`webpack.config.js`文件

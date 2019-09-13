@@ -183,8 +183,8 @@ export const onDialogType = (self,obj,body) => {
     if (isStr(obj.type)) {
         var typeGroup = ['success', 'error', 'warning', 'info', 'question'];
         var types = obj.type.replace(/\s*/gi,'').toLowerCase();
-        var isTruth = typeGroup.includes(types);
-        if (isTruth) {
+        var isTruth = typeGroup.indexOf(types);
+        if (isTruth != -1) {
             typeGroup.map(item => {
                 if (types === item) {
                     self.find(body, `.codialog-icon-${item}`).style.display = 'flex';

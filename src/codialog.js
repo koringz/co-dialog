@@ -127,7 +127,7 @@ class codialog extends animation {
         const footer            = this.find(currentDialogElement, '[footer]');
         const footerButtonGroup = this.find(footer, '[buttonGroup]');
 
-        this.assign(this.rootDirectory, { dialog, mask, header, body, footer });
+        Object.assign(this.rootDirectory, { dialog, mask, header, body, footer });
 
         // 情况1：传入''字符串
         if (this.isStr(obj) && (this.xString = arguments, this.xString)) {
@@ -165,7 +165,7 @@ class codialog extends animation {
         }
 
         // 多次调用 禁修改默认属性
-        obj = this.assign(this.clone($default), obj);
+        obj = Object.assign(this.clone($default), obj);
 
         useOptions.apply(this, [{ obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement }]);
 
@@ -243,6 +243,7 @@ class codialog extends animation {
     }
 };
 
-staticMethods.assign(codialog.prototype, staticMethods);
+
+Object.assign(codialog.prototype, staticMethods);
 
 export default codialog

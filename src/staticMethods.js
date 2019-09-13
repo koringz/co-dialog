@@ -65,18 +65,6 @@ export const clone = (options) => {
     }
 }
 
-export const assign = (orignal, objectGroup) => {
-    if (isUndefined(objectGroup)) {
-        return null;
-    }
-    if (isObj(objectGroup)) {
-        for(var o in objectGroup) {
-            orignal[o] = objectGroup[o];
-        }
-        return orignal;
-    }
-}
-
 export const objectKey = (options) => {
     if (!options) return null;
     if (Object.keys) {

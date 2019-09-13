@@ -1,11 +1,11 @@
 {
     presets: [
         [
-            'es2015',
+            '@babel/preset-env',
             {
                 modules: false
             }
         ]
     ],
-    plugins: ['external-helpers']
+    plugins: ['transform-es2015-typeof-symbol','@babel/plugin-transform-object-assign']
 }

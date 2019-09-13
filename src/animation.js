@@ -10,19 +10,19 @@ export default class animation {
         this.animationName = 'bounceOut';
         this.animationConfig = {};
 
-        this.usebind();
     }
 
     // base on co-ani plugins api
     animate (options) {
+        this.usebind(animation);
         this.listItems = [options]
         return this
     }
 
     usebind (self) {
-        for (const items of animatiomApi) {
-            animation.prototype[items] = this.callAnimationApi
-        }
+        animatiomApi.map(items => {
+            self.prototype[items] = self.callAnimationApi
+        })
     }
 
     callAnimationApi (_animationName,_animationConfig) {

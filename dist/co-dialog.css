@@ -237,7 +237,7 @@
 .codialog-styles .codialog-styles-foot {
     display: block;
     margin-top: 30px;
-    margin-bottom: 22px
+    padding-bottom: 22px
 }
 
 .codialog-styles-foot .codialog-foot-button {
@@ -248,7 +248,7 @@
     text-align: center
 }
 
-.codialog-button-group .group-btn {
+.codialog-button-group .codialog-group-btn {
     display: inline-block;
     margin: 0 8px;
     padding: 10px 32px;
