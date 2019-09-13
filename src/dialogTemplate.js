@@ -42,8 +42,8 @@ const dialogTemplate = `
                     <div class="codialog-foot-button codialog-foot-text">
                         <div textGroup="" ref="text" class="codialog-text-group"></div>
                         <div buttonGroup="" ref="button" class="codialog-button-group">
-                            <button type="button" confirm="" class="primary group-btn">确定</button>
-                            <button type="button" cancle="" class="cancle group-btn">取消</button>
+                            <button type="button" confirm="" class="primary codialog-group-btn">确定</button>
+                            <button type="button" cancle="" class="cancle codialog-group-btn">取消</button>
                         </div>
                     </div>
                 </div>
