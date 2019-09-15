@@ -10,7 +10,7 @@ export default function excuteShowAnimation (options, currentDialogNode) {
     if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
         if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
         // animation动画加载
-        this.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation,{
+        this.animate(options)[resetDefaultAnimation](resetDefaultAnimation,{
             type: 'start',
             callback: () => {
                 currentDialogNode.style.display = 'block';

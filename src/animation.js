@@ -1,29 +1,25 @@
-import { isFun, isExist } from './staticMethods.js'
+import { isFun } from './staticMethods.js'
 import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { addEventListener, removeEventListener, classList } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
 export default class animation {
     constructor (options) {
-        this.listItems = [];
-        this.wait = [];
+        this.animationElement = [];
         this.animationName = 'bounceOut';
         this.animationConfig = {};
-
     }
 
     // base on co-ani plugins api
     animate (options) {
-        this.usebind(animation);
-        this.listItems = [options]
-        return this
-    }
+        this.animationElement = [options];
 
-    usebind (self) {
         var that = this
         animatiomApi.map(items => {
-            self.prototype[items] = that.callAnimationApi
+            animation.prototype[items] = that.callAnimationApi
         })
+
+        return this
     }
 
     callAnimationApi (_animationName,_animationConfig) {
@@ -75,12 +71,7 @@ export default class animation {
         addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
     }
 
-    delay (options) {
-        if (isExist(options)) this.wait.push(Number(options));
-        return this;
-    }
-
     render () {
-        this.excuteAnimation(this.listItems.slice(0),this.animationName,this.animationConfig);
+        this.excuteAnimation(this.animationElement.slice(0),this.animationName,this.animationConfig);
     }
 }

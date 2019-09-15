@@ -1,14 +1,15 @@
 import defaultRefs from './refs.js'
 import animation from './animation.js'
-import resetScroll from './resetScroll.js'
 import useOptions from './use/useOptions.js'
 import appPushNewElements from './app/appContext.js'
 import excuteShowAnimation from './showAnimation.js'
 import excuteHideAnimation from './hideAnimation.js'
 import * as staticMethods from './staticMethods.js'
-import { contains, classList } from './domMethods.js'
+import { contains } from './domMethods.js'
 import { getNodeElement, getAllNodeElement} from './domElement.js'
 import { $default, dialogClassNamePart } from './defaultParameters.js'
+import { showHandle, hideHandle } from './display/block.js'
+import { mouseEvent } from './mouseEvent.js'
 
 // co-dialog explanation of each methods
 class codialog extends animation {
@@ -21,7 +22,6 @@ class codialog extends animation {
         this.tracker = false;
         this.mouseoutcount = 0;
         this.version = 'v2.1.7';
-        this.rootDirectory = {};
         this.didDialogList = [];
         this.hasAnimation = true;
         this.closeBackValue = false;
@@ -52,30 +52,12 @@ class codialog extends animation {
     }
 
     hide (options) {
-        var self = this;
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            if ('timeout' in options) {
-                if (this.isNum(options.timeout)) {
-                    this.setTimer = setTimeout(() => {
-                        if (self.setTimer) {
-                            clearTimeout(self.setTimer);
-                        }
-
-                        {
-                            _currentElements.style.display = 'none';
-                            resetScroll(' codialog-show', false);
-                        }
-                    },
-                    options.timeout);
-                }
-                if (this.isFun(options.callback)) {
-                    options.callback(_currentElements);
-                }
-            }
-
-        } else if (this.isUndefined(options)) {
+            hideHandle(this, _currentElements, options)
+        }
+        else if (this.isUndefined(options)) {
             excuteHideAnimation.call(this, `${this.dialogElement} [mask]`, _currentElements)
         }
 
@@ -83,31 +65,12 @@ class codialog extends animation {
     }
 
     show (options) {
-        var self = this;
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-            if ('timeout' in options) {
-                if (this.isNum(options.timeout)) {
-                    this.setTimer = setTimeout(() => {
-                        if (self.setTimer) {
-                            clearTimeout(self.setTimer);
-                        }
-
-                        {
-                            _currentElements.style.display = 'block';
-                            resetScroll(' codialog-show', true);
-                        }
-
-                        options.timeout = null;
-                    },
-                    options.timeout);
-                }
-                if (this.isFun(options.callback)) {
-                    options.callback(_currentElements);
-                }
-            }
-        } else if (this.isUndefined(options)) {
+            showHandle(this, _currentElements, options)
+        }
+        else if (this.isUndefined(options)) {
             excuteShowAnimation.call(this, `${this.dialogElement} [dialog]`, _currentElements);
         }
 
@@ -125,7 +88,6 @@ class codialog extends animation {
         const footer            = this.find(currentDialogElement, '[footer]');
         const footerButtonGroup = this.find(footer, '[buttonGroup]');
 
-        Object.assign(this.rootDirectory, { dialog, mask, header, body, footer });
 
         // 情况1：传入''字符串
         if (this.isStr(obj) && (this.xString = arguments, this.xString)) {
@@ -167,59 +129,8 @@ class codialog extends animation {
 
         useOptions.apply(this, [{ obj, dialog, mask, header, body, footer, footerButtonGroup, currentDialogElement }]);
 
-        // 默认点击mask隐藏弹出框 点击dialog不会隐藏弹出框
-        var ignoreBorderSideClick = false;
+        mouseEvent(this, dialog, mask)
 
-        mask.onclick = (ea) => {
-            if (ignoreBorderSideClick) {
-                return ignoreBorderSideClick = false, null;
-            }
-            ea = ea || window.event;
-            if ((ea.target || ea.srcElement) == mask) {
-                // 点击外边框 清除timeout未到时间关闭的定时器
-                if (self.setTimer) {
-                    clearTimeout(self.setTimer);
-                }
-
-                self.$(self.dialogElement).style.display = 'none';
-
-                {
-                    // 重置scrollTop属性
-                    classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
-                    classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-                    document.body.style.paddingRight = 0
-                }
-            }
-        }
-
-        dialog.onmousedown = () => {
-            mask.onmouseup = (ea) => {
-                mask.onmouseup = null;
-                ea = ea || window.event;
-                if ((ea.target || ea.srcElement) == mask) {
-                    ignoreBorderSideClick = true;
-                }
-            }
-        }
-
-        mask.onmousedown = () => {
-            dialog.onmouseup = (ea) => {
-                dialog.onmouseup = null;
-                ea = ea || window.event;
-                if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
-                    ignoreBorderSideClick = true;
-                }
-            }
-        }
-
-        if (this.isBoolean(obj.animation) && currentDialogElement) {
-            if (!obj.animation) {
-                if (this.isStr(obj.customAnimation)) {
-                    this.hasAnimation = false;
-                    this.customAnimation = obj.customAnimation;
-                }
-            } else this.hasAnimation = true;
-        }
         return this
     }
 

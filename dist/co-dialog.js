@@ -465,8 +465,7 @@
     function animation(options) {
       _classCallCheck(this, animation);
 
-      this.listItems = [];
-      this.wait = [];
+      this.animationElement = [];
       this.animationName = 'bounceOut';
       this.animationConfig = {};
     } // base on co-ani plugins api
@@ -475,17 +474,12 @@
     _createClass(animation, [{
       key: "animate",
       value: function animate(options) {
-        this.usebind(animation);
-        this.listItems = [options];
-        return this;
-      }
-    }, {
-      key: "usebind",
-      value: function usebind(self) {
+        this.animationElement = [options];
         var that = this;
         animatiomApi.map(function (items) {
-          self.prototype[items] = that.callAnimationApi;
+          animation.prototype[items] = that.callAnimationApi;
         });
+        return this;
       }
     }, {
       key: "callAnimationApi",
@@ -535,41 +529,14 @@
         addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
       }
     }, {
-      key: "delay",
-      value: function delay(options) {
-        if (isExist(options)) this.wait.push(Number(options));
-        return this;
-      }
-    }, {
       key: "render",
       value: function render() {
-        this.excuteAnimation(this.listItems.slice(0), this.animationName, this.animationConfig);
+        this.excuteAnimation(this.animationElement.slice(0), this.animationName, this.animationConfig);
       }
     }]);
 
     return animation;
   }();
-
-  var resetScroll = function resetScroll(attr, isTruth) {
-    var bodyNode = document.body; // 设置body时 不能给body css设置 width:100%
-    // 防止padding不起作用
-
-    var offsetWidth = bodyNode.offsetWidth;
-
-    if (isTruth) {
-      classList(bodyNode, attr, document.body);
-      classList(document.documentElement, attr, document.documentElement);
-      bodyNode.style.paddingRight = "".concat(bodyNode.offsetWidth - offsetWidth, "px");
-    } else {
-      var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
-
-      if (isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
-        classList(document.body, classList(document.body).replace(attr, ''), '');
-        classList(document.documentElement, classList(document.documentElement).replace(attr, ''), '');
-        bodyNode.style.paddingRight = 0;
-      } else return null;
-    }
-  };
 
   var dialogNodeNamePart = ['header', 'body', 'footer'];
   function useOptions() {
@@ -590,11 +557,12 @@
     coDilaogIsMask(this, obj, currentDialogElement);
     onDialogInnertextOrBasestyle(this, obj, header, body, footerButtonGroup);
     onDialogType(this, obj, body);
-    onDialogMethods(this, obj, dialogNodeNamePart);
+    onDialogMethods(this, obj, dialogNodeNamePart, currentDialogElement);
     onDialogIsClose(this, obj, header, footerButtonGroup);
     onDialogShowButton(this, obj, header, footerButtonGroup);
     onDialogAfter(obj, dialog, header, body, footer);
     onDialogOnresize(obj, dialog, currentDialogElement);
+    coDialogAnimation(this, obj, currentDialogElement);
   }
   var onDialogHeaderBodyFooterMethod = function onDialogHeaderBodyFooterMethod(obj, dialog, header, body, footer) {
     // 在执行前处理节点属性设置
@@ -760,16 +728,16 @@
       }
     }
   };
-  var onDialogMethods = function onDialogMethods(self, obj, dialogNodeNamePart) {
+  var onDialogMethods = function onDialogMethods(self, obj, dialogNodeNamePart, currentDialogElement) {
     // 所有子节点都会被获取 进行修改
     // 但是都在before执行之后才执行methods
     if (isFun(obj['methods'])) {
       forEach(selfApi, function (items, index) {
         self[dialogNodeNamePart[index]] = self[items]({
-          children: self.rootDirectory[dialogNodeNamePart[index]]
+          children: self.find(currentDialogElement, "[".concat(dialogNodeNamePart[index], "]"))
         });
       });
-      obj.methods.call(self, self.dialogElement);
+      obj.methods.call(self, currentDialogElement);
     }
   };
   var onDialogIsClose = function onDialogIsClose(self, obj, header, footerButtonGroup) {
@@ -957,6 +925,18 @@
       }
     }
   };
+  var coDialogAnimation = function coDialogAnimation(self, obj, currentDialogElement) {
+    if (isBoolean(obj.animation) && currentDialogElement) {
+      if (obj.animation) {
+        self.hasAnimation = true;
+      } else {
+        if (isStr(obj.customAnimation)) {
+          self.hasAnimation = false;
+          self.customAnimation = obj.customAnimation;
+        }
+      }
+    }
+  };
 
   var dialogTemplate = "\n<div mask=\"\" class=\"codialog-mask\" aria-hidden=\"false\">\n    <div dialog=\"\" class=\"codialog-frame\" role=\"dialog\" aria-dialog=\"true\">\n        <div aria-dialogBox=\"true\" class=\"codialog-box\">\n            <div class=\"codialog-styles\">\n                <div header=\"\" class=\"codialog-styles-head dialog-header\">\n                    <div class=\"codialog-head-content\">\n                        <div title=\"\" ref=\"title\" class=\"codialog-head-title codialog-head-info\">\n                            <span ></span>\n                        </div>\n                        <div close=\"\" ref=\"close\" class=\"codialog-head-close\">\n                            <button type=\"button\" class=\"addClose\">\xD7</button>\n                        </div>\n                    </div>\n                </div>\n                <div body=\"\" class=\"codialog-styles-content dialog-body\">\n                    <div class=\"codialog-content-message\" dialog-body-overflow>\n                        <div class=\"codialog-icon codialog-icon-success\">\n                            <div class=\"codialog-success-ring\"></div>\n                            <span class=\"codialog-icon-success--line-small\"></span>\n                            <span class=\"codialog-icon-success--line-long\"></span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-error\">\n                            <span class=\"codialog-icon-error--line-left\"></span>\n                            <span class=\"codialog-icon-error--line-right\"></span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-warning\">\n                            <span class=\"codialog-icon-error--text\">!</span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-info\">\n                            <span class=\"codialog-icon-info--text\">!</span>\n                        </div>\n                        <div class=\"codialog-icon codialog-icon-question\">\n                            <span class=\"codialog-icon-question--text\">?</span>\n                        </div>\n                        <div message=\"\" ref=\"message\" class=\"codialog-message-text message-text codialog-text\">\n                            <span></span>\n                        </div>\n                    </div>\n                </div>\n                <div footer=\"\" class=\"codialog-styles-foot dialog-footer\">\n                    <div class=\"codialog-foot-button codialog-foot-text\">\n                        <div textGroup=\"\" ref=\"text\" class=\"codialog-text-group\"></div>\n                        <div buttonGroup=\"\" ref=\"button\" class=\"codialog-button-group\">\n                            <button type=\"button\" confirm=\"\" class=\"primary codialog-group-btn\">\u786E\u5B9A</button>\n                            <button type=\"button\" cancle=\"\" class=\"cancle codialog-group-btn\">\u53D6\u6D88</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
@@ -975,13 +955,34 @@
     } else return false;
   }
 
+  var resetScroll = function resetScroll(attr, isTruth) {
+    var bodyNode = document.body; // 设置body时 不能给body css设置 width:100%
+    // 防止padding不起作用
+
+    var offsetWidth = bodyNode.offsetWidth;
+
+    if (isTruth) {
+      classList(bodyNode, attr, document.body);
+      classList(document.documentElement, attr, document.documentElement);
+      bodyNode.style.paddingRight = "".concat(bodyNode.offsetWidth - offsetWidth, "px");
+    } else {
+      var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
+
+      if (isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
+        classList(document.body, classList(document.body).replace(attr, ''), '');
+        classList(document.documentElement, classList(document.documentElement).replace(attr, ''), '');
+        bodyNode.style.paddingRight = 0;
+      } else return null;
+    }
+  };
+
   function excuteShowAnimation(options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn'; // 兼容 animation.
 
     if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
       if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation; // animation动画加载
 
-      this.animate(options).delay(100)[resetDefaultAnimation](resetDefaultAnimation, {
+      this.animate(options)[resetDefaultAnimation](resetDefaultAnimation, {
         type: 'start',
         callback: function callback() {
           currentDialogNode.style.display = 'block';
@@ -999,7 +1000,7 @@
     // 兼容 animation.
     if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
       // animation动画加载
-      this.animate(options).delay(100).fadeOut('fadeOut', {
+      this.animate(options).fadeOut('fadeOut', {
         type: 'end',
         callback: function callback() {
           currentDialogNode.style.display = 'none';
@@ -1020,6 +1021,89 @@
     return parent.querySelectorAll("".concat(childElement));
   };
 
+  var showHandle = function showHandle(self, _currentElements, options) {
+    if (isNum(options.timeout)) {
+      self.setTimer = setTimeout(function () {
+        if (self.setTimer) {
+          clearTimeout(self.setTimer);
+        }
+
+        _currentElements.style.display = 'block';
+        resetScroll(' codialog-show', true);
+        options.timeout = null;
+      }, options.timeout);
+    }
+
+    if (isFun(options.callback)) {
+      options.callback(_currentElements);
+    }
+  };
+  var hideHandle = function hideHandle(self, _currentElements, options) {
+    if (isNum(options.timeout)) {
+      self.setTimer = setTimeout(function () {
+        if (self.setTimer) {
+          clearTimeout(self.setTimer);
+        }
+
+        _currentElements.style.display = 'none';
+        resetScroll(' codialog-show', false);
+      }, options.timeout);
+    }
+
+    if (isFun(options.callback)) {
+      options.callback(_currentElements);
+    }
+  };
+
+  var ignoreBorderSideClick = false;
+  var mouseEvent = function mouseEvent(self, dialog, mask) {
+    // 默认点击mask隐藏弹出框 点击dialog不会隐藏弹出框
+    mask.onclick = function (ea) {
+      if (ignoreBorderSideClick) {
+        return ignoreBorderSideClick = false, null;
+      }
+
+      ea = ea || window.event;
+
+      if ((ea.target || ea.srcElement) == mask) {
+        // 点击外边框 清除timeout未到时间关闭的定时器
+        if (self.setTimer) {
+          clearTimeout(self.setTimer);
+        }
+
+        self.$(self.dialogElement).style.display = 'none';
+        {
+          // 重置scrollTop属性
+          classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
+          classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
+          document.body.style.paddingRight = 0;
+        }
+      }
+    };
+
+    dialog.onmousedown = function () {
+      mask.onmouseup = function (ea) {
+        mask.onmouseup = null;
+        ea = ea || window.event;
+
+        if ((ea.target || ea.srcElement) == mask) {
+          ignoreBorderSideClick = true;
+        }
+      };
+    };
+
+    mask.onmousedown = function () {
+      dialog.onmouseup = function (ea) {
+        dialog.onmouseup = null;
+        ea = ea || window.event;
+
+        if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
+          ignoreBorderSideClick = true;
+        }
+      };
+    };
+  };
+
   var codialog =
   /*#__PURE__*/
   function (_animation) {
@@ -1037,7 +1121,6 @@
       _this.tracker = false;
       _this.mouseoutcount = 0;
       _this.version = 'v2.1.7';
-      _this.rootDirectory = {};
       _this.didDialogList = [];
       _this.hasAnimation = true;
       _this.closeBackValue = false;
@@ -1074,29 +1157,10 @@
     }, {
       key: "hide",
       value: function hide(options) {
-        var self = this;
-
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-          if ('timeout' in options) {
-            if (this.isNum(options.timeout)) {
-              this.setTimer = setTimeout(function () {
-                if (self.setTimer) {
-                  clearTimeout(self.setTimer);
-                }
-
-                {
-                  _currentElements.style.display = 'none';
-                  resetScroll(' codialog-show', false);
-                }
-              }, options.timeout);
-            }
-
-            if (this.isFun(options.callback)) {
-              options.callback(_currentElements);
-            }
-          }
+          hideHandle(this, _currentElements, options);
         } else if (this.isUndefined(options)) {
           excuteHideAnimation.call(this, "".concat(this.dialogElement, " [mask]"), _currentElements);
         }
@@ -1106,30 +1170,10 @@
     }, {
       key: "show",
       value: function show(options) {
-        var self = this;
-
         var _currentElements = this.$(this.dialogElement);
 
         if (this.isObj(options)) {
-          if ('timeout' in options) {
-            if (this.isNum(options.timeout)) {
-              this.setTimer = setTimeout(function () {
-                if (self.setTimer) {
-                  clearTimeout(self.setTimer);
-                }
-
-                {
-                  _currentElements.style.display = 'block';
-                  resetScroll(' codialog-show', true);
-                }
-                options.timeout = null;
-              }, options.timeout);
-            }
-
-            if (this.isFun(options.callback)) {
-              options.callback(_currentElements);
-            }
-          }
+          showHandle(this, _currentElements, options);
         } else if (this.isUndefined(options)) {
           excuteShowAnimation.call(this, "".concat(this.dialogElement, " [dialog]"), _currentElements);
         }
@@ -1139,23 +1183,13 @@
     }, {
       key: "use",
       value: function use(obj, success_config) {
-        var self = this;
         var currentDialogElement = this.$(this.dialogElement);
         var dialog = this.find(currentDialogElement, '[dialog]');
         var mask = this.find(currentDialogElement, '[mask]');
         var header = this.find(currentDialogElement, '[header]');
         var body = this.find(currentDialogElement, '[body]');
         var footer = this.find(currentDialogElement, '[footer]');
-        var footerButtonGroup = this.find(footer, '[buttonGroup]');
-
-        _extends(this.rootDirectory, {
-          dialog: dialog,
-          mask: mask,
-          header: header,
-          body: body,
-          footer: footer
-        }); // 情况1：传入''字符串
-
+        var footerButtonGroup = this.find(footer, '[buttonGroup]'); // 情况1：传入''字符串
 
         if (this.isStr(obj) && (this.xString = arguments, this.xString)) {
           switch (this.xString.length) {
@@ -1206,64 +1240,8 @@
           footer: footer,
           footerButtonGroup: footerButtonGroup,
           currentDialogElement: currentDialogElement
-        }]); // 默认点击mask隐藏弹出框 点击dialog不会隐藏弹出框
-
-        var ignoreBorderSideClick = false;
-
-        mask.onclick = function (ea) {
-          if (ignoreBorderSideClick) {
-            return ignoreBorderSideClick = false, null;
-          }
-
-          ea = ea || window.event;
-
-          if ((ea.target || ea.srcElement) == mask) {
-            // 点击外边框 清除timeout未到时间关闭的定时器
-            if (self.setTimer) {
-              clearTimeout(self.setTimer);
-            }
-
-            self.$(self.dialogElement).style.display = 'none';
-            {
-              // 重置scrollTop属性
-              classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
-              classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-              document.body.style.paddingRight = 0;
-            }
-          }
-        };
-
-        dialog.onmousedown = function () {
-          mask.onmouseup = function (ea) {
-            mask.onmouseup = null;
-            ea = ea || window.event;
-
-            if ((ea.target || ea.srcElement) == mask) {
-              ignoreBorderSideClick = true;
-            }
-          };
-        };
-
-        mask.onmousedown = function () {
-          dialog.onmouseup = function (ea) {
-            dialog.onmouseup = null;
-            ea = ea || window.event;
-
-            if ((ea.target || ea.srcElement) == dialog || dialog.contains(ea.target || ea.srcElement)) {
-              ignoreBorderSideClick = true;
-            }
-          };
-        };
-
-        if (this.isBoolean(obj.animation) && currentDialogElement) {
-          if (!obj.animation) {
-            if (this.isStr(obj.customAnimation)) {
-              this.hasAnimation = false;
-              this.customAnimation = obj.customAnimation;
-            }
-          } else this.hasAnimation = true;
-        }
-
+        }]);
+        mouseEvent(this, dialog, mask);
         return this;
       }
     }, {

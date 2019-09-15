@@ -3,6 +3,8 @@
  - `const of`特换为`map`数组
  - babel编译`es2015`替换`preset-env`
  - `assign`使用原生object方法
+ - 移除this迭代对象和方法
+ - 优化use内部代码使用函数回调
 
  (v2.1.7) <Date:2019/09/01>
  - `webpack`构建工具替换成`gulp`构建工具

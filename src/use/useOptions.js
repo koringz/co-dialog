@@ -1,4 +1,4 @@
-import { isStr, isObj, isFun, isNum, isExist, isNull, isFalse, isTrue, isArray, forEach, trim } from '../staticMethods.js'
+import { isStr, isObj, isFun, isNum, isExist, isNull, isFalse, isTrue, isArray, forEach, trim, isBoolean } from '../staticMethods.js'
 import { addEventListener, preventDefault, removeEventListener, removeChild } from '../domMethods.js'
 import { selfApi } from '../refs.js'
 
@@ -15,11 +15,12 @@ export default function useOptions (...args) {
         coDilaogIsMask(this,obj,currentDialogElement);
         onDialogInnertextOrBasestyle(this,obj,header,body,footerButtonGroup);
         onDialogType(this,obj,body);
-        onDialogMethods(this,obj,dialogNodeNamePart);
+        onDialogMethods(this,obj,dialogNodeNamePart, currentDialogElement);
         onDialogIsClose(this,obj,header,footerButtonGroup);
         onDialogShowButton(this,obj,header,footerButtonGroup);
         onDialogAfter(obj,dialog,header,body,footer);
         onDialogOnresize(obj,dialog,currentDialogElement);
+        coDialogAnimation(this, obj, currentDialogElement)
 }
 
 export const onDialogHeaderBodyFooterMethod = (obj,dialog,header,body,footer) => {
@@ -197,17 +198,17 @@ export const onDialogType = (self,obj,body) => {
     }
 }
 
-export const onDialogMethods = (self,obj,dialogNodeNamePart) => {
+export const onDialogMethods = (self,obj,dialogNodeNamePart, currentDialogElement) => {
 
     // 所有子节点都会被获取 进行修改
     // 但是都在before执行之后才执行methods
     if (isFun(obj['methods'])) {
         forEach(selfApi, (items, index) => {
             self[dialogNodeNamePart[index]] = self[items]({
-                children: self.rootDirectory[dialogNodeNamePart[index]]
+                children: self.find(currentDialogElement, `[${dialogNodeNamePart[index]}]`)
             })
         });
-        obj.methods.call(self,self.dialogElement);
+        obj.methods.call(self,currentDialogElement);
     }
 }
 
@@ -388,6 +389,20 @@ export const onDialogOnresize = (obj,dialog,currentDialogElement) => {
             }
             else {
                 layoutDefaultCenter();
+            }
+        }
+    }
+}
+
+export const coDialogAnimation = (self, obj, currentDialogElement) => {
+    if (isBoolean(obj.animation) && currentDialogElement) {
+        if (obj.animation) {
+            self.hasAnimation = true;
+        }
+        else {
+            if (isStr(obj.customAnimation)) {
+                self.hasAnimation = false;
+                self.customAnimation = obj.customAnimation;
             }
         }
     }
