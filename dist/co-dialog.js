@@ -482,8 +482,9 @@
     }, {
       key: "usebind",
       value: function usebind(self) {
+        var that = this;
         animatiomApi.map(function (items) {
-          self.prototype[items] = self.callAnimationApi;
+          self.prototype[items] = that.callAnimationApi;
         });
       }
     }, {
@@ -1044,7 +1045,6 @@
       _this.customAnimation = 'bounceOut';
       _this.strict = dialogClassNamePart;
       _this.dialogElement = options || null;
-      defaultRefs(codialog.prototype);
       return _this;
     }
 
@@ -1289,6 +1289,7 @@
 
     return codialog;
   }(animation);
+  defaultRefs(codialog.prototype);
 
   _extends(codialog.prototype, staticMethods);
 

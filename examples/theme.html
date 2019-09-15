@@ -30,7 +30,10 @@
 <script type="text/javascript">
     const themePurple = Coog
         .app('.theme-purple')
-        .use({
+
+        console.log(themePurple)
+
+        themePurple.use({
             title: 'theme',
             message: 'Your have seen the purple theme',
             isGesture: true,
@@ -45,6 +48,7 @@
         })
         .show()
 
+        console.log(themePurple)
         const newXox = Coog.app('.newXox').use('success clear theme')
 </script>
 

@@ -29,8 +29,6 @@ class codialog extends animation {
         this.customAnimation = 'bounceOut';
         this.strict = dialogClassNamePart;
         this.dialogElement = options || null;
-
-        defaultRefs(codialog.prototype)
     }
 
     app (params) {
@@ -243,6 +241,8 @@ class codialog extends animation {
     }
 };
 
+
+defaultRefs(codialog.prototype)
 
 Object.assign(codialog.prototype, staticMethods);
 

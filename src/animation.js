@@ -20,8 +20,9 @@ export default class animation {
     }
 
     usebind (self) {
+        var that = this
         animatiomApi.map(items => {
-            self.prototype[items] = self.callAnimationApi
+            self.prototype[items] = that.callAnimationApi
         })
     }
 
