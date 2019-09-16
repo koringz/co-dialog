@@ -219,16 +219,6 @@
     } else {
       return false;
     }
-  }; // the first params exists
-  // and the second params is the callback methods
-  // this parameters will injected to fallback methods
-  // we can used the params as array objects
-  // call paramsAndCallback()
-
-  var paramsAndCallback = function paramsAndCallback(params, fallback) {
-    if (params) {
-      fallback(params);
-    }
   };
 
   var staticMethods = /*#__PURE__*/Object.freeze({
@@ -251,8 +241,7 @@
     clone: clone,
     objectKey: objectKey,
     inArray: inArray,
-    isArray: isArray,
-    paramsAndCallback: paramsAndCallback
+    isArray: isArray
   });
 
   var selfApi = ['onHeader', 'onBody', 'onFooter'];
@@ -1014,6 +1003,42 @@
     }
   }
 
+  var getContext = function getContext(params) {
+    var dialogElement = this.$(this.dialogElement);
+
+    if (dialogElement) {
+      var message = this.find(dialogElement, '[message]');
+
+      if (message) {
+        if (isFun(params)) {
+          return params.call(this, message);
+        }
+
+        return message.innerHTML;
+      }
+    }
+  };
+  var getTitle = function getTitle(params) {
+    var dialogElement = this.$(this.dialogElement);
+
+    if (dialogElement) {
+      var title = this.find(dialogElement, '[title]');
+
+      if (title) {
+        if (isFun(params)) {
+          return params.call(this, title);
+        }
+
+        return title.innerHTML;
+      }
+    }
+  };
+
+  var callOptions = /*#__PURE__*/Object.freeze({
+    getContext: getContext,
+    getTitle: getTitle
+  });
+
   var getNodeElement = function getNodeElement(parent, childElement) {
     return parent.querySelector("".concat(childElement));
   };
@@ -1269,7 +1294,7 @@
   }(animation);
   defaultRefs(codialog.prototype);
 
-  _extends(codialog.prototype, staticMethods);
+  _extends(codialog.prototype, staticMethods, callOptions);
 
   function operatorChain() {}
   /*

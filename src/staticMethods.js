@@ -102,14 +102,3 @@ export const isArray = (arr) => {
         return false;
     }
 }
-
-// the first params exists
-// and the second params is the callback methods
-// this parameters will injected to fallback methods
-// we can used the params as array objects
-// call paramsAndCallback()
-export const paramsAndCallback = (params, fallback) => {
-  if (params) {
-    fallback(params)
-  }
-}

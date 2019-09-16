@@ -5,6 +5,7 @@ import appPushNewElements from './app/appContext.js'
 import excuteShowAnimation from './showAnimation.js'
 import excuteHideAnimation from './hideAnimation.js'
 import * as staticMethods from './staticMethods.js'
+import * as callOptions from './callOptions.js'
 import { contains } from './domMethods.js'
 import { getNodeElement, getAllNodeElement} from './domElement.js'
 import { $default, dialogClassNamePart } from './defaultParameters.js'
@@ -155,6 +156,6 @@ class codialog extends animation {
 
 defaultRefs(codialog.prototype)
 
-Object.assign(codialog.prototype, staticMethods);
+Object.assign(codialog.prototype, staticMethods, callOptions);
 
 export default codialog

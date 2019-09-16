@@ -5,6 +5,8 @@
  - `assign`使用原生object方法
  - 移除this迭代对象和方法
  - 优化use内部代码使用函数回调
+ - 清除`paramsAndCallback`方法
+ - 添加新方法`getContext`获取内容信息和`getTitle`获取标题信息
 
  (v2.1.7) <Date:2019/09/01>
  - `webpack`构建工具替换成`gulp`构建工具
