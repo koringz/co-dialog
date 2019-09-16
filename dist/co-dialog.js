@@ -442,11 +442,6 @@
     "WebkitAnimation": "webkitAnimationStart",
     'MSAnimation': 'MSAnimationStart'
   };
-  var dialogClassNamePart = {
-    header: '.dialog-header',
-    body: '.dialog-body',
-    footer: '.dialog-footer'
-  };
 
   var animation =
   /*#__PURE__*/
@@ -579,6 +574,8 @@
       self.hide({
         timeout: obj.timeout
       });
+    } else {
+      window.console.warn("this timeout must be a number.");
     }
   };
   var coDilaogIsMask = function coDilaogIsMask(self, obj, currentDialogElement) {
@@ -1144,14 +1141,11 @@
       _this.xString = [];
       _this.setTimer = null;
       _this.tracker = false;
-      _this.mouseoutcount = 0;
       _this.version = 'v2.1.7';
-      _this.didDialogList = [];
       _this.hasAnimation = true;
       _this.closeBackValue = false;
       _this.cacheDialogElement = [];
       _this.customAnimation = 'bounceOut';
-      _this.strict = dialogClassNamePart;
       _this.dialogElement = options || null;
       return _this;
     }

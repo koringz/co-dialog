@@ -69,9 +69,3 @@ export const supportBrowserAnimationEventOfName_start = {
     "WebkitAnimation"   : "webkitAnimationStart",
     'MSAnimation'       : 'MSAnimationStart'
 };
-
-export const dialogClassNamePart = {
-    header: '.dialog-header',
-    body: '.dialog-body',
-    footer: '.dialog-footer'
-};

@@ -8,7 +8,7 @@ import * as staticMethods from './staticMethods.js'
 import * as callOptions from './callOptions.js'
 import { contains } from './domMethods.js'
 import { getNodeElement, getAllNodeElement} from './domElement.js'
-import { $default, dialogClassNamePart } from './defaultParameters.js'
+import { $default } from './defaultParameters.js'
 import { showHandle, hideHandle } from './display/block.js'
 import { mouseEvent } from './mouseEvent.js'
 
@@ -21,14 +21,11 @@ class codialog extends animation {
         this.xString = [];
         this.setTimer = null;
         this.tracker = false;
-        this.mouseoutcount = 0;
         this.version = 'v2.1.7';
-        this.didDialogList = [];
         this.hasAnimation = true;
         this.closeBackValue = false;
         this.cacheDialogElement = [];
         this.customAnimation = 'bounceOut';
-        this.strict = dialogClassNamePart;
         this.dialogElement = options || null;
     }
 
