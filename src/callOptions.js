@@ -1,27 +1,47 @@
 import  { isFun } from './staticMethods.js'
 
-export const getContext = function (params) {
+const getMessage = function (attr, msg) {
     let dialogElement = this.$(this.dialogElement)
     if (dialogElement) {
-        let message = this.find(dialogElement,'[message]')
-        if (message) {
-            if (isFun(params)) {
-                return params.call(this, message)
-            }
-            return message.innerHTML
+        attr = this.find(dialogElement,attr)
+        if (attr) {
+            return attr[msg]
         }
     }
 }
 
-export const getTitle = function (params) {
+const getStyle = function (attr, properties) {
     let dialogElement = this.$(this.dialogElement)
     if (dialogElement) {
-        let title = this.find(dialogElement,'[title]')
-        if (title) {
-            if (isFun(params)) {
-                return params.call(this, title)
-            }
-            return title.innerHTML
+        attr = this.find(dialogElement,attr)
+        if (attr) {
+            return attr.style[properties]
         }
     }
+}
+
+const setStyle = function (attr, properties, params) {
+    let dialogElement = this.$(this.dialogElement)
+    if (dialogElement) {
+        attr = this.find(dialogElement,attr)
+        if (attr) {
+            attr.style[properties] = params
+        }
+    }
+}
+
+export const getContent = function () {
+    return getMessage.call(this, '[message]', 'innerHTML')
+}
+
+export const getTitle = function () {
+    return getMessage.call(this, '[title]', 'innerHTML')
+}
+
+export const getTitleColor = function () {
+    return getStyle.call(this, '[title]', 'color')
+}
+
+export const setTitleColor = function (params) {
+    return setStyle.call(this, '[title]', 'color', params)
 }

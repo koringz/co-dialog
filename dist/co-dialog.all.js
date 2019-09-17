@@ -574,8 +574,6 @@
       self.hide({
         timeout: obj.timeout
       });
-    } else {
-      window.console.warn("this timeout must be a number.");
     }
   };
   var coDilaogIsMask = function coDilaogIsMask(self, obj, currentDialogElement) {
@@ -1000,40 +998,60 @@
     }
   }
 
-  var getContext = function getContext(params) {
+  var getMessage = function getMessage(attr, msg) {
     var dialogElement = this.$(this.dialogElement);
 
     if (dialogElement) {
-      var message = this.find(dialogElement, '[message]');
+      attr = this.find(dialogElement, attr);
 
-      if (message) {
-        if (isFun(params)) {
-          return params.call(this, message);
-        }
-
-        return message.innerHTML;
+      if (attr) {
+        return attr[msg];
       }
     }
   };
-  var getTitle = function getTitle(params) {
+
+  var getStyle = function getStyle(attr, properties) {
     var dialogElement = this.$(this.dialogElement);
 
     if (dialogElement) {
-      var title = this.find(dialogElement, '[title]');
+      attr = this.find(dialogElement, attr);
 
-      if (title) {
-        if (isFun(params)) {
-          return params.call(this, title);
-        }
-
-        return title.innerHTML;
+      if (attr) {
+        return attr.style[properties];
       }
     }
+  };
+
+  var setStyle = function setStyle(attr, properties, params) {
+    var dialogElement = this.$(this.dialogElement);
+
+    if (dialogElement) {
+      attr = this.find(dialogElement, attr);
+
+      if (attr) {
+        attr.style[properties] = params;
+      }
+    }
+  };
+
+  var getContent = function getContent() {
+    return getMessage.call(this, '[message]', 'innerHTML');
+  };
+  var getTitle = function getTitle() {
+    return getMessage.call(this, '[title]', 'innerHTML');
+  };
+  var getTitleColor = function getTitleColor() {
+    return getStyle.call(this, '[title]', 'color');
+  };
+  var setTitleColor = function setTitleColor(params) {
+    return setStyle.call(this, '[title]', 'color', params);
   };
 
   var callOptions = /*#__PURE__*/Object.freeze({
-    getContext: getContext,
-    getTitle: getTitle
+    getContent: getContent,
+    getTitle: getTitle,
+    getTitleColor: getTitleColor,
+    setTitleColor: setTitleColor
   });
 
   var getNodeElement = function getNodeElement(parent, childElement) {

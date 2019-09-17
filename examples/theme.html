@@ -28,7 +28,7 @@
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.all.js"></script>
 <script type="text/javascript">
-    const themePurple = Coog
+    window.themePurple = Coog
         .app('.theme-purple')
 
 
@@ -47,9 +47,12 @@
         })
         .show()
 
-        console.log(themePurple)
+        console.log(themePurple.getContent())
+        console.log(themePurple.getTitle())
+        console.log(themePurple.getTitleColor())
+        console.log(themePurple.setTitleColor('#16e'))
+
         const newXox = Coog.app('.newXox').use('success clear theme')
-        console.log(newXox)
 </script>
 
 </html>
