@@ -1,4 +1,4 @@
-import { classList } from './domMethods.js'
+import resetScroll from './resetScroll.js'
 
 let ignoreBorderSideClick = false;
 
@@ -17,12 +17,11 @@ export const mouseEvent = (self, dialog, mask) => {
 
             self.$(self.dialogElement).style.display = 'none';
 
-            {
-                // 重置scrollTop属性
-                classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
-                classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-                document.body.style.paddingRight = 0
-            }
+            // 重置scrollTop属性
+            resetScroll({
+                state: 'remove',
+                value: ' codialog-show'
+            });
         }
     }
 

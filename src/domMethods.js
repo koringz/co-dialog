@@ -66,29 +66,13 @@ export const createDivAndSetAttribute = (options) => {
     return createDiv
 }
 
-// compatiblity
-function eachClassName (_splitArrItems, className) {
-    var params = '';
-    for(var len = _splitArrItems.length, kk = 0; kk < len; kk++) {
-        // disabled changed the parameters of type. maybe there are HTML elements
-        if (typeof _splitArrItems[kk] == 'object') {
-            params += _splitArrItems[kk][className]
+export function setClassName (arrNode, callback) {
+    for (let node of arrNode) {
+        if (node.classList) {
+            node.setAttribute('class', callback(node.classList.value));
+        }
+        else if (items.className) {
+            node.setAttribute('class', callback(node.className.value));
         }
     }
-    return params
-}
-
-export function classList (nowNodeList, params) {
-    var argTransformToArray = [Array.prototype.slice.apply(arguments).slice(2)]
-
-    if (isStr(params)) {
-        if (nowNodeList.classList) {
-            nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'classList') + params);
-        }
-        else if (nowNodeList.className) {
-            nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'className') + params);
-        }
-        else return null;
-    }
-    else return nowNodeList.className || nowNodeList.classList;
 }

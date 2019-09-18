@@ -1,6 +1,6 @@
 import { isFun } from './staticMethods.js'
 import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
-import { addEventListener, removeEventListener, classList } from './domMethods.js'
+import { addEventListener, removeEventListener, setClassName } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
 export default class animation {
@@ -36,8 +36,16 @@ export default class animation {
         var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
-        if (showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList,` ${animationClass} animatedHalf`, getNodeList);
-        else classList(getNodeList,` ${animationClass} animated`, getNodeList);
+        if (showAndHideApi.type.toLowerCase() == 'end') {
+            setClassName([getNodeList], (params) => {
+                return params + ` ${animationClass} animatedHalf`
+            });
+        }
+        else {
+            setClassName([getNodeList], (params) => {
+                return params + ` ${animationClass} animated`
+            });
+        }
 
         var callAnimationEventStart = () => {
             var typeStartWith = showAndHideApi.type;
@@ -55,10 +63,14 @@ export default class animation {
             // 显示和隐藏的弹出框 都会监听一次结束
             if (typeStartWith.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
-                classList(getNodeList, classList(getNodeList).replace(` ${animationClass} animatedHalf`,''), '');
+                setClassName([getNodeList], (params) => {
+                    return params.replace(new RegExp(` ${animationClass} animatedHalf`, 'gm'), '')
+                });
             }
             else {
-                classList(getNodeList, classList(getNodeList).replace(` ${animationClass} animated`,''), '')
+                setClassName([getNodeList], (params) => {
+                    return params.replace(new RegExp(` ${animationClass} animated`, 'gm'), '')
+                });
             }
 
             {

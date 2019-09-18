@@ -9,7 +9,10 @@ export const showHandle = (self, _currentElements, options) => {
             }
 
             _currentElements.style.display = 'block';
-            resetScroll(' codialog-show', true);
+            resetScroll({
+                state: 'add',
+                value: ' codialog-show'
+            });
             options.timeout = null;
         },
         options.timeout);
@@ -28,7 +31,10 @@ export const hideHandle = (self, _currentElements, options) => {
             }
 
             _currentElements.style.display = 'none';
-            resetScroll(' codialog-show', false);
+            resetScroll({
+                state: 'remove',
+                value: ' codialog-show'
+            });
         },
         options.timeout);
     }

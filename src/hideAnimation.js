@@ -10,13 +10,19 @@ export default function excuteHideAnimation (options, currentDialogNode) {
             type: 'end',
             callback: function () {
                 currentDialogNode.style.display = 'none';
-                resetScroll(' codialog-show', false);
+                resetScroll({
+                    state: 'remove',
+                    value: ' codialog-show'
+                });
             }
         }).render();
     }
     else {
         // ie9 不兼容 animation.
         currentDialogNode.style.display = 'none';
-        resetScroll(' codialog-show', false);
+        resetScroll({
+            state: 'remove',
+            value: ' codialog-show'
+        });
     }
 }

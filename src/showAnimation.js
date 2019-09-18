@@ -14,7 +14,10 @@ export default function excuteShowAnimation (options, currentDialogNode) {
             type: 'start',
             callback: () => {
                 currentDialogNode.style.display = 'block';
-                resetScroll(' codialog-show', true);
+                resetScroll({
+                    state: 'add',
+                    value: ' codialog-show'
+                });
             }
         })
         .render();
@@ -22,6 +25,9 @@ export default function excuteShowAnimation (options, currentDialogNode) {
     else {
         // ie9 不兼容 animation.
         currentDialogNode.style.display = 'block';
-        resetScroll(' codialog-show', true);
+        resetScroll({
+            state: 'add',
+            value: ' codialog-show'
+        });
     }
 }

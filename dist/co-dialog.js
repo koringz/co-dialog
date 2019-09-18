@@ -337,31 +337,36 @@
     }
 
     return createDiv;
-  }; // compatiblity
+  };
+  function setClassName(arrNode, callback) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-  function eachClassName(_splitArrItems, className) {
-    var params = '';
+    try {
+      for (var _iterator = arrNode[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var node = _step.value;
 
-    for (var len = _splitArrItems.length, kk = 0; kk < len; kk++) {
-      // disabled changed the parameters of type. maybe there are HTML elements
-      if (_typeof(_splitArrItems[kk]) == 'object') {
-        params += _splitArrItems[kk][className];
+        if (node.classList) {
+          node.setAttribute('class', callback(node.classList.value));
+        } else if (items.className) {
+          node.setAttribute('class', callback(node.className.value));
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
       }
     }
-
-    return params;
-  }
-
-  function classList(nowNodeList, params) {
-    var argTransformToArray = [Array.prototype.slice.apply(arguments).slice(2)];
-
-    if (isStr(params)) {
-      if (nowNodeList.classList) {
-        nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'classList') + params);
-      } else if (nowNodeList.className) {
-        nowNodeList.setAttribute('class', eachClassName(argTransformToArray[0], 'className') + params);
-      } else return null;
-    } else return nowNodeList.className || nowNodeList.classList;
   }
 
   // static parameters
@@ -481,7 +486,16 @@
         var getNodeList = document.querySelector(nodelist);
         var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
-        if (showAndHideApi.type.toLowerCase() == 'end') classList(getNodeList, " ".concat(animationClass, " animatedHalf"), getNodeList);else classList(getNodeList, " ".concat(animationClass, " animated"), getNodeList);
+
+        if (showAndHideApi.type.toLowerCase() == 'end') {
+          setClassName([getNodeList], function (params) {
+            return params + " ".concat(animationClass, " animatedHalf");
+          });
+        } else {
+          setClassName([getNodeList], function (params) {
+            return params + " ".concat(animationClass, " animated");
+          });
+        }
 
         var callAnimationEventStart = function callAnimationEventStart() {
           var typeStartWith = showAndHideApi.type; // 2种情况
@@ -498,9 +512,13 @@
 
           if (typeStartWith.toLowerCase() == 'end') {
             showAndHideApi.callback(animationClass);
-            classList(getNodeList, classList(getNodeList).replace(" ".concat(animationClass, " animatedHalf"), ''), '');
+            setClassName([getNodeList], function (params) {
+              return params.replace(new RegExp(" ".concat(animationClass, " animatedHalf"), 'gm'), '');
+            });
           } else {
-            classList(getNodeList, classList(getNodeList).replace(" ".concat(animationClass, " animated"), ''), '');
+            setClassName([getNodeList], function (params) {
+              return params.replace(new RegExp(" ".concat(animationClass, " animated"), 'gm'), '');
+            });
           }
 
           {
@@ -939,24 +957,33 @@
     } else return false;
   }
 
-  var resetScroll = function resetScroll(attr, isTruth) {
-    var bodyNode = document.body; // 设置body时 不能给body css设置 width:100%
+  /*
+   *  重置scrollTop属性
+   *  option = {
+   *      state: 'add'|| 'remove',
+   *      value: ' codialog-show'
+   *  }
+  */
+
+  var resetScroll = function resetScroll(option) {
+    var body = document.body;
+    var domEl = document.documentElement; // 设置body时 不能给body css设置 width:100%
     // 防止padding不起作用
 
-    var offsetWidth = bodyNode.offsetWidth;
+    var offsetWidth = body.offsetWidth;
 
-    if (isTruth) {
-      classList(bodyNode, attr, document.body);
-      classList(document.documentElement, attr, document.documentElement);
-      bodyNode.style.paddingRight = "".concat(bodyNode.offsetWidth - offsetWidth, "px");
-    } else {
-      var ignoreZoreClass = classList(document.body) || classList(document.documentElement);
+    if (option.state === 'add') {
+      setClassName([body, domEl], function (params) {
+        return params + option.value;
+      });
+      domEl.style.paddingRight = body.style.paddingRight = "".concat(body.offsetWidth - offsetWidth, "px");
+    }
 
-      if (isExist(ignoreZoreClass) && search(ignoreZoreClass, attr)) {
-        classList(document.body, classList(document.body).replace(attr, ''), '');
-        classList(document.documentElement, classList(document.documentElement).replace(attr, ''), '');
-        bodyNode.style.paddingRight = 0;
-      } else return null;
+    if (option.state === 'remove') {
+      setClassName([body, domEl], function (params) {
+        return params.replace(new RegExp(option.value, 'gm'), '');
+      });
+      domEl.style.paddingRight = body.style.paddingRight = 0;
     }
   };
 
@@ -970,13 +997,19 @@
         type: 'start',
         callback: function callback() {
           currentDialogNode.style.display = 'block';
-          resetScroll(' codialog-show', true);
+          resetScroll({
+            state: 'add',
+            value: ' codialog-show'
+          });
         }
       }).render();
     } else {
       // ie9 不兼容 animation.
       currentDialogNode.style.display = 'block';
-      resetScroll(' codialog-show', true);
+      resetScroll({
+        state: 'add',
+        value: ' codialog-show'
+      });
     }
   }
 
@@ -988,13 +1021,19 @@
         type: 'end',
         callback: function callback() {
           currentDialogNode.style.display = 'none';
-          resetScroll(' codialog-show', false);
+          resetScroll({
+            state: 'remove',
+            value: ' codialog-show'
+          });
         }
       }).render();
     } else {
       // ie9 不兼容 animation.
       currentDialogNode.style.display = 'none';
-      resetScroll(' codialog-show', false);
+      resetScroll({
+        state: 'remove',
+        value: ' codialog-show'
+      });
     }
   }
 
@@ -1069,7 +1108,10 @@
         }
 
         _currentElements.style.display = 'block';
-        resetScroll(' codialog-show', true);
+        resetScroll({
+          state: 'add',
+          value: ' codialog-show'
+        });
         options.timeout = null;
       }, options.timeout);
     }
@@ -1086,7 +1128,10 @@
         }
 
         _currentElements.style.display = 'none';
-        resetScroll(' codialog-show', false);
+        resetScroll({
+          state: 'remove',
+          value: ' codialog-show'
+        });
       }, options.timeout);
     }
 
@@ -1111,13 +1156,12 @@
           clearTimeout(self.setTimer);
         }
 
-        self.$(self.dialogElement).style.display = 'none';
-        {
-          // 重置scrollTop属性
-          classList(document.body, classList(document.body).replace(' codialog-show', ''), '');
-          classList(document.documentElement, classList(document.documentElement).replace(' codialog-show', ''), '');
-          document.body.style.paddingRight = 0;
-        }
+        self.$(self.dialogElement).style.display = 'none'; // 重置scrollTop属性
+
+        resetScroll({
+          state: 'remove',
+          value: ' codialog-show'
+        });
       }
     };
 
@@ -1311,7 +1355,6 @@
   function operatorChain() {}
   /*
    * 打通`Coog`库外部和内部进行连接起来
-   * 去掉`hide`和`show`方法
    * 并不是默认执行显示和隐藏,而是根据用户自定义设置`hide`和`show`实现需求功能.
    * 默认点击阴影部分会自动隐藏弹出框
    * Coog.app('.codialog').use({title: 'hello world! ^_^'})
