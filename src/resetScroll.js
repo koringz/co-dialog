@@ -4,7 +4,7 @@ import { setClassName } from './domMethods.js'
 /*
  *  重置scrollTop属性
  *  option = {
- *      state: 'add'|| 'remove',
+ *      name: 'add'|| 'remove',
  *      value: ' codialog-show'
  *  }
 */
@@ -15,17 +15,13 @@ const resetScroll = function (option) {
     // 防止padding不起作用
     const { offsetWidth } = body;
 
-    if (option.state === 'add') {
-        setClassName([body,domEl], (params) => {
-            return params + option.value
-        });
-        domEl.style.paddingRight = body.style.paddingRight = `${body.offsetWidth - offsetWidth}px`
+    if (option.name === 'add') {
+        setClassName([body,domEl], params => params + option.value);
+        body.style.paddingRight = `${body.offsetWidth - offsetWidth}px`
     }
-    if (option.state === 'remove') {
-        setClassName([body,domEl], (params) => {
-            return params.replace(new RegExp(option.value, 'gm'), '')
-        });
-        domEl.style.paddingRight = body.style.paddingRight = 0
+    if (option.name === 'remove') {
+        setClassName([body,domEl], params => params.replace(new RegExp(option.value, 'gm'), ''));
+        body.style.paddingRight = 0
     }
 }
 

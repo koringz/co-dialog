@@ -10,7 +10,7 @@ export const showHandle = (self, _currentElements, options) => {
 
             _currentElements.style.display = 'block';
             resetScroll({
-                state: 'add',
+                name: 'add',
                 value: ' codialog-show'
             });
             options.timeout = null;
@@ -32,7 +32,7 @@ export const hideHandle = (self, _currentElements, options) => {
 
             _currentElements.style.display = 'none';
             resetScroll({
-                state: 'remove',
+                name: 'remove',
                 value: ' codialog-show'
             });
         },

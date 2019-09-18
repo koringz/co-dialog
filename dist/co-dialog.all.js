@@ -448,6 +448,8 @@
     'MSAnimation': 'MSAnimationStart'
   };
 
+  var aniConfig = {};
+
   var animation =
   /*#__PURE__*/
   function () {
@@ -456,7 +458,6 @@
 
       this.animationElement = [];
       this.animationName = 'bounceOut';
-      this.animationConfig = {};
     } // base on co-ani plugins api
 
 
@@ -474,10 +475,12 @@
       key: "callAnimationApi",
       value: function callAnimationApi(_animationName, _animationConfig) {
         this.animationName = _animationName;
-        this.animationConfig = _animationConfig; // 开始执行初始回调  第一次执行动画 需要display : block
+        aniConfig = _animationConfig; // 开始执行初始回调  第一次执行动画 需要display : block
 
-        var callback = _animationConfig.callback;
-        if (_animationConfig.type == 'start' && isFun(callback)) callback();
+        if (aniConfig.type === 'start' && isFun(aniConfig.callback)) {
+          aniConfig.callback();
+        }
+
         return this;
       }
     }, {
@@ -533,7 +536,7 @@
     }, {
       key: "render",
       value: function render() {
-        this.excuteAnimation(this.animationElement.slice(0), this.animationName, this.animationConfig);
+        this.excuteAnimation(this.animationElement.slice(0), this.animationName, aniConfig);
       }
     }]);
 
@@ -960,7 +963,7 @@
   /*
    *  重置scrollTop属性
    *  option = {
-   *      state: 'add'|| 'remove',
+   *      name: 'add'|| 'remove',
    *      value: ' codialog-show'
    *  }
   */
@@ -972,18 +975,18 @@
 
     var offsetWidth = body.offsetWidth;
 
-    if (option.state === 'add') {
+    if (option.name === 'add') {
       setClassName([body, domEl], function (params) {
         return params + option.value;
       });
-      domEl.style.paddingRight = body.style.paddingRight = "".concat(body.offsetWidth - offsetWidth, "px");
+      body.style.paddingRight = "".concat(body.offsetWidth - offsetWidth, "px");
     }
 
-    if (option.state === 'remove') {
+    if (option.name === 'remove') {
       setClassName([body, domEl], function (params) {
         return params.replace(new RegExp(option.value, 'gm'), '');
       });
-      domEl.style.paddingRight = body.style.paddingRight = 0;
+      body.style.paddingRight = 0;
     }
   };
 
@@ -998,7 +1001,7 @@
         callback: function callback() {
           currentDialogNode.style.display = 'block';
           resetScroll({
-            state: 'add',
+            name: 'add',
             value: ' codialog-show'
           });
         }
@@ -1007,7 +1010,7 @@
       // ie9 不兼容 animation.
       currentDialogNode.style.display = 'block';
       resetScroll({
-        state: 'add',
+        name: 'add',
         value: ' codialog-show'
       });
     }
@@ -1022,7 +1025,7 @@
         callback: function callback() {
           currentDialogNode.style.display = 'none';
           resetScroll({
-            state: 'remove',
+            name: 'remove',
             value: ' codialog-show'
           });
         }
@@ -1031,7 +1034,7 @@
       // ie9 不兼容 animation.
       currentDialogNode.style.display = 'none';
       resetScroll({
-        state: 'remove',
+        name: 'remove',
         value: ' codialog-show'
       });
     }
@@ -1109,7 +1112,7 @@
 
         _currentElements.style.display = 'block';
         resetScroll({
-          state: 'add',
+          name: 'add',
           value: ' codialog-show'
         });
         options.timeout = null;
@@ -1129,7 +1132,7 @@
 
         _currentElements.style.display = 'none';
         resetScroll({
-          state: 'remove',
+          name: 'remove',
           value: ' codialog-show'
         });
       }, options.timeout);
@@ -1159,7 +1162,7 @@
         self.$(self.dialogElement).style.display = 'none'; // 重置scrollTop属性
 
         resetScroll({
-          state: 'remove',
+          name: 'remove',
           value: ' codialog-show'
         });
       }

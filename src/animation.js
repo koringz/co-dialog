@@ -3,11 +3,11 @@ import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { addEventListener, removeEventListener, setClassName } from './domMethods.js'
 import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
 
+let aniConfig = {};
 export default class animation {
     constructor (options) {
         this.animationElement = [];
         this.animationName = 'bounceOut';
-        this.animationConfig = {};
     }
 
     // base on co-ani plugins api
@@ -24,10 +24,11 @@ export default class animation {
 
     callAnimationApi (_animationName,_animationConfig) {
         this.animationName = _animationName;
-        this.animationConfig = _animationConfig;
+        aniConfig = _animationConfig;
         // 开始执行初始回调  第一次执行动画 需要display : block
-        var callback = _animationConfig.callback;
-        if (_animationConfig.type == 'start' && isFun(callback)) callback();
+        if (aniConfig.type === 'start' && isFun(aniConfig.callback)) {
+            aniConfig.callback();
+        }
         return this;
     }
 
@@ -37,14 +38,10 @@ export default class animation {
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
         if (showAndHideApi.type.toLowerCase() == 'end') {
-            setClassName([getNodeList], (params) => {
-                return params + ` ${animationClass} animatedHalf`
-            });
+            setClassName([getNodeList], params => params + ` ${animationClass} animatedHalf`);
         }
         else {
-            setClassName([getNodeList], (params) => {
-                return params + ` ${animationClass} animated`
-            });
+            setClassName([getNodeList], params => params + ` ${animationClass} animated`);
         }
 
         var callAnimationEventStart = () => {
@@ -63,14 +60,10 @@ export default class animation {
             // 显示和隐藏的弹出框 都会监听一次结束
             if (typeStartWith.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
-                setClassName([getNodeList], (params) => {
-                    return params.replace(new RegExp(` ${animationClass} animatedHalf`, 'gm'), '')
-                });
+                setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animatedHalf`, 'gm'), '') );
             }
             else {
-                setClassName([getNodeList], (params) => {
-                    return params.replace(new RegExp(` ${animationClass} animated`, 'gm'), '')
-                });
+                setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animated`, 'gm'), '') );
             }
 
             {
@@ -84,6 +77,6 @@ export default class animation {
     }
 
     render () {
-        this.excuteAnimation(this.animationElement.slice(0),this.animationName,this.animationConfig);
+        this.excuteAnimation(this.animationElement.slice(0),this.animationName,aniConfig);
     }
 }

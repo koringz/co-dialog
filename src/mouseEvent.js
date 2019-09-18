@@ -19,7 +19,7 @@ export const mouseEvent = (self, dialog, mask) => {
 
             // 重置scrollTop属性
             resetScroll({
-                state: 'remove',
+                name: 'remove',
                 value: ' codialog-show'
             });
         }
