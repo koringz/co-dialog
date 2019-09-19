@@ -1,7 +1,7 @@
 import { isFun } from './staticMethods.js'
 import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
 import { addEventListener, removeEventListener, setClassName } from './domMethods.js'
-import { animatiomApi, supportBrowserAnimationEventOfName_end, supportBrowserAnimationEventOfName_start } from './defaultParameters.js'
+import { animatiomApi, supportBrowserAnimationEventOfName_start, supportBrowserAnimationEventOfName_final } from './defaultParameters.js'
 
 let aniConfig = {};
 export default class animation {
@@ -34,45 +34,41 @@ export default class animation {
 
     excuteAnimation (nodelist,animationClass, showAndHideApi) {
         var getNodeList = document.querySelector(nodelist);
-        var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
+        var supportsAntEvent_final = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_final);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
         if (showAndHideApi.type.toLowerCase() == 'end') {
             setClassName([getNodeList], params => params + ` ${animationClass} animatedHalf`);
         }
-        else {
+        if (showAndHideApi.type.toLowerCase() == 'start') {
             setClassName([getNodeList], params => params + ` ${animationClass} animated`);
         }
 
         var callAnimationEventStart = () => {
-            var typeStartWith = showAndHideApi.type;
             // 2种情况
             // 显示弹出框时 有一次动画开始 到结束过程
             // 隐藏弹出框时 也有一次动画开始 到结束过程
             // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
             // 而之前隐藏的弹出框  不可见 就不会立马被监听
-            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventEnd);
+            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
         };
 
-        var callAnimationEventEnd = () => {
-            var typeStartWith = showAndHideApi.type;
-
+        var callAnimationEventFinal = () => {
             // 显示和隐藏的弹出框 都会监听一次结束
-            if (typeStartWith.toLowerCase() == 'end') {
+            if (showAndHideApi.type.toLowerCase() == 'end') {
                 showAndHideApi.callback(animationClass)
                 setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animatedHalf`, 'gm'), '') );
             }
-            else {
+
+            if (showAndHideApi.type.toLowerCase() == 'start') {
                 setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animated`, 'gm'), '') );
             }
 
-            {
-                removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
-                removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
-            }
+            removeEventListener(getNodeList, supportsAntEvent_final, callAnimationEventFinal);
+            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
         };
 
-        addEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
+        addEventListener(getNodeList, supportsAntEvent_final, callAnimationEventFinal);
         addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
     }
 

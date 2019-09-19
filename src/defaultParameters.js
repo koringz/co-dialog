@@ -54,18 +54,18 @@ export const animatiomApi = [
     'slideOutDown', 'slideOutLeft', 'slideOutRight', 'fadeOutRightBig','fadeOut','slideOutUp'
 ];
 
-export const supportBrowserAnimationEventOfName_end = {
-    "excuteAnimation"   : "animationend",
-    "OAnimation"        : "oAnimationEnd",
-    "MozAnimation"      : "animationend",
-    "WebkitAnimation"   : "webkitAnimationEnd",
-    'MSAnimation'       : 'MSAnimationEnd'
-};
-
 export const supportBrowserAnimationEventOfName_start = {
     "excuteAnimation"   : "animationstart",
     "OAnimation"        : "oAnimationStart",
     "MozAnimation"      : "animationstart",
     "WebkitAnimation"   : "webkitAnimationStart",
     'MSAnimation'       : 'MSAnimationStart'
+};
+
+export const supportBrowserAnimationEventOfName_final = {
+    "excuteAnimation"   : "animationend",
+    "OAnimation"        : "oAnimationEnd",
+    "MozAnimation"      : "animationend",
+    "WebkitAnimation"   : "webkitAnimationEnd",
+    'MSAnimation'       : 'MSAnimationEnd'
 };

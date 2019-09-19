@@ -1,13 +1,13 @@
 import { isFalse } from './staticMethods.js'
 import resetScroll from './resetScroll.js'
 import validateBrowserCompatiblityAnimationEvent from './compatiblity.js'
-import { supportBrowserAnimationEventOfName_end } from './defaultParameters.js'
+import { supportBrowserAnimationEventOfName_final } from './defaultParameters.js'
 
 export default function excuteShowAnimation (options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn';
 
     // 兼容 animation.
-    if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined ) {
+    if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_final) != undefined ) {
         if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
         // animation动画加载
         this.animate(options)[resetDefaultAnimation](

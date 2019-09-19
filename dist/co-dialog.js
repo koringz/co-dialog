@@ -433,19 +433,19 @@
     cancleCallback: function cancleCallback() {}
   };
   var animatiomApi = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'headShake', 'bounceOutLeft', 'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown', 'fadeInDownBig', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'rotateInUpLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'fadeInLeft', 'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'zoomOutLeft', 'hinge', 'jackInTheBox', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown', 'rotateOutUpRight', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'rotateOutUpLeft', 'zoomOutRight', 'zoomOutUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight', 'fadeOutRightBig', 'fadeOut', 'slideOutUp'];
-  var supportBrowserAnimationEventOfName_end = {
-    "excuteAnimation": "animationend",
-    "OAnimation": "oAnimationEnd",
-    "MozAnimation": "animationend",
-    "WebkitAnimation": "webkitAnimationEnd",
-    'MSAnimation': 'MSAnimationEnd'
-  };
   var supportBrowserAnimationEventOfName_start = {
     "excuteAnimation": "animationstart",
     "OAnimation": "oAnimationStart",
     "MozAnimation": "animationstart",
     "WebkitAnimation": "webkitAnimationStart",
     'MSAnimation': 'MSAnimationStart'
+  };
+  var supportBrowserAnimationEventOfName_final = {
+    "excuteAnimation": "animationend",
+    "OAnimation": "oAnimationEnd",
+    "MozAnimation": "animationend",
+    "WebkitAnimation": "webkitAnimationEnd",
+    'MSAnimation': 'MSAnimationEnd'
   };
 
   var aniConfig = {};
@@ -487,50 +487,50 @@
       key: "excuteAnimation",
       value: function excuteAnimation(nodelist, animationClass, showAndHideApi) {
         var getNodeList = document.querySelector(nodelist);
-        var supportsAntEvent_end = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_end);
+        var supportsAntEvent_final = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_final);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
         if (showAndHideApi.type.toLowerCase() == 'end') {
           setClassName([getNodeList], function (params) {
             return params + " ".concat(animationClass, " animatedHalf");
           });
-        } else {
+        }
+
+        if (showAndHideApi.type.toLowerCase() == 'start') {
           setClassName([getNodeList], function (params) {
             return params + " ".concat(animationClass, " animated");
           });
         }
 
         var callAnimationEventStart = function callAnimationEventStart() {
-          var typeStartWith = showAndHideApi.type; // 2种情况
+          // 2种情况
           // 显示弹出框时 有一次动画开始 到结束过程
           // 隐藏弹出框时 也有一次动画开始 到结束过程
           // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
           // 而之前隐藏的弹出框  不可见 就不会立马被监听
-
-          removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventEnd);
+          removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
         };
 
-        var callAnimationEventEnd = function callAnimationEventEnd() {
-          var typeStartWith = showAndHideApi.type; // 显示和隐藏的弹出框 都会监听一次结束
-
-          if (typeStartWith.toLowerCase() == 'end') {
+        var callAnimationEventFinal = function callAnimationEventFinal() {
+          // 显示和隐藏的弹出框 都会监听一次结束
+          if (showAndHideApi.type.toLowerCase() == 'end') {
             showAndHideApi.callback(animationClass);
             setClassName([getNodeList], function (params) {
               return params.replace(new RegExp(" ".concat(animationClass, " animatedHalf"), 'gm'), '');
             });
-          } else {
+          }
+
+          if (showAndHideApi.type.toLowerCase() == 'start') {
             setClassName([getNodeList], function (params) {
               return params.replace(new RegExp(" ".concat(animationClass, " animated"), 'gm'), '');
             });
           }
 
-          {
-            removeEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
-            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
-          }
+          removeEventListener(getNodeList, supportsAntEvent_final, callAnimationEventFinal);
+          removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
         };
 
-        addEventListener(getNodeList, supportsAntEvent_end, callAnimationEventEnd);
+        addEventListener(getNodeList, supportsAntEvent_final, callAnimationEventFinal);
         addEventListener(getNodeList, supportsAntEvent_start, callAnimationEventStart);
       }
     }, {
@@ -993,7 +993,7 @@
   function excuteShowAnimation(options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn'; // 兼容 animation.
 
-    if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
+    if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_final) != undefined) {
       if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation; // animation动画加载
 
       this.animate(options)[resetDefaultAnimation](resetDefaultAnimation, {
@@ -1018,7 +1018,7 @@
 
   function excuteHideAnimation(options, currentDialogNode) {
     // 兼容 animation.
-    if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_end) != undefined) {
+    if (validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_final) != undefined) {
       // animation动画加载
       this.animate(options).fadeOut('fadeOut', {
         type: 'end',
