@@ -5,7 +5,6 @@ import { supportBrowserAnimationEventOfName_final } from './defaultParameters.js
 
 export default function excuteShowAnimation (options, currentDialogNode) {
     var resetDefaultAnimation = 'bounceIn';
-
     // 兼容 animation.
     if ( validateBrowserCompatiblityAnimationEvent(currentDialogNode, supportBrowserAnimationEventOfName_final) != undefined ) {
         if (isFalse(this.hasAnimation)) resetDefaultAnimation = this.customAnimation || resetDefaultAnimation;
@@ -15,6 +14,8 @@ export default function excuteShowAnimation (options, currentDialogNode) {
             {
                 type: 'start',
                 callback: () => {
+                    // 动画未开始
+                    // 内部框不显示 高度为 0
                     currentDialogNode.style.display = 'block';
                     resetScroll({
                         name: 'add',

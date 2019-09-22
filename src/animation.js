@@ -44,14 +44,12 @@ export default class animation {
             setClassName([getNodeList], params => params + ` ${animationClass} animated`);
         }
 
-        var callAnimationEventStart = () => {
-            // 2种情况
-            // 显示弹出框时 有一次动画开始 到结束过程
-            // 隐藏弹出框时 也有一次动画开始 到结束过程
-            // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
-            // 而之前隐藏的弹出框  不可见 就不会立马被监听
-            removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
-        };
+        // 2种情况
+        // 显示弹出框时 有一次动画开始 到结束过程
+        // 隐藏弹出框时 也有一次动画开始 到结束过程
+        // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
+        // 而之前隐藏的弹出框  不可见 就不会立马被监听
+        var callAnimationEventStart = () => removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
 
         var callAnimationEventFinal = () => {
             // 显示和隐藏的弹出框 都会监听一次结束
