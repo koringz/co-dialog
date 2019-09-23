@@ -485,44 +485,46 @@
       }
     }, {
       key: "excuteAnimation",
-      value: function excuteAnimation(nodelist, animationClass, showAndHideApi) {
-        var getNodeList = document.querySelector(nodelist);
+      value: function excuteAnimation(showAndHideApi) {
+        var _this = this;
+
+        var getNodeList = document.querySelector(this.animationElement[0]);
         var supportsAntEvent_final = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_final);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
         if (showAndHideApi.type.toLowerCase() == 'end') {
           setClassName([getNodeList], function (params) {
-            return params + " ".concat(animationClass, " animatedHalf");
+            return "".concat(params, " ").concat(_this.animationName, " animatedHalf");
           });
         }
 
         if (showAndHideApi.type.toLowerCase() == 'start') {
           setClassName([getNodeList], function (params) {
-            return params + " ".concat(animationClass, " animated");
+            return "".concat(params, " ").concat(_this.animationName, " animated");
           });
-        }
+        } // 2种情况
+        // 显示弹出框时 有一次动画开始 到结束过程
+        // 隐藏弹出框时 也有一次动画开始 到结束过程
+        // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
+        // 而之前隐藏的弹出框  不可见 就不会立马被监听
+
 
         var callAnimationEventStart = function callAnimationEventStart() {
-          // 2种情况
-          // 显示弹出框时 有一次动画开始 到结束过程
-          // 隐藏弹出框时 也有一次动画开始 到结束过程
-          // 不同之处就是隐藏时  本身就显示的弹出框 可见动画被监听
-          // 而之前隐藏的弹出框  不可见 就不会立马被监听
-          removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
+          return removeEventListener(getNodeList, supportsAntEvent_start, callAnimationEventFinal);
         };
 
         var callAnimationEventFinal = function callAnimationEventFinal() {
           // 显示和隐藏的弹出框 都会监听一次结束
           if (showAndHideApi.type.toLowerCase() == 'end') {
-            showAndHideApi.callback(animationClass);
+            showAndHideApi.callback(_this.animationName);
             setClassName([getNodeList], function (params) {
-              return params.replace(new RegExp(" ".concat(animationClass, " animatedHalf"), 'gm'), '');
+              return params.replace(new RegExp(" ".concat(_this.animationName, " animatedHalf"), 'gm'), '');
             });
           }
 
           if (showAndHideApi.type.toLowerCase() == 'start') {
             setClassName([getNodeList], function (params) {
-              return params.replace(new RegExp(" ".concat(animationClass, " animated"), 'gm'), '');
+              return params.replace(new RegExp(" ".concat(_this.animationName, " animated"), 'gm'), '');
             });
           }
 
@@ -536,7 +538,7 @@
     }, {
       key: "render",
       value: function render() {
-        this.excuteAnimation(this.animationElement.slice(0), this.animationName, aniConfig);
+        this.excuteAnimation(aniConfig);
       }
     }]);
 
@@ -999,6 +1001,8 @@
       this.animate(options)[resetDefaultAnimation](resetDefaultAnimation, {
         type: 'start',
         callback: function callback() {
+          // 动画未开始
+          // 内部框不显示 高度为 0
           currentDialogNode.style.display = 'block';
           resetScroll({
             name: 'add',

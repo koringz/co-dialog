@@ -32,16 +32,16 @@ export default class animation {
         return this;
     }
 
-    excuteAnimation (nodelist,animationClass, showAndHideApi) {
-        var getNodeList = document.querySelector(nodelist);
+    excuteAnimation (showAndHideApi) {
+        var getNodeList = document.querySelector(this.animationElement[0]);
         var supportsAntEvent_final = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_final);
         var supportsAntEvent_start = validateBrowserCompatiblityAnimationEvent(getNodeList, supportBrowserAnimationEventOfName_start);
 
         if (showAndHideApi.type.toLowerCase() == 'end') {
-            setClassName([getNodeList], params => params + ` ${animationClass} animatedHalf`);
+            setClassName([getNodeList], params => `${params} ${this.animationName} animatedHalf`);
         }
         if (showAndHideApi.type.toLowerCase() == 'start') {
-            setClassName([getNodeList], params => params + ` ${animationClass} animated`);
+            setClassName([getNodeList], params => `${params} ${this.animationName} animated`);
         }
 
         // 2种情况
@@ -54,12 +54,12 @@ export default class animation {
         var callAnimationEventFinal = () => {
             // 显示和隐藏的弹出框 都会监听一次结束
             if (showAndHideApi.type.toLowerCase() == 'end') {
-                showAndHideApi.callback(animationClass)
-                setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animatedHalf`, 'gm'), '') );
+                showAndHideApi.callback(this.animationName)
+                setClassName([getNodeList], params => params.replace(new RegExp(` ${this.animationName} animatedHalf`, 'gm'), '') );
             }
 
             if (showAndHideApi.type.toLowerCase() == 'start') {
-                setClassName([getNodeList], params => params.replace(new RegExp(` ${animationClass} animated`, 'gm'), '') );
+                setClassName([getNodeList], params => params.replace(new RegExp(` ${this.animationName} animated`, 'gm'), '') );
             }
 
             removeEventListener(getNodeList, supportsAntEvent_final, callAnimationEventFinal);
@@ -71,6 +71,6 @@ export default class animation {
     }
 
     render () {
-        this.excuteAnimation(this.animationElement.slice(0),this.animationName,aniConfig);
+        this.excuteAnimation(aniConfig);
     }
 }
