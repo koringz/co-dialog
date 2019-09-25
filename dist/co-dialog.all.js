@@ -1089,6 +1089,12 @@
   var getTitleColor = function getTitleColor() {
     return getStyle.call(this, '[title]', 'color');
   };
+  var getConfirmColor = function getConfirmColor() {
+    return getStyle.call(this, '[confirm]', 'color');
+  };
+  var setConfirmColor = function setConfirmColor(params) {
+    return setStyle.call(this, '[confirm]', 'color', params);
+  };
   var setTitleColor = function setTitleColor(params) {
     return setStyle.call(this, '[title]', 'color', params);
   };
@@ -1097,6 +1103,8 @@
     getContent: getContent,
     getTitle: getTitle,
     getTitleColor: getTitleColor,
+    getConfirmColor: getConfirmColor,
+    setConfirmColor: setConfirmColor,
     setTitleColor: setTitleColor
   });
 

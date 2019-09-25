@@ -42,6 +42,14 @@ export const getTitleColor = function () {
     return getStyle.call(this, '[title]', 'color')
 }
 
+export const getConfirmColor = function () {
+    return getStyle.call(this, '[confirm]', 'color')
+}
+
+export const setConfirmColor = function (params) {
+    return setStyle.call(this, '[confirm]', 'color', params)
+}
+
 export const setTitleColor = function (params) {
     return setStyle.call(this, '[title]', 'color', params)
 }
