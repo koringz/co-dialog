@@ -1089,10 +1089,22 @@
   var getTitleColor = function getTitleColor() {
     return getStyle.call(this, '[title]', 'color');
   };
-  var getConfirmColor = function getConfirmColor() {
+  var getConfirmButtonColor = function getConfirmButtonColor() {
     return getStyle.call(this, '[confirm]', 'color');
   };
-  var setConfirmColor = function setConfirmColor(params) {
+  var getCancleButtonColor = function getCancleButtonColor() {
+    return getStyle.call(this, '[cancle]', 'color');
+  };
+  var getCloseColor = function getCloseColor() {
+    return getStyle.call(this, '[close]', 'color');
+  };
+  var setCloseColor = function setCloseColor(params) {
+    return setStyle.call(this, '[close]', 'color', params);
+  };
+  var setCancleButtonColor = function setCancleButtonColor(params) {
+    return getStyle.call(this, '[cancle]', 'color', params);
+  };
+  var setConfirmButtonColor = function setConfirmButtonColor(params) {
     return setStyle.call(this, '[confirm]', 'color', params);
   };
   var setTitleColor = function setTitleColor(params) {
@@ -1103,8 +1115,12 @@
     getContent: getContent,
     getTitle: getTitle,
     getTitleColor: getTitleColor,
-    getConfirmColor: getConfirmColor,
-    setConfirmColor: setConfirmColor,
+    getConfirmButtonColor: getConfirmButtonColor,
+    getCancleButtonColor: getCancleButtonColor,
+    getCloseColor: getCloseColor,
+    setCloseColor: setCloseColor,
+    setCancleButtonColor: setCancleButtonColor,
+    setConfirmButtonColor: setConfirmButtonColor,
     setTitleColor: setTitleColor
   });
 

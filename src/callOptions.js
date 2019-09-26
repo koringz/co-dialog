@@ -42,11 +42,27 @@ export const getTitleColor = function () {
     return getStyle.call(this, '[title]', 'color')
 }
 
-export const getConfirmColor = function () {
+export const getConfirmButtonColor = function () {
     return getStyle.call(this, '[confirm]', 'color')
 }
 
-export const setConfirmColor = function (params) {
+export const getCancleButtonColor = function () {
+    return getStyle.call(this, '[cancle]', 'color')
+}
+
+export const getCloseColor = function () {
+    return getStyle.call(this, '[close]', 'color')
+}
+
+export const setCloseColor = function (params) {
+    return setStyle.call(this, '[close]', 'color', params)
+}
+
+export const setCancleButtonColor = function (params) {
+    return getStyle.call(this, '[cancle]', 'color', params)
+}
+
+export const setConfirmButtonColor = function (params) {
     return setStyle.call(this, '[confirm]', 'color', params)
 }
 
