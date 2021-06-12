@@ -1,10 +1,12 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Coog = factory());
-}(this, function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Coog = factory());
+}(this, (function () { 'use strict';
 
   function _typeof(obj) {
+    "@babel/helpers - typeof";
+
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
       _typeof = function (obj) {
         return typeof obj;
@@ -89,6 +91,19 @@
     return _setPrototypeOf(o, p);
   }
 
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function _assertThisInitialized(self) {
     if (self === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -103,6 +118,99 @@
     }
 
     return _assertThisInitialized(self);
+  }
+
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived),
+          result;
+
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+
+    if (!it) {
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
+        var i = 0;
+
+        var F = function () {};
+
+        return {
+          s: F,
+          n: function () {
+            if (i >= o.length) return {
+              done: true
+            };
+            return {
+              done: false,
+              value: o[i++]
+            };
+          },
+          e: function (e) {
+            throw e;
+          },
+          f: F
+        };
+      }
+
+      throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+
+    var normalCompletion = true,
+        didErr = false,
+        err;
+    return {
+      s: function () {
+        it = it.call(o);
+      },
+      n: function () {
+        var step = it.next();
+        normalCompletion = step.done;
+        return step;
+      },
+      e: function (e) {
+        didErr = true;
+        err = e;
+      },
+      f: function () {
+        try {
+          if (!normalCompletion && it.return != null) it.return();
+        } finally {
+          if (didErr) throw err;
+        }
+      }
+    };
   }
 
   // default static methods
@@ -222,6 +330,7 @@
   };
 
   var staticMethods = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     isUndefined: isUndefined,
     isExist: isExist,
     isNan: isNan,
@@ -339,12 +448,11 @@
     return createDiv;
   };
   function setClassName(arrNode, callback) {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _iterator = _createForOfIteratorHelper(arrNode),
+        _step;
 
     try {
-      for (var _iterator = arrNode[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var node = _step.value;
 
         if (node.classList) {
@@ -354,18 +462,9 @@
         }
       }
     } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
+      _iterator.e(err);
     } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-          _iterator["return"]();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
+      _iterator.f();
     }
   }
 
@@ -450,9 +549,7 @@
 
   var aniConfig = {};
 
-  var animation =
-  /*#__PURE__*/
-  function () {
+  var animation = /*#__PURE__*/function () {
     function animation(options) {
       _classCallCheck(this, animation);
 
@@ -549,9 +646,9 @@
   function useOptions() {
     var _ref = arguments.length <= 0 ? undefined : arguments[0],
         obj = _ref.obj,
-        dialog = _ref.dialog,
-        mask = _ref.mask,
-        header = _ref.header,
+        dialog = _ref.dialog;
+        _ref.mask;
+        var header = _ref.header,
         body = _ref.body,
         footer = _ref.footer,
         footerButtonGroup = _ref.footerButtonGroup,
@@ -753,7 +850,7 @@
     // default: true
     if (isTrue(obj.isClose)) {
       // 防止通过 this.dialogElement 元素查找失效
-      var _currentDialogElement = self.$(self.dialogElement);
+      self.$(self.dialogElement);
 
       var cacheCloseList = [];
       var headerClose = self.find(header, '[close]');
@@ -1112,6 +1209,7 @@
   };
 
   var callOptions = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     getContent: getContent,
     getTitle: getTitle,
     getTitleColor: getTitleColor,
@@ -1219,17 +1317,17 @@
     };
   };
 
-  var codialog =
-  /*#__PURE__*/
-  function (_animation) {
+  var codialog = /*#__PURE__*/function (_animation) {
     _inherits(codialog, _animation);
+
+    var _super = _createSuper(codialog);
 
     function codialog(options) {
       var _this;
 
       _classCallCheck(this, codialog);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(codialog).call(this, options));
+      _this = _super.call(this, options);
       _this.name = 'Coog';
       _this.xString = [];
       _this.setTimer = null;
@@ -1413,4 +1511,4 @@
 
   return Coog;
 
-}));
+})));

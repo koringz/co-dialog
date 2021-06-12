@@ -1,10 +1,12 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Coog = factory());
-}(this, function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Coog = factory());
+}(this, (function () { 'use strict';
 
   function _typeof(obj) {
+    "@babel/helpers - typeof";
+
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
       _typeof = function (obj) {
         return typeof obj;
@@ -89,6 +91,19 @@
     return _setPrototypeOf(o, p);
   }
 
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function _assertThisInitialized(self) {
     if (self === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -103,6 +118,99 @@
     }
 
     return _assertThisInitialized(self);
+  }
+
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived),
+          result;
+
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+
+    if (!it) {
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
+        var i = 0;
+
+        var F = function () {};
+
+        return {
+          s: F,
+          n: function () {
+            if (i >= o.length) return {
+              done: true
+            };
+            return {
+              done: false,
+              value: o[i++]
+            };
+          },
+          e: function (e) {
+            throw e;
+          },
+          f: F
+        };
+      }
+
+      throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+
+    var normalCompletion = true,
+        didErr = false,
+        err;
+    return {
+      s: function () {
+        it = it.call(o);
+      },
+      n: function () {
+        var step = it.next();
+        normalCompletion = step.done;
+        return step;
+      },
+      e: function (e) {
+        didErr = true;
+        err = e;
+      },
+      f: function () {
+        try {
+          if (!normalCompletion && it.return != null) it.return();
+        } finally {
+          if (didErr) throw err;
+        }
+      }
+    };
   }
 
   // default static methods
@@ -222,6 +330,7 @@
   };
 
   var staticMethods = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     isUndefined: isUndefined,
     isExist: isExist,
     isNan: isNan,
@@ -339,12 +448,11 @@
     return createDiv;
   };
   function setClassName(arrNode, callback) {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _iterator = _createForOfIteratorHelper(arrNode),
+        _step;
 
     try {
-      for (var _iterator = arrNode[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var node = _step.value;
 
         if (node.classList) {
@@ -354,18 +462,9 @@
         }
       }
     } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
+      _iterator.e(err);
     } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-          _iterator["return"]();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
+      _iterator.f();
     }
   }
 
@@ -450,9 +549,7 @@
 
   var aniConfig = {};
 
-  var animation =
-  /*#__PURE__*/
-  function () {
+  var animation = /*#__PURE__*/function () {
     function animation(options) {
       _classCallCheck(this, animation);
 
@@ -549,9 +646,9 @@
   function useOptions() {
     var _ref = arguments.length <= 0 ? undefined : arguments[0],
         obj = _ref.obj,
-        dialog = _ref.dialog,
-        mask = _ref.mask,
-        header = _ref.header,
+        dialog = _ref.dialog;
+        _ref.mask;
+        var header = _ref.header,
         body = _ref.body,
         footer = _ref.footer,
         footerButtonGroup = _ref.footerButtonGroup,
@@ -753,7 +850,7 @@
     // default: true
     if (isTrue(obj.isClose)) {
       // 防止通过 this.dialogElement 元素查找失效
-      var _currentDialogElement = self.$(self.dialogElement);
+      self.$(self.dialogElement);
 
       var cacheCloseList = [];
       var headerClose = self.find(header, '[close]');
@@ -1112,6 +1209,7 @@
   };
 
   var callOptions = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     getContent: getContent,
     getTitle: getTitle,
     getTitleColor: getTitleColor,
@@ -1219,17 +1317,17 @@
     };
   };
 
-  var codialog =
-  /*#__PURE__*/
-  function (_animation) {
+  var codialog = /*#__PURE__*/function (_animation) {
     _inherits(codialog, _animation);
+
+    var _super = _createSuper(codialog);
 
     function codialog(options) {
       var _this;
 
       _classCallCheck(this, codialog);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(codialog).call(this, options));
+      _this = _super.call(this, options);
       _this.name = 'Coog';
       _this.xString = [];
       _this.setTimer = null;
@@ -1413,6 +1511,6 @@
 
   return Coog;
 
-}));
+})));
 
-"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".codialog-mask{position:fixed;left:0;right:0;top:0;bottom:0;align-items:center;text-align:center;z-index:999;background-color:rgba(0,0,0,.4)}.codialog-show{overflow-y:hidden;height:auto!important}.codialog-frame{display:flex;position:absolute;background-color:#fff;border-radius:6px;overflow:hidden;box-shadow:0 0 12px rgba(0,0,0,.5);border:calc(0px);pointer-events:auto;z-index:99999}.codialog-frame .codialog-box{display:block;width:520px;max-width:100%;height:100%}.codialog-box .codialog-styles{height:inherit}.codialog-styles .codialog-styles-head{background-color:#f6f8fb;padding:15px 19px}.codialog-styles-head .codialog-head-content{display:table;width:100%;clear:both;text-align:left!important}.codialog-head-content .codialog-head-close,.codialog-head-content .codialog-head-title{display:table-cell;position:relative;vertical-align:middle}.codialog-head-content .codialog-head-title{float:left;text-align:left;color:#9a9b9c}.codialog-head-content .codialog-head-close{float:right;text-align:right;color:#ccc}.codialog-head-content .codialog-head-close>button,.codialog-head-content .codialog-head-title>span{display:inline-block;font-weight:700;font-size:16px}.codialog-head-content .codialog-head-title>span{margin-left:0;color:inherit;font-weight:400}.codialog-head-content .codialog-head-close>button{position:relative;justify-content:center;width:19px;height:19px;margin:0;padding:0;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:inherit;font-family:serif;font-size:17px;line-height:19px;cursor:pointer;overflow:hidden}.codialog-styles .codialog-styles-content{display:block;margin-top:28px;margin-left:64px;margin-right:64px;font-size:28px;overflow-y:hidden;color:#696969;text-align:center}.codialog-styles-content .codialog-content-message{position:relative}.codialog-icon{position:relative;display:flex;margin:0 auto 20px;height:76px;width:76px;line-height:76px;border-radius:50%;border:4px solid transparent;text-align:center;user-select:none;justify-content:center}.codialog-success-ring{position:absolute;width:100%;height:100%;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;z-index:2;left:-4px;top:-4px}.codialog-icon-success .codialog-icon-success--line-small{position:absolute;display:inline-block;top:48px;left:16px;width:20px;height:5px;background-color:#a5dc86;transform:rotate(45deg)}.codialog-icon-success .codialog-icon-success--line-long{position:absolute;display:inline-block;top:41px;left:25px;width:42px;height:5px;background-color:#a5dc86;transform:rotate(135deg)}.codialog-icon-error{border-color:#f27474}.codialog-icon-error--line-left{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(45deg);left:15px;background-color:#f27474}.codialog-icon-error--line-right{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(-45deg);right:17px;background-color:#f27474}.codialog-icon-warning{border-color:#facea8;color:#f8bb86}.codialog-icon-error--text{color:#f8bb86;font-size:56px}.codialog-icon-info{border-color:#9de0f6}.codialog-icon-info--text{color:#3fc3ee;font-size:56px;transform:rotate(180deg)}.codialog-icon-question{border-color:#c9dae1;color:#87adbd}.codialog-icon-question--text{font-size:56px}.codialog-icon-error,.codialog-icon-info,.codialog-icon-question,.codialog-icon-success,.codialog-icon-warning{display:none}.codialog-content-message .codialog-message-text{width:100%;font-size:inherit}.codialog-styles .codialog-styles-foot{display:block;margin-top:30px;padding-bottom:22px}.codialog-styles-foot .codialog-foot-button{display:block}.codialog-foot-button .codialog-button-group{text-align:center}.codialog-button-group .codialog-group-btn{display:inline-block;margin:0 8px;padding:10px 32px;font-size:16px;font-weight:500;outline:0;border:none;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;-ms-border-radius:6px;border-radius:6px;transition:background-color ease-in-out .2s}.codialog-foot-button .codialog-button-group button[confirm]{background-color:#51bf8c}.codialog-foot-button .codialog-button-group button[confirm]:hover{background-color:#45b680}.codialog-foot-button .codialog-button-group button[cancle]{display:none;background-color:#16aeee;background-color:rgba(22,174,238,1);color:#fff}.codialog-foot-button .codialog-text-group{text-align:center;color:#585858}@media only screen and (max-width:801px){.codialog-frame{width:96%}.codialog-frame .codialog-box{width:100%}}.animatedHalf{-webkit-animation-duration:.2s;animation-duration:.2s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}@-webkit-keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}@keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}.bounceIn{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:bounceIn;animation-name:bounceIn}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}");
+"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".codialog-mask{position:fixed;left:0;right:0;top:0;bottom:0;align-items:center;text-align:center;z-index:999;background-color:rgba(0,0,0,.4)}.codialog-show{overflow-y:hidden;height:auto!important}.codialog-frame{display:flex;position:absolute;background-color:#fff;border-radius:6px;overflow:hidden;box-shadow:0 0 12px rgba(0,0,0,.5);border:calc(0px);pointer-events:auto;z-index:99999}.codialog-frame .codialog-box{display:block;width:520px;max-width:100%;height:100%}.codialog-box .codialog-styles{height:inherit}.codialog-styles .codialog-styles-head{background-color:#f6f8fb;padding:15px 19px}.codialog-styles-head .codialog-head-content{display:table;width:100%;clear:both;text-align:left!important}.codialog-head-content .codialog-head-close,.codialog-head-content .codialog-head-title{display:table-cell;position:relative;vertical-align:middle}.codialog-head-content .codialog-head-title{float:left;text-align:left;color:#9a9b9c}.codialog-head-content .codialog-head-close{float:right;text-align:right;color:#ccc}.codialog-head-content .codialog-head-close>button,.codialog-head-content .codialog-head-title>span{display:inline-block;font-weight:700;font-size:16px}.codialog-head-content .codialog-head-title>span{margin-left:0;color:inherit;font-weight:400}.codialog-head-content .codialog-head-close>button{position:relative;justify-content:center;width:19px;height:19px;margin:0;padding:0;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:inherit;font-family:serif;font-size:17px;line-height:19px;cursor:pointer;overflow:hidden}.codialog-styles .codialog-styles-content{display:block;margin-top:28px;margin-left:64px;margin-right:64px;font-size:28px;overflow-y:hidden;color:#696969;text-align:center}.codialog-styles-content .codialog-content-message{position:relative}.codialog-icon{position:relative;display:flex;margin:0 auto 20px;height:76px;width:76px;line-height:76px;border-radius:50%;border:4px solid transparent;text-align:center;user-select:none;justify-content:center}.codialog-success-ring{position:absolute;width:100%;height:100%;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;z-index:2;left:-4px;top:-4px}.codialog-icon-success .codialog-icon-success--line-small{position:absolute;display:inline-block;top:48px;left:16px;width:20px;height:5px;background-color:#a5dc86;transform:rotate(45deg)}.codialog-icon-success .codialog-icon-success--line-long{position:absolute;display:inline-block;top:41px;left:25px;width:42px;height:5px;background-color:#a5dc86;transform:rotate(135deg)}.codialog-icon-error{border-color:#f27474}.codialog-icon-error--line-left{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(45deg);left:15px;background-color:#f27474}.codialog-icon-error--line-right{position:absolute;display:inline-block;top:38px;width:45px;height:5px;border-radius:.125em;transform:rotate(-45deg);right:17px;background-color:#f27474}.codialog-icon-warning{border-color:#facea8;color:#f8bb86}.codialog-icon-error--text{color:#f8bb86;font-size:56px}.codialog-icon-info{border-color:#9de0f6}.codialog-icon-info--text{color:#3fc3ee;font-size:56px;transform:rotate(180deg)}.codialog-icon-question{border-color:#c9dae1;color:#87adbd}.codialog-icon-question--text{font-size:56px}.codialog-icon-error,.codialog-icon-info,.codialog-icon-question,.codialog-icon-success,.codialog-icon-warning{display:none}.codialog-content-message .codialog-message-text{width:100%;font-size:inherit}.codialog-styles .codialog-styles-foot{display:block;margin-top:30px;padding-bottom:22px}.codialog-styles-foot .codialog-foot-button{display:block}.codialog-foot-button .codialog-button-group{text-align:center}.codialog-button-group .codialog-group-btn{display:inline-block;margin:0 8px;padding:10px 32px;font-size:16px;font-weight:500;outline:0;border:none;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;-ms-border-radius:6px;border-radius:6px;transition:background-color ease-in-out .2s}.codialog-foot-button .codialog-button-group button[confirm]{background-color:#51bf8c}.codialog-foot-button .codialog-button-group button[confirm]:hover{background-color:#45b680}.codialog-foot-button .codialog-button-group button[cancle]{display:none;background-color:#16aeee;background-color:#16aeee;color:#fff}.codialog-foot-button .codialog-text-group{text-align:center;color:#585858}@media only screen and (max-width:801px){.codialog-frame{width:96%}.codialog-frame .codialog-box{width:100%}}.animatedHalf{-webkit-animation-duration:.2s;animation-duration:.2s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}@-webkit-keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}@keyframes bounceIn{20%,40%,60%,80%,from,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}.bounceIn{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:bounceIn;animation-name:bounceIn}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}");

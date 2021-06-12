@@ -17,6 +17,7 @@
     <style type="text/css">
         body {
             margin: 0;
+            height: 1000px;
             min-height: 100vh;
             background: #5A99F9;
             background: linear-gradient(300deg, #B00077, #5A99F9);
@@ -39,6 +40,7 @@
 
 <body>
     <center style="padding-top: 300px; height: 900px">
+        <button onclick="onshow()">onshow</button>
     </center>
 </body>
 
@@ -56,6 +58,10 @@
             showCancleButton: true,
         })
         .show()
+
+        function onshow(argument) {
+            Coog.app('.cancle').show()
+        }
 
     var time02 = (new Date).getTime();
 

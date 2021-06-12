@@ -18,16 +18,32 @@
 <style type="text/css">
 body {
 	margin: 0;
-   min-height: 100vh;
+   height: 700px;
    background: #5A99F9;
    background: linear-gradient(300deg,#B00077,#5A99F9);
 }
 </style>
 </head>
-<body>
+<body class="hahah">
+    <center style="padding-top: 300px; height: 900px">
+        <button class="clickme" onclick='test.show()'>show me</button>
+    </center>
 </body>
 <script type="text/javascript" src="./../dist/co-dialog.all.js" ></script>
 <script type="text/javascript">
+
+
+   var dd = Coog.app(".test3").use({
+      titleColor: '#45B680',
+      title: 'Return Results',
+      message: 'Success Delete',
+      confirmButtonText: 'YES',
+      type: 'Success',
+      confirmCallback: function () {
+         test.show()
+      }
+   })
+
    const test = Coog
    .app('.test').use({
       title: 'JUST CHECKING.',
@@ -54,20 +70,11 @@ body {
       },
       confirmCallback: function () {
          // 待优化 confirmCallback
-         Coog.app(".test3").use({
-            titleColor: '#45B680',
-            title: 'Return Results',
-            message: 'Success Delete',
-            confirmButtonText: 'YES',
-            type: 'Success',
-            confirmCallback: function () {
-               test.show()
-            }
-         })
-         .show()
+         dd.show()
       }
    })
    .show()
+
 </script>
 </html>
 
