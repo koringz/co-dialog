@@ -244,17 +244,16 @@ export const onDialogIsClose = (self,obj,header,footerButtonGroup) => {
                         clearTimeout(self.setTimer);
                     }
 
-                    self.hide();
-
                     // 确认按钮的回调函数
                     if (isStr(currentNode.getAttribute('confirm')) && isFun(obj.confirmCallback)) {
-                        obj.confirmCallback();
+                        self.waitConfirmCallback = obj.confirmCallback
                     }
                     // 取消按钮的回调函数
                     else if (isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
-                        obj.cancleCallback();
+                        self.waitCancleCallback = obj.cancleCallback
                     }
 
+                    self.hide();
                     self.closeBackValue = true;
                 }
             })
