@@ -39,8 +39,10 @@
 }
 
 .codialog-styles .codialog-styles-head {
-    background-color: #f6f8fb;
-    padding: 15px 19px
+    /*background-color: #f6f8fb;*/
+    padding: 15px 19px;
+    box-shadow: -2px 8px 14px #f7f7f7 inset, 0px -1px 24px #FaFaFa;
+    border-bottom: 1px solid #e6e6e6;
 }
 
 .codialog-styles-head .codialog-head-content {

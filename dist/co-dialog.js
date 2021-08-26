@@ -115,6 +115,8 @@
   function _possibleConstructorReturn(self, call) {
     if (call && (typeof call === "object" || typeof call === "function")) {
       return call;
+    } else if (call !== void 0) {
+      throw new TypeError("Derived constructors may only return object or undefined");
     }
 
     return _assertThisInitialized(self);
@@ -897,8 +899,8 @@
               self.waitConfirmCallback = obj.confirmCallback;
             } // 取消按钮的回调函数
             else if (isStr(currentNode.getAttribute('cancle')) && isFun(obj.cancleCallback)) {
-                self.waitCancleCallback = obj.cancleCallback;
-              }
+              self.waitCancleCallback = obj.cancleCallback;
+            }
 
             self.hide();
             self.closeBackValue = true;
