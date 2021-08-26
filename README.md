@@ -1,16 +1,16 @@
 <p align="center">
-    <a href="https://github.com/ZWLTZ/co-dialog" alt="co-dialog">
+    <a href="https://github.com/koringz/co-dialog" alt="co-dialog">
         <img src="./assets/codialog.gif" alt="co-dialog">
     </a>
 </p>
 
 <p align="center">
-<a href="https://travis-ci.org/ZWLTZ/co-dialog"><img alt="Build Status" src="https://api.travis-ci.org/ZWLTZ/co-dialog.svg?branch=master"></a>
+<a href="https://travis-ci.org/koringz/co-dialog"><img alt="Build Status" src="https://api.travis-ci.org/koringz/co-dialog.svg?branch=master"></a>
 <a href="./License.txt"><img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
-<a href="https://github.com/ZWLTZ/co-dialog/issues"><img alt="issues" src="https://img.shields.io/github/issues/ZWLTZ/co-dialog.svg"></a>
-<a href="https://github.com/ZWLTZ/co-dialog/releases/latest"><img alt="releases" src="https://img.shields.io/badge/release-lastest-blue.svg" > </a>
-<a href="https://github.com/ZWLTZ/co-dialog/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ZWLTZ/co-dialog.svg?style=social" ></a>
-<a href="https://github.com/ZWLTZ/co-dialog/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ZWLTZ/co-dialog.svg?style=social" ></a>
+<a href="https://github.com/koringz/co-dialog/issues"><img alt="issues" src="https://img.shields.io/github/issues/koringz/co-dialog.svg"></a>
+<a href="https://github.com/koringz/co-dialog/releases/latest"><img alt="releases" src="https://img.shields.io/badge/release-lastest-blue.svg" > </a>
+<a href="https://github.com/koringz/co-dialog/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/koringz/co-dialog.svg?style=social" ></a>
+<a href="https://github.com/koringz/co-dialog/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/koringz/co-dialog.svg?style=social" ></a>
 </p>
 
 <p align="center">
@@ -115,11 +115,12 @@ Coog
     .show()
 ```
 ## [点这里看更多例子和文档 :gun:](https://koringz.github.io/co-dialog/)
+<a href="https://github.com/koringz/co-dialog/demo.jpg" alt="co-dialog">
+    <img src="./assets/demo.jpg" alt="co-dialog">
+</a>
 
 ## 其他版本
- - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/latest) - ES6 Wraper. Now master branch
- - [co-dialog](https://github.com/ZWLTZ/co-dialog/releases/tag/v2.0.1) - ES5 Wraper
- - [vue-co-dialog](https://github.com/ZWLTZ/vue-co-dialog) - Vue.js Binding
+ - [vue-co-dialog](https://github.com/koringz/vue-co-dialog) - Vue.js Binding
 
 
 ## 浏览器兼容

@@ -1,6 +1,6 @@
 {
   "name": "co-dialog",
-  "version": "2.1.7",
+  "version": "3.0.1",
   "description": "这是一个简洁，智能，个性化的JAVASCRIPT弹出框",
   "main": "dist/co-dialog.all.js",
   "browser": "dist/co-dialog.all.js",
@@ -59,7 +59,8 @@
     "rollup": "^2.51.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sweetalert2": "^11.0.17"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
