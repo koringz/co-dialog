@@ -1,11 +1,11 @@
 node_modules
 *.txt
+package-lock.json
+yarn.lock
 
 # .gitignore
 # node_modules
 # dist
-# yarn.lock
 # **.md
 # **.txt
 
-package-lock.json
