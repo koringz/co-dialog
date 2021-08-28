@@ -41,8 +41,8 @@
 .codialog-styles .codialog-styles-head {
     /*background-color: #f6f8fb;*/
     padding: 15px 19px;
-    box-shadow: -2px 8px 14px #f7f7f7 inset, 0px -1px 24px #FaFaFa;
-    border-bottom: 1px solid #e6e6e6;
+    box-shadow: -2px 7px 19px #f9f9f9 inset;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .codialog-styles-head .codialog-head-content {
